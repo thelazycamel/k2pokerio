@@ -2,7 +2,6 @@ defmodule K2pokerIo.PageController do
   use K2pokerIo.Web, :controller
 
   def index(conn, _params) do
-    require IEx; IEx.pry
     render conn, "index.html"
   end
 
@@ -26,6 +25,10 @@ defmodule K2pokerIo.PageController do
     # the Game storing of the player_id, note this is prepended with anon
     conn = put_session(conn, :anon_user_id, user_id)
       |> put_resp_cookie("username", anon_username)
+
+    # TODO pass this through to the tournament (The Big One in play) page where
+    # it should get "wait" to get assigned a game with another player
+
     render conn, "user_created.html", username: anon_username
   end
 
@@ -40,6 +43,5 @@ defmodule K2pokerIo.PageController do
   defp random_hash(length) do
     :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length) |> String.replace("|", "-")
   end
-
 
 end
