@@ -16,8 +16,9 @@ defmodule K2pokerIo.Router do
   scope "/", K2pokerIo do
     pipe_through :browser # Use the default browser stack
 
-    get "/test", PageController, :test
+    resources "/games", GameController, only: [:index, :show, :new, :create]
 
+    get "/test", PageController, :test
     get "/", PageController, :index
   end
 

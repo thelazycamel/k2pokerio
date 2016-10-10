@@ -1,0 +1,53 @@
+<div class="poker">
+  <h2 id="status">STATUS: <%= @game.status %></h2>
+  <div id="player1">Player 1 Name: <b><%= List.first(@game.players).id %></b></div>
+  <div id="player2">Player 2 Name: <b><%= List.last(@game.players).id %></b></div>
+
+  <div id="table-cards">
+    <h2>Table Cards</h2>
+    <%= for card <- @game.table_cards do %>
+      <div class="table-card" style="float: left; margin-right: 10px"><%= card %></div>
+    <% end %>
+  </div>
+
+  <div style="clear: both"></div>
+  <div id="player1-cards">
+    <h2>Player 1 Cards</h2>
+    <%= for card <- List.first(@game.players).cards do %>
+      <div class="player-card" style="float: left; margin-right: 10px"><%= card %></div>
+    <% end %>
+  </div>
+
+  <div style="clear: both"></div>
+  <div id="player1-cards">
+    <h2>Player 2 Cards</h2>
+    <%= for card <- List.last(@game.players).cards do %>
+      <div class="player-card" style="float: left; margin-right: 10px"><%= card %></div>
+    <% end %>
+  </div>
+
+  <div style="clear: both"></div>
+  <div id="deck">
+    <h2>Rest of the deck</h2>
+    <%= for card <- @game.deck do %>
+      <div class="deck-card" style="float: left; margin-right: 10px"><%= card %></div>
+    <% end %>
+  </div>
+  <div style="clear: both"></div>
+  <div id="winner">
+    <h2>Winner Details</h2>
+    <div id="winner-status">Status: <b><%= @game.result.status %></b></div>
+    <div id="winner-name">Winner: <b><%= @game.result.player_id %></b></div>
+    <div id="win-description">Description: <b><%= @game.result.win_description %></b></div>
+    <div id="winning-cards">
+      <span style="float: left; margin-right: 10px">Cards: </span>
+      <b>
+      <%= for card <- @game.result.cards do %>
+        <div class="deck-card" style="float: left; margin-right: 10px"><%= card %></div>
+      <% end %>
+      </b>
+    </end>
+    <div id="lose-description" style="clear: both">Loser: <b><%= @game.result.lose_description %></b></div>
+  </div>
+
+</div>

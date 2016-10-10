@@ -1,0 +1,12 @@
+<h1>Listing Games</h1>
+<p><%= link "Add a Game", to: game_path(@conn, :new) %></p>
+<table class="table">
+  <%= for game <- @games do %>
+    <tr>
+      <td><b><%= game.player1 %></b></td>
+      <td><b><%= game.player2 %></b></td>
+      <td><%= game.status %></td>
+      <td><%= link "View", to: game_path(@conn, :show, game.id) %></td>
+    </tr>
+  <% end %>
+</table>
