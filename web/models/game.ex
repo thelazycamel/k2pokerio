@@ -27,8 +27,8 @@ defmodule K2pokerIo.Game do
 
   def create_new_changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player1, :player2])
     |> changeset(params)
+    |> cast(params, [:player1, :player2])
     |> create_game(params)
   end
 
@@ -44,7 +44,6 @@ defmodule K2pokerIo.Game do
     players = Enum.map(game.players, fn (player) -> Poison.encode!(player) |> Poison.decode!(as: %K2poker.Player{}) end)
     %{game | players: players}
   end
-
 
 
 end

@@ -11,6 +11,7 @@ defmodule K2pokerIo.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
   end
 
   scope "/", K2pokerIo do
@@ -19,6 +20,8 @@ defmodule K2pokerIo.Router do
     resources "/games", GameController, only: [:index, :show, :new, :create]
 
     get "/test", PageController, :test
+    post "/anon-user", PageController, :anon_user_create
+
     get "/", PageController, :index
   end
 

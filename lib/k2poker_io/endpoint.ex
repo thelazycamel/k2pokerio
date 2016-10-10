@@ -36,7 +36,7 @@ defmodule K2pokerIo.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_k2poker_io_key",
-    signing_salt: "DrAEkCHY"
+    signing_salt: "xNvzuKCbJGcPjBo69D4M3#6UCXmrUG#?2ZM43G7tuU9yPD,r$E"
 
   plug K2pokerIo.Router
 end
