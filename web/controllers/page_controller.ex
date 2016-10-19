@@ -21,19 +21,14 @@ defmodule K2pokerIo.PageController do
   #TODO validate/restrict chars and secure this user generated username
   def anon_user_create(conn, %{"anon_user" => %{"username" => anon_username}}) do
     user_id = generate_anon_user_id(anon_username)
-    # GREAT, i can store the :anon_user_id in the session, to be used in
-    # the Game storing of the player_id, note this is prepended with anon
-    conn = put_session(conn, :anon_user_id, user_id)
-      |> put_resp_cookie("username", anon_username)
+    default_tournament = Repo.get_by(K2pokerIo.Tournament, default: true)
 
-    # TODO pass this through to the tournament (The Big One in play) page where
-    # it should get "wait" to get assigned a game with another player
-
-    render conn, "user_created.html", username: anon_username
+    redirect conn, to: tournament_path(conn, :show, default_tournament.id)
   end
 
   # Generate an anonomous user_id -> "anon|*username*|*random_hash*"
   # remove any non-word chars from the username
+  # TODO move these methods, probably to the user model
   #
   defp generate_anon_user_id(username) do
     "anon|" <> String.replace(username, ~r/\W/, "") <> "|" <> random_hash(32)

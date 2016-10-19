@@ -18,6 +18,7 @@ defmodule K2pokerIo.Router do
     pipe_through :browser # Use the default browser stack
 
     resources "/games", GameController, only: [:index, :show, :new, :create]
+    resources "/tournaments", TournamentController, only: [:index, :show]
 
     get "/test", PageController, :test
     post "/anon-user", PageController, :anon_user_create

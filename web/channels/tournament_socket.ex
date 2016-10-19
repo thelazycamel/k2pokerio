@@ -1,8 +1,8 @@
-defmodule K2pokerIo.UserSocket do
+defmodule K2pokerIo.TournamentSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "tournament:*", K2pokerIo.TournamentChannel
+  #channel "tournament:*", K2pokerIo.TournamentChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,24 +19,9 @@ defmodule K2pokerIo.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(%{"token" => token}, socket) do
-    case Phoenix.Token.verify(socket, "player_id", token, max_age: 86400000) do
-      {ok, user_id} ->
-        cond do
-          user_id == "" -> :error
-          # First check to see if the user token is an anonomous user and just return ok
-          # with the player_id passed back
-          String.match?(user_id, ~r/^anon/) ->
-            socket = assign(socket, :player_id, user_id)
-            {:ok, socket}
-          # then check if user_id is a db user
-          #TODO match a user_id to a db user and return its user_id to :player_id
-          # user = Repo.get!(User, user_id)
-          true -> :error
-        end
-      {:error, _} ->
-        :error
-    end
+  def connect(_params, socket) do
+    IO.puts "You are in the Tournament Channel"
+    {:ok, socket}
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

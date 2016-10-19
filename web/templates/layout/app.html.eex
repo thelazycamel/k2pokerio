@@ -9,6 +9,9 @@
 
     <title>Hello K2pokerIo!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script>
+      window.userToken = "<%= user_token(assigns[:player_id]) %>";
+    </script>
   </head>
 
   <body>

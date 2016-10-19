@@ -1,0 +1,9 @@
+<h1><%= @tournament.name %></h1>
+
+<p>Hello <%= @username %> and welcome</p>
+<p>Your player_id is: <%= @player_id %></p>
+<p><%= link "Home Page", to: page_path(@conn, :index) %></p>
+
+<button class="button btn-large">Play</button>
+
+<div id="tournament-graph" data-tournament="<%= @tournament.id %>"></div>
