@@ -3,9 +3,9 @@ defmodule K2pokerIo.UserSocket do
 
   ## Channels
   channel "tournament:*", K2pokerIo.TournamentChannel
-  channel "tournament_queue:*", K2pokerIo.TournamentQueueChannel
   channel "game:*", K2pokerIo.GameChannel
   channel "chat:*", K2pokerIo.ChatChannel
+  channel "player:*", K2pokerIo.PlayerChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -40,8 +40,7 @@ defmodule K2pokerIo.UserSocket do
           # user = Repo.get!(User, user_id)
           true -> :error
         end
-      {:error, _} ->
-        :error
+      {:error, _} -> :error
     end
   end
 

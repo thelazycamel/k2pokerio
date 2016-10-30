@@ -1,7 +1,10 @@
-import {Socket} from "phoenix";
+/* Game Channel
+ * Only sends and receives pings to confirm played
+ * all player data is sent via the player channel
+ */
 
-/* TODO create the game channel passing back only the data for the
- * current player */
+import {Socket} from "phoenix";
+import player from "./player";
 
 class Game {
 
@@ -14,11 +17,17 @@ class Game {
 
   joinGameChannel(socket, gameId, element) {
     let gameChannel = socket.channel("game:" + gameId);
-    gameChannel.join().receive("ok", resp =>
-      console.log(`initialized the Game channel for GameId: ${gameId}`)
-    ).receive("error", reason =>
+    let _this = this;
+    gameChannel.join().receive("ok", function(resp) {
+      console.log(`initialized the Game channel for GameId: ${gameId}`);
+      _this.initializePlayerChannel(socket);
+    }).receive("error", reason =>
       console.log("join failed")
     )
+  }
+
+  initializePlayerChannel(socket) {
+    let playerChannel = new player(socket);
   }
 
 }

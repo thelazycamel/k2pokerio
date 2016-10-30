@@ -34,7 +34,7 @@ defmodule K2pokerIo.Game do
   def join_changeset(model, params \\ %{}) do
     model
     |> changeset(params)
-    |> create_poker_data(params)
+    |> create_poker_data(model)
   end
 
   def create_new_changeset(model, params \\ %{}) do
@@ -46,8 +46,8 @@ defmodule K2pokerIo.Game do
     |> validate_required(:waiting_for_players)
   end
 
-  def create_poker_data(changeset, params) do
-    game_data = K2poker.new(params["player1"], params["player2"])
+  def create_poker_data(changeset, model) do
+    game_data = K2poker.new(model.player1_id, changeset.changes.player2_id)
     encoded_game_data = Poison.encode!(game_data)
     put_change(changeset, :status, to_string(game_data.status))
     put_change(changeset, :data, encoded_game_data)
@@ -57,6 +57,15 @@ defmodule K2pokerIo.Game do
     game = Poison.decode!(game_data, as: %K2poker.Game{})
     players = Enum.map(game.players, fn (player) -> Poison.encode!(player) |> Poison.decode!(as: %K2poker.Player{}) end)
     %{game | players: players}
+  end
+
+  def player_data(game_data, player_id) do
+    if game_data == nil do
+      %{}
+    else
+     game = decode_game_data(game_data)
+     K2poker.player_data(game, player_id)
+    end
   end
 
 end
