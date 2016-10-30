@@ -3,6 +3,9 @@ defmodule K2pokerIo.UserSocket do
 
   ## Channels
   channel "tournament:*", K2pokerIo.TournamentChannel
+  channel "tournament_queue:*", K2pokerIo.TournamentQueueChannel
+  channel "game:*", K2pokerIo.GameChannel
+  channel "chat:*", K2pokerIo.ChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,17 +22,20 @@ defmodule K2pokerIo.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+  # dont forget to pass the player_id though the controller to connect to channels
+  # it is picked up in the app layout and converted to a token in the layout_view
+  #
   def connect(%{"token" => token}, socket) do
-    case Phoenix.Token.verify(socket, "player_id", token, max_age: 86400000) do
-      {ok, user_id} ->
+    case Phoenix.Token.verify(K2pokerIo.Endpoint, "player_id", token, max_age: 86400000) do
+      {:ok, player_id} ->
         cond do
-          user_id == "" -> :error
-          # First check to see if the user token is an anonomous user and just return ok
-          # with the player_id passed back
-          String.match?(user_id, ~r/^anon/) ->
-            socket = assign(socket, :player_id, user_id)
+          # return error is user_id is blank
+          player_id == "" -> :error
+          player_id == nil -> :error
+          # simple check to see if user is an anon user
+          String.match?(player_id, ~r/^anon/) ->
+            socket = assign(socket, :player_id, player_id)
             {:ok, socket}
-          # then check if user_id is a db user
           #TODO match a user_id to a db user and return its user_id to :player_id
           # user = Repo.get!(User, user_id)
           true -> :error

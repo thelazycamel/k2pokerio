@@ -1,41 +1,43 @@
-require IEx
 defmodule K2pokerIo.GameController do
 
   use K2pokerIo.Web, :controller
   alias K2pokerIo.Game
+  alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.JoinGameCommand
 
-  def index(conn, _params) do
-    games = Repo.all(Game)
-    render conn, "index.html", games: games
-  end
-
-  # TODO: The game decodes, but can not handle the nested array of players so need to re-encode
-  # NOTE: This is all just a hack anyway we would not be passing back the entire game object,
-  # just selected data based on the current user
-  #
-  def show(conn, %{"id" => id}) do
-    game =  Repo.get!(Game, id)
-    game_data = Game.decode_game_data(game.data)
-    render(conn, "show.html", game: game_data)
-  end
-
-  def new(conn, _params) do
-    changeset = Game.changeset(%Game{})
-    render(conn, "new.html", changeset: changeset)
-  end
-
-  def create(conn, %{"game" => game_params}) do
-    changeset = Game.create_new_changeset(%Game{}, game_params)
-
-    case Repo.insert(changeset) do
-      {:ok, game} ->
-        conn
-        |> put_flash(:info, "Game created successfully.")
-        |> redirect(to: game_path(conn, :show, game.id))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+  def join(conn, _params) do
+    if user_tournament_detail = get_user_tournament_detail(get_session(conn, :player_id)) do
+      if user_already_in_a_game?(user_tournament_detail.game) do
+        json conn, %{status: "ok", game_id: user_tournament_detail.game_id}
+      else
+        case JoinGameCommand.execute(user_tournament_detail) do
+          {:ok, game} -> json conn, %{status: "ok", game_id: game.id}
+          {:error} -> json conn, %{status: "error"}
+        end
+      end
+    else
+      json conn, %{status: "error"}
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    game =  Repo.get!(Game, id)
+    player_id = get_session(conn, :player_id)
+    if Enum.member?([game.player1_id, game.player2_id], player_id) do
+      render(conn, "show.html", game_id: id, tournament_id: game.tournament_id, player_id: player_id)
+    else
+      conn
+      |> put_flash(:info, "Video deleted successfully.")
+      |> redirect(to: tournament_path(conn, :index))
+    end
+  end
+
+  defp get_user_tournament_detail(player_id) do
+    Repo.get_by(UserTournamentDetail, player_id: player_id) |> Repo.preload(:game)
+  end
+
+  defp user_already_in_a_game?(game) do
+    game && game.open
+  end
 
 end

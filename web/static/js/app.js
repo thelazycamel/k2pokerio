@@ -18,13 +18,20 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
+//libs
+var $ = require("jquery")
+
+//local
 import socket from "./socket"
 import tournament from "./tournament"
+import game from "./game"
 
-// TODO: sort out how we are going to initialize each connection passing the tournament id, current score etc so its not done in the front end
-// however we will be using react js, so probably will be set from there...
-//
 if(window.userToken != "") {
   socket.connect();
+  if($("#tournament-graph").length > 0){
   let current_tournament = new tournament(socket);
+  }
+  if($("#game-wrapper").length > 0){
+    let current_game = new game(socket);
+  }
 }
