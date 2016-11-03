@@ -20,20 +20,15 @@ import "phoenix_html"
 
 //libs
 var $ = require("jquery")
-import React from "react"
-import ReactDOM from "react-dom"
 
-//local
+/* local */
 import socket from "./socket"
+import store from "./reducers/store"
 
-//pages
+/* pages */
 import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
 import gameShowPage from "./pages/game/show"
-
-//components
-import TournamentGraphComponent from "./components/tournament_graph"
-
 
 (function(){
 
@@ -51,10 +46,6 @@ import TournamentGraphComponent from "./components/tournament_graph"
   $.each(pages, function(index, page){
     initialized_pages[index] = new page({socket: socket});
   });
-
-  ReactDOM.render(
-    <TournamentGraphComponent/>, document.getElementById("tournament-graph")
-  )
 
 })();
 

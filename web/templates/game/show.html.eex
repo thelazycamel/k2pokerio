@@ -26,4 +26,4 @@
 
 </div>
 
-<div id="tournament-graph" data-tournament="<%= @tournament_id %>"></div>
+<div id="root" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></div>

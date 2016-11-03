@@ -3,7 +3,7 @@ import {Socket} from "phoenix";
 class TournamentChannel {
 
   constructor(socket){
-    let element = document.getElementById("tournament-graph");
+    let element = document.getElementById("root");
     let tournamentId = element.getAttribute("data-tournament");
     if(!element || !tournamentId) { return; }
     this.joinTournamentChannel(socket, tournamentId, element);

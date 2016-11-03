@@ -1,6 +1,10 @@
+import React from "react"
+import ReactDOM from "react-dom"
+
 import page from "../page"
-import tournamentChannel from "../../channels/tournament_channel";
-import gameChannel from "../../channels/game_channel";
+import tournamentChannel from "../../channels/tournament_channel"
+import gameChannel from "../../channels/game_channel"
+import GamePageApp from "../../components/game_page_app"
 
 class GameShowPage extends page {
 
@@ -11,7 +15,11 @@ class GameShowPage extends page {
   setUpPage() {
     this.currentTournamentChannel = new tournamentChannel(this.socket);
     this.currentGameChannel = new gameChannel(this.socket);
-    console.log("in game show page")
+    this.initializeGameComponent();
+  }
+
+  initializeGameComponent() {
+    ReactDOM.render(<GamePageApp />, document.getElementById('root'));
   }
 
 }

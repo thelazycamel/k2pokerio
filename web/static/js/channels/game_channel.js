@@ -9,7 +9,7 @@ import PlayerChannel from "./player_channel";
 class GameChannel {
 
   constructor(socket){
-    let element = document.getElementById("game-wrapper");
+    let element = document.getElementById("root");
     let gameId = element.getAttribute("data-game");
     if(!element || !gameId) { return; }
     this.joinGameChannel(socket, gameId, element);
