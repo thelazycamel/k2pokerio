@@ -1,1 +1,10 @@
 /* This file is for your main application css. */
+
+@include "layout"
+
+/* components */
+@include "components/tournament_graph"
+
+/* pages */
+@include "pages/game"
+@include "pages/tournament"

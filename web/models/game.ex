@@ -61,7 +61,7 @@ defmodule K2pokerIo.Game do
 
   def player_data(game_data, player_id) do
     if game_data == nil do
-      %{}
+      %{status: "Waiting for an opponent"}
     else
      game = decode_game_data(game_data)
      K2poker.player_data(game, player_id)

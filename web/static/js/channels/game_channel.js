@@ -4,9 +4,9 @@
  */
 
 import {Socket} from "phoenix";
-import player from "./player";
+import PlayerChannel from "./player_channel";
 
-class Game {
+class GameChannel {
 
   constructor(socket){
     let element = document.getElementById("game-wrapper");
@@ -16,9 +16,9 @@ class Game {
   }
 
   joinGameChannel(socket, gameId, element) {
-    let gameChannel = socket.channel("game:" + gameId);
+    let currentGameChannel = socket.channel("game:" + gameId);
     let _this = this;
-    gameChannel.join().receive("ok", function(resp) {
+    currentGameChannel.join().receive("ok", function(resp) {
       console.log(`initialized the Game channel for GameId: ${gameId}`);
       _this.initializePlayerChannel(socket);
     }).receive("error", reason =>
@@ -27,9 +27,9 @@ class Game {
   }
 
   initializePlayerChannel(socket) {
-    let playerChannel = new player(socket);
+    let currentPlayerChannel = new PlayerChannel(socket);
   }
 
 }
 
-export default Game;
+export default GameChannel;

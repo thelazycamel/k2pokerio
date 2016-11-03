@@ -1,5 +1,5 @@
 <div id="game-wrapper" class="poker-game" data-game="<%= @game_id %>">
-  <h2>STATUS: <span id="status"></span></h2>
+  <h2>STATUS: <span id="game-status"></span></h2>
   <div>Player 1 Name: <b id="player1"></b></div>
   <div>Player 2 Name: <b id="player2"></b></div>
 
@@ -19,7 +19,7 @@
 
   <div style="clear: both"></div>
   <div id="player-cards">
-    <h2>Player 2 Cards</h2>
+    <h2>Player Cards</h2>
     <div id="player-card-1" class="player-card" style="float: left; margin-right: 10px"></div>
     <div id="player-card-2" class="player-card" style="float: left; margin-right: 10px"></div>
   </div>

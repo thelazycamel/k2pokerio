@@ -20,18 +20,41 @@ import "phoenix_html"
 
 //libs
 var $ = require("jquery")
+import React from "react"
+import ReactDOM from "react-dom"
 
 //local
 import socket from "./socket"
-import tournament from "./tournament"
-import game from "./game"
 
-if(window.userToken != "") {
-  socket.connect();
-  if($("#tournament-graph").length > 0){
-  let current_tournament = new tournament(socket);
+//pages
+import tournamentShowPage from "./pages/tournament/show"
+import tournamentIndexPage from "./pages/tournament/index"
+import gameShowPage from "./pages/game/show"
+
+//components
+import TournamentGraphComponent from "./components/tournament_graph"
+
+
+(function(){
+
+  let pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
+
+  if(window.userToken != "") {
+    socket.connect();
   }
-  if($("#game-wrapper").length > 0){
-    let current_game = new game(socket);
-  }
-}
+
+  // load all the pages javascript, they will not fire if
+  // we are not on their page, add the import above, and then
+  // add it to the array below
+  //
+  let initialized_pages = []
+  $.each(pages, function(index, page){
+    initialized_pages[index] = new page({socket: socket});
+  });
+
+  ReactDOM.render(
+    <TournamentGraphComponent/>, document.getElementById("tournament-graph")
+  )
+
+})();
+

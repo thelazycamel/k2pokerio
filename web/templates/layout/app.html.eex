@@ -15,7 +15,7 @@
     </script>
   </head>
 
-  <body>
+  <body class="<%= body_classes(@conn) %>" data-page="<%= body_page_data(@conn) %>">
     <div class="container">
       <header class="header">
         <nav role="navigation">

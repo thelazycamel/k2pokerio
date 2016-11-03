@@ -4,7 +4,7 @@
 
 import {Socket} from "phoenix";
 
-class Player {
+class PlayerChannel {
 
   constructor(socket){
     if(!window.userToken) { return; }
@@ -12,10 +12,16 @@ class Player {
   }
 
   joinPlayerChannel(socket) {
-    let playerChannel = socket.channel("player:" + window.userToken);
-    playerChannel.join().receive("ok", function(resp){
+    let currentPlayerChannel = socket.channel("player:" + window.userToken);
+    currentPlayerChannel.join().receive("ok", function(resp){
       console.log(`initialized the Player channel for userToken: ${window.userToken}`);
       console.log(resp);
+      $("#game-status").html(resp["status"]);
+      if(resp["cards"]) {
+        $.each(resp["cards"], function(index, card){
+          $("#player-card-" + (index + 1)).html(card);
+        });
+      }
     }).receive("error", reason =>
       console.log("join failed")
     )
@@ -23,5 +29,5 @@ class Player {
 
 }
 
-export default Player;
+export default PlayerChannel;
 
