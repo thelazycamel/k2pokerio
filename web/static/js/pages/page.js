@@ -2,9 +2,7 @@ class Page {
 
   constructor(opts, pageData) {
     if(pageData == $("body").attr("data-page")) {
-      if(opts["socket"]){
-        this.socket = opts["socket"];
-      }
+      this.socket = opts["socket"];
       this.setUpPage();
     } else {
       return;

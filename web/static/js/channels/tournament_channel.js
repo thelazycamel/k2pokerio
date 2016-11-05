@@ -2,7 +2,8 @@ import {Socket} from "phoenix";
 
 class TournamentChannel {
 
-  constructor(socket){
+  constructor(socket, store){
+    this.store = store;
     let element = document.getElementById("root");
     let tournamentId = element.getAttribute("data-tournament");
     if(!element || !tournamentId) { return; }
@@ -12,9 +13,9 @@ class TournamentChannel {
 
   joinTournamentChannel(socket, tournamentId, element) {
     let currentTournamentChannel = socket.channel("tournament:" + tournamentId);
-    currentTournamentChannel.join().receive("ok", resp =>
-      console.log(`initialized the Tournament channel for Tournament: ${tournamentId}`)
-    ).receive("error", reason =>
+    currentTournamentChannel.join().receive("ok", function(resp){
+      console.log(`initialized the Tournament channel for Tournament: ${tournamentId}`);
+    }).receive("error", reason =>
       console.log("join failed")
     )
 

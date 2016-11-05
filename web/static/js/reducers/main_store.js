@@ -4,7 +4,9 @@ import { createStore, combineReducers } from 'redux'
 import gameReducer from "./game_reducer"
 import tournamentReducer from "./tournament_reducer"
 
-var store = combineReducers({
+var mainStore = combineReducers({
     game: gameReducer,
     tournament: tournamentReducer
-})
+});
+
+export default mainStore;

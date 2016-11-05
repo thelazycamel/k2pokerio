@@ -23,7 +23,7 @@ defmodule K2pokerIo.Game do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open])
+    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open, :data])
     |> validate_required(:player1_id)
     |> validate_required(:player2_id)
     |> validate_required(:tournament_id)
@@ -49,7 +49,6 @@ defmodule K2pokerIo.Game do
   def create_poker_data(changeset, model) do
     game_data = K2poker.new(model.player1_id, changeset.changes.player2_id)
     encoded_game_data = Poison.encode!(game_data)
-    put_change(changeset, :status, to_string(game_data.status))
     put_change(changeset, :data, encoded_game_data)
   end
 
@@ -59,12 +58,14 @@ defmodule K2pokerIo.Game do
     %{game | players: players}
   end
 
+  @spec player_data(K2poker.Game.t, String.t) :: K2poker.Game.t
+  #requires decoded_game_data!
+  #
   def player_data(game_data, player_id) do
     if game_data == nil do
       %{status: "Waiting for an opponent"}
     else
-     game = decode_game_data(game_data)
-     K2poker.player_data(game, player_id)
+     K2poker.player_data(game_data, player_id)
     end
   end
 

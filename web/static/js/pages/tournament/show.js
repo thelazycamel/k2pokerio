@@ -1,8 +1,9 @@
-import page from "../page"
-import tournamentChannel from "../../channels/tournament_channel"
 import React from "react"
 import ReactDOM from "react-dom"
-import TournamentPageApp from "../../components/tournament_page_app"
+
+import TournamentPageApp from "../../apps/tournament_page_app"
+import tournamentChannel from "../../channels/tournament_channel"
+import page from "../page"
 
 class TournamentShowPage extends page {
 
@@ -41,7 +42,7 @@ class TournamentShowPage extends page {
    }
 
    initializeTournamentComponent() {
-     ReactDOM.render(<TournamentPageApp />, document.getElementById('root'));
+     ReactDOM.render(<TournamentPageApp store={window.store}/>, document.getElementById('root'));
    }
 
 

@@ -1,6 +1,7 @@
 /* Game Channel
  * Only sends and receives pings to confirm played
  * all player data is sent via the player channel
+ * NOTE: This does not receive the GAME data as its not private
  */
 
 import {Socket} from "phoenix";

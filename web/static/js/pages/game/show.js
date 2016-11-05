@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import page from "../page"
 import tournamentChannel from "../../channels/tournament_channel"
 import gameChannel from "../../channels/game_channel"
-import GamePageApp from "../../components/game_page_app"
+import GamePageApp from "../../apps/game_page_app"
+import page from "../page"
 
 class GameShowPage extends page {
 
@@ -19,7 +19,7 @@ class GameShowPage extends page {
   }
 
   initializeGameComponent() {
-    ReactDOM.render(<GamePageApp />, document.getElementById('root'));
+    ReactDOM.render(<GamePageApp store={window.store}/>, document.getElementById('root'));
   }
 
 }

@@ -23,14 +23,19 @@ var $ = require("jquery")
 
 /* local */
 import socket from "./socket"
-import store from "./reducers/store"
+import { createStore, applyMiddleware } from 'redux'
+import mainStore from "./reducers/main_store"
 
 /* pages */
 import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
 import gameShowPage from "./pages/game/show"
+import gameEventsMiddleware from "./middleware/game_events_middleware"
 
 (function(){
+
+  const middleware = applyMiddleware(gameEventsMiddleware);
+  window.store = createStore(mainStore, middleware);
 
   let pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
 

@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import { connect } from 'react-redux'
 
 class TournamentGraphComponent extends React.Component {
 
@@ -13,4 +14,13 @@ class TournamentGraphComponent extends React.Component {
   }
 }
 
-export default TournamentGraphComponent;
+const mapStateToProps = (state) => {
+  return {
+    tournament: state.tournament,
+  }
+}
+
+const ConnectedTournamentGraphComponent = connect(mapStateToProps)(TournamentGraphComponent)
+
+
+export default ConnectedTournamentGraphComponent;
