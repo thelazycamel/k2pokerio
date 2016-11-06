@@ -4,31 +4,31 @@
  * NOTE: This does not receive the GAME data as its not private
  */
 
-import {Socket} from "phoenix";
 import PlayerChannel from "./player_channel";
 
 class GameChannel {
 
-  constructor(socket){
+  constructor(){
     let element = document.getElementById("root");
     let gameId = element.getAttribute("data-game");
     if(!element || !gameId) { return; }
-    this.joinGameChannel(socket, gameId, element);
+    this.joinGameChannel(gameId, element);
   }
 
-  joinGameChannel(socket, gameId, element) {
-    let currentGameChannel = socket.channel("game:" + gameId);
+  joinGameChannel(gameId, element) {
+    App.gameChannel = App.socket.channel("game:" + gameId);
     let _this = this;
-    currentGameChannel.join().receive("ok", function(resp) {
+    App.gameChannel.join().receive("ok", function(resp) {
       console.log(`initialized the Game channel for GameId: ${gameId}`);
-      _this.initializePlayerChannel(socket);
+      _this.initializePlayerChannel();
     }).receive("error", reason =>
       console.log("join failed")
     )
   }
 
-  initializePlayerChannel(socket) {
-    let currentPlayerChannel = new PlayerChannel(socket);
+  /* why is this being initialized here, move it to game page? */
+  initializePlayerChannel() {
+    App.playerChannel = new PlayerChannel();
   }
 
 }

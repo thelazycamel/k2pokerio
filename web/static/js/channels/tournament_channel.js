@@ -1,39 +1,28 @@
-import {Socket} from "phoenix";
-
 class TournamentChannel {
 
-  constructor(socket, store){
-    this.store = store;
+  constructor(){
     let element = document.getElementById("root");
     let tournamentId = element.getAttribute("data-tournament");
     if(!element || !tournamentId) { return; }
-    this.joinTournamentChannel(socket, tournamentId, element);
-    this.joinChatChannel(socket, tournamentId);
+    this.joinTournamentChannel(tournamentId, element);
   }
 
-  joinTournamentChannel(socket, tournamentId, element) {
-    let currentTournamentChannel = socket.channel("tournament:" + tournamentId);
-    currentTournamentChannel.join().receive("ok", function(resp){
+  joinTournamentChannel(tournamentId, element) {
+    console.log("HERE")
+    console.log(App.socket);
+    App.tournamentChannel = App.socket.channel("tournament:" + tournamentId);
+    App.tournamentChannel.join().receive("ok", function(resp){
       console.log(`initialized the Tournament channel for Tournament: ${tournamentId}`);
     }).receive("error", reason =>
       console.log("join failed")
     )
 
-    currentTournamentChannel.on("ping", ({count}) =>
+    App.tournamentChannel.on("ping", ({count}) =>
       console.log("PING: ", count)
     )
 
   }
 
-  joinChatChannel(socket, tournamentId) {
-    let chatChannel = socket.channel("chat:" + tournamentId);
-
-    chatChannel.join().receive("ok", resp =>
-      console.log(`initialized the Chat channel for Tournament: ${tournamentId}`)
-    ).receive("error", reason =>
-      console.log("join failed")
-    )
-  }
 
 };
 

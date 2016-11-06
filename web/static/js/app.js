@@ -32,25 +32,33 @@ import tournamentIndexPage from "./pages/tournament/index"
 import gameShowPage from "./pages/game/show"
 import gameEventsMiddleware from "./middleware/game_events_middleware"
 
-(function(){
+window.App = {
 
-  const middleware = applyMiddleware(gameEventsMiddleware);
-  window.store = createStore(mainStore, middleware);
+  init: function() {
+    this.pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
+    this.createReduxStore()
+    this.connectSocket()
+    this.setUpCurrentPage()
+  },
 
-  let pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
+  createReduxStore: function() {
+    let middleware = applyMiddleware(gameEventsMiddleware);
+    this.store = createStore(mainStore, middleware);
+  },
 
-  if(window.userToken != "") {
-    socket.connect();
+  connectSocket: function() {
+    if(window.userToken != "") {
+      this.socket = socket;
+      this.socket.connect();
+    }
+  },
+
+  setUpCurrentPage: function(){
+    this.pages.map(function(page){
+      new page();
+    });
   }
 
-  // load all the pages javascript, they will not fire if
-  // we are not on their page, add the import above, and then
-  // add it to the array below
-  //
-  let initialized_pages = []
-  $.each(pages, function(index, page){
-    initialized_pages[index] = new page({socket: socket});
-  });
+};
 
-})();
-
+App.init();

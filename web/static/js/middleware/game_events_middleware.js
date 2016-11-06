@@ -5,7 +5,7 @@ const gameEventsMiddleware = store => next => action => {
       window.currentPlayerChannel.push("PLAY", {}).receive("ok", function(response){
         /* TODO check for failures */
         console.log("received from play: ", response);
-        window.store.dispatch({type: "GAME_DATA_RECEIVED", game: response});
+        App.store.dispatch({type: "GAME_DATA_RECEIVED", game: response});
       });
 
       break;

@@ -4,19 +4,17 @@
  * private channel to the player
  */
 
-import {Socket} from "phoenix";
-
 class PlayerChannel {
 
-  constructor(socket, store){
+  constructor(){
     if(!window.userToken) { return; }
-    this.joinPlayerChannel(socket, store);
+    this.joinPlayerChannel();
   }
 
-  joinPlayerChannel(socket) {
-    window.currentPlayerChannel = socket.channel("player:" + window.userToken);
-    window.currentPlayerChannel.join().receive("ok", function(resp){
-      window.store.dispatch({type: "GAME_DATA_RECEIVED", game: resp})
+  joinPlayerChannel() {
+    App.playerChannel = App.socket.channel("player:" + window.userToken);
+    App.playerChannel.join().receive("ok", function(resp){
+      App.store.dispatch({type: "GAME_DATA_RECEIVED", game: resp})
     }).receive("error", reason =>
       console.log("join failed")
     )

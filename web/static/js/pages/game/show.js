@@ -13,13 +13,13 @@ class GameShowPage extends page {
   }
 
   setUpPage() {
-    this.currentTournamentChannel = new tournamentChannel(this.socket);
-    this.currentGameChannel = new gameChannel(this.socket);
+    new tournamentChannel(this.socket);
+    new gameChannel(this.socket);
     this.initializeGameComponent();
   }
 
   initializeGameComponent() {
-    ReactDOM.render(<GamePageApp store={window.store}/>, document.getElementById('root'));
+    ReactDOM.render(<GamePageApp store={App.store}/>, document.getElementById('root'));
   }
 
 }

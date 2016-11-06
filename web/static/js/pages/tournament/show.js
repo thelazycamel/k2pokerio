@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 
 import TournamentPageApp from "../../apps/tournament_page_app"
 import tournamentChannel from "../../channels/tournament_channel"
+import chatChannel from "../../channels/chat_channel"
 import page from "../page"
 
 class TournamentShowPage extends page {
@@ -12,7 +13,9 @@ class TournamentShowPage extends page {
   }
 
   setUpPage() {
-    this.currentTournamentChannel = new tournamentChannel(this.socket);
+    this.tournamentId = document.getElementById("root").getAttribute("data-tournament");
+    new tournamentChannel();
+    new chatChannel(this.tournamentId);
     this.eventListeners();
     this.initializeTournamentComponent();
   }
@@ -42,7 +45,7 @@ class TournamentShowPage extends page {
    }
 
    initializeTournamentComponent() {
-     ReactDOM.render(<TournamentPageApp store={window.store}/>, document.getElementById('root'));
+     ReactDOM.render(<TournamentPageApp store={App.store}/>, document.getElementById('root'));
    }
 
 
