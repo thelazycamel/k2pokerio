@@ -26,10 +26,17 @@ defmodule K2pokerIo.PlayerChannel do
 
   #TODO write tests and handle errors
   #
-  def handle_in("PLAY", _params, socket) do
+  def handle_in("player:play", _params, socket) do
     player_id = socket.assigns[:player_id]
     utd = Repo.get_by(UserTournamentDetail, player_id: player_id)
     payload = PlayGameCommand.execute(utd.game_id, player_id)
+    {:reply, {:ok, payload}, socket}
+  end
+
+  def handle_in("player:get_fresh_data", _params, socket) do
+    player_id = socket.assigns[:player_id]
+    utd = Repo.get_by(UserTournamentDetail, player_id: player_id)
+    payload = GetGameDataCommand.execute(utd.game_id, player_id)
     {:reply, {:ok, payload}, socket}
   end
 

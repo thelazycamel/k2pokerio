@@ -3,6 +3,8 @@
 var gameReducer = function(state = {}, action) {
 
   switch(action.type) {
+    case "PLAYED":
+      return state;
     case "PLAY":
       return state;
     case "DISCARD":

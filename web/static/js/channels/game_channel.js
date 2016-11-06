@@ -24,11 +24,19 @@ class GameChannel {
     }).receive("error", reason =>
       console.log("join failed")
     )
+
+    App.gameChannel.on("game:other_player_played", function() {
+      App.playerChannel.push("player:get_fresh_data", function(resp){
+        App.store.dispatch({type: "GAME_DATA_RECEIVED", game: resp})
+      }).receive("error", reason =>
+        console.log("join failed")
+      )
+    });
+
   }
 
-  /* why is this being initialized here, move it to game page? */
   initializePlayerChannel() {
-    App.playerChannel = new PlayerChannel();
+    new PlayerChannel();
   }
 
 }

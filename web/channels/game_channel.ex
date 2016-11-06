@@ -12,4 +12,9 @@ defmodule K2pokerIo.GameChannel do
     end
   end
 
+  def handle_in("game:played", _params, socket) do
+    broadcast_from(socket, "game:other_player_played", %{message: "request new data from the player channel"})
+    {:reply, :ok, socket}
+  end
+
 end

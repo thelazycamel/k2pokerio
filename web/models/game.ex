@@ -53,9 +53,9 @@ defmodule K2pokerIo.Game do
   end
 
   def decode_game_data(game_data) do
-    game = Poison.decode!(game_data, as: %K2poker.Game{})
-    players = Enum.map(game.players, fn (player) -> Poison.encode!(player) |> Poison.decode!(as: %K2poker.Player{}) end)
-    %{game | players: players}
+    data = Poison.decode!(game_data, as: %K2poker.Game{})
+    players = Enum.map(data.players, fn (player) -> %K2poker.Player{id: player["id"], cards: player["cards"], status: player["status"]} end)
+    %{data | players: players}
   end
 
   @spec player_data(K2poker.Game.t, String.t) :: K2poker.Game.t

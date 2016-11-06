@@ -17,7 +17,7 @@ class GameComponent extends React.Component {
   }
 
   playButtonClicked() {
-    window.store.dispatch({type: "PLAY"})
+    App.store.dispatch({type: "PLAY"});
   }
 
   discardClicked(e) {
