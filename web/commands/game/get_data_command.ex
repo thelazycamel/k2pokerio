@@ -1,4 +1,4 @@
-defmodule K2pokerIo.GetGameDataCommand do
+defmodule K2pokerIo.Commands.Game.GetDataCommand do
 
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail

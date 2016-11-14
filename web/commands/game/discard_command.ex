@@ -1,18 +1,14 @@
-defmodule K2pokerIo.PlayGameCommand do
+defmodule K2pokerIo.Commands.Game.DiscardCommand do
 
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
   import Ecto.Changeset
 
-  def execute(game_id, player_id) do
+  def execute(game_id, player_id, card_index) do
     if game = get_game(game_id) do
-      played_game_data = play(game, player_id)
-      case update_game(game, played_game_data) do
-        {:ok, updated_game} -> 
-          Game.player_data(played_game_data, player_id)
-        :error -> :error
-      end
+      discarded_game_data = discard(game, player_id, card_index)
+      update_game(game, discarded_game_data)
     else
       :error
     end
@@ -22,9 +18,9 @@ defmodule K2pokerIo.PlayGameCommand do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)
   end
 
-  def play(game, player_id) do
+  def discard(game, player_id, card_index) do
     Game.decode_game_data(game.data)
-    |> K2poker.play(player_id)
+    |> K2poker.discard(player_id, card_index)
   end
 
   def update_game(game, game_data) do

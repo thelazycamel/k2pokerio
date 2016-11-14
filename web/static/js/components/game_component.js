@@ -22,7 +22,7 @@ class GameComponent extends React.Component {
 
   discardClicked(e) {
     let index = e.target.getAttribute("data-card");
-    window.store.dispatch({type: "DISCARD", card: index})
+    App.store.dispatch({type: "DISCARD", card_index: index})
   }
 
   /* consider moving this to its own component */

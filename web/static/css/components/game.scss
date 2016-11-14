@@ -1,0 +1,22 @@
+#game {
+
+  margin-top: 20px;
+
+  .player-card, .table-card {
+    display: inline-block;
+    width: 80px;
+    height: 120px;
+    background-color: #eeeeee;
+    margin-left: 10px;
+    font-size: 3em;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 10px;
+  }
+
+  .player-card {
+    cursor: pointer;
+  }
+
+
+}

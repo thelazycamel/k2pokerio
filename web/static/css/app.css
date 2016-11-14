@@ -4,6 +4,7 @@
 
 /* components */
 @include "components/tournament_graph"
+@include "components/game"
 
 /* pages */
 @include "pages/game"
