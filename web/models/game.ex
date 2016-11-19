@@ -15,6 +15,8 @@ defmodule K2pokerIo.Game do
     field :player2_id
     field :value, :integer
     field :open, :boolean
+    field :p1_paid, :boolean
+    field :p2_paid, :boolean
     field :waiting_for_players, :boolean
     belongs_to :tournament, K2pokerIo.Tournament
 
@@ -23,7 +25,7 @@ defmodule K2pokerIo.Game do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open, :data])
+    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open, :data, :p1_paid, :p2_paid])
     |> validate_required(:player1_id)
     |> validate_required(:player2_id)
     |> validate_required(:tournament_id)
@@ -58,14 +60,13 @@ defmodule K2pokerIo.Game do
     %{data | players: players}
   end
 
-  @spec player_data(K2poker.Game.t, String.t) :: K2poker.Game.t
-  #requires decoded_game_data!
-  #
-  def player_data(game_data, player_id) do
-    if game_data == nil do
-      %{status: "Waiting for an opponent"}
-    else
-     K2poker.player_data(game_data, player_id)
+  def player_data(game, player_id) do
+    cond do
+      game.data == nil ->
+        %{status: "Waiting for an opponent"}
+      true ->
+        decode_game_data(game.data)
+        |> K2poker.player_data(player_id)
     end
   end
 

@@ -7,8 +7,7 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
 
   def execute(game_id, player_id) do
     if game = get_game(game_id) do
-      played_game_data = play(game, player_id)
-      update_game(game, played_game_data)
+      play(game, player_id) |> update_game(game)
     else
       :error
     end
@@ -23,7 +22,7 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
     |> K2poker.play(player_id)
   end
 
-  def update_game(game, game_data) do
+  def update_game(game_data, game) do
     encoded_game_data = Poison.encode!(game_data)
     updated_changeset = Game.changeset(game, %{data: encoded_game_data})
     case Repo.update(updated_changeset) do

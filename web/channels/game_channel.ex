@@ -4,6 +4,7 @@ defmodule K2pokerIo.GameChannel do
   alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.PlayCommand
   alias K2pokerIo.Commands.Game.DiscardCommand
+  alias K2pokerIo.Commands.Game.FoldCommand
 
   intercept ["game:new_game_data"]
 
@@ -47,6 +48,15 @@ defmodule K2pokerIo.GameChannel do
   end
 
   def handle_in("game:fold", _params, socket) do
+    player_id = socket.assigns[:player_id]
+    {:reply, :ok, socket}
+    case FoldCommand.execute(get_game_id(socket), player_id) do
+      {:ok, _} ->
+        broadcast! socket, "game:new_game_data", %{}
+        {:reply, :ok, socket}
+        :error ->
+          :error
+    end
   end
 
   def handle_out("game:new_game_data", _params, socket) do

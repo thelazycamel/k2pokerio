@@ -1,12 +1,12 @@
-defmodule K2pokerIo.Commands.Game.DiscardCommand do
+defmodule K2pokerIo.Commands.Game.FoldCommand do
 
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
   import Ecto.Changeset
 
-  def execute(game_id, player_id, card_index) do
+  def execute(game_id, player_id) do
     if game = get_game(game_id) do
-      discard(game, player_id, card_index) |> update_game(game)
+      fold(game, player_id) |> update_game(game)
     else
       :error
     end
@@ -16,9 +16,9 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)
   end
 
-  def discard(game, player_id, card_index) do
+  def fold(game, player_id) do
     Game.decode_game_data(game.data)
-    |> K2poker.discard(player_id, card_index)
+    |> K2poker.fold(player_id)
   end
 
   def update_game(game_data, game) do

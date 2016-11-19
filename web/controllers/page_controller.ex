@@ -41,7 +41,7 @@ defmodule K2pokerIo.PageController do
 
   # TODO this can be moved to the user_tournament_detail model as set default tournament there
   defp create_user_tournament_detail(username, player_id, default_tournament) do
-    detail = %{player_id: player_id, username: username, tournament_id: default_tournament.id, current_score: 0, rebuys: [0]}
+    detail = %{player_id: player_id, username: username, tournament_id: default_tournament.id, current_score: 1, rebuys: [0]}
     changeset = UserTournamentDetail.changeset(%UserTournamentDetail{}, detail)
     case Repo.insert(changeset) do
       {:ok, user_tournament_detail} ->

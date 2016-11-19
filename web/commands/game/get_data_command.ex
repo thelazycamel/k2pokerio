@@ -1,7 +1,7 @@
 defmodule K2pokerIo.Commands.Game.GetDataCommand do
 
   alias K2pokerIo.Game
-  alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.Commands.Tournament.UpdateScoreCommand
   alias K2pokerIo.Repo
   import Ecto.Changeset
 
@@ -18,8 +18,11 @@ defmodule K2pokerIo.Commands.Game.GetDataCommand do
   end
 
   def player_game_data(game, player_id) do
-    Game.decode_game_data(game.data)
-    |> Game.player_data(player_id)
+    player_data = Game.player_data(game, player_id)
+    if player_data.status == "finished" do
+      UpdateScoreCommand.execute(game, player_id, player_data)
+    end
+    player_data
   end
 
 end
