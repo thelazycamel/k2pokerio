@@ -1,12 +1,14 @@
 defmodule K2pokerIo.GameChannel do
   use K2pokerIo.Web, :channel
   alias K2pokerIo.Game
-  alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.PlayCommand
   alias K2pokerIo.Commands.Game.DiscardCommand
   alias K2pokerIo.Commands.Game.FoldCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.GetDataCommand
+  alias K2pokerIo.UserTournamentDetail
 
-  intercept ["game:new_game_data"]
+  intercept ["game:new_game_data", "game:new_game"]
 
   def join("game:" <> game_id, _params, socket) do
     player_id = socket.assigns[:player_id]
@@ -57,6 +59,24 @@ defmodule K2pokerIo.GameChannel do
         :error ->
           :error
     end
+  end
+
+  def handle_in("game:next_game", _params, socket) do
+    player_id = socket.assigns[:player_id]
+    if utd = Repo.get_by(UserTournamentDetail, player_id: player_id) |> Repo.preload(:game) do
+       case JoinCommand.execute(utd) do
+        {:ok, game} -> broadcast! socket, "game:new_game", %{game_id: game.id, player_id: player_id}
+        _ -> nil
+      end
+    end
+    {:reply, :ok, socket}
+  end
+
+  def handle_out("game:new_game", %{game_id: game_id, player_id: player_id}, socket) do
+    if player_id == socket.assigns[:player_id] do
+      push socket, "game:new_game", %{game_id: game_id}
+    end
+    {:noreply, socket}
   end
 
   def handle_out("game:new_game_data", _params, socket) do

@@ -8,7 +8,6 @@ class TournamentChannel {
   }
 
   joinTournamentChannel(tournamentId, element) {
-    console.log("HERE")
     console.log(App.socket);
     App.tournamentChannel = App.socket.channel("tournament:" + tournamentId);
     App.tournamentChannel.join().receive("ok", function(resp){

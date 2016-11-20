@@ -20,6 +20,11 @@ class GameChannel {
       App.store.dispatch({type: "GAME_DATA_RECEIVED", game: resp})
     });
 
+    App.gameChannel.on("game:new_game", function(resp) {
+      console.log("going to a new game ", resp);
+      window.location = "/games/" + resp.game_id;
+    });
+
   }
 
 }

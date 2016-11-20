@@ -36,6 +36,11 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
       "fold" -> score / 2 #only if player folds, need to work out who folded!
       _ -> score
     end
+    new_score = cond do
+      new_score < 1 -> 1
+      true -> new_score
+    end
+    #new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
     update_user_tournament_detail(utd, game, new_score, player_id)
   end
 
@@ -47,7 +52,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
     changeset = UserTournamentDetail.changeset(utd, %{current_score: score})
     case Repo.update(changeset) do
       {:ok, _} -> mark_player_as_paid_out(game, player_id)
-      {:error, _} ->
+      {:error, _} -> nil
     end
   end
 
@@ -55,8 +60,8 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
     game_p1 = game.player1_id
     game_p2 = game.player2_id
     updates = case player_id do
-      ^game_p1 -> %{p1_paid: true}
-      ^game_p2 -> %{p2_paid: true}
+      ^game_p1 -> %{p1_paid: true, open: false}
+      ^game_p2 -> %{p2_paid: true, open: false}
       _ -> %{}
     end
     changeset = Game.changeset(game, updates)

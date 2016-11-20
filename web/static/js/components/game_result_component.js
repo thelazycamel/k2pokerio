@@ -40,10 +40,15 @@ class GameResultComponent extends React.Component {
 
   }
 
+  nextGameButtonClicked() {
+    App.store.dispatch({type: "NEXT_GAME"})
+  }
+
   render() {
     return (
       <div id="game-result">
         <p className="result-status">You {this.props.result.status}</p>
+        <button id="next-game" onClick={this.nextGameButtonClicked}>Next Game</button>
         <p>{this.props.result.win_description} beats {this.props.result.lose_description}</p>
         <div id="other-player-cards">Other Player Cards: {this.otherPlayerCards()}</div>
         <div id="table-result-cards">Table Cards: {this.tableCards()}</div>

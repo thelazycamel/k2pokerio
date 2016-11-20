@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :k2poker_io, K2pokerIo.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "stuart",
+  password: "aurora1",
   database: "k2poker_io_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

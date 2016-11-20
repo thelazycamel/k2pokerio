@@ -4,13 +4,14 @@ const gameEventsMiddleware = store => next => action => {
       App.gameChannel.push("game:play");
       break;
     case "DISCARD":
-      console.log("pushing to game:discard => ", action.card_index);
       App.gameChannel.push("game:discard", {card_index: action.card_index});
       break;
     case "FOLD":
       App.gameChannel.push("game:fold");
       break;
-
+    case "NEXT_GAME":
+      App.gameChannel.push("game:next_game");
+      break;
     default:
   }
   next(action);
