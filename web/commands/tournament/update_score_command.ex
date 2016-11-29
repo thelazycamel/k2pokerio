@@ -5,13 +5,20 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
   alias K2pokerIo.UserTournamentDetail
   import Ecto.Changeset
 
-  #TODO write tests for this module and handle the case for folding
+  @spec execute(Game.t, String.t) :: Atom.t
 
-  def execute(game, player_id, player_data) do
+  def execute(game, player_id) do
     unless already_paid_out?(game, player_id) do
+      player_data = get_player_data(game, player_id)
       update_scores(game, player_id, player_data)
       update_badges(game, player_id, player_data)
     end
+    :ok
+  end
+
+  defp get_player_data(game, player_id) do
+    Game.decode_game_data(game.data)
+    |> K2poker.player_data(player_id)
   end
 
   defp already_paid_out?(game, player_id) do
@@ -33,11 +40,12 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
       "win" -> score * 2
       "lose" -> 1
       "draw" -> score
-      "fold" -> score / 2 #only if player folds, need to work out who folded!
+      "folded" -> round(score / 2)
+      "other_player_folded" -> score
       _ -> score
     end
     new_score = cond do
-      new_score < 1 -> 1
+      new_score <= 1 -> 1
       true -> new_score
     end
     #new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
@@ -46,6 +54,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoreCommand do
 
   defp update_badges(game, player_id, player_data) do
     #TODO
+    [game, player_id, player_data]
   end
 
   defp update_user_tournament_detail(utd, game, score, player_id) do

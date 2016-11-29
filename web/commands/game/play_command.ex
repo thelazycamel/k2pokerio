@@ -13,16 +13,16 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
     end
   end
 
-  def get_game(game_id) do
+  defp get_game(game_id) do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)
   end
 
-  def play(game, player_id) do
+  defp play(game, player_id) do
     Game.decode_game_data(game.data)
     |> K2poker.play(player_id)
   end
 
-  def update_game(game_data, game) do
+  defp update_game(game_data, game) do
     encoded_game_data = Poison.encode!(game_data)
     updated_changeset = Game.changeset(game, %{data: encoded_game_data})
     case Repo.update(updated_changeset) do

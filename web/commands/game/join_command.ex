@@ -50,8 +50,9 @@ defmodule K2pokerIo.Commands.Game.JoinCommand do
     Repo.update(utd_changeset)
   end
 
+  # TODO check created_at for being less than 1 minute and make sure player2_id is null
+  #
   defp game_waiting_query(utd) do
-    # TODO check created_at for being less than 1 minute and make sure player2_id is null
     from Game, where: [tournament_id: ^utd.tournament_id,
                        value: ^utd.current_score,
                        waiting_for_players: true,

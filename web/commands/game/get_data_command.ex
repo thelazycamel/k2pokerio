@@ -20,7 +20,7 @@ defmodule K2pokerIo.Commands.Game.GetDataCommand do
   def player_game_data(game, player_id) do
     player_data = Game.player_data(game, player_id)
     if player_data.status == "finished" do
-      UpdateScoreCommand.execute(game, player_id, player_data)
+      UpdateScoreCommand.execute(game, player_id)
     end
     player_data
   end

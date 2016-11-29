@@ -12,16 +12,16 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
     end
   end
 
-  def get_game(game_id) do
+  defp get_game(game_id) do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)
   end
 
-  def discard(game, player_id, card_index) do
+  defp discard(game, player_id, card_index) do
     Game.decode_game_data(game.data)
     |> K2poker.discard(player_id, card_index)
   end
 
-  def update_game(game_data, game) do
+  defp update_game(game_data, game) do
     encoded_game_data = Poison.encode!(game_data)
     updated_changeset = Game.changeset(game, %{data: encoded_game_data})
     case Repo.update(updated_changeset) do
