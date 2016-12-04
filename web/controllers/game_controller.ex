@@ -6,6 +6,7 @@ defmodule K2pokerIo.GameController do
   alias K2pokerIo.Commands.Game.JoinCommand
 
   def join(conn, _params) do
+    #TODO move this check to see if they are already in a game to the join command
     if user_tournament_detail = get_user_tournament_detail(get_session(conn, :player_id)) do
       if user_already_in_a_game?(user_tournament_detail.game) do
         json conn, %{status: "ok", game_id: user_tournament_detail.game_id}
