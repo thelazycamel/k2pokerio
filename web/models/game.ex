@@ -1,14 +1,6 @@
 defmodule K2pokerIo.Game do
   use K2pokerIo.Web, :model
 
-  # NOTE: I think its best to store the data a a binary string which is 
-  # decoded by Poison, it is not necessary to query the string, only the
-  # player ids which I think are better kept in their own column for easy
-  # access, also the status could probably be a boolean, to denote
-  # current (inplay) => true, again for easier searching for players current
-  # game (after connection lost) - this value would need to check the current game.data status
-  # and update accordingly with :finished mapping to 0 and anything else? mapping to 1
-
   schema "games" do
     field :data, :binary
     field :player1_id

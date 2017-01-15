@@ -1,9 +1,4 @@
 <script> window.userToken = "";</script>
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
 
 <div class="anonomous-user column col-6">
   <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user], fn f -> %>

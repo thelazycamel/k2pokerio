@@ -8,23 +8,13 @@
     <meta name="author" content="">
     <meta name="csrf_token" content="<%= get_csrf_token() %>">
 
-    <title>Hello K2pokerIo!</title>
+    <title>K2 Poker</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <script>
-      window.userToken = "<%= user_token(assigns[:player_id]) %>";
-    </script>
+    <script>window.userToken = "<%= user_token(assigns[:player_id]) %>";</script>
   </head>
 
   <body class="<%= body_classes(@conn) %>" data-page="<%= body_page_data(@conn) %>">
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+    <div class="wrapper">
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
@@ -33,7 +23,7 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+    </div> <!-- /wrapper -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

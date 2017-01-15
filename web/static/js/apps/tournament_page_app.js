@@ -6,7 +6,7 @@ import TournamentGraphComponent from "../components/tournament_graph_component"
 class TournamentPageApp extends React.Component {
 
   tournamentGraph() {
-    return (<TournamentGraphComponent tournament={this.props.tournament} page="Tournament"/>)
+    return (<TournamentGraphComponent tournament={this.props.tournament} title="TODO: pass tournament name" page="Tournament"/>)
   }
 
   render() {

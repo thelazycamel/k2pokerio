@@ -35,6 +35,7 @@ import gameEventsMiddleware from "./middleware/game_events_middleware"
 window.App = {
 
   init: function() {
+    /* TODO this should be done automatically reading the files */
     this.pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
     this.createReduxStore()
     this.connectSocket()

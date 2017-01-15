@@ -1,19 +1,20 @@
 #tournament-graph {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background-color: #ececec;
-  padding: 15px;
-  border: 1px solid #cecece;
-  box-shadow: 5px 5px 5px 0px rgba(170,170,170,1);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 500px;
+  height: 300px;
+  background: linear-gradient(to bottom, #113359 0%,#020101 100%);
+  border: 5px solid #448fe5;
   h3 {
     margin: 0px 0px 10px 0px;
-    padding: 5px;
+    padding: 10px;
     font-size: 1.2em;
-    color: #ececec;
-    background-color: blue;
+    color: #9f98ff;
+    background-color: #1e5799;
   }
   p {
-    color: blue;
+    color: #ffffff;
+    padding: 10px;
   }
 }

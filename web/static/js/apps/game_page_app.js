@@ -7,7 +7,7 @@ import GameComponent from "../components/game_component"
 class GamePageApp extends React.Component {
 
   tournamentGraph() {
-    return (<TournamentGraphComponent tournament={this.props.tournament} page="Game"/>)
+    return (<TournamentGraphComponent tournament={this.props.tournament} title="TODO: pass tournament name" page="Tournament"/>)
   }
 
   game() {

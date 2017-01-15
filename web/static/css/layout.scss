@@ -1,0 +1,31 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to bottom, #1e5799 0%,#020101 100%);
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.wrapper {
+  position: relative;
+  background: linear-gradient(to bottom, #020101 0%,#1e5799 100%);
+  margin: 0px auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 1024px;
+  }
+}
+
+main {
+  p {
+    color: #ffffff;
+  }
+}
