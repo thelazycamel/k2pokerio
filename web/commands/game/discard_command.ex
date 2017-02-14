@@ -4,6 +4,8 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
   alias K2pokerIo.Repo
   import Ecto.Changeset
 
+  @doc "Sends discard to K2poker for the (given) players (given) card and updates the game"
+
   def execute(game_id, player_id, card_index) do
     if game = get_game(game_id) do
       discard(game, player_id, card_index) |> update_game(game)
@@ -11,6 +13,8 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
       :error
     end
   end
+
+  #PRIVATE
 
   defp get_game(game_id) do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)

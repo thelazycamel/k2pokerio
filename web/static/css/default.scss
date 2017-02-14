@@ -1,0 +1,30 @@
+h1, h2 {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 7px;
+  color: #cecece;
+  background-color: #172a55;
+}
+
+.btn-k2poker-wrapper {
+  margin: 30px auto 0px auto;
+  padding: 10px;
+  width: 220px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom,#00f300 0%,#006f00 100%);
+
+  .btn-k2poker {
+    width: 200px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom,#00f300 0%,#006f00 100%);
+  }
+}
+
+.highlighted {
+  color: #ffcc00;
+}
+
+.center {
+  text-align: center;
+}

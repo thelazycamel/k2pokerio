@@ -1,1 +1,8 @@
-<div id="root" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></div>
+<div class="right-column">
+  <section id="tournament-root" data-tournament="<%= @tournament_id %>"></section>
+  <section id="chat-root" data-tournament="<%= @tournament_id %>"></section>
+</div>
+
+<div class="left-column">
+  <div id="game-root" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></div>
+</div>

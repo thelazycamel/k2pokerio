@@ -1,9 +1,21 @@
 <script> window.userToken = "";</script>
 
-<div class="anonomous-user column col-6">
-  <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user], fn f -> %>
-    <%= text_input f, :username %>
-    <%= submit "Submit" %>
+<div id="homepage">
+
+  <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
+
+    <div class="input-group">
+      <label for="username" class="sr-only">Username</label>
+      <%= text_input f, :username, class: "form-control anon-nickname" %>
+      <span class="input-group-btn">
+        <%= submit "Quick Play", class: "btn btn-play" %>
+      </span>
+    </div>
+
   <% end %>
+
+  <div class="btn-k2poker-wrapper">
+   <button class="btn btn-lg btn-k2poker">Sign Up</button>
+  </div>
 
 </div>

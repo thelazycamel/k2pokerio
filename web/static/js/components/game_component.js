@@ -1,18 +1,28 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
+import { Provider } from 'react-redux'
 import GameResultComponent from './game_result_component'
 
 class GameComponent extends React.Component {
 
+  waitingForOpponent() {
+    return this.props.game.status == "standby" ? true : false;
+  }
+
   currentStatus(){
-    let playerStatus = this.props.game.status;
-    if(this.props.game.player_status == "ready" && (this.props.game.other_player_status == "new" || this.props.game.other_player_status == "discarded")) {
-      playerStatus += " | Waiting for the other Player to play";
-    } else if(this.props.game.player_status == "discarded") {
-      playerStatus += " | You have discarded, press play to continue";
-    } else {
-      playerStatus += " | Waiting for you to play";
+    console.log(this.waitingForOpponent());
+    if(this.waitingForOpponent()) {return this.props.game.status};
+    let playerStatus = "";
+    switch(this.props.game.player_status) {
+      case "ready":
+        playerStatus = "Waiting on your opponent";
+        break;
+      case "discarded":
+        playerStatus = "Discarded, press play";
+        break;
+      default:
+        playerStatus = "Waiting for you to play";
     }
     return playerStatus;
   }
@@ -25,12 +35,14 @@ class GameComponent extends React.Component {
     }
   }
 
-  playButtonClicked() {
+  playButtonClicked(e) {
+    e.preventDefault();
     App.store.dispatch({type: "PLAY"});
   }
 
   foldButtonClicked() {
     App.store.dispatch({type: "FOLD"});
+    return false;
   }
 
   discardClicked(e) {
@@ -40,20 +52,20 @@ class GameComponent extends React.Component {
 
   /* consider moving this to its own component */
   renderPlayerCards() {
+
     if(this.props.game.cards){
       let _this = this;
       let cards = this.props.game.cards.map(function(card, index){
         let bestCardClass = _this.props.game.best_cards.includes(card) ? " best-card" : "";
-        return <div className={"player-card " + card  + bestCardClass }
+        return <div className={"card player-card " + "card-"+ card  + bestCardClass }
                     key={"player-card-"+index}
                     data-card={index}
+                    id={ "player-card-" + (index + 1) }
                     onClick={_this.discardClicked}>
                     {card}
                 </div>;
       });
       return cards;
-    } else {
-     return <p>Waitng for players</p>
     }
   }
 
@@ -62,29 +74,44 @@ class GameComponent extends React.Component {
       let _this = this;
       let cards = this.props.game.table_cards.map(function(card, index){
         let bestCardClass = _this.props.game.best_cards.includes(card) ? " best-card" : "";
-        return <div className={"table-card " + card + bestCardClass}
+        return <div className={"card table-card " + "card-" + card + bestCardClass}
                     key={"table-card-"+index}
-                    data-card={index}>
+                    data-card={index}
+                    id={"table-card-"+(index+1)}>
                     {card}
                 </div>;
       });
       return cards;
-    } else {
-     return <p>Waitng for players</p>
     }
   }
 
+  renderOpponentCards() {
+    if(this.waitingForOpponent()) { return };
+    let cards = ["opponent-card-1", "opponent-card-2"].map(function(card, index){
+      return <div className={ "card opponent-card card-back" }
+                  key={"opponent-card-" + index}
+                  id={card}>
+             </div>
+    });
+    return cards;
+  }
+
+  /* TODO: Fix game result */
+
   render() {
-    return (<div id="game">
-              <div id="opponent-cards"></div>
-              <button id="fold-button" onClick={this.foldButtonClicked}>Fold</button>
-              <div id="table-cards">{this.renderTableCards()}</div>
-              <p>status: {this.currentStatus()}</p>
-              <button id="play-button" onClick={this.playButtonClicked}>Play</button>
-              <div id="player-cards">{this.renderPlayerCards()}</div>
-              <p>{this.props.game.hand_description}</p>
-              <div id="game-result-wrapper">{this.showResult()}</div>
-            </div>)
+    return (<Provider store={this.props.store}>
+              <div id="game">
+                <div id="shine"></div>
+                <div id="opponent-cards">{this.renderOpponentCards()}</div>
+                <a id="fold-button" onClick={this.foldButtonClicked}>Fold</a>
+                <div id="table-cards">{this.renderTableCards()}</div>
+                <div id="game-status">{this.currentStatus()}</div>
+                <a id="play-button" onClick={this.playButtonClicked}>Play</a>
+                <div id="player-cards">{this.renderPlayerCards()}</div>
+                <div id="best-hand">Best Hand<br/>{this.props.game.hand_description}</div>
+                <div id="game-result-wrapper">{this.showResult()}</div>
+              </div>
+           </Provider>)
   }
 }
 

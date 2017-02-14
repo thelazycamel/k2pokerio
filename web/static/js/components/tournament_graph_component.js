@@ -1,16 +1,19 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
+import { Provider } from 'react-redux'
 
 class TournamentGraphComponent extends React.Component {
 
   render() {
-    return (<div id="tournament-graph">
-              <h3>{this.props.title} </h3>
-              <p>React is plugged in! and <br/>
-              if I am blue and top right corner,<br/>
-              sass is also plugged in</p>
-            </div>)
+    return (<Provider store ={this.props.store}>
+              <div id="tournament-graph-component">
+                <div id="background-chips"></div>
+                <div id="winner-chips"></div>
+                <div id="player-chips"></div>
+              </div>
+           </Provider>
+           )
   }
 }
 

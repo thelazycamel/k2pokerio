@@ -55,7 +55,7 @@ defmodule K2pokerIo.Game do
   def player_data(game, player_id) do
     cond do
       game.data == nil ->
-        %{status: "Waiting for an opponent"}
+        %{status: "standby"}
       true ->
         decode_game_data(game.data)
         |> K2poker.player_data(player_id)

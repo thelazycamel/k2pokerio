@@ -1,0 +1,10 @@
+<header>
+  <div class="container">
+    
+    <a class="navbar-brand main-title" href="#">K2Poker.io</a>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Sign-Up</a></li>
+        </li>
+      </ul>
+  </div>
+</header>

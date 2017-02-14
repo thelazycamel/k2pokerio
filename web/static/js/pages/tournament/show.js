@@ -1,10 +1,13 @@
+import page from "../page"
+
 import React from "react"
 import ReactDOM from "react-dom"
 
-import TournamentPageApp from "../../apps/tournament_page_app"
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
-import page from "../page"
+
+import TournamentGraphComponent from "../../components/tournament_graph_component"
+import ChatComponent from "../../components/chat_component"
 
 class TournamentShowPage extends page {
 
@@ -13,11 +16,12 @@ class TournamentShowPage extends page {
   }
 
   setUpPage() {
-    this.tournamentId = document.getElementById("root").getAttribute("data-tournament");
+    this.tournamentId = document.getElementById("tournament-root").getAttribute("data-tournament");
     new tournamentChannel();
     new chatChannel(this.tournamentId);
     this.eventListeners();
     this.initializeTournamentComponent();
+    this.initializeChatComponent();
   }
 
   eventListeners(){
@@ -44,9 +48,13 @@ class TournamentShowPage extends page {
     });
    }
 
-   initializeTournamentComponent() {
-     ReactDOM.render(<TournamentPageApp store={App.store}/>, document.getElementById('root'));
-   }
+  initializeTournamentComponent() {
+    ReactDOM.render(<TournamentGraphComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-root'));
+  }
+
+  initializeChatComponent() {
+    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-root'));
+  }
 
 
 }

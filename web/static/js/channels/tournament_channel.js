@@ -1,7 +1,7 @@
 class TournamentChannel {
 
   constructor(){
-    let element = document.getElementById("root");
+    let element = document.getElementById("tournament-root");
     let tournamentId = element.getAttribute("data-tournament");
     if(!element || !tournamentId) { return; }
     this.joinTournamentChannel(tournamentId, element);

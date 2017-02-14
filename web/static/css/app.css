@@ -1,11 +1,15 @@
 /* This file is for your main application css. */
 
+@include "variables"
 @include "layout"
+@include "default"
+@include "cards"
 
 /* components */
 @include "components/tournament_graph"
 @include "components/game"
+@include "components/chat"
 
 /* pages */
-@include "pages/game"
+@include "pages/home"
 @include "pages/tournament"
