@@ -1,33 +1,26 @@
-body.game.show {
 
-  .left-column {
-    background: linear-gradient(to bottom, #82e1ff 0%,#091122 50%);
+#game-root {
+  background-image: url("/images/blue-back.png");
+  background-position: center;
 
-    #game-root {
-      background-image: url("/images/blue-back.png");
-      background-position: center;
+  #game {
 
-      #game {
+    position: relative;
 
-        position: relative;
-
-        #shine {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          z-index: 5;
-          background-image: url("/images/shine.svg");
-          background-repeat: no-repeat;
-        }
-
-
-        .card {
-          position: absolute;
-          box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
-        }
-
-      }
+    #shine {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      background-image: url("/images/shine.svg");
+      background-repeat: no-repeat;
     }
+
+    .card {
+      position: absolute;
+      box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
+    }
+
   }
 }
 
@@ -67,15 +60,6 @@ body.game.show {
 
   #game {
     margin: 0px auto;
-  }
-
-}
-
-#game-result {
-
-  .result-status {
-    font-size: 2em;
-    font-weight: bold;
   }
 
 }
@@ -406,9 +390,7 @@ body.game.show {
 
   }
 
-
 }
-
 
 @media (max-width: 420px) {
 
@@ -508,7 +490,6 @@ body.game.show {
       width: 106px;
       font-size: 12px;
     }
-
   }
-
 }
+

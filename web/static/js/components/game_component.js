@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import GameResultComponent from './game_result_component'
+import OpponentCards from './cards/opponent_cards'
 
 class GameComponent extends React.Component {
 
@@ -86,23 +87,20 @@ class GameComponent extends React.Component {
   }
 
   renderOpponentCards() {
-    if(this.waitingForOpponent()) { return };
-    let cards = ["opponent-card-1", "opponent-card-2"].map(function(card, index){
-      return <div className={ "card opponent-card card-back" }
-                  key={"opponent-card-" + index}
-                  id={card}>
-             </div>
-    });
-    return cards;
+    let waiting = this.waitingForOpponent();
+    return (
+      <OpponentCards waiting={waiting} result={this.props.game.result} />
+    )
   }
 
   /* TODO: Fix game result */
 
   render() {
+    let waiting = this.waitingForOpponent();
     return (<Provider store={this.props.store}>
               <div id="game">
                 <div id="shine"></div>
-                <div id="opponent-cards">{this.renderOpponentCards()}</div>
+                { this.renderOpponentCards() }
                 <a id="fold-button" onClick={this.foldButtonClicked}>Fold</a>
                 <div id="table-cards">{this.renderTableCards()}</div>
                 <div id="game-status">{this.currentStatus()}</div>

@@ -1,87 +1,92 @@
-#homepage {
+body.page.index {
 
-  height: 630px;
-  background-image: url("/images/k2-home.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: 10px;
-  overflow: hidden;
+  #main-content {
 
-  .anon-player-form {
-    display: block;
-    width: 350px;
-    margin: 286px auto 0px auto;
-    .input-group {
-      background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
-      border-radius: 15px;
-      padding: 10px;
-      input.anon-nickname {
-        height: 46px;
-        width: 220px;
-        border-radius: 10px;
-        font-size: 2em;
+    #homepage {
+
+      height: 630px;
+      background-image: url("/images/k2-home.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      overflow: hidden;
+
+      .anon-player-form {
+        display: block;
+        width: 350px;
+        margin: 286px auto 0px auto;
+        .input-group {
+          background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
+          border-radius: 15px;
+          padding: 10px;
+          input.anon-nickname {
+            height: 46px;
+            width: 220px;
+            border-radius: 10px;
+            font-size: 2em;
+          }
+          button.btn-play {
+            background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
+            color: #ffffff;
+            height: 46px;
+            width: 100px;
+            border-radius: 10px;
+            margin-left: 10px;
+            &:hover {
+              color: #dddddd;
+            }
+          }
+        }
+
       }
-      button.btn-play {
-        background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
-        color: #ffffff;
-        height: 46px;
-        width: 100px;
-        border-radius: 10px;
-        margin-left: 10px;
-        &:hover {
-          color: #dddddd;
+
+    }
+
+    @media (min-width: 992px) {
+      #homepage {
+        .anon-player-form {
+          width: 500px;
+          .input-group {
+            input.anon-nickname {
+              width: 360px;
+            }
+            button.btn-play {
+              width: 120px;
+            }
+          }
+        }
+      }
+
+    }
+
+
+    @media (max-width: 320px) {
+
+      #homepage {
+        height: 400px;
+        background-position: top center;
+        .anon-player-form {
+          margin: 186px auto 0px auto;
+          width: 280px;
+          .input-group {
+            input.anon-nickname {
+              width: 150px;
+            }
+            button.btn-play {
+              width: 100px;
+            }
+          }
         }
       }
     }
-
   }
 
-}
+  @media (min-width: 1200px){
 
-@media (min-width: 992px) {
-  #homepage {
-    .anon-player-form {
-      width: 500px;
-      .input-group {
-        input.anon-nickname {
-          width: 360px;
-        }
-        button.btn-play {
-          width: 120px;
-        }
-      }
-    }
-  }
-
-}
-
-@media (min-width: 1200px){
-
-  body.page.index footer .footer-reflection  {
-    background-image: url("/images/home-footer-reflection.png");
-    background-repeat: no-repeat;
-    background-position: top center;
-    height: 200px;
-  }
-
-}
-
-@media (max-width: 320px) {
-
-  #homepage {
-    height: 400px;
-    background-position: top center;
-    .anon-player-form {
-      margin: 186px auto 0px auto;
-      width: 280px;
-      .input-group {
-        input.anon-nickname {
-          width: 150px;
-        }
-        button.btn-play {
-          width: 100px;
-        }
-      }
+    footer .footer-reflection  {
+      background-image: url("/images/home-footer-reflection.png");
+      background-repeat: no-repeat;
+      background-position: top center;
+      height: 200px;
     }
   }
 

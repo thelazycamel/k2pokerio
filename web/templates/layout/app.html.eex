@@ -17,7 +17,7 @@
 
     <%= render "_header.html" %>
 
-    <div class="container">
+    <div id="main-content" class="container">
       <main role="main">
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

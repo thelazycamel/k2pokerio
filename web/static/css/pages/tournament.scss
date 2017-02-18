@@ -1,25 +1,33 @@
-#tournament-lobby {
-  background-image: url("/images/k2-ascent-bg.png");
-  background-repeat: no-repeat;
-  background-position: top center;
-  overflow: hidden;
-  padding: 5px;
+body.tournament {
 
-  p {
-    text-align: center;
-    font-size: 1.3em;
-    line-height: 1em;
+  main {
 
-    &.top-row {
-      margin-top: 1.3em;
+    background: linear-gradient(to bottom, #1c45a1 0%,#091122 50%);
+
+    #tournament-lobby {
+      background-image: url("/images/k2-ascent-bg.png");
+      background-repeat: no-repeat;
+      background-position: top center;
+      overflow: hidden;
+      padding: 5px;
+
+      p {
+        text-align: center;
+        font-size: 1.3em;
+        line-height: 1em;
+
+        &.top-row {
+          margin-top: 1.3em;
+        }
+      }
+
+      .btn-k2poker {
+        font-size: 1.5em;
+      }
+
+      #bigred {
+        margin: 30px auto;
+      }
     }
-  }
-
-  .btn-k2poker {
-    font-size: 1.5em;
-  }
-
-  #bigred {
-    margin: 30px auto;
   }
 }
