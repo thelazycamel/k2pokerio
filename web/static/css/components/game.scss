@@ -1,4 +1,3 @@
-
 #game-root {
   background-image: url("/images/blue-back.png");
   background-position: center;
@@ -19,6 +18,33 @@
     .card {
       position: absolute;
       box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
+    }
+
+    &.result {
+      .card {
+        opacity: 0.25;
+      }
+
+      .card.winner {
+        opacity: 1;
+      }
+    }
+
+    #game-status .win-status {
+      font-size: 1.3em;
+      line-height: 2em;
+      color: #C6C82C;
+    }
+
+    #game-status .lose-status {
+      font-size: 1.3em;
+      line-height: 2em;
+      color: #DE1F1B;
+    }
+
+    #best-hand .result-hand {
+      font-size: 1.1em;
+      line-height: 2.5em;
     }
 
   }
