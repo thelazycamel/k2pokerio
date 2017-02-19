@@ -3,10 +3,12 @@
 import { createStore, combineReducers } from 'redux'
 import gameReducer from "./game_reducer"
 import tournamentReducer from "./tournament_reducer"
+import playerReducer from "./player_reducer"
 
 var mainStore = combineReducers({
     game: gameReducer,
-    tournament: tournamentReducer
+    tournament: tournamentReducer,
+    player: playerReducer
 });
 
 export default mainStore;

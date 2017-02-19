@@ -12,6 +12,11 @@ const gameEventsMiddleware = store => next => action => {
     case "NEXT_GAME":
       App.gameChannel.push("game:next_game");
       break;
+    case "GAME_DATA_RECEIVED":
+      if(action.game.status == "finished" || action.game.status == "new") {
+        App.playerChannel.push("player:get_current_score");
+      }
+      break;
     default:
   }
   next(action);

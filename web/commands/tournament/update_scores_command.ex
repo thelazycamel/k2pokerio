@@ -37,7 +37,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
       new_score <= 1 -> 1
       true -> new_score
     end
-    new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
+    #new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
     update_user_tournament_detail(utd, game.id, new_score, player_id)
   end
 

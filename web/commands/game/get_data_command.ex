@@ -21,8 +21,6 @@ defmodule K2pokerIo.Commands.Game.GetDataCommand do
 
   def player_game_data(game, player_id) do
     player_data = Game.player_data(game, player_id)
-    # TODO this (updating scores) doesnt feel as if it fits here, consider
-    # moving
     if player_data.status == "finished" do
       UpdateScoresCommand.execute(game)
     end

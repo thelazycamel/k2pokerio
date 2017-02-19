@@ -4,6 +4,7 @@ import ReactDOM from "react-dom"
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
 import gameChannel from "../../channels/game_channel"
+import playerChannel from "../../channels/player_channel"
 
 import TournamentGraphComponent from "../../components/tournament_graph_component"
 import ChatComponent from "../../components/chat_component"
@@ -18,9 +19,10 @@ class GameShowPage extends page {
   }
 
   setUpPage() {
-    new tournamentChannel(this.socket);
-    new gameChannel(this.socket);
-    new chatChannel(this.socket);
+    new tournamentChannel();
+    new gameChannel();
+    new chatChannel();
+    new playerChannel();
     this.initializeGameComponent();
     this.initializeTournamentComponent();
     this.initializeChatComponent();

@@ -151,6 +151,7 @@ class GameComponent extends React.Component {
     return (
       <Provider store={this.props.store}>
         <div id="game" className={this.resultClassName()} >
+          <div id="player-score">{this.props.player.current_score}</div>
           <div id="shine"></div>
           <div id="opponent-cards">{this.renderOpponentCards()}</div>
           { this.foldButton() }
@@ -168,6 +169,7 @@ class GameComponent extends React.Component {
 const mapStateToProps = (state) => {
   return {
     game: state.game,
+    player: state.player
   }
 }
 

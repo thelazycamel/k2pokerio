@@ -9,6 +9,8 @@ import chatChannel from "../../channels/chat_channel"
 import TournamentGraphComponent from "../../components/tournament_graph_component"
 import ChatComponent from "../../components/chat_component"
 
+import playerChannel from "../../channels/player_channel"
+
 class TournamentShowPage extends page {
 
   constructor(opts={}) {
@@ -19,6 +21,7 @@ class TournamentShowPage extends page {
     this.tournamentId = document.getElementById("tournament-root").getAttribute("data-tournament");
     new tournamentChannel();
     new chatChannel(this.tournamentId);
+    new playerChannel();
     this.eventListeners();
     this.initializeTournamentComponent();
     this.initializeChatComponent();
