@@ -1,0 +1,60 @@
+#scoreboard {
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  width: 236px;
+  border: 2px solid #020101;
+  background-color: #172a55;
+  height: 44px;
+
+  .number {
+    display: inline-block;
+    height: 39px;
+    width: 30px;
+    font-size: 0;
+    background-color: #ffce4a;
+    float: left;
+    border-left: 1px solid #020101;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &.number-spacer {
+      width: 10px;
+      background-color: #172a55;
+    }
+
+    &.number-0 {
+      background-image: url("/images/scoreboard/0.svg");
+    }
+    &.number-1 {
+      background-image: url("/images/scoreboard/1.svg");
+    }
+    &.number-2 {
+      background-image: url("/images/scoreboard/2.svg");
+    }
+    &.number-3 {
+      background-image: url("/images/scoreboard/3.svg");
+    }
+    &.number-4 {
+      background-image: url("/images/scoreboard/4.svg");
+    }
+    &.number-5 {
+      background-image: url("/images/scoreboard/5.svg");
+    }
+    &.number-6 {
+      background-image: url("/images/scoreboard/6.svg");
+    }
+    &.number-7 {
+      background-image: url("/images/scoreboard/7.svg");
+    }
+    &.number-8 {
+      background-image: url("/images/scoreboard/8.svg");
+    }
+    &.number-9 {
+      background-image: url("/images/scoreboard/9.svg");
+    }
+  }
+}
+
