@@ -12,7 +12,7 @@ defmodule K2pokerIo.Tournament do
     field :rebuys, :binary #number of rebuys allowed, default event = [0] TODO: decide on format probably [1,1,1,1,1] for 5 rebuys, [1024, 1] etc, and just [0] for unlimited
     field :start_time, Ecto.DateTime
     field :player_ids, {:array, :string} #private tourneys, keep an array of player ids allowed to play
-    timestamps
+    timestamps()
   end
 
   def changeset(model, params \\ %{}) do

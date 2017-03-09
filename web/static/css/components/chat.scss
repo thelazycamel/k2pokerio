@@ -1,13 +1,14 @@
 #chat-component {
   position: relative;
-  height: 300px;
-  background: linear-gradient(to bottom, #020101 0%,#101d38 50%);
+  height: 302px;
+  background-color: #101d3b;
+  background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
 
   ul#chats {
     color: #ffffff;
     padding: 0px 10px;
     margin: 0px;
-    height: 195px;
+    height: 225px;
     overflow: hidden;
     overflow-y: auto;
     li {
@@ -15,7 +16,7 @@
       margin: 2px 0px;
       padding: 0px 10px 3px 10px;
       list-style-type: none;
-      border-bottom: 1px dashed #020101;
+      border-bottom: 1px dashed #172a55;
       display: flex;
       justify-content: space-around;
       align-items: center;

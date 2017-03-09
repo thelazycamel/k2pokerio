@@ -12,7 +12,7 @@ defmodule K2pokerIo.UserTournamentDetail do
     field :current_score, :integer
     field :rebuys, {:array, :integer}
 
-    timestamps
+    timestamps()
   end
 
   def changeset(model, params \\ %{}) do

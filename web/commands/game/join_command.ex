@@ -27,7 +27,7 @@ defmodule K2pokerIo.Commands.Game.JoinCommand do
     game_changeset = Game.join_changeset(game, %{player2_id: utd.player_id, waiting_for_players: false})
     case Repo.update(game_changeset) do
       {:ok, existing_game} -> {:ok, existing_game}
-      {:error, changeset} -> {:error}
+      {:error, _} -> {:error}
     end
   end
 
@@ -41,7 +41,7 @@ defmodule K2pokerIo.Commands.Game.JoinCommand do
     })
     case Repo.insert(changeset) do
       {:ok, game} -> {:ok, game}
-      {:error, changeset} -> {:error}
+      {:error, _} -> {:error}
     end
   end
 

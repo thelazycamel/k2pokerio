@@ -10,6 +10,10 @@ class GameComponent extends React.Component {
     return this.props.game.status == "standby" ? true : false;
   }
 
+  waitingForOpponentToPlay() {
+    return this.props.game.player_status == "ready" ? true : false;
+  }
+
   currentStatus(){
     if(this.waitingForOpponent()) {return this.props.game.status};
     let playerStatus = "";
@@ -115,6 +119,8 @@ class GameComponent extends React.Component {
   playButton() {
     if(this.isFinished()) {
       return(<a id="play-button" className="next-game" onClick={this.nextGameButtonClicked}>Next Game</a>);
+    } else if(this.waitingForOpponent() || this.waitingForOpponentToPlay()) {
+      return(<a id="play-button" className="waiting">Waiting...</a>);
     } else {
       return(<a id="play-button" onClick={this.playButtonClicked}>Play</a>);
     }

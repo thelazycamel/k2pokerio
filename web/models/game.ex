@@ -12,7 +12,7 @@ defmodule K2pokerIo.Game do
     field :waiting_for_players, :boolean
     belongs_to :tournament, K2pokerIo.Tournament
 
-    timestamps
+    timestamps()
   end
 
   def changeset(model, params \\ %{}) do

@@ -64,6 +64,15 @@
     color: #f3f3f3;
     background-image: url("/images/play-button-hover.svg");
   }
+
+  &.waiting {
+    background-image: url("/images/wait-button.svg");
+  }
+
+  &.waiting:hover {
+    background-image: url("/images/wait-button.svg");
+  }
+
 }
 
 #fold-button {
@@ -138,8 +147,8 @@
       width: 61px;
       height: 61px;
       background-size: 61px 61px;
-      font-size: 1.2em;
-      line-height: 3.6em;
+      font-size: 1.1em;
+      line-height: 3.8em;
     }
 
     #play-button {
@@ -147,8 +156,8 @@
       height: 50px;
       top: 257px;
       left: 137px;
-      font-size: 1.4em;
-      line-height: 2.3em;
+      font-size: 1.2em;
+      line-height: 2.9em;
       background-size: 140px 50px;
     }
 
@@ -244,8 +253,8 @@
       width: 85px;
       height: 85px;
       background-size: 85px 85px;
-      font-size: 1.4em;
-      line-height: 4.2em;
+      font-size: 1.2em;
+      line-height: 4.8em;
     }
 
     #play-button {
@@ -254,8 +263,8 @@
       width: 160px;
       height: 55px;
       background-size: 160px 55px;
-      font-size: 1.6em;
-      line-height: 2.4em;
+      font-size: 1.3em;
+      line-height: 3em;
     }
 
     #table-card-1 {
@@ -348,8 +357,8 @@
       width: 85px;
       height: 85px;
       background-size: 85px 85px;
-      font-size: 1.4em;
-      line-height: 4.2em;
+      font-size: 1.2em;
+      line-height: 4.8em;
     }
 
     #play-button {
@@ -457,8 +466,8 @@
       height: 50px;
       top: 203px;
       left: 81px;
-      font-size: 1.6em;
-      line-height: 2.1em;
+      font-size: 1.3em;
+      line-height: 2.8em;
       background-size: 160px 50px;
     }
 
