@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
+import Scoreboard from './presentational/scoreboard'
 
 class TournamentGraphComponent extends React.Component {
 
@@ -17,22 +18,6 @@ class TournamentGraphComponent extends React.Component {
   chipsClass() {
     //return "chips-" +this.props.player.current_score;
     return "chips-" + this.randomScore();
-  }
-
-  scoreboard() {
-    //let score = "0000000" + this.props.player.current_score;
-    let score = "0000000" + this.randomScore();
-    let scoreArray = [];
-    for (var i = 0; i < score.length; i++) {
-      scoreArray.push(score[i]);
-    }
-    let scores = scoreArray.slice(Math.max(score.length -7,1));
-    scores.splice(1, 0, "spacer")
-    scores.splice(5, 0, "spacer");
-    let elements = scores.map( (number) => {
-      return <span className={"number number-" + number}></span>
-    })
-    return elements;
   }
 
   //TODO move to its own component
@@ -67,16 +52,17 @@ class TournamentGraphComponent extends React.Component {
   }
 
   render() {
-    return (<Provider store ={this.props.store}>
-              <div id="tournament-graph-component">
-                <div id="scoreboard">{this.scoreboard()}</div>
-                {this.ladder()}
-                <div id="background-chips"></div>
-                <div id="winner-chips"></div>
-                <div className={this.chipsClass()} id="player-chips"></div>
-              </div>
-           </Provider>
-           )
+    return (
+      <Provider store ={this.props.store}>
+        <div id="tournament-graph-component">
+          {this.ladder()}
+          <Scoreboard current_score={this.props.player.current_score} key="tournament" />
+          <div id="background-chips"></div>
+          <div id="winner-chips"></div>
+          <div className={this.chipsClass()} id="player-chips"></div>
+        </div>
+      </Provider>
+    )
   }
 }
 
@@ -88,6 +74,5 @@ const mapStateToProps = (state) => {
 }
 
 const ConnectedTournamentGraphComponent = connect(mapStateToProps)(TournamentGraphComponent)
-
 
 export default ConnectedTournamentGraphComponent;
