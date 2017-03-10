@@ -1,5 +1,5 @@
 #tournament-root {
-  background: linear-gradient(to bottom, #25417f 0%, #010116 50%);
+  background: linear-gradient(to bottom, #172a55 0%, #010116 50%);
   height: 315px;
   width: 100%;
 
@@ -7,6 +7,12 @@
     height: 315px;
     width: 100%;
     position: relative;
+
+    #scoreboard {
+      position: absolute;
+      top: 0px;
+      left: 13px;
+    }
 
     #player-chips {
       position: absolute;
