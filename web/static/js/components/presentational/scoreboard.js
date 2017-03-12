@@ -12,8 +12,8 @@ class Scoreboard extends React.Component {
     let scores = scoreArray.slice(Math.max(score.length -7,1));
     scores.splice(1, 0, "spacer")
     scores.splice(5, 0, "spacer");
-    let elements = scores.map( (number) => {
-      return <span className={"number number-" + number}></span>
+    let elements = scores.map( (number, index) => {
+      return <span className={"number number-" + number} key={"score"+index}></span>
     })
     return elements;
   }

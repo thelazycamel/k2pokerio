@@ -3,7 +3,7 @@
   height: 315px;
   width: 100%;
 
-  #tournament-graph-component {
+  #tournament-component {
     height: 315px;
     width: 100%;
     position: relative;
@@ -127,6 +127,39 @@
 
       td {
         width: 50%;
+        position: relative;
+
+        .tournament-score-name {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+
+          .username {
+            position: absolute;
+            right: 35px;
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .tournament-chip {
+            display: inline-block;
+            top: 0px;
+            right: 0px;
+            width: 30px;
+            height: 14px;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &.tournament-player-chip {
+              background-image: url("/images/tournament/player-chip.svg");
+            }
+
+            &.tournament-leader-chip {
+              background-image: url("/images/tournament/chip-leader-chip.svg");
+            }
+          }
+        }
       }
 
     }

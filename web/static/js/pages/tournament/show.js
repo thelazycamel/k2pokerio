@@ -6,7 +6,7 @@ import ReactDOM from "react-dom"
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
 
-import TournamentGraphComponent from "../../components/tournament_graph_component"
+import TournamentComponent from "../../components/tournament_component"
 import ChatComponent from "../../components/chat_component"
 
 import playerChannel from "../../channels/player_channel"
@@ -52,13 +52,12 @@ class TournamentShowPage extends page {
    }
 
   initializeTournamentComponent() {
-    ReactDOM.render(<TournamentGraphComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-root'));
+    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-root'));
   }
 
   initializeChatComponent() {
     ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-root'));
   }
-
 
 }
 
