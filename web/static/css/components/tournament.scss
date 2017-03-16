@@ -1,5 +1,5 @@
 #tournament-root {
-  background: linear-gradient(to bottom, #172a55 0%, #010116 50%);
+  background: linear-gradient(to bottom, #010116 0%, #000000 100%);
   height: 315px;
   width: 100%;
 
@@ -7,6 +7,11 @@
     height: 315px;
     width: 100%;
     position: relative;
+
+    .scoreboard {
+      top: 10px;
+      left: 15px;
+    }
 
   }
 }
