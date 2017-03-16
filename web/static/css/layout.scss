@@ -144,10 +144,9 @@ footer {
 }
 
 .right-column {
-  display: none;
+  position: relative;
   float: right;
   height: 619px;
-  background-color: #020101;
 }
 
 .left-column {
@@ -166,7 +165,6 @@ footer {
     .main-title {
       display: none;
     }
-
 
     .scoreboard {
       display: block;
@@ -188,6 +186,11 @@ footer {
   .right-column {
     display: block;
     width: 301px;
+
+    #top-section, #bottom-section {
+      width: 266px;
+    }
+
   }
 }
 
@@ -195,8 +198,13 @@ footer {
   .left-column {
     width: 539px;
   }
+
   .right-column {
     width: 401px;
+
+    #top-section, #bottom-section {
+      width: 366px;
+    }
   }
 }
 
@@ -206,6 +214,10 @@ footer {
   }
   .right-column {
     width: 511px;
+
+    #top-section, #bottom-section {
+      width: 511px;
+    }
   }
 }
 

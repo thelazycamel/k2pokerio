@@ -38,11 +38,13 @@ class ScoreLadder extends React.Component {
 
   render() {
     return (
-      <table id="score-ladder">
-        <tbody>
-         {this.renderRows()}
-        </tbody>
-      </table>
+      <div id="score-ladder-wrapper">
+        <table id="score-ladder">
+          <tbody>
+           {this.renderRows()}
+          </tbody>
+        </table>
+      </div>
     )
   }
 

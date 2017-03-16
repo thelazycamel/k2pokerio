@@ -6,9 +6,13 @@
 @include "cards"
 
 /* components */
-@include "components/tournament_graph"
-@include "components/game"
 @include "components/chat"
+@include "components/game"
+@include "components/player_chips"
+@include "components/score_ladder"
+@include "components/scoreboard"
+@include "components/side_nav"
+@include "components/tournament"
 
 /* pages */
 @include "pages/home"

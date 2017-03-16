@@ -1,0 +1,89 @@
+#score-ladder-wrapper {
+
+  #score-ladder {
+    text-align: center;
+
+    tr {
+
+      &:nth-child(even) {
+        background-color: #172a55;
+      }
+
+      &:nth-child(odd) {
+        background-color: transparent;
+      }
+
+      td {
+        width: 50%;
+        position: relative;
+
+        .tournament-score-name {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+
+          .username {
+            position: absolute;
+            right: 35px;
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .tournament-chip {
+            display: inline-block;
+            top: 0px;
+            right: 0px;
+            width: 30px;
+            height: 14px;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &.tournament-player-chip {
+              background-image: url("/images/tournament/player-chip.svg");
+            }
+
+            &.tournament-leader-chip {
+              background-image: url("/images/tournament/chip-leader-chip.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+
+    #score-ladder {
+      font-size: 0.8em;
+      float: right;
+      width: 250px;
+    }
+
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+
+    #score-ladder {
+      font-size: 0.8em;
+      width: 100%;
+    }
+
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+
+    #score-ladder {
+      font-size: 0.8em;
+      width: 100%;
+    }
+
+  }
+
+}
+
+@media (max-width: 767px) {
+  #score-ladder-wrapper {
+    display: none;
+  }
+}

@@ -1,6 +1,10 @@
 <div class="right-column">
-  <section id="tournament-root" data-tournament="<%= @tournament.id %>"></section>
-  <section id="chat-root" data-tournament="<%= @tournament.id %>"></section>
+  <section id="top-section">
+    <div id="tournament-root" data-tournament="<%= @tournament.id %>"></div>
+  </section>
+  <section id="bottom-section">
+    <div id="chat-root" data-tournament="<%= @tournament.id %>"></div>
+  </section>
 </div>
 
 <div class="left-column">

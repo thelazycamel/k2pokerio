@@ -26,10 +26,10 @@ class TournamentComponent extends React.Component {
       <Provider store ={this.props.store}>
         <div id="tournament-component">
           <ScoreLadder player={this.props.player} chipleader={ {username: "chipleader", score: this.randomScore()} } />
-          <Scoreboard current_score={this.props.player.current_score} key="tournament" />
-          <div id="background-chips"></div>
-          <div id="winner-chips"></div>
-          <div className={this.chipsClass()} id="player-chips"></div>
+          <div id="player-chips-wrapper">
+            <Scoreboard current_score={this.props.player.current_score} key="tournament" />
+            <div className={this.chipsClass()} id="player-chips"></div>
+          </div>
         </div>
       </Provider>
     )
