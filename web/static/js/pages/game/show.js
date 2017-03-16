@@ -7,6 +7,7 @@ import gameChannel from "../../channels/game_channel"
 import playerChannel from "../../channels/player_channel"
 
 import TournamentComponent from "../../components/tournament_component"
+import ChipsComponent from "../../components/chips_component"
 import ChatComponent from "../../components/chat_component"
 import GameComponent from "../../components/game_component"
 import HeaderComponent from "../../components/header_component"
@@ -26,12 +27,17 @@ class GameShowPage extends page {
     new playerChannel();
     this.initializeGameComponent();
     this.initializeTournamentComponent();
+    this.initializeChipsComponent();
     this.initializeHeaderComponent();
     this.initializeChatComponent();
   }
 
   initializeTournamentComponent() {
-    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-root'));
+    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-holder'));
+  }
+
+  initializeChipsComponent() {
+    ReactDOM.render(<ChipsComponent store={App.store}/>, document.getElementById('chips-holder'));
   }
 
   initializeHeaderComponent() {
@@ -39,11 +45,11 @@ class GameShowPage extends page {
   }
 
   initializeChatComponent() {
-    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-root'));
+    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-holder'));
   }
 
   initializeGameComponent() {
-    ReactDOM.render(<GameComponent store={App.store}/>, document.getElementById('game-root'));
+    ReactDOM.render(<GameComponent store={App.store}/>, document.getElementById('game-holder'));
   }
 
 }

@@ -1,7 +1,7 @@
 class GameChannel {
 
   constructor(){
-    let element = document.getElementById("game-root");
+    let element = document.getElementById("game-holder");
     let gameId = element.getAttribute("data-game");
     if(!element || !gameId) { return; }
     this.joinGameChannel(gameId, element);

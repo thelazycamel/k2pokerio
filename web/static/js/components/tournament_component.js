@@ -16,20 +16,11 @@ class TournamentComponent extends React.Component {
     return this.score;
   }
 
-  chipsClass() {
-    //return "chips-" +this.props.player.current_score;
-    return "chips-" + this.randomScore();
-  }
-
   render() {
     return (
       <Provider store ={this.props.store}>
         <div id="tournament-component">
           <ScoreLadder player={this.props.player} chipleader={ {username: "chipleader", score: this.randomScore()} } />
-          <div id="player-chips-wrapper">
-            <Scoreboard current_score={this.props.player.current_score} key="tournament" />
-            <div className={this.chipsClass()} id="player-chips"></div>
-          </div>
         </div>
       </Provider>
     )

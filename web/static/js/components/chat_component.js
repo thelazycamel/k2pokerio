@@ -7,7 +7,7 @@ class ChatComponent extends React.Component {
 
   render() {
     return (<Provider store={this.props.store}>
-        <div id="chat-component">
+        <div id="chat-root">
           <h2>Chat</h2>
           <ul id="chats">
             <li><span className="chat-user">Bob</span><span className="chat-text">This is a comment This is a comment This is a comment This is a comment This is a comment This is a comment</span></li>

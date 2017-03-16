@@ -1,7 +1,7 @@
-#chat-component {
-  position: relative;
-  height: 302px;
-  background-color: #101d3b;
+#chat-holder {
+  position: absolute;
+  top: 319px;
+  height: 300px;
   background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
 
   ul#chats {
@@ -50,8 +50,50 @@
 
 }
 
-@media (max-width: 767px) {
-  #chat-component {
+@media (min-width: 1200px) {
+
+  #chat-holder {
+    left: 629px;
+    width: 511px;
+    #chat-root {
+    }
+  }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  #chat-holder {
+    left: 538px;
+    width: 366px;
+    #chat-root {
+    }
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #chat-holder {
+    left: 419px;
+    width: 250px;
+    #chat-root {
+    }
+  }
+
+}
+
+@media (min-width: 421px) and (max-width: 767px) {
+
+  #chat-holder {
     display: none;
   }
+
+}
+
+@media (max-width: 420px) {
+
+  #chat-holder {
+    display: none;
+  }
+
 }

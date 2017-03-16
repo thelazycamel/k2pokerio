@@ -1,20 +1,19 @@
-<div class="right-column">
-  <section id="top-section">
-    <div id="tournament-root" data-tournament="<%= @tournament_id %>"></div>
-  </section>
-  <nav id="side-nav">
-    <a href="#" title="Profile" id="nav-profile" class="side-nav-item"><span class="icon"></span></a>
-    <a href="#" title="Game Rules" id="nav-rules" class="side-nav-item"><span class="icon"></span></a>
-    <a href="#" title="Chat" id="nav-chat" class="side-nav-item active"><span class="icon"></span></a>
-    <a href="#" title="Tournament Position" id="nav-ladder" class="side-nav-item"><span class="icon"></span></a>
-    <a href="#" title="Score" id="nav-chips" class="side-nav-item"><span class="icon"></span></a>
-    <a href="#" title="Back to Game" id="nav-game" class="side-nav-item active"><span class="icon"></span></a>
-  </nav>
-  <section id="bottom-section">
-    <div id="chat-root" data-tournament="<%= @tournament_id %>"></div>
-  </section>
-</div>
+<div id="section-wrapper">
+  <section id="game-holder" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></section>
 
-<div class="left-column">
-  <div id="game-root" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></div>
+  <section id="tournament-holder" data-tournament="<%= @tournament_id %>"></section>
+  <section id="chips-holder"></section>
+  <section id="nav-holder">
+    <div id="side-nav">
+      <a href="#" title="Profile" id="nav-profile" class="side-nav-item"><span class="icon"></span></a>
+      <a href="#" title="Game Rules" id="nav-rules" class="side-nav-item"><span class="icon"></span></a>
+      <a href="#" title="Chat" id="nav-chat" class="side-nav-item active"><span class="icon"></span></a>
+      <a href="#" title="Tournament Position" id="nav-ladder" class="side-nav-item"><span class="icon"></span></a>
+      <a href="#" title="Score" id="nav-chips" class="side-nav-item"><span class="icon"></span></a>
+      <a href="#" title="Back to Game" id="nav-game" class="side-nav-item active"><span class="icon"></span></a>
+    </div>
+  </section>
+  <section id="chat-holder" data-tournament="<%= @tournament_id %>"></section>
+  <section id="rules-holder"></section>
+  <section id="profile-holder"></section>
 </div>

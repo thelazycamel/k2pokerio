@@ -1,7 +1,20 @@
 body.game.show {
 
-  .left-column {
-    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+  main {
+    height: 619px;
   }
 
+}
+
+
+@media (max-width: 767px) {
+  header {
+    .scoreboard {
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      margin-left: -118px;
+    }
+  }
 }

@@ -1,111 +1,136 @@
-#player-chips-wrapper {
+#chips-holder {
 
-  .scoreboard {
-    position: absolute;
-    top: 0px;
-    left: 13px;
+   position: absolute;
+   left: 629px;
+   width: 261px;
+   height: 319px;
+
+  #chips-root {
+
+    .scoreboard {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+
+    #player-chips {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 250px;
+      height: 250px;
+      background-size: cover;
+
+      &.chips-1 {
+        background-image: url("/images/chips/chips-1.png");
+      }
+
+      &.chips-2 {
+        background-image: url("/images/chips/chips-2.png");
+      }
+
+      &.chips-4 {
+        background-image: url("/images/chips/chips-4.png");
+      }
+
+      &.chips-8 {
+        background-image: url("/images/chips/chips-8.png");
+      }
+
+      &.chips-16 {
+        background-image: url("/images/chips/chips-16.png");
+      }
+
+      &.chips-32 {
+        background-image: url("/images/chips/chips-32.png");
+      }
+
+      &.chips-64 {
+        background-image: url("/images/chips/chips-64.png");
+      }
+
+      &.chips-128 {
+        background-image: url("/images/chips/chips-128.png");
+      }
+
+      &.chips-256 {
+        background-image: url("/images/chips/chips-256.png");
+      }
+
+      &.chips-512 {
+        background-image: url("/images/chips/chips-512.png");
+      }
+
+      &.chips-1024 {
+        background-image: url("/images/chips/chips-1024.png");
+      }
+
+      &.chips-2048 {
+        background-image: url("/images/chips/chips-2048.png");
+      }
+
+      &.chips-4096 {
+        background-image: url("/images/chips/chips-4096.png");
+      }
+
+      &.chips-8192 {
+        background-image: url("/images/chips/chips-8192.png");
+      }
+
+      &.chips-16384 {
+        background-image: url("/images/chips/chips-16384.png");
+      }
+
+      &.chips-32768 {
+        background-image: url("/images/chips/chips-32768.png");
+      }
+
+      &.chips-65536 {
+        background-image: url("/images/chips/chips-65536.png");
+      }
+
+      &.chips-131072 {
+        background-image: url("/images/chips/chips-131072.png");
+      }
+
+      &.chips-262144 {
+        background-image: url("/images/chips/chips-262144.png");
+      }
+
+      &.chips-524288 {
+        background-image: url("/images/chips/chips-524288.png");
+      }
+
+      &.chips-1048576 {
+        background-image: url("/images/chips/chips-1048576.png");
+      }
+
+    }
   }
 
-  #player-chips {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    width: 250px;
-    height: 250px;
-    background-size: cover;
-
-    &.chips-1 {
-      background-image: url("/images/chips/chips-1.png");
-    }
-
-    &.chips-2 {
-      background-image: url("/images/chips/chips-2.png");
-    }
-
-    &.chips-4 {
-      background-image: url("/images/chips/chips-4.png");
-    }
-
-    &.chips-8 {
-      background-image: url("/images/chips/chips-8.png");
-    }
-
-    &.chips-16 {
-      background-image: url("/images/chips/chips-16.png");
-    }
-
-    &.chips-32 {
-      background-image: url("/images/chips/chips-32.png");
-    }
-
-    &.chips-64 {
-      background-image: url("/images/chips/chips-64.png");
-    }
-
-    &.chips-128 {
-      background-image: url("/images/chips/chips-128.png");
-    }
-
-    &.chips-256 {
-      background-image: url("/images/chips/chips-256.png");
-    }
-
-    &.chips-512 {
-      background-image: url("/images/chips/chips-512.png");
-    }
-
-    &.chips-1024 {
-      background-image: url("/images/chips/chips-1024.png");
-    }
-
-    &.chips-2048 {
-      background-image: url("/images/chips/chips-2048.png");
-    }
-
-    &.chips-4096 {
-      background-image: url("/images/chips/chips-4096.png");
-    }
-
-    &.chips-8192 {
-      background-image: url("/images/chips/chips-8192.png");
-    }
-
-    &.chips-16384 {
-      background-image: url("/images/chips/chips-16384.png");
-    }
-
-    &.chips-32768 {
-      background-image: url("/images/chips/chips-32768.png");
-    }
-
-    &.chips-65536 {
-      background-image: url("/images/chips/chips-65536.png");
-    }
-
-    &.chips-131072 {
-      background-image: url("/images/chips/chips-131072.png");
-    }
-
-    &.chips-262144 {
-      background-image: url("/images/chips/chips-262144.png");
-    }
-
-    &.chips-524288 {
-      background-image: url("/images/chips/chips-524288.png");
-    }
-
-    &.chips-1048576 {
-      background-image: url("/images/chips/chips-1048576.png");
-    }
-
-  }
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
 
-@media (max-width: 1199px) {
-
-  #player-chips-wrapper {
+  #chips-holder {
     display: none;
   }
 
 }
+
+@media (min-width: 421px) and (max-width: 991px) {
+
+  #chips-holder {
+    display: none;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  #chips-holder {
+    display: none;
+  }
+
+}
+
