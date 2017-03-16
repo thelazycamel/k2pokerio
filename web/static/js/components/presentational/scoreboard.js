@@ -21,7 +21,9 @@ class Scoreboard extends React.Component {
   render() {
     return (
       <div className="scoreboard">
-        {this.buildScoreboard()}
+        <div className="scoreboard-inner">
+          {this.buildScoreboard()}
+        </div>
       </div>
     )
   }

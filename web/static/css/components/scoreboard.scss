@@ -1,57 +1,66 @@
 .scoreboard {
-  width: 236px;
-  border: 2px solid #010116;
-  background-color: #172a55;
-  height: 44px;
+  width: 230px;
+  background: linear-gradient(to bottom,#f7e9c6 0%,#3b3500 50%);
+  height: 41px;
+  padding: 1px;
 
-  .number {
-    display: inline-block;
+  .scoreboard-inner {
+    width: 228px;
     height: 39px;
-    width: 30px;
-    font-size: 0;
-    /* background-color: #ffce4a; */
-    float: left;
-    border-left: 1px solid #020101;
+    background-color: #010116;
 
-    &:first-child {
-      border-left: none;
-    }
+    .number {
+      display: inline-block;
+      width: 30px;
+      height: 39px;
+      font-size: 0;
+      background-image: url("/images/scoreboard.svg");
+      background-size: 300px 39px;
+      float: left;
+      margin-left: 1px;
 
-    &.number-spacer {
-      width: 10px;
-      background-color: #172a55;
-    }
+      &:first-child {
+        margin-left: 0px;
+      }
 
-    &.number-0 {
-      background-image: url("/images/scoreboard/0.svg");
-    }
-    &.number-1 {
-      background-image: url("/images/scoreboard/1.svg");
-    }
-    &.number-2 {
-      background-image: url("/images/scoreboard/2.svg");
-    }
-    &.number-3 {
-      background-image: url("/images/scoreboard/3.svg");
-    }
-    &.number-4 {
-      background-image: url("/images/scoreboard/4.svg");
-    }
-    &.number-5 {
-      background-image: url("/images/scoreboard/5.svg");
-    }
-    &.number-6 {
-      background-image: url("/images/scoreboard/6.svg");
-    }
-    &.number-7 {
-      background-image: url("/images/scoreboard/7.svg");
-    }
-    &.number-8 {
-      background-image: url("/images/scoreboard/8.svg");
-    }
-    &.number-9 {
-      background-image: url("/images/scoreboard/9.svg");
+      &.number-spacer {
+        width: 5px;
+        background-color: #010116;
+        background-image: none;
+      }
+
+      &.number-0 {
+        background-position: 0px 0px;
+      }
+      &.number-1 {
+        background-position: -30px 0px;
+      }
+      &.number-2 {
+        background-position: -60px 0px;
+      }
+      &.number-3 {
+        background-position: -90px 0px;
+      }
+      &.number-4 {
+        background-position: -120px 0px;
+      }
+      &.number-5 {
+        background-position: -150px 0px;
+      }
+      &.number-6 {
+        background-position: -180px 0px;
+      }
+      &.number-7 {
+        background-position: -210px 0px;
+      }
+      &.number-8 {
+        background-position: -240px 0px;
+      }
+      &.number-9 {
+        background-position: -270px 0px;
+      }
     }
   }
 }
+
 
