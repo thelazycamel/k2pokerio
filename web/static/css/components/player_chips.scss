@@ -7,6 +7,30 @@
 
   #chips-root {
 
+    .players-online {
+      position: absolute;
+      top: 60px;
+      left: 15px;
+      z-index: 2;
+      color: #d4d4d4;
+    }
+
+    .chip-leader-name {
+      position: absolute;
+      top: 85px;
+      left: 15px;
+      z-index: 2;
+      color: #d4d4d4;
+    }
+
+    .rebuys {
+      position: absolute;
+      top: 110px;
+      left: 15px;
+      z-index: 2;
+      color: #d4d4d4;
+    }
+
     .scoreboard {
       position: absolute;
       top: 10px;

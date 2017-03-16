@@ -11,6 +11,7 @@ import ChipsComponent from "../../components/chips_component"
 import ChatComponent from "../../components/chat_component"
 import GameComponent from "../../components/game_component"
 import HeaderComponent from "../../components/header_component"
+import SideNavComponent from "../../components/side_nav_component"
 
 import page from "../page"
 
@@ -30,6 +31,7 @@ class GameShowPage extends page {
     this.initializeChipsComponent();
     this.initializeHeaderComponent();
     this.initializeChatComponent();
+    this.initializeSideNavComponent();
   }
 
   initializeTournamentComponent() {
@@ -50,6 +52,10 @@ class GameShowPage extends page {
 
   initializeGameComponent() {
     ReactDOM.render(<GameComponent store={App.store}/>, document.getElementById('game-holder'));
+  }
+
+  initializeSideNavComponent() {
+    ReactDOM.render(<SideNavComponent store={App.store}/>, document.getElementById('nav-holder'));
   }
 
 }

@@ -4,14 +4,6 @@
   <section id="tournament-holder" data-tournament="<%= @tournament_id %>"></section>
   <section id="chips-holder"></section>
   <section id="nav-holder">
-    <div id="side-nav">
-      <a href="#" title="Profile" id="nav-profile" class="side-nav-item"><span class="icon"></span></a>
-      <a href="#" title="Game Rules" id="nav-rules" class="side-nav-item"><span class="icon"></span></a>
-      <a href="#" title="Chat" id="nav-chat" class="side-nav-item active"><span class="icon"></span></a>
-      <a href="#" title="Tournament Position" id="nav-ladder" class="side-nav-item"><span class="icon"></span></a>
-      <a href="#" title="Score" id="nav-chips" class="side-nav-item"><span class="icon"></span></a>
-      <a href="#" title="Back to Game" id="nav-game" class="side-nav-item active"><span class="icon"></span></a>
-    </div>
   </section>
   <section id="chat-holder" data-tournament="<%= @tournament_id %>"></section>
   <section id="rules-holder"></section>
