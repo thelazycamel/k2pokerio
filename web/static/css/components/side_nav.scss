@@ -1,125 +1,202 @@
-#side-nav {
-
+#nav-holder {
   position: absolute;
-  left: 904px;
   top: 0px;
   width: 35px;
+  height: 619px;
 
-  a.side-nav-item {
-    display: inline-block;
-    width: 34px;
-    height: 66px;
-    background: linear-gradient(to bottom, #1a3062 0%, #101016 100%);
-    position: absolute;
-    border-radius: 0px 5px 5px 0px;
-    border: 1px solid #010116;
-    border-left: 0px;
-    cursor: pointer;
-    .icon {
-      position: absolute;
-      top: 21px;
-      left: 6px;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background-image: url("/images/icon-sprite.svg");
-      background-size: 200px 42px;
-    }
-  }
-
-  a.side-nav-item.active {
-    background: linear-gradient(to bottom, #3d6fe1 0%, #3d6fe1 50%);
-  }
-
-  #nav-game {
-    top: 50px;
-    .icon {
-      background-position: 0px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: 0px -21px;
-      }
-    }
-  }
-
-  #nav-chips {
-    top: 110px;
-    .icon {
-      background-position: -22px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: -22px -21px;
-      }
-    }
-  }
-
-  #nav-ladder {
-    top: 170px;
-    .icon {
-      background-position: -44px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: -44px -21px;
-      }
-    }
-  }
-
-  #nav-chat {
-    top: 370px;
-    .icon {
-      background-position: -66px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: -66px -21px;
-      }
-    }
-  }
-
-  #nav-rules {
-    top: 430px;
-    .icon {
-      background-position: -88px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: -88px -21px;
-      }
-    }
-  }
-
-
-  #nav-profile {
-    top: 490px;
-    .icon {
-      background-position: -110px 0px;
-    }
-
-    &:hover, &.active {
-      .icon {
-        background-position: -110px -21px;
-      }
-    }
-  }
-
-}
-
-@media (max-width: 767px) {
   #side-nav {
-    display: none;
+
+    a.side-nav-item {
+      display: inline-block;
+      width: 34px;
+      height: 66px;
+      background: linear-gradient(to bottom, #1a3062 0%, #101016 100%);
+      position: absolute;
+      border-radius: 0px 5px 5px 0px;
+      border: 1px solid #010116;
+      border-left: 0px;
+      cursor: pointer;
+      .icon {
+        position: absolute;
+        top: 21px;
+        left: 6px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-image: url("/images/icon-sprite.svg");
+        background-size: 200px 42px;
+      }
+    }
+
+    a.side-nav-item.active {
+      background: linear-gradient(to bottom, #3d6fe1 0%, #3d6fe1 50%);
+    }
+
+    #nav-game {
+      top: 50px;
+      .icon {
+        background-position: 0px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: 0px -21px;
+        }
+      }
+    }
+
+    #nav-chips {
+      top: 110px;
+      .icon {
+        background-position: -22px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: -22px -21px;
+        }
+      }
+    }
+
+    #nav-ladder {
+      top: 170px;
+      .icon {
+        background-position: -44px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: -44px -21px;
+        }
+      }
+    }
+
+    #nav-chat {
+      top: 370px;
+      .icon {
+        background-position: -66px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: -66px -21px;
+        }
+      }
+    }
+
+    #nav-rules {
+      top: 430px;
+      .icon {
+        background-position: -88px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: -88px -21px;
+        }
+      }
+    }
+
+
+    #nav-profile {
+      top: 490px;
+      .icon {
+        background-position: -110px 0px;
+      }
+
+      &:hover, &.active {
+        .icon {
+          background-position: -110px -21px;
+        }
+      }
+    }
   }
+
 }
+
 
 @media (min-width: 1200px) {
-  #side-nav {
-    display: none;
+  #nav-holder {
+    z-index: 10;
+    left: 1030px;
+    top: 322px;
+    background: none;
+    width: 116px;
+    height: 30px;
+
+   #side-nav {
+
+      a.side-nav-item {
+        height: 26px;
+        background: none;
+        border: none;
+        &.active {
+          background: none;
+        }
+        .icon {
+          position: relative;
+          top: 0px;
+          left: 0px;
+        }
+
+        &#nav-game {
+          display: none;
+        }
+        &#nav-chips {
+          display: none;
+        }
+        &#nav-ladder {
+          display: none;
+        }
+        &#nav-chat {
+          top: 2px;
+          left: 10px;
+        }
+        &#nav-rules {
+          top: 2px;
+          left: 46px;
+        }
+        &#nav-profile {
+          top: 2px;
+          left: 80px;
+        }
+      }
+    }
   }
 }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  #nav-holder {
+    left: 904px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  #nav-holder {
+    left: 669px;
+  }
+
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+
+  #nav-holder {
+    left: 419px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  #nav-holder {
+    display: none;
+  }
+
+}
+
+
+

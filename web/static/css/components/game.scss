@@ -144,6 +144,8 @@
           width: 200px;
           height: 55px;
           background-size: 200px 55px;
+          font-size: 1.4em;
+          line-height: 2.6em;
         }
 
         #table-card-1 {
@@ -310,7 +312,7 @@
   }
 }
 
-@media (min-width: 421px) and (max-width: 767px) {
+@media (min-width: 501px) and (max-width: 767px) {
 
   #section-wrapper {
     position: relative;
@@ -320,7 +322,7 @@
 
 }
 
-@media (min-width: 421px) and (max-width: 991px) {
+@media (min-width: 501px) and (max-width: 991px) {
 
   #game-holder {
     width: 419px;
@@ -427,7 +429,7 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
 
   #section-wrapper {
     position: relative;
