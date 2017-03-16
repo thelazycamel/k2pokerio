@@ -18,7 +18,7 @@ class TournamentShowPage extends page {
   }
 
   setUpPage() {
-    this.tournamentId = document.getElementById("tournament-root").getAttribute("data-tournament");
+    this.tournamentId = document.getElementById("tournament-holder").getAttribute("data-tournament");
     new tournamentChannel();
     new chatChannel(this.tournamentId);
     new playerChannel();
@@ -52,11 +52,11 @@ class TournamentShowPage extends page {
    }
 
   initializeTournamentComponent() {
-    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-root'));
+    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-holder'));
   }
 
   initializeChatComponent() {
-    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-root'));
+    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-holder'));
   }
 
 }

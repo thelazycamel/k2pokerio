@@ -1,20 +1,23 @@
-<section id="tournament-lobby">
-  <h1><%= @tournament.name %></h1>
-  <p class="top-row">Welcome <%= @username %> to the</p>
-  <p class="highlighted"><%= @tournament.name %></p>
-  <p>Tournament</p>
-  <p class="top-row">You have been granted a $1 chip</p>
-  <p>Can you turn that into $1 million</p>
-  <p class="top-row">There are currently</p>
-  <p><span class="highlighted">2000</span> players</p>
-  <p>in the tournament</p>
-  <div class="btn-k2poker-wrapper">
-    <button id="play-tournament" class="btn btn-large btn-k2poker">Play</button>
-  </div>
-  <div class="center" id="bigred">
-    <img src="/images/k2poker-bigred.png" alt="K2 Poker"/>
-  </div>
-</section>
-<div id="tournament-root" data-tournament="<%= @tournament.id %>"></div>
-<div id="chat-root" data-tournament="<%= @tournament.id %>"></div>
+<div id="section-wrapper">
+  <section id="tournament-lobby">
+    <h1><%= @tournament.name %></h1>
+    <p class="top-row">Welcome <%= @username %> to the</p>
+    <p class="highlighted"><%= @tournament.name %></p>
+    <p>Tournament</p>
+    <p class="top-row">You have been granted a $1 chip</p>
+    <p>Can you turn that into $1 million</p>
+    <p class="top-row">There are currently</p>
+    <p><span class="highlighted">2000</span> players</p>
+    <p>in the tournament</p>
+    <div class="btn-k2poker-wrapper">
+      <button id="play-tournament" class="btn btn-large btn-k2poker">Play</button>
+    </div>
+    <div class="center" id="bigred">
+      <img src="/images/k2poker-bigred.png" alt="K2 Poker"/>
+    </div>
+  </section>
+  <section id="tournament-holder" data-tournament="<%= @tournament.id %>"></section>
+  <section id="chat-holder" data-tournament="<%= @tournament.id %>"></section>
+</div>
+
 
