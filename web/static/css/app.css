@@ -8,7 +8,7 @@
 /* components */
 @include "components/chat"
 @include "components/game"
-@include "components/player_chips"
+@include "components/chips"
 @include "components/score_ladder"
 @include "components/scoreboard"
 @include "components/side_nav"
