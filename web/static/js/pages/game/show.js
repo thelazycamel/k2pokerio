@@ -10,8 +10,11 @@ import TournamentComponent from "../../components/tournament_component"
 import ChipsComponent from "../../components/chips_component"
 import ChatComponent from "../../components/chat_component"
 import GameComponent from "../../components/game_component"
+import ProfileComponent from "../../components/profile_component"
+import RulesComponent from "../../components/rules_component"
 import HeaderComponent from "../../components/header_component"
 import SideNavComponent from "../../components/side_nav_component"
+import PageComponentManager from "../../utils/page_component_manager"
 
 import page from "../page"
 
@@ -31,7 +34,10 @@ class GameShowPage extends page {
     this.initializeChipsComponent();
     this.initializeHeaderComponent();
     this.initializeChatComponent();
+    this.initializeProfileComponent();
+    this.initializeRulesComponent();
     this.initializeSideNavComponent();
+    new PageComponentManager().init()
   }
 
   initializeTournamentComponent() {
@@ -52,6 +58,14 @@ class GameShowPage extends page {
 
   initializeGameComponent() {
     ReactDOM.render(<GameComponent store={App.store}/>, document.getElementById('game-holder'));
+  }
+
+  initializeProfileComponent() {
+    ReactDOM.render(<ProfileComponent store={App.store}/>, document.getElementById('profile-holder'));
+  }
+
+  initializeRulesComponent() {
+    ReactDOM.render(<RulesComponent store={App.store}/>, document.getElementById('rules-holder'));
   }
 
   initializeSideNavComponent() {

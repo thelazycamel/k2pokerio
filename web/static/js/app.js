@@ -28,8 +28,6 @@ import mainStore from "./reducers/main_store"
 
 /* Utils */
 
-import responsiveState from "./utils/responsive_state"
-
 /* pages */
 import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
@@ -44,7 +42,6 @@ window.App = {
     this.createReduxStore()
     this.connectSocket()
     this.setUpCurrentPage()
-    new responsiveState().init()
   },
 
   createReduxStore: function() {

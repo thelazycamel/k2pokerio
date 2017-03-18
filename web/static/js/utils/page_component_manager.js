@@ -1,8 +1,4 @@
-class ResponsiveState {
-
-  constructor() {
-    this.screen_size = "";
-  }
+class PageComponentManager {
 
   init() {
     this.screen_size = this.screenSwitcher();
@@ -70,4 +66,4 @@ class ResponsiveState {
 
 }
 
-export default ResponsiveState;
+export default PageComponentManager;
