@@ -16,7 +16,7 @@
       <img src="/images/k2poker-bigred.png" alt="K2 Poker"/>
     </div>
   </section>
-  <section id="tournament-holder" data-tournament="<%= @tournament.id %>"></section>
+  <section id="ladder-holder" data-tournament="<%= @tournament.id %>"></section>
   <section id="chat-holder" data-tournament="<%= @tournament.id %>"></section>
 </div>
 

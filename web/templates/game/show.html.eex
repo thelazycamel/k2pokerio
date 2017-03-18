@@ -1,7 +1,6 @@
 <div id="section-wrapper">
   <section id="game-holder" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>"></section>
-
-  <section id="tournament-holder" data-tournament="<%= @tournament_id %>"></section>
+  <section id="ladder-holder" data-tournament="<%= @tournament_id %>"></section>
   <section id="chips-holder"></section>
   <section id="nav-holder"></section>
   <section id="chat-holder" data-tournament="<%= @tournament_id %>"></section>

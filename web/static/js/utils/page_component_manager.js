@@ -6,6 +6,20 @@ class PageComponentManager {
     this.setUpListeners()
   }
 
+  /* this is all very smelly, come back and fix it */
+
+  showTab(tab, links) {
+    let components = []
+    let position = links[tab]["position"];
+    Object.keys(links).forEach((key) => {
+      if(links[key]["position"] == position) { components.push("#" + key + "-holder")}
+    });
+    components.forEach(function(el){
+      $(el).hide();
+    });
+    $("#" + tab + "-holder").show();
+  }
+
   setUpListeners() {
     let resizeEvent;
     let _this = this;

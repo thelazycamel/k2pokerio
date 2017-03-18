@@ -6,7 +6,7 @@ import chatChannel from "../../channels/chat_channel"
 import gameChannel from "../../channels/game_channel"
 import playerChannel from "../../channels/player_channel"
 
-import TournamentComponent from "../../components/tournament_component"
+import LadderComponent from "../../components/ladder_component"
 import ChipsComponent from "../../components/chips_component"
 import ChatComponent from "../../components/chat_component"
 import GameComponent from "../../components/game_component"
@@ -30,7 +30,7 @@ class GameShowPage extends page {
     new chatChannel();
     new playerChannel();
     this.initializeGameComponent();
-    this.initializeTournamentComponent();
+    this.initializeLadderComponent();
     this.initializeChipsComponent();
     this.initializeHeaderComponent();
     this.initializeChatComponent();
@@ -40,8 +40,8 @@ class GameShowPage extends page {
     new PageComponentManager().init();
   }
 
-  initializeTournamentComponent() {
-    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-holder'));
+  initializeLadderComponent() {
+    ReactDOM.render(<LadderComponent store={App.store} title="Tournament Name" page="Game"/>, document.getElementById('ladder-holder'));
   }
 
   initializeChipsComponent() {

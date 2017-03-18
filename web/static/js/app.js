@@ -33,6 +33,7 @@ import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
 import gameShowPage from "./pages/game/show"
 import gameEventsMiddleware from "./middleware/game_events_middleware"
+import pageEventsMiddleware from "./middleware/page_events_middleware"
 
 window.App = {
 
@@ -45,7 +46,7 @@ window.App = {
   },
 
   createReduxStore: function() {
-    let middleware = applyMiddleware(gameEventsMiddleware);
+    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware);
     this.store = createStore(mainStore, middleware);
   },
 

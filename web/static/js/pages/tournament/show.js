@@ -6,7 +6,7 @@ import ReactDOM from "react-dom"
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
 
-import TournamentComponent from "../../components/tournament_component"
+import LadderComponent from "../../components/ladder_component"
 import ChatComponent from "../../components/chat_component"
 
 import playerChannel from "../../channels/player_channel"
@@ -18,12 +18,12 @@ class TournamentShowPage extends page {
   }
 
   setUpPage() {
-    this.tournamentId = document.getElementById("tournament-holder").getAttribute("data-tournament");
+    this.tournamentId = document.getElementById("ladder-holder").getAttribute("data-tournament");
     new tournamentChannel();
     new chatChannel(this.tournamentId);
     new playerChannel();
     this.eventListeners();
-    this.initializeTournamentComponent();
+    this.initializeLadderComponent();
     this.initializeChatComponent();
   }
 
@@ -51,8 +51,8 @@ class TournamentShowPage extends page {
     });
    }
 
-  initializeTournamentComponent() {
-    ReactDOM.render(<TournamentComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('tournament-holder'));
+  initializeLadderComponent() {
+    ReactDOM.render(<LadderComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('ladder-holder'));
   }
 
   initializeChatComponent() {
