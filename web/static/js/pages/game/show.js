@@ -55,7 +55,7 @@ class GameShowPage extends page {
   }
 
   initializeSideNavComponent() {
-    ReactDOM.render(<SideNavComponent store={App.store}/>, document.getElementById('nav-holder'));
+    ReactDOM.render(<SideNavComponent store={App.store} page_name="game-show"/>, document.getElementById('nav-holder'));
   }
 
 }
