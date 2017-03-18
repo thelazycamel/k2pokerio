@@ -1,15 +1,15 @@
 const gameEventsMiddleware = store => next => action => {
   switch(action.type) {
-    case "PLAY":
+    case "GAME_PLAY":
       App.gameChannel.push("game:play");
       break;
-    case "DISCARD":
+    case "GAME_DISCARD":
       App.gameChannel.push("game:discard", {card_index: action.card_index});
       break;
-    case "FOLD":
+    case "GAME_FOLD":
       App.gameChannel.push("game:fold");
       break;
-    case "NEXT_GAME":
+    case "GAME_NEXT_GAME":
       App.gameChannel.push("game:next_game");
       break;
     case "GAME_DATA_RECEIVED":

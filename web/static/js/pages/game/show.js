@@ -37,7 +37,7 @@ class GameShowPage extends page {
     this.initializeProfileComponent();
     this.initializeRulesComponent();
     this.initializeSideNavComponent();
-    new PageComponentManager().init()
+    new PageComponentManager().init();
   }
 
   initializeTournamentComponent() {

@@ -2,7 +2,7 @@ class PageComponentManager {
 
   init() {
     this.screen_size = this.screenSwitcher();
-    App.store.dispatch({type: "PAGE_RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}})
+    App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}})
     this.setUpListeners()
   }
 

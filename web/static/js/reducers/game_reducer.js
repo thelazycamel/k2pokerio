@@ -5,15 +5,15 @@ var gameReducer = function(state = {}, action) {
   /* TODO PREPEND ALL ACTIONS WITH GAME: */
 
   switch(action.type) {
-    case "PLAY":
+    case "GAME:PLAY":
       return state;
-    case "DISCARD":
+    case "GAME:DISCARD":
       return state;
-    case "FOLD":
+    case "GAME:FOLD":
        return state;
-    case "GAME_DATA_RECEIVED":
+    case "GAME:DATA_RECEIVED":
       return Object.assign({}, action.game);
-    case "NEXT_GAME":
+    case "GAME:NEXT_GAME":
       return state;
     default:
       return state;

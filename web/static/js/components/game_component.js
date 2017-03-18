@@ -32,16 +32,16 @@ class GameComponent extends React.Component {
 
   playButtonClicked(e) {
     e.preventDefault();
-    App.store.dispatch({type: "PLAY"});
+    App.store.dispatch({type: "GAME:PLAY"});
   }
 
   foldButtonClicked() {
-    App.store.dispatch({type: "FOLD"});
+    App.store.dispatch({type: "GAME:FOLD"});
     return false;
   }
 
   nextGameButtonClicked() {
-    App.store.dispatch({type: "NEXT_GAME"})
+    App.store.dispatch({type: "GAME:NEXT_GAME"})
   }
 
   discardClicked(e) {

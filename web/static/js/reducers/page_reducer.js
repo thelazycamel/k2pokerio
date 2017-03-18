@@ -3,9 +3,9 @@
 var pageReducer = function(state = {}, action) {
 
   switch(action.type) {
-    case "PAGE_RESIZE":
+    case "PAGE:RESIZE":
       return Object.assign({}, action.page);
-    case "PAGE_LINK_CLICKED":
+    case "PAGE:LINK_CLICKED":
       return Object.assign({}, action.page);
     default:
       return state;

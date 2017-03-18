@@ -14,7 +14,7 @@ class SideNavComponent extends React.Component {
       if(links[key]["position"] == position) { links[key]["active"] = false}
     });
     links[linkName]["active"] = true;
-    App.store.dispatch({type: "PAGE_LINK_CLICKED", page: {links: links}});
+    App.store.dispatch({type: "PAGE:LINK_CLICKED", page: {links: links}, tab: linkName});
   }
 
   renderLink(linkName, linkAttrs) {

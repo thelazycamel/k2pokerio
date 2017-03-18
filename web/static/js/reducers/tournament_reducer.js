@@ -3,7 +3,7 @@
 var tournamentReducer = function(state = {}, action) {
 
   switch(action.type) {
-    case "TOURNAMENT_DATA_RECEIVED":
+    case "TOURNAMENT:DATA_RECEIVED":
       console.log("Tournament data received");
       return state;
     default:
