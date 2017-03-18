@@ -10,6 +10,8 @@
 @include "components/game"
 @include "components/chips"
 @include "components/ladder"
+@include "components/profile"
+@include "components/rules"
 @include "components/scoreboard"
 @include "components/side_nav"
 

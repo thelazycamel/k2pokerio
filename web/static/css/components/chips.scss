@@ -133,20 +133,38 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #chips-holder {
-    display: none;
+    left: 538px;
+    width: 366px;
+    #chips-root {
+      .scoreboard {
+        left: 62px;
+      }
+      #player-chips {
+        margin-left: 43px;
+      }
+    }
   }
 
 }
 
-@media (min-width: 421px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
 
   #chips-holder {
-    display: none;
+    left: 419px;
+    width: 250px;
+    #chips-root {
+      .scoreboard {
+        left: 10px;
+      }
+      #player-chips {
+        margin-left: 0px;
+      }
+    }
   }
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 767px) {
 
   #chips-holder {
     display: none;

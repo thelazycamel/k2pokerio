@@ -1,0 +1,55 @@
+#profile-holder {
+  position: absolute;
+  top: 319px;
+  height: 300px;
+  background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+
+}
+
+@media (min-width: 1200px) {
+
+  #profile-holder {
+    left: 629px;
+    width: 511px;
+    #profile-root {
+    }
+  }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  #profile-holder {
+    left: 538px;
+    width: 366px;
+    #profile-root {
+    }
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #profile-holder {
+    left: 419px;
+    width: 250px;
+    #profile-root {
+    }
+  }
+
+}
+
+@media (min-width: 421px) and (max-width: 767px) {
+
+  #profile-holder {
+    display: none;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  #profile-holder {
+    display: none;
+  }
+
+}

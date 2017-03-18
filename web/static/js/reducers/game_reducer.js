@@ -2,8 +2,6 @@
 
 var gameReducer = function(state = {}, action) {
 
-  /* TODO PREPEND ALL ACTIONS WITH GAME: */
-
   switch(action.type) {
     case "GAME:PLAY":
       return state;

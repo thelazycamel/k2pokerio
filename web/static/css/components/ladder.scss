@@ -1,54 +1,45 @@
-#tournament-holder {
+#ladder-holder {
 
   background: linear-gradient(to bottom, #010116 0%, #000000 100%);
   position: absolute;
   height: 319px;
 
-  #tournament-root {
-
-    #tournament-component {
-      position: relative;
-    }
-
+  #ladder-root {
+    position: relative;
   }
+
 }
 
 
 @media (min-width: 1200px) {
 
-  #tournament-holder {
+  #ladder-holder {
     left: 890px;
     width: 250px;
-    #tournament-root {
-    }
   }
 
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 
-  #tournament-holder {
+  #ladder-holder {
     left: 538px;
     width: 366px;
-    #tournament-root {
-    }
   }
 
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  #tournament-holder {
+  #ladder-holder {
     left: 419px;
     width: 250px;
-    #tournament-root {
-    }
   }
 
 }
 
 @media (min-width: 421px) and (max-width: 767px) {
 
-  #tournament-holder {
+  #ladder-holder {
     display: none;
   }
 
@@ -56,12 +47,12 @@
 
 @media (max-width: 420px) {
 
-  #tournament-holder {
+  #ladder-holder {
     display: none;
   }
 
-
 }
+
 #ladder-root {
 
   #score-ladder {

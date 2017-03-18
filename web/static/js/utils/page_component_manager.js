@@ -2,9 +2,36 @@ class PageComponentManager {
 
   init() {
     this.screen_size = this.screenSwitcher();
-    App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}})
-    this.setUpListeners()
+    App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}});
+    this.setUpListeners();
+    this.showHideTabs();
   }
+
+  showHideTabs() {
+    switch(this.screen_size){
+    case "monitor":
+      $("#game-holder, #chips-holder, #ladder-holder, #chat-holder").show();
+      $("#rules-holder, #profile-holder").hide();
+      break;
+    case "htablet":
+      $("#game-holder, #ladder-holder, #chat-holder").show();
+      $("#chips-holder, #rules-holder, #profile-holder").hide();
+      break;
+    case "vtablet":
+      $("#game-holder, #ladder-holder, #chat-holder").show();
+      $("#chips-holder, #rules-holder, #profile-holder").hide();
+      break;
+    case "plablet":
+      $("#game-holder").show();
+      $("#chips-holder, #rules-holder, #profile-holder, #ladder-holder, #chat-holder").hide();
+      break;
+    case "phone":
+      $("#game-holder").show();
+      $("#chips-holder, #rules-holder, #profile-holder, #ladder-holder, #chat-holder").hide();
+      break;
+    }
+  }
+
 
   /* this is all very smelly, come back and fix it */
 

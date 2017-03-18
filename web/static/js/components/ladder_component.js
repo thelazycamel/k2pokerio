@@ -20,12 +20,12 @@ class LadderComponent extends React.Component {
   }
 
   chipLeaderChip() {
-   return (<div className="tournament-score-name"><span className="username">{this.chipLeader.username}</span> <span className="tournament-chip tournament-leader-chip"></span></div>)
+   return (<div className="tournament-score-name"><span className="username">{this.chipLeader().username}</span> <span className="tournament-chip tournament-leader-chip"></span></div>)
   }
 
   renderPlayerCell(value) {
     let player = (value == this.props.player.current_score) ? this.playerChip() : "";
-    let chipleader = (value == this.chipLeader.score) && (this.props.player.current_score != this.chipLeader.score) ? this.chipLeaderChip() : "";
+    let chipleader = (value == this.chipLeader().score) && (this.props.player.current_score != this.chipLeader().score) ? this.chipLeaderChip() : "";
     return(<td>{player} {chipleader}</td>);
   }
 
