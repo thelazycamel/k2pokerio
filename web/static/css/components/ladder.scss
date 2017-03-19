@@ -6,8 +6,59 @@
 
   #ladder-root {
     position: relative;
-  }
+    #score-ladder {
+      margin-top: 2px;
+      text-align: center;
 
+      tr {
+
+        &:nth-child(even) {
+          background-color: #172a55;
+        }
+
+        &:nth-child(odd) {
+          background-color: transparent;
+        }
+
+        td {
+          width: 50%;
+          position: relative;
+
+          .tournament-score-name {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+
+            .username {
+              position: absolute;
+              right: 35px;
+              max-width: 80px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .tournament-chip {
+              display: inline-block;
+              top: 0px;
+              right: 0px;
+              width: 30px;
+              height: 14px;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &.tournament-player-chip {
+                background-image: url("/images/tournament/player-chip.svg");
+              }
+
+              &.tournament-leader-chip {
+                background-image: url("/images/tournament/chip-leader-chip.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -16,6 +67,13 @@
   #ladder-holder {
     left: 890px;
     width: 250px;
+
+    #score-ladder {
+      font-size: 0.8em;
+      float: right;
+      width: 250px;
+    }
+
   }
 
 }
@@ -25,6 +83,12 @@
   #ladder-holder {
     left: 538px;
     width: 366px;
+
+    #score-ladder {
+      font-size: 0.8em;
+      width: 100%;
+    }
+
   }
 
 }
@@ -33,14 +97,54 @@
   #ladder-holder {
     left: 419px;
     width: 250px;
+
+    #score-ladder {
+      font-size: 0.8em;
+      width: 100%;
+    }
+
   }
 
 }
 
-@media (min-width: 421px) and (max-width: 767px) {
+@media (min-width: 501px) and (max-width: 767px) {
 
   #ladder-holder {
-    display: none;
+    left: 0px;
+    top: 0px;
+    width: 419px;
+    height: 619px;
+    border-left: 2px solid #172a55;
+    border-right: 2px solid #172a55;
+
+    #ladder-root {
+      #score-ladder {
+        width: 100%;
+        font-size: 1.5em;
+        line-height: 1.4em;
+        margin-top: 6px;
+        tr {
+          td {
+            .tournament-score-name {
+                right: auto;
+                left: 10px;
+              .username {
+                right: auto;
+                left: 10px;
+                max-width: 150px;
+              }
+              .tournament-chip {
+                position: absolute;
+                left: 175px;
+                width: 50px;
+                height: 27px;
+                top: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 }
@@ -53,93 +157,3 @@
 
 }
 
-#ladder-root {
-
-  #score-ladder {
-    margin-top: 2px;
-    text-align: center;
-
-    tr {
-
-      &:nth-child(even) {
-        background-color: #172a55;
-      }
-
-      &:nth-child(odd) {
-        background-color: transparent;
-      }
-
-      td {
-        width: 50%;
-        position: relative;
-
-        .tournament-score-name {
-          position: absolute;
-          right: 0px;
-          top: 0px;
-
-          .username {
-            position: absolute;
-            right: 35px;
-            max-width: 80px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-
-          .tournament-chip {
-            display: inline-block;
-            top: 0px;
-            right: 0px;
-            width: 30px;
-            height: 14px;
-            background-repeat: no-repeat;
-            background-size: cover;
-
-            &.tournament-player-chip {
-              background-image: url("/images/tournament/player-chip.svg");
-            }
-
-            &.tournament-leader-chip {
-              background-image: url("/images/tournament/chip-leader-chip.svg");
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @media (min-width: 1200px) {
-
-    #score-ladder {
-      font-size: 0.8em;
-      float: right;
-      width: 250px;
-    }
-
-  }
-
-  @media (min-width: 992px) and (max-width: 1199px) {
-
-    #score-ladder {
-      font-size: 0.8em;
-      width: 100%;
-    }
-
-  }
-
-  @media (min-width: 768px) and (max-width: 991px) {
-
-    #score-ladder {
-      font-size: 0.8em;
-      width: 100%;
-    }
-
-  }
-
-}
-
-@media (max-width: 767px) {
-  #score-ladder-wrapper {
-    display: none;
-  }
-}

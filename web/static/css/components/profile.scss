@@ -38,15 +38,20 @@
 
 }
 
-@media (min-width: 421px) and (max-width: 767px) {
+@media (min-width: 501px) and (max-width: 767px) {
 
   #profile-holder {
-    display: none;
+    left: 0px;
+    top: 0px;
+    width: 419px;
+    height: 619px;
+    border-left: 2px solid #172a55;
+    border-right: 2px solid #172a55;
   }
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
 
   #profile-holder {
     display: none;
