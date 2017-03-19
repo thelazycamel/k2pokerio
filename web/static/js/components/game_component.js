@@ -46,7 +46,7 @@ class GameComponent extends React.Component {
 
   discardClicked(e) {
     let index = e.target.getAttribute("data-card");
-    App.store.dispatch({type: "DISCARD", card_index: index})
+    App.store.dispatch({type: "GAME:DISCARD", card_index: index})
   }
 
   isAWinningCard(card) {
