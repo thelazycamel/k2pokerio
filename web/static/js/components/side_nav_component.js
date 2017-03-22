@@ -29,6 +29,7 @@ class SideNavComponent extends React.Component {
         className={"side-nav-item " + active}
         onClick={this.linkClicked.bind(this)}>
           <span className="icon"></span>
+          <span className="link-title">{linkAttrs.title}</span>
       </a> )
   }
 

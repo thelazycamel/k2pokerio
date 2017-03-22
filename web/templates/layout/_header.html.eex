@@ -4,6 +4,7 @@
     <div id="header-component-holder"></div>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Sign-Up</a></li>
+        <li id="hamburger-menu"><a href="#"></a></li>
         </li>
       </ul>
   </div>

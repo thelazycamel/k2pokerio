@@ -157,6 +157,9 @@
         height: 26px;
         background: none;
         border: none;
+        .link-title {
+          display: none;
+        }
         &.active {
           background: none;
         }
@@ -198,6 +201,9 @@
     left: 904px;
     #nav-root {
       a.side-nav-item {
+        .link-title {
+          display: none;
+        }
 
         &#nav-game {
           display: none;
@@ -215,6 +221,9 @@
     left: 669px;
     #nav-root {
       a.side-nav-item {
+        .link-title {
+          display: none;
+        }
 
         &#nav-game {
           display: none;
@@ -232,6 +241,9 @@
     left: 419px;
     #nav-root {
       a.side-nav-item {
+        .link-title {
+          display: none;
+        }
 
         &#nav-game {
           top: 100px;
@@ -268,6 +280,110 @@
 
   #nav-holder {
     display: none;
+    position: fixed;
+    z-index: 11;
+    left: 0px;
+    top: 50px;
+    width: 100%;
+    #nav-root {
+      box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+      a.side-nav-item {
+        width: 100%;
+        height: 50px;
+        position: relative;
+        background: none;
+        border: none;
+        border-radius: 0px;
+        &:hover {
+          background: linear-gradient(to bottom, #3d6fe1 0%, #3d6fe1 50%);
+          .link-title {
+            color: #010116;
+          }
+        }
+        .icon {
+          top: 5px;
+          left: 10px;
+          width: 40px;
+          height: 40px;
+          background-size: 400px 84px;
+        }
+        .link-title {
+          display: inline-block;
+          margin-left: 60px;
+          margin-top: 12px;
+          font-size: 1.2em;
+        }
+        &#nav-game {
+          top: auto;
+          background-color: #101d3b;
+          &:hover, &.active {
+            .icon {
+              background-position: 0px -42px;
+            }
+          }
+        }
+        &#nav-ladder {
+          top: auto;
+          background-color: #172a55;
+          .icon {
+            background-position: -44px 0px;
+          }
+          &:hover, &.active {
+            .icon {
+              background-position: -44px -42px;
+            }
+          }
+        }
+        &#nav-chips {
+          top: auto;
+          background-color: #101d3b;
+          .icon {
+            background-position: -88px 0px;
+          }
+          &:hover, &.active {
+            .icon {
+              background-position: -88px -42px;
+            }
+          }
+        }
+        &#nav-chat {
+          top: auto;
+          background-color: #172a55;
+          .icon {
+            background-position: -132px 0px;
+          }
+          &:hover, &.active {
+            .icon {
+              background-position: -132px -42px;
+            }
+          }
+        }
+        &#nav-rules {
+          top: auto;
+          background-color: #101d3b;
+          .icon {
+            background-position: -176px 0px;
+          }
+          &:hover, &.active {
+            .icon {
+              background-position: -176px -42px;
+            }
+          }
+        }
+        &#nav-profile {
+          top: auto;
+          background-color: #172a55;
+          .icon {
+            background-position: -220px 0px;
+          }
+          &:hover, &.active {
+            .icon {
+              background-position: -220px -42px;
+            }
+          }
+        }
+      }
+    }
   }
 
 }
