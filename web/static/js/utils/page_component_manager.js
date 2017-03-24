@@ -2,6 +2,7 @@ class PageComponentManager {
 
   init() {
     this.screen_size = this.screenSwitcher();
+    this.screen_width = $(window).width();
     App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}});
     this.setUpListeners();
     this.showHideTabs();
@@ -52,7 +53,9 @@ class PageComponentManager {
     let _this = this;
     $(window).resize(function() {
       clearTimeout(_this.resizeEvent);
-      _this.resizeEvent = setTimeout(_this.resizing.bind(_this), 200);
+      if(_this.screen_width != $(window).width()) {
+        _this.resizeEvent = setTimeout(_this.resizing.bind(_this), 100);
+      }
     });
   }
 
@@ -83,7 +86,16 @@ class PageComponentManager {
   }
 
   linkPosition(position) {
-    return this.screen_size == "plablet" ? "middle" : position;
+    switch(this.screen_size) {
+      case "phone":
+        return "bottom";
+        break;
+      case "plablet":
+        return "middle";
+        break;
+      default:
+        return position;
+    }
   }
 
   activeLink(linkName) {
@@ -96,7 +108,7 @@ class PageComponentManager {
 
   activeTabs() {
     return ({
-      "phone":   [],
+      "phone":   ["game"],
       "plablet": ["game"],
       "vtablet": ["ladder", "chat"],
       "htablet": ["ladder", "chat"],

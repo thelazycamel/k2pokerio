@@ -176,7 +176,7 @@
 
     #chips-root {
       .scoreboard {
-        display: none;
+        left: 94px;
       }
       #player-chips {
         bottom: 100px;
@@ -187,3 +187,26 @@
 
 }
 
+
+@media (max-width: 500px) {
+
+  #chips-holder {
+    left: 0px;
+    top: 0px;
+    width: 318px;
+    height: 540px;
+    border: 1px solid #172a55;
+
+    #chips-root {
+      .scoreboard {
+        display: block;
+        left: 45px;
+      }
+      #player-chips {
+        top: 150px;
+        left: 35px;
+      }
+    }
+  }
+
+}

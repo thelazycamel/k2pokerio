@@ -149,10 +149,44 @@
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
 
   #ladder-holder {
     display: none;
+    #ladder-root {
+      width: 318px;
+      height: 540px;
+      border: 1px solid #172a55;
+      #score-ladder {
+        border-top: 1px solid #172a55;
+        margin-top: 50px;
+        width: 100%;
+        font-size: 1.2em;
+        line-height: 1.4em;
+        tr {
+          td {
+            .tournament-score-name {
+                right: auto;
+                left: 10px;
+              .username {
+                right: auto;
+                left: 10px;
+                max-width: 100px;
+              }
+              .tournament-chip {
+                position: absolute;
+                left: 150px;
+                width: 40px;
+                height: 20px;
+                top: 2px;
+              }
+            }
+          }
+        }
+
+      }
+
+    }
   }
 
 }

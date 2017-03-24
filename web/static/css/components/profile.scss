@@ -55,6 +55,12 @@
 
   #profile-holder {
     display: none;
+    height: auto;
+    top: 0px;
+    #profile-root {
+      width: 318px;
+      border: 1px solid #172a55;
+      height: 540px;
+    }
   }
-
 }

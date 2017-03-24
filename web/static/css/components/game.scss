@@ -322,6 +322,18 @@
 
 }
 
+@media (min-width: 992px) {
+  #game-holder {
+    #game-root {
+      #game {
+        .scoreboard {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 501px) and (max-width: 991px) {
 
   #game-holder {
@@ -333,6 +345,12 @@
         height: 615px;
         background-image: url("/images/play-area-small.svg");
         background-size: cover;
+
+        .scoreboard {
+          position: absolute;
+          bottom: 20px;
+          left: 94px;
+        }
 
         #shine {
           width: 414px;
@@ -438,6 +456,7 @@
   }
 
   #game-holder {
+    padding: 0px;
 
     #game-root {
 
@@ -446,6 +465,12 @@
         height: 564px;
         background-image: url("/images/play-area-phone.svg");
         background-size: cover;
+
+        .scoreboard {
+          position: absolute;
+          bottom: 20px;
+          left: 45px;
+        }
 
         #shine {
           width: 320px;

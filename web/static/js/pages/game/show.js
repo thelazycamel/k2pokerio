@@ -12,7 +12,7 @@ import ChatComponent from "../../components/chat_component"
 import GameComponent from "../../components/game_component"
 import ProfileComponent from "../../components/profile_component"
 import RulesComponent from "../../components/rules_component"
-import HeaderComponent from "../../components/header_component"
+import HeaderNavComponent from "../../components/header_nav_component"
 import SideNavComponent from "../../components/side_nav_component"
 import PageComponentManager from "../../utils/page_component_manager"
 
@@ -32,7 +32,7 @@ class GameShowPage extends page {
     this.initializeGameComponent();
     this.initializeLadderComponent();
     this.initializeChipsComponent();
-    this.initializeHeaderComponent();
+    this.initializeHeaderNavComponent();
     this.initializeChatComponent();
     this.initializeProfileComponent();
     this.initializeRulesComponent();
@@ -48,8 +48,8 @@ class GameShowPage extends page {
     ReactDOM.render(<ChipsComponent store={App.store}/>, document.getElementById('chips-holder'));
   }
 
-  initializeHeaderComponent() {
-    ReactDOM.render(<HeaderComponent store={App.store}/>, document.getElementById('header-component-holder'));
+  initializeHeaderNavComponent() {
+    ReactDOM.render(<HeaderNavComponent store={App.store}/>, document.getElementById('header-nav-component-holder'));
   }
 
   initializeChatComponent() {

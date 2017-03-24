@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import Card from './presentational/card'
+import Scoreboard from './presentational/scoreboard'
 
 class GameComponent extends React.Component {
 
@@ -166,6 +167,7 @@ class GameComponent extends React.Component {
             { this.playButton() }
             <div id="player-cards">{this.renderPlayerCards()}</div>
             { this.renderBestHand() }
+            <Scoreboard current_score = {this.props.player.current_score} />
           </div>
         </div>
       </Provider>
@@ -175,7 +177,8 @@ class GameComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    game: state.game
+    game: state.game,
+    player: state.player
   }
 }
 
