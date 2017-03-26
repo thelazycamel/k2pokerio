@@ -1,7 +1,6 @@
 defmodule K2pokerIo.JoinCommandTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Game
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinCommand

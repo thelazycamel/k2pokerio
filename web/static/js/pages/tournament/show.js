@@ -1,20 +1,16 @@
 import page from "../page"
-
 import React from "react"
 import ReactDOM from "react-dom"
-
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
-
 import LadderComponent from "../../components/ladder_component"
 import ChatComponent from "../../components/chat_component"
-
 import playerChannel from "../../channels/player_channel"
 
 class TournamentShowPage extends page {
 
   constructor(opts={}) {
-    super(opts, "tournament-show");
+    super(opts);
   }
 
   setUpPage() {

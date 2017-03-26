@@ -6,6 +6,7 @@ defmodule K2pokerIo.GameChannel do
   alias K2pokerIo.Commands.Game.FoldCommand
   alias K2pokerIo.Commands.Game.JoinCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
+  alias K2pokerIo.Commands.Game.RequestBotCommand
   alias K2pokerIo.UserTournamentDetail
 
   intercept ["game:new_game_data", "game:new_game"]
@@ -32,6 +33,16 @@ defmodule K2pokerIo.GameChannel do
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}
       :error ->
+        :error
+    end
+  end
+
+  def handle_in("game:bot_request", _params, socket) do
+    case RequestBotCommand.execute(get_game_id(socket)) do
+      {:ok, _} ->
+        broadcast! socket, "game:new_game_data", %{}
+        {:reply, :ok, socket}
+      {:error, _} ->
         :error
     end
   end

@@ -38,8 +38,6 @@ import pageEventsMiddleware from "./middleware/page_events_middleware"
 window.App = {
 
   init: function() {
-    /* TODO this should be done automatically reading the files */
-    this.pages = [tournamentShowPage, tournamentIndexPage, gameShowPage];
     this.createReduxStore()
     this.connectSocket()
     this.setUpCurrentPage()
@@ -58,9 +56,16 @@ window.App = {
   },
 
   setUpCurrentPage: function(){
-    this.pages.map(function(page){
-      new page();
-    });
+    let currentPage = this.pages()[$("body").data("page")]
+    this.page = new currentPage;
+  },
+
+
+  pages: function() {
+    return { "gameShow":        gameShowPage,
+             "tournamentShow":  tournamentShowPage,
+             "tournamentIndex": tournamentIndexPage
+    }
   }
 
 };

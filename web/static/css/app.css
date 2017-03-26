@@ -14,6 +14,7 @@
 @include "components/rules"
 @include "components/scoreboard"
 @include "components/side_nav"
+@include "components/bot_request"
 
 /* pages */
 @include "pages/home"

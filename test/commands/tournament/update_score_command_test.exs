@@ -3,7 +3,9 @@ defmodule K2pokerIo.UpdateScoresCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIo.Fixtures.GameDataFixture
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.RequestBotCommand
+  alias K2pokerIo.Commands.Game.FoldCommand
   alias K2pokerIo.Commands.Tournament.UpdateScoresCommand
 
   use K2pokerIo.ConnCase
@@ -14,7 +16,6 @@ defmodule K2pokerIo.UpdateScoresCommandTest do
     Helpers.basic_set_up(["bob", "stu"])
   end
 
-  #TODO move these tests somewhere else (testing the tests!)
   test "test setup", context do
     assert(context.player1.username == "bob")
     assert(context.player2.username == "stu")
@@ -95,6 +96,16 @@ defmodule K2pokerIo.UpdateScoresCommandTest do
     utd2 = Repo.get(UserTournamentDetail, context.player2.id)
     assert(utd1.current_score == 128)
     assert(utd2.current_score == 1)
+  end
+
+  test "It should not try and update score if bot" do
+    tournament = Helpers.create_tournament
+    p1_utd = Helpers.create_user_tournament_detail("bob", tournament.id)
+    {:ok, game} = JoinCommand.execute(p1_utd)
+    {:ok, game} = RequestBotCommand.execute(game.id)
+    FoldCommand.execute(game.id, p1_utd.player_id)
+    UpdateScoresCommand.execute(game)
+    assert(p1_utd.current_score == 1)
   end
 
 end

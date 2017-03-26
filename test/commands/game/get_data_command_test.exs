@@ -1,7 +1,6 @@
 defmodule K2pokerIo.GetDataCommandTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Game
   alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Game.GetDataCommand
 

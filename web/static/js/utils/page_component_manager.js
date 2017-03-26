@@ -1,3 +1,6 @@
+/* TODO: this whole class is a mess to handle the links and tabs opening for different
+ * responsive states, move it to react */
+
 class PageComponentManager {
 
   init() {

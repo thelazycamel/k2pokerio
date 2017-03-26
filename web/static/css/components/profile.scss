@@ -57,10 +57,13 @@
     display: none;
     height: auto;
     top: 0px;
+    background: none;
     #profile-root {
-      width: 318px;
-      border: 1px solid #172a55;
+      width: 320px;
       height: 540px;
+      p {
+        padding: 5px;
+      }
     }
   }
 }

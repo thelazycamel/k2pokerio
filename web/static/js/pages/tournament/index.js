@@ -3,7 +3,7 @@ import page from "../page"
 class TournamentIndexPage extends page {
 
   constructor(opts={}) {
-    super(opts, "tournament-index");
+    super(opts);
   }
 
   setUpPage() {

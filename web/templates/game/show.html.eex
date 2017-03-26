@@ -6,4 +6,5 @@
   <section id="chat-holder" data-tournament="<%= @tournament_id %>"></section>
   <section id="rules-holder"></section>
   <section id="profile-holder"></section>
+  <section id="bot-request-holder"></section>
 </div>

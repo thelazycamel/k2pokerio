@@ -6,15 +6,28 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
   import Ecto.Changeset
 
   def execute(game) do
-    if game.open == true do
-      Enum.each [game.player1_id, game.player2_id], fn (player_id) ->
-        player_data = get_player_data(game, player_id)
-        update_scores(game, player_id, player_data)
-        update_badges(game, player_id, player_data)
-      end
-      game =mark_game_as_closed(game)
+    game = case game.open do
+      true -> update_each_player(game)
+      _ -> game
     end
     game
+  end
+
+  defp update_each_player(game) do
+    Enum.each [game.player1_id, game.player2_id], fn (player_id) ->
+      game = case player_id do
+        "BOT" -> game
+        _ -> update_player_scores(game, player_id)
+      end
+    end
+    game
+  end
+
+  defp update_player_scores(game, player_id) do
+    player_data = get_player_data(game, player_id)
+    update_scores(game, player_id, player_data)
+    |> update_badges(player_id, player_data)
+    |> mark_game_as_closed()
   end
 
   defp get_player_data(game, player_id) do
@@ -37,13 +50,15 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
       new_score <= 1 -> 1
       true -> new_score
     end
-    new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
+    #new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
     update_user_tournament_detail(utd, game.id, new_score, player_id)
+    game
   end
 
   # TODO badges
   defp update_badges(game, player_id, player_data) do
     [game, player_id, player_data]
+    game
   end
 
   defp player_already_paid(game, player_id) do

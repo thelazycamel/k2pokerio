@@ -6,7 +6,7 @@ defmodule K2pokerIo.LayoutView do
   end
 
   def body_page_data(conn) do
-    "#{get_controller(conn)}-#{get_action(conn)}"
+    "#{get_controller(conn)}#{String.capitalize(get_action(conn))}"
   end
 
   def user_token(player_id) do

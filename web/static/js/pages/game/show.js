@@ -14,6 +14,7 @@ import ProfileComponent from "../../components/profile_component"
 import RulesComponent from "../../components/rules_component"
 import HeaderNavComponent from "../../components/header_nav_component"
 import SideNavComponent from "../../components/side_nav_component"
+import BotRequestComponent from "../../components/bot_request_component"
 import PageComponentManager from "../../utils/page_component_manager"
 
 import page from "../page"
@@ -21,7 +22,7 @@ import page from "../page"
 class GameShowPage extends page {
 
   constructor(opts={}) {
-    super(opts, "game-show");
+    super(opts);
   }
 
   setUpPage() {
@@ -29,6 +30,11 @@ class GameShowPage extends page {
     new gameChannel();
     new chatChannel();
     new playerChannel();
+    this.initializeComponents();
+    new PageComponentManager().init();
+  }
+
+  initializeComponents() {
     this.initializeGameComponent();
     this.initializeLadderComponent();
     this.initializeChipsComponent();
@@ -37,7 +43,17 @@ class GameShowPage extends page {
     this.initializeProfileComponent();
     this.initializeRulesComponent();
     this.initializeSideNavComponent();
-    new PageComponentManager().init();
+    this.initializeBotRequestComponent();
+  }
+
+  setBotRequest() {
+    this.botPopupRequest = setTimeout(function(){
+      App.store.dispatch({type: "PAGE:SHOW_BOT_POPUP"});
+    },10000)
+  }
+
+  clearBotRequest() {
+    clearTimeout(this.botPopupRequest);
   }
 
   initializeLadderComponent() {
@@ -70,6 +86,10 @@ class GameShowPage extends page {
 
   initializeSideNavComponent() {
     ReactDOM.render(<SideNavComponent store={App.store} page_name="game-show"/>, document.getElementById('nav-holder'));
+  }
+
+  initializeBotRequestComponent() {
+    ReactDOM.render(<BotRequestComponent store={App.store}/>, document.getElementById('bot-request-holder'));
   }
 
 }

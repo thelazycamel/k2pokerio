@@ -12,11 +12,26 @@ const gameEventsMiddleware = store => next => action => {
     case "GAME:NEXT_GAME":
       App.gameChannel.push("game:next_game");
       break;
-    case "GAME:DATA_RECEIVED":
-      if(action.game.status == "finished" || action.game.status == "new") {
-        App.playerChannel.push("player:get_current_score");
-      }
+    case "GAME:BOT_REQUEST":
+      App.gameChannel.push("game:bot_request");
       break;
+    case "GAME:DATA_RECEIVED":
+      switch(action.game.status) {
+        case "finished":
+          App.playerChannel.push("player:get_current_score");
+          break;
+        case "new":
+          App.playerChannel.push("player:get_current_score");
+          App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
+          App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+          break;
+        case "standby":
+          App.store.dispatch({type: "PAGE:SET_BOT_POPUP"});
+          break;
+        default:
+          App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
+          App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+      }
     default:
   }
   next(action);
