@@ -50,7 +50,6 @@ defmodule K2pokerIo.GameChannel do
   def handle_in("game:discard", %{"card_index" => card_index}, socket) do
     player_id = socket.assigns[:player_id]
     {card_index, _} = Integer.parse(card_index)
-    {:reply, :ok, socket}
     case DiscardCommand.execute(get_game_id(socket), player_id, card_index) do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}
@@ -62,7 +61,6 @@ defmodule K2pokerIo.GameChannel do
 
   def handle_in("game:fold", _params, socket) do
     player_id = socket.assigns[:player_id]
-    {:reply, :ok, socket}
     case FoldCommand.execute(get_game_id(socket), player_id) do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}

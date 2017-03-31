@@ -49,7 +49,7 @@ class GameShowPage extends page {
   setBotRequest() {
     this.botPopupRequest = setTimeout(function(){
       App.store.dispatch({type: "PAGE:SHOW_BOT_POPUP"});
-    },10000)
+    },5000)
   }
 
   clearBotRequest() {

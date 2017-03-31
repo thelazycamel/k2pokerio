@@ -1,5 +1,17 @@
 body.tournament {
 
+  &.show {
+
+    #chat-holder {
+      display: none;
+    }
+
+    #ladder-holder {
+      display: none;
+    }
+
+  }
+
   main {
 
     background: linear-gradient(to bottom, #1c45a1 0%,#091122 50%);

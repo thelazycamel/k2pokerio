@@ -112,7 +112,7 @@ class GameComponent extends React.Component {
   }
 
   foldButton() {
-    if(!this.isFinished()) {
+    if(!this.isFinished() && !this.waitingForOpponent()) {
       return (<a id="fold-button" onClick={this.foldButtonClicked}>Fold</a>);
     }
   }

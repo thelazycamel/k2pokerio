@@ -4,8 +4,12 @@
    left: 629px;
    width: 261px;
    height: 319px;
+   border-radius: 10px;
 
   #chips-root {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
 
     .players-online {
       position: absolute;
@@ -13,7 +17,7 @@
       left: 15px;
       z-index: 2;
       color: #d4d4d4;
-      background-color: #010116;
+      background-color: transparent;
       opacity: 0.7;
     }
 
@@ -23,7 +27,7 @@
       left: 15px;
       z-index: 2;
       color: #d4d4d4;
-      background-color: #010116;
+      background-color: transparent;
       opacity: 0.7;
     }
 
@@ -130,6 +134,17 @@
 
 }
 
+@media (min-width: 1200px) {
+
+  #chips-holder {
+    border-radius: 0px 0px 0px 10px;
+    #chips-root {
+      border-radius: 0px 0px 0px 10px;
+    }
+  }
+
+}
+
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #chips-holder {
@@ -171,12 +186,20 @@
     top: 0px;
     width: 419px;
     height: 619px;
-    border-left: 2px solid #172a55;
-    border-right: 2px solid #172a55;
+    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+    padding: 2px;
 
     #chips-root {
       .scoreboard {
         left: 94px;
+        top: 20px;
+      }
+      .players-online {
+        top: 80px;
+      }
+      .rebuys {
+        top: 105px;
+        bottom: auto;
       }
       #player-chips {
         bottom: 100px;
@@ -194,15 +217,23 @@
     left: 0px;
     top: 0px;
     width: 320px;
-    height: 540px;
+    height: 554px;
 
     #chips-root {
       .scoreboard {
         display: block;
         left: 45px;
+        top: 20px;
+      }
+      .players-online {
+        top: 80px;
+      }
+      .rebuys {
+        top: 105px;
+        bottom: auto;
       }
       #player-chips {
-        top: 150px;
+        top: 200px;
         left: 35px;
       }
     }

@@ -5,11 +5,13 @@
   padding: 2px;
   height: 619px;
   background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+  border-radius: 10px;
 
   #game-root {
     background-image: url("/images/blue-back.png");
     background-position: center;
     height: 615px;
+    border-radius: 10px;
 
     #game {
       position: relative;
@@ -21,6 +23,7 @@
         z-index: 5;
         background-image: url("/images/shine.svg");
         background-repeat: no-repeat;
+        border-radius: 10px 10px 0px 0px;
       }
 
       .card {
@@ -457,8 +460,10 @@
 
   #game-holder {
     padding: 0px;
+    height: 554px;
 
     #game-root {
+      height: 554px;
 
       #game {
         width: 320px;
