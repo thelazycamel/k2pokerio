@@ -63,6 +63,7 @@ class PageComponentManager {
   }
 
   resizing() {
+    $(".card").attr("style", "");
     this.init();
   }
 

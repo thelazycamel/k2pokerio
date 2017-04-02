@@ -3,6 +3,10 @@ import ReactDOM from "react-dom"
 
 class Card extends React.Component {
 
+  componentDidMount(){
+    App.store.dispatch({type: "GAME:ANIMATE_CARD", card_id: this.cardId()});
+  }
+
   classNames() {
     return `card ${this.props.type}-card card-${this.props.card} ${this.props.best_card} ${this.props.winner}`;
   }

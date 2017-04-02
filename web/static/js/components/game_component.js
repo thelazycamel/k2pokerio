@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import Card from './presentational/card'
+import PlayerCard from './presentational/player_card'
 import Scoreboard from './presentational/scoreboard'
 
 class GameComponent extends React.Component {
@@ -45,11 +46,6 @@ class GameComponent extends React.Component {
     App.store.dispatch({type: "GAME:NEXT_GAME"})
   }
 
-  discardClicked(e) {
-    let index = e.target.getAttribute("data-card");
-    App.store.dispatch({type: "GAME:DISCARD", card_index: index})
-  }
-
   isAWinningCard(card) {
     if(this.props.game.status == "finished" && this.props.game.result.winning_cards.includes(card)) {
       return "winner";
@@ -63,13 +59,7 @@ class GameComponent extends React.Component {
       let cards = this.props.game.cards.map((card, index) => {
         let bestCardClass = this.props.game.best_cards.includes(card) ? "best-card" : "";
         let winningCardClass = this.isAWinningCard(card);
-        return <div className={`card player-card card-${card} ${bestCardClass} ${winningCardClass}` }
-                    key={`player-card-${index}`}
-                    data-card={index}
-                    id={`player-card-${index + 1}`}
-                    onClick={this.discardClicked}>
-                    {card}
-                </div>;
+        return <PlayerCard card={card} index={index} best_card={bestCardClass} key={index} winner={winningCardClass} status={this.props.game.player_status} />
       });
       return cards;
     }
