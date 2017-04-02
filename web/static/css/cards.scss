@@ -10,6 +10,10 @@
     /*box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.50); */
   }
 
+  &.discarded {
+    background-image: url("/images/deck/card-back.svg") !important;
+  }
+
 
   /* Card images */
 

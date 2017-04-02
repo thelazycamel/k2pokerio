@@ -19,14 +19,6 @@ class CardAnimator {
         left: left,
         zIndex: 1
       }, 300);
-      $({deg: -180}).animate({deg: 0}, {
-        step: function(step) {
-          $card.css({
-            transform: 'rotate('+step+'deg)'
-          })
-        },
-        duration: 300
-      });
     }, delay);
   }
 
@@ -70,13 +62,11 @@ class CardAnimator {
   }
 
   _animateRemoveCard(cardId){
-    let cardStart = this._cardStartPosition();
     let $card = $("#"+cardId);
     let _this = this;
     if($card.length > 0) {
       $card.animate({
         top: "0px",
-        left: cardStart+"px",
         zIndex: 10
       }, 200, "swing",
         function(){
@@ -84,14 +74,6 @@ class CardAnimator {
           _this.animate(cardId, true);
         }
       );
-      $({deg: 0}).animate({deg: 180}, {
-        step: function(step) {
-          $card.css({
-            transform: 'rotate('+step+'deg)'
-          })
-        },
-        duration: 200
-      });
     }
   }
 

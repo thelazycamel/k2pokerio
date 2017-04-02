@@ -7,8 +7,16 @@ class PlayerCard extends React.Component {
     App.store.dispatch({type: "GAME:ANIMATE_CARD", card_id: this.cardId()});
   }
 
+  componentWillUpdate(nextProps, nextState){
+   if(nextProps.card != this.props.card) {
+     this.discarded = "discarded";
+   } else {
+     this.discarded = "";
+    }
+  }
+
   classNames() {
-    return `card player-card card-${this.props.card} ${this.props.best_card} ${this.props.winner}`;
+    return `card player-card card-${this.props.card} ${this.props.best_card} ${this.props.winner} ${this.discarded}`;
   }
 
   cardId() {
@@ -20,8 +28,8 @@ class PlayerCard extends React.Component {
       return false;
     }
     let index = e.target.getAttribute("data-card");
-    e.currentTarget.className += " discarded "
-    App.store.dispatch({type: "GAME:DISCARD", card_index: index})
+    e.currentTarget.className += " discarded ";
+    App.store.dispatch({type: "GAME:DISCARD", card_index: index});
   }
 
   render() {
