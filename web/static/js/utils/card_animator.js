@@ -73,13 +73,16 @@ class CardAnimator {
     let cardStart = this._cardStartPosition();
     let $card = $("#"+cardId);
     let _this = this;
-    if($card) {
+    if($card.length > 0) {
       $card.animate({
-        top: "-200px",
+        top: "0px",
         left: cardStart+"px",
         zIndex: 10
       }, 200, "swing",
-        function(){_this.animate(cardId, true)}
+        function(){
+          $card.removeClass("discarded");
+          _this.animate(cardId, true);
+        }
       );
       $({deg: 0}).animate({deg: 180}, {
         step: function(step) {
@@ -90,7 +93,6 @@ class CardAnimator {
         duration: 200
       });
     }
-    $card.removeClass("discarded");
   }
 
   _cardStartPosition(){
