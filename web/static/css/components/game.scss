@@ -461,9 +461,11 @@
   #game-holder {
     padding: 0px;
     height: 554px;
+    border-radius: 0px 0px 10px 10px;
 
     #game-root {
       height: 554px;
+      border-radius: 0px 0px 10px 10px;
 
       #game {
         width: 320px;
@@ -480,6 +482,7 @@
         #shine {
           width: 320px;
           height: 80px;
+          border-radius: 0;
         }
 
         #opponent-card-1 {

@@ -42,7 +42,7 @@ defmodule K2pokerIo.GameChannel do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}
-      {:error, _} ->
+      {:error} ->
         :error
     end
   end

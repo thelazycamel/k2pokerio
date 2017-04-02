@@ -7,7 +7,7 @@ class BotRequestComponent extends React.Component {
 
   close() {
     App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
-    //App.store.dispatch({type: "PAGE:SET_BOT_POPUP"});
+    App.store.dispatch({type: "PAGE:SET_BOT_POPUP"});
   }
 
   playBot() {
