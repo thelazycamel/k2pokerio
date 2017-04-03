@@ -122,6 +122,9 @@
       background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
       padding: 2px;
       #ladder-inner {
+        background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+        border-radius: 10px;
+        overflow: hidden;
         #score-ladder {
           width: 100%;
           font-size: 1.5em;
