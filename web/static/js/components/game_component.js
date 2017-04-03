@@ -147,17 +147,19 @@ class GameComponent extends React.Component {
   render() {
     return (
       <Provider store={this.props.store}>
-       <div id="game-root">
-          <div id="game" className={this.resultClassName()} >
-            <div id="shine"></div>
-            <div id="opponent-cards">{this.renderOpponentCards()}</div>
-            { this.foldButton() }
-            <div id="table-cards">{this.renderTableCards()}</div>
-            <div id="game-status">{this.renderStatus()}</div>
-            { this.playButton() }
-            <div id="player-cards">{this.renderPlayerCards()}</div>
-            { this.renderBestHand() }
-            <Scoreboard current_score = {this.props.player.current_score} />
+        <div id="game-root">
+          <div id="game-inner">
+            <div id="game" className={this.resultClassName()} >
+              <div id="shine"></div>
+              <div id="opponent-cards">{this.renderOpponentCards()}</div>
+              { this.foldButton() }
+              <div id="table-cards">{this.renderTableCards()}</div>
+              <div id="game-status">{this.renderStatus()}</div>
+              { this.playButton() }
+              <div id="player-cards">{this.renderPlayerCards()}</div>
+              { this.renderBestHand() }
+              <Scoreboard current_score = {this.props.player.current_score} />
+            </div>
           </div>
         </div>
       </Provider>

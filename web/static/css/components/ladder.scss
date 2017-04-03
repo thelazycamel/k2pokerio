@@ -1,13 +1,10 @@
 #ladder-holder {
-  position: absolute;
-  height: 319px;
-  border-radius: 10px;
   #ladder-root {
-    position: relative;
+    position: absolute;
+    height: 319px;
+    border-radius: 10px;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
     overflow: hidden;
-    height: 100%;
-    border-radius: 10px;
     #score-ladder {
       margin-top: 2px;
       text-align: center;
@@ -70,10 +67,9 @@
 @media (min-width: 1200px) {
 
   #ladder-holder {
-    left: 890px;
-    width: 250px;
-    border-radius: 0px 0px 10px 0px;
     #ladder-root {
+      left: 890px;
+      width: 250px;
       border-radius: 0px 0px 10px 0px;
       #score-ladder {
         font-size: 0.8em;
@@ -89,63 +85,65 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #ladder-holder {
-    left: 538px;
-    width: 366px;
+    #ladder-root {
+      left: 538px;
+      width: 366px;
 
-    #score-ladder {
-      font-size: 0.8em;
-      width: 100%;
+      #score-ladder {
+        font-size: 0.8em;
+        width: 100%;
+      }
     }
-
   }
 
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   #ladder-holder {
-    left: 419px;
-    width: 250px;
-
-    #score-ladder {
-      font-size: 0.8em;
-      width: 100%;
+    #ladder-root {
+      left: 419px;
+      width: 250px;
+      #score-ladder {
+        font-size: 0.8em;
+        width: 100%;
+      }
     }
-
   }
-
 }
 
 @media (min-width: 501px) and (max-width: 767px) {
 
   #ladder-holder {
-    left: 0px;
-    top: 0px;
-    width: 419px;
-    height: 619px;
-    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
-    padding: 2px;
     #ladder-root {
-      #score-ladder {
-        width: 100%;
-        font-size: 1.5em;
-        line-height: 1.4em;
-        margin-top: 6px;
-        tr {
-          td {
-            .tournament-score-name {
-                right: auto;
-                left: 10px;
-              .username {
-                right: auto;
-                left: 10px;
-                max-width: 150px;
-              }
-              .tournament-chip {
-                position: absolute;
-                left: 175px;
-                width: 50px;
-                height: 27px;
-                top: 2px;
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
+      #ladder-inner {
+        #score-ladder {
+          width: 100%;
+          font-size: 1.5em;
+          line-height: 1.4em;
+          margin-top: 6px;
+          tr {
+            td {
+              .tournament-score-name {
+                  right: auto;
+                  left: 10px;
+                .username {
+                  right: auto;
+                  left: 10px;
+                  max-width: 150px;
+                }
+                .tournament-chip {
+                  position: absolute;
+                  left: 175px;
+                  width: 50px;
+                  height: 27px;
+                  top: 2px;
+                }
               }
             }
           }
@@ -159,12 +157,10 @@
 @media (max-width: 500px) {
 
   #ladder-holder {
-    display: none;
-    height: 554px;
-    border-radius: 10px;
     #ladder-root {
-      width: 320px;
+      display: none;
       height: 554px;
+      width: 320px;
       border-radius: 10px;
       #score-ladder {
         margin-top: 50px;

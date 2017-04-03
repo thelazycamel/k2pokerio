@@ -8,9 +8,11 @@ class ProfileComponent extends React.Component {
   render() {
     return (<Provider store={this.props.store}>
         <div id="profile-root">
-          <h2>Profile</h2>
-          <div id="profile-information">
-            <p>user or opponents profile</p>
+          <div id="profile-inner">
+            <h2>Profile</h2>
+            <div id="profile-information">
+              <p>user or opponents profile</p>
+            </div>
           </div>
         </div>
       </Provider>)

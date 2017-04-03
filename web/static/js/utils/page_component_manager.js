@@ -14,24 +14,24 @@ class PageComponentManager {
   showHideTabs() {
     switch(this.screen_size){
     case "monitor":
-      $("#game-holder, #chips-holder, #ladder-holder, #chat-holder").show();
-      $("#rules-holder, #profile-holder").hide();
+      $("#game-root, #chips-root, #ladder-root, #chat-root").show();
+      $("#rules-root, #profile-root").hide();
       break;
     case "htablet":
-      $("#game-holder, #ladder-holder, #chat-holder").show();
-      $("#chips-holder, #rules-holder, #profile-holder").hide();
+      $("#game-root, #ladder-root, #chat-root").show();
+      $("#chips-root, #rules-root, #profile-root").hide();
       break;
     case "vtablet":
-      $("#game-holder, #ladder-holder, #chat-holder").show();
-      $("#chips-holder, #rules-holder, #profile-holder").hide();
+      $("#game-root, #ladder-root, #chat-root").show();
+      $("#chips-root, #rules-root, #profile-root").hide();
       break;
     case "plablet":
-      $("#game-holder").show();
-      $("#chips-holder, #rules-holder, #profile-holder, #ladder-holder, #chat-holder").hide();
+      $("#game-root").show();
+      $("#chips-root, #rules-root, #profile-root, #ladder-root, #chat-root").hide();
       break;
     case "phone":
-      $("#game-holder").show();
-      $("#chips-holder, #rules-holder, #profile-holder, #ladder-holder, #chat-holder").hide();
+      $("#game-root").show();
+      $("#chips-root, #rules-root, #profile-root, #ladder-root, #chat-root").hide();
       break;
     }
   }
@@ -43,12 +43,12 @@ class PageComponentManager {
     let components = []
     let position = links[tab]["position"];
     Object.keys(links).forEach((key) => {
-      if(links[key]["position"] == position) { components.push("#" + key + "-holder")}
+      if(links[key]["position"] == position) { components.push("#" + key + "-root")}
     });
     components.forEach(function(el){
       $(el).hide();
     });
-    $("#" + tab + "-holder").show();
+    $("#" + tab + "-root").show();
   }
 
   setUpListeners() {

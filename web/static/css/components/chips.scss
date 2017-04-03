@@ -1,13 +1,10 @@
 #chips-holder {
 
-   position: absolute;
-   left: 629px;
-   width: 261px;
-   height: 319px;
-   border-radius: 10px;
-
   #chips-root {
-    height: 100%;
+    position: absolute;
+    left: 629px;
+    width: 261px;
+    height: 319px;
     border-radius: 10px;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
 
@@ -137,7 +134,6 @@
 @media (min-width: 1200px) {
 
   #chips-holder {
-    border-radius: 0px 0px 0px 10px;
     #chips-root {
       border-radius: 0px 0px 0px 10px;
     }
@@ -148,9 +144,9 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #chips-holder {
-    left: 538px;
-    width: 366px;
     #chips-root {
+      left: 538px;
+      width: 366px;
       .scoreboard {
         left: 62px;
       }
@@ -165,9 +161,9 @@
 @media (min-width: 768px) and (max-width: 991px) {
 
   #chips-holder {
-    left: 419px;
-    width: 250px;
     #chips-root {
+      left: 419px;
+      width: 250px;
       .scoreboard {
         left: 10px;
       }
@@ -182,14 +178,13 @@
 @media (min-width: 501px) and (max-width: 767px) {
 
   #chips-holder {
-    left: 0px;
-    top: 0px;
-    width: 419px;
-    height: 619px;
-    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
-    padding: 2px;
-
     #chips-root {
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
       .scoreboard {
         left: 94px;
         top: 20px;
@@ -214,12 +209,11 @@
 @media (max-width: 500px) {
 
   #chips-holder {
-    left: 0px;
-    top: 0px;
-    width: 320px;
-    height: 554px;
-
     #chips-root {
+      left: 0px;
+      top: 0px;
+      width: 320px;
+      height: 554px;
       .scoreboard {
         display: block;
         left: 45px;

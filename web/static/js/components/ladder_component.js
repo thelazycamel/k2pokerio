@@ -52,11 +52,13 @@ class LadderComponent extends React.Component {
     return (
       <Provider store ={this.props.store}>
         <div id="ladder-root">
-          <table id="score-ladder">
-            <tbody>
-              {this.renderRows()}
-            </tbody>
-          </table>
+          <div id="ladder-inner">
+            <table id="score-ladder">
+              <tbody>
+                {this.renderRows()}
+              </tbody>
+            </table>
+          </div>
         </div>
       </Provider>
     )

@@ -1,13 +1,10 @@
 #rules-holder {
-  position: absolute;
-  top: 319px;
-  height: 300px;
-  border-radius: 10px;
   #rules-root {
-    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+    position: absolute;
+    top: 319px;
+    height: 300px;
     border-radius: 10px;
-    height: 100%;
-
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
     .rules-section {
       padding: 10px;
     }
@@ -18,9 +15,9 @@
 @media (min-width: 1200px) {
 
   #rules-holder {
-    left: 629px;
-    width: 511px;
     #rules-root {
+      left: 629px;
+      width: 511px;
     }
   }
 
@@ -29,9 +26,9 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #rules-holder {
-    left: 538px;
-    width: 366px;
     #rules-root {
+      left: 538px;
+      width: 366px;
     }
   }
 
@@ -39,9 +36,9 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
   #rules-holder {
-    left: 419px;
-    width: 250px;
     #rules-root {
+      left: 419px;
+      width: 250px;
     }
   }
 
@@ -50,16 +47,18 @@
 @media (min-width: 501px) and (max-width: 767px) {
 
   #rules-holder {
-    left: 0px;
-    top: 0px;
-    width: 419px;
-    height: 619px;
-    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
-    padding: 2px;
     #rules-root {
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
       border-radius: 10px;
-      h2 {
-        border-radius: 10px 10px 0px 0px;
+      #rules-inner {
+        h2 {
+          border-radius: 10px 10px 0px 0px;
+        }
       }
     }
   }
@@ -69,11 +68,10 @@
 @media (max-width: 500px) {
 
   #rules-holder {
-    display: none;
-    height: auto;
-    top: 0px;
-    background: none;
     #rules-root {
+      display: none;
+      top: 0px;
+      background: none;
       width: 320px;
       height: 540px;
       p {

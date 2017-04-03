@@ -1,63 +1,65 @@
 #game-holder {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  padding: 2px;
-  height: 619px;
-  background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
-  border-radius: 10px;
 
   #game-root {
-    background-image: url("/images/blue-back.png");
-    background-position: center;
-    height: 615px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 2px;
+    height: 619px;
+    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
     border-radius: 10px;
 
-    #game {
-      position: relative;
+    #game-inner {
+      background-image: url("/images/blue-back.png");
+      background-position: center;
+      height: 615px;
+      border-radius: 10px;
 
-      #shine {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: 5;
-        background-image: url("/images/shine.svg");
-        background-repeat: no-repeat;
-        border-radius: 10px 10px 0px 0px;
-      }
+      #game {
+        position: relative;
 
-      .card {
-        position: absolute;
-        box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
-      }
+        #shine {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: 5;
+          background-image: url("/images/shine.svg");
+          background-repeat: no-repeat;
+          border-radius: 10px 10px 0px 0px;
+        }
 
-      &.result {
         .card {
-          opacity: 0.25;
+          position: absolute;
+          box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
         }
 
-        .card.winner {
-          opacity: 1;
+        &.result {
+          .card {
+            opacity: 0.25;
+          }
+
+          .card.winner {
+            opacity: 1;
+          }
+        }
+
+        #game-status .win-status {
+          font-size: 1.3em;
+          line-height: 2em;
+          color: #C6C82C;
+        }
+
+        #game-status .lose-status {
+          font-size: 1.3em;
+          line-height: 2em;
+          color: #DE1F1B;
+        }
+
+        #best-hand .result-hand {
+          font-size: 1.1em;
+          line-height: 2.5em;
         }
       }
-
-      #game-status .win-status {
-        font-size: 1.3em;
-        line-height: 2em;
-        color: #C6C82C;
-      }
-
-      #game-status .lose-status {
-        font-size: 1.3em;
-        line-height: 2em;
-        color: #DE1F1B;
-      }
-
-      #best-hand .result-hand {
-        font-size: 1.1em;
-        line-height: 2.5em;
-      }
-
     }
   }
 
@@ -107,9 +109,8 @@
 @media (min-width: 1200px) {
 
   #game-holder {
-    width: 629px;
     #game-root {
-      width: 625px;
+      width: 629px;
       #game {
         width: 625px;
         height: 615px;
@@ -212,9 +213,8 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
   #game-holder {
-    width: 538px;
     #game-root {
-      width: 534px;
+      width: 538px;
       #game {
         width: 534px;
         height: 615px;
@@ -340,110 +340,110 @@
 @media (min-width: 501px) and (max-width: 991px) {
 
   #game-holder {
-    width: 419px;
     #game-root {
-      width: 415px;
-      #game {
-        width: 415px;
-        height: 615px;
-        background-image: url("/images/play-area-small.svg");
-        background-size: cover;
+      width: 419px;
+      #game-inner {
+        #game {
+          width: 415px;
+          height: 615px;
+          background-image: url("/images/play-area-small.svg");
+          background-size: cover;
 
-        .scoreboard {
-          position: absolute;
-          bottom: 20px;
-          left: 94px;
-        }
+          .scoreboard {
+            position: absolute;
+            bottom: 20px;
+            left: 94px;
+          }
 
-        #shine {
-          width: 414px;
-          height: 120px;
-        }
+          #shine {
+            width: 414px;
+            height: 120px;
+          }
 
-        #opponent-card-1 {
-          top: 17px;
-          left: 127px;
-        }
+          #opponent-card-1 {
+            top: 17px;
+            left: 127px;
+          }
 
-        #opponent-card-2 {
-          top: 17px;
-          left: 210px;
-        }
+          #opponent-card-2 {
+            top: 17px;
+            left: 210px;
+          }
 
-        #fold-button {
-          top: 37px;
-          left: 324px;
-          width: 61px;
-          height: 61px;
-          background-size: 61px 61px;
-          font-size: 1.1em;
-          line-height: 3.8em;
-        }
+          #fold-button {
+            top: 37px;
+            left: 324px;
+            width: 61px;
+            height: 61px;
+            background-size: 61px 61px;
+            font-size: 1.1em;
+            line-height: 3.8em;
+          }
 
-        #play-button {
-          width: 140px;
-          height: 50px;
-          top: 257px;
-          left: 137px;
-          font-size: 1.2em;
-          line-height: 2.9em;
-          background-size: 140px 50px;
-        }
+          #play-button {
+            width: 140px;
+            height: 50px;
+            top: 257px;
+            left: 137px;
+            font-size: 1.2em;
+            line-height: 2.9em;
+            background-size: 140px 50px;
+          }
 
-        #table-card-1 {
-          top: 137px;
-          left: 5px;
-        }
+          #table-card-1 {
+            top: 137px;
+            left: 5px;
+          }
 
-        #table-card-2 {
-          top: 137px;
-          left: 87px;
-        }
+          #table-card-2 {
+            top: 137px;
+            left: 87px;
+          }
 
-        #table-card-3 {
-          top: 137px;
-          left: 169px;
-        }
+          #table-card-3 {
+            top: 137px;
+            left: 169px;
+          }
 
-        #table-card-4 {
-          top: 137px;
-          left: 250px;
-        }
+          #table-card-4 {
+            top: 137px;
+            left: 250px;
+          }
 
-        #table-card-5 {
-          top: 137px;
-          left: 331px;
-        }
+          #table-card-5 {
+            top: 137px;
+            left: 331px;
+          }
 
-        #player-card-1 {
-          top: 324px;
-          left: 70px;
-        }
+          #player-card-1 {
+            top: 324px;
+            left: 70px;
+          }
 
-        #player-card-2 {
-          top: 324px;
-          left: 211px;
-        }
+          #player-card-2 {
+            top: 324px;
+            left: 211px;
+          }
 
+          #game-status {
+            position: absolute;
+            text-align: center;
+            top: 254px;
+            left: 8px;
+            padding: 10px;
+            width: 106px;
+            font-size: 12px;
+          }
 
-        #game-status {
-          position: absolute;
-          text-align: center;
-          top: 254px;
-          left: 8px;
-          padding: 10px;
-          width: 106px;
-          font-size: 12px;
-        }
-
-        #best-hand {
-          position: absolute;
-          text-align: center;
-          top: 254px;
-          left: 300px;
-          padding: 10px;
-          width: 106px;
-          font-size: 12px;
+          #best-hand {
+            position: absolute;
+            text-align: center;
+            top: 254px;
+            left: 300px;
+            padding: 10px;
+            width: 106px;
+            font-size: 12px;
+          }
         }
       }
     }
@@ -459,115 +459,117 @@
   }
 
   #game-holder {
-    padding: 0px;
-    height: 554px;
-    border-radius: 0px 0px 10px 10px;
-
     #game-root {
+      padding: 0px;
       height: 554px;
+      width: 320px;
       border-radius: 0px 0px 10px 10px;
+      #game-inner {
+        height: 554px;
+        border-radius: 0px 0px 10px 10px;
 
-      #game {
-        width: 320px;
-        height: 564px;
-        background-image: url("/images/play-area-phone.svg");
-        background-size: cover;
-
-        .scoreboard {
-          position: absolute;
-          bottom: 20px;
-          left: 45px;
-        }
-
-        #shine {
+        #game {
           width: 320px;
-          height: 80px;
-          border-radius: 0;
-        }
+          height: 564px;
+          background-image: url("/images/play-area-phone.svg");
+          background-size: cover;
 
-        #opponent-card-1 {
-          top: 21px;
-          left: 96px;
-        }
+          .scoreboard {
+            position: absolute;
+            bottom: 20px;
+            left: 45px;
+          }
 
-        #opponent-card-2 {
-          top: 21px;
-          left: 162px;
-        }
+          #shine {
+            width: 320px;
+            height: 80px;
+            border-radius: 0;
+          }
 
-        #fold-button {
-          top: 30px;
-          left: 244px;
-          width: 53px;
-          height: 53px;
-          background-size: 53px 53px;
-          font-size: 1em;
-          line-height: 3.6em;
-        }
+          #opponent-card-1 {
+            top: 21px;
+            left: 96px;
+          }
 
-        #play-button {
-          width: 160px;
-          height: 50px;
-          top: 203px;
-          left: 81px;
-          font-size: 1.3em;
-          line-height: 2.8em;
-          background-size: 160px 50px;
-        }
+          #opponent-card-2 {
+            top: 21px;
+            left: 162px;
+          }
 
-        #table-card-1 {
-          top: 111px;
-          left: 3px;
-        }
+          #fold-button {
+            top: 30px;
+            left: 244px;
+            width: 53px;
+            height: 53px;
+            background-size: 53px 53px;
+            font-size: 1em;
+            line-height: 3.6em;
+          }
 
-        #table-card-2 {
-          top: 111px;
-          left: 66px;
-        }
+          #play-button {
+            width: 160px;
+            height: 50px;
+            top: 203px;
+            left: 81px;
+            font-size: 1.3em;
+            line-height: 2.8em;
+            background-size: 160px 50px;
+          }
 
-        #table-card-3 {
-          top: 111px;
-          left: 129px;
-        }
+          #table-card-1 {
+            top: 111px;
+            left: 3px;
+          }
 
-        #table-card-4 {
-          top: 111px;
-          left: 192px;
-        }
+          #table-card-2 {
+            top: 111px;
+            left: 66px;
+          }
 
-        #table-card-5 {
-          top: 111px;
-          left: 255px;
-        }
+          #table-card-3 {
+            top: 111px;
+            left: 129px;
+          }
 
-        #player-card-1 {
-          top: 268px;
-          left: 49px;
-        }
+          #table-card-4 {
+            top: 111px;
+            left: 192px;
+          }
 
-        #player-card-2 {
-          top: 268px;
-          left: 169px;
-        }
+          #table-card-5 {
+            top: 111px;
+            left: 255px;
+          }
 
-        #game-status {
-          position: absolute;
-          text-align: center;
-          top: 421px;
-          left: 48px;
-          padding: 10px;
-          width: 106px;
-          font-size: 12px;
-        }
+          #player-card-1 {
+            top: 268px;
+            left: 49px;
+          }
 
-        #best-hand {
-          position: absolute;
-          text-align: center;
-          top: 421px;
-          left: 168px;
-          padding: 10px;
-          width: 106px;
-          font-size: 12px;
+          #player-card-2 {
+            top: 268px;
+            left: 169px;
+          }
+
+          #game-status {
+            position: absolute;
+            text-align: center;
+            top: 421px;
+            left: 48px;
+            padding: 10px;
+            width: 106px;
+            font-size: 12px;
+          }
+
+          #best-hand {
+            position: absolute;
+            text-align: center;
+            top: 421px;
+            left: 168px;
+            padding: 10px;
+            width: 106px;
+            font-size: 12px;
+          }
         }
       }
     }
