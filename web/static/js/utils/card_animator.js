@@ -70,6 +70,10 @@ class CardAnimator {
         zIndex: 10
       }, 200, "swing",
         function(){
+          //TODO - this should all be held by some redux state, 
+          //i dont link removing it here, perhaps the discarded
+          //class can just run a css animation
+          //https://medium.com/@joethedave/achieving-ui-animations-with-react-the-right-way-562fa8a91935
           $card.removeClass("discarded");
           _this.animate(cardId, true);
         }
