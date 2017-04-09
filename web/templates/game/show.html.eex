@@ -1,11 +1,23 @@
 <div id="section-wrapper">
   <section id="game-holder" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>">
-    <div id="game-root"></div>
+    <div id="game-root">
+      <div id="game-inner">
+        <div id="game">
+          <div id="shine"></div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="ladder-holder" data-tournament="<%= @tournament_id %>"></section>
-  <section id="chips-holder"></section>
+  <section id="ladder-holder" data-tournament="<%= @tournament_id %>">
+    <div id="ladder-root"></div>
+  </section>
+  <section id="chips-holder">
+    <div id="chips-root"></div>
+  </section>
   <section id="nav-holder"></section>
-  <section id="chat-holder" data-tournament="<%= @tournament_id %>"></section>
+  <section id="chat-holder" data-tournament="<%= @tournament_id %>">
+    <div id="chat-root"></div>
+  </section>
   <section id="rules-holder"></section>
   <section id="profile-holder"></section>
   <section id="bot-request-holder"></section>

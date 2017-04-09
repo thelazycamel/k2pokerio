@@ -13,6 +13,7 @@ class BotRequestComponent extends React.Component {
   playBot() {
     App.store.dispatch({type: "GAME:BOT_REQUEST"});
     App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+    App.pageComponentManager.linkClicked("game");
   }
 
   showOrHide() {
