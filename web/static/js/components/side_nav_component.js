@@ -8,38 +8,32 @@ class SideNavComponent extends React.Component {
   linkClicked(e) {
     e.preventDefault();
     let linkName = $(e.currentTarget).data("name");
-    let links = this.props.page.links;
-    let position = links[linkName]["position"];
-    Object.keys(links).forEach((key) => {
-      if(links[key]["position"] == position) { links[key]["active"] = false}
-    });
-    links[linkName]["active"] = true;
-    App.store.dispatch({type: "PAGE:LINK_CLICKED", page: {links: links}, tab: linkName});
+    App.pageComponentManager.linkClicked(linkName);
   }
 
-  renderLink(linkName, linkAttrs) {
-    let active = linkAttrs.active ? "active" : "";
-    return (
-      <a href="#"
-        data-name={linkName}
-        data-position={linkAttrs.position}
-        title={linkAttrs.title}
-        id={"nav-"+linkName}
-        key={linkAttrs.key}
-        className={"side-nav-item " + active}
-        onClick={this.linkClicked.bind(this)}>
-          <span className="icon"></span>
-          <span className="link-title">{linkAttrs.title}</span>
-      </a> )
+  renderLink(linkName) {
+    if(linkName) {
+      let linkAttrs = this.props.page.links[linkName];
+      let active = linkAttrs.active ? "active" : "";
+      return (
+        <a href="#"
+          data-name={linkName}
+          data-position={linkAttrs.position}
+          title={linkAttrs.title}
+          id={"nav-"+linkName}
+          key={linkName}
+          className={"side-nav-item " + active}
+          onClick={this.linkClicked.bind(this)}>
+            <span className="icon"></span>
+            <span className="link-title">{linkAttrs.title}</span>
+        </a> )
+    }
   }
+
 
   renderLinks() {
     let links = [];
-    if(this.props.page.links) {
-      Object.keys(this.props.page.links).map( (key) => {
-        links.push(this.renderLink(key, this.props.page.links[key]));
-      });
-    }
+    Object.keys(this.props.page.links).map( (key) => { links.push(this.renderLink(key))});
     return links;
   }
 

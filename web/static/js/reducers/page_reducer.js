@@ -1,6 +1,6 @@
 // Game Store (reducers)
 
-var pageReducer = function(state = {}, action) {
+var pageReducer = function(state = {tabs: {}, links: {}}, action) {
 
   switch(action.type) {
     case "PAGE:RESIZE":

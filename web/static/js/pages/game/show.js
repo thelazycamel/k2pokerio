@@ -31,7 +31,8 @@ class GameShowPage extends page {
     new chatChannel();
     new playerChannel();
     this.initializeComponents();
-    new PageComponentManager().init();
+    App.pageComponentManager = new PageComponentManager();
+    App.pageComponentManager.init();
   }
 
   initializeComponents() {

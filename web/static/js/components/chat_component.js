@@ -7,7 +7,7 @@ class ChatComponent extends React.Component {
 
   render() {
     return (<Provider store={this.props.store}>
-        <div id="chat-root">
+        <div id="chat-root" className={this.props.page.tabs["chat"]}>
           <div id="chat-inner">
             <h2>Tournament Name</h2>
             <ul id="chats">
@@ -33,6 +33,7 @@ class ChatComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    page: state.page,
     chat: state.chat
   }
 }

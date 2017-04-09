@@ -51,7 +51,7 @@ class LadderComponent extends React.Component {
   render() {
     return (
       <Provider store ={this.props.store}>
-        <div id="ladder-root">
+        <div id="ladder-root" className={this.props.page.tabs["ladder"]}>
           <div id="ladder-inner">
             <table id="score-ladder">
               <tbody>
@@ -67,6 +67,7 @@ class LadderComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    page: state.page,
     tournament: state.tournament,
     player: state.player
   }

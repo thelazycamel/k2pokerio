@@ -8,7 +8,7 @@ class RulesComponent extends React.Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <div id="rules-root">
+        <div id="rules-root" className={this.props.page.tabs["rules"]}>
           <div id="rules-inner">
             <h2>Rules</h2>
             <div className="collapse navbar-collapse">

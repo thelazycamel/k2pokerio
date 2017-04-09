@@ -6,49 +6,39 @@ class PageComponentManager {
   init() {
     this.screen_size = this.screenSwitcher();
     this.screen_width = $(window).width();
-    App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links()}});
+    App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links(), tabs: this.tabs()}});
     this.setUpListeners();
-    this.showHideTabs();
   }
 
-  showHideTabs() {
-    switch(this.screen_size){
-    case "monitor":
-      $("#game-root, #chips-root, #ladder-root, #chat-root").show();
-      $("#rules-root, #profile-root").hide();
-      break;
-    case "htablet":
-      $("#game-root, #ladder-root, #chat-root").show();
-      $("#chips-root, #rules-root, #profile-root").hide();
-      break;
-    case "vtablet":
-      $("#game-root, #ladder-root, #chat-root").show();
-      $("#chips-root, #rules-root, #profile-root").hide();
-      break;
-    case "plablet":
-      $("#game-root").show();
-      $("#chips-root, #rules-root, #profile-root, #ladder-root, #chat-root").hide();
-      break;
-    case "phone":
-      $("#game-root").show();
-      $("#chips-root, #rules-root, #profile-root, #ladder-root, #chat-root").hide();
-      break;
-    }
+  tabs() {
+    return this.defaultTabs()[this.screenSwitcher()];
   }
 
+  // TODO this is this initial state on page load, would be good to have a local store to keep the users
+  // preferences between games
+  defaultTabs() {
+    return ({
+      "monitor": {"game": "show", "chips": "show", "ladder": "show", "chat": "show", "rules": "hide", "profile": "hide"},
+      "htablet": {"game": "show", "chips": "hide", "ladder": "show", "chat": "show", "rules": "hide", "profile": "hide"},
+      "vtablet": {"game": "show", "chips": "hide", "ladder": "show", "chat": "show", "rules": "hide", "profile": "hide"},
+      "plablet": {"game": "show", "chips": "hide", "ladder": "hide", "chat": "hide", "rules": "hide", "profile": "hide"},
+      "phone": {"game": "show", "chips": "hide", "ladder": "hide", "chat": "hide", "rules": "hide", "profile": "hide"},
+    })
+  }
 
-  /* this is all very smelly, come back and fix it */
-
-  showTab(tab, links) {
-    let components = []
-    let position = links[tab]["position"];
+  linkClicked(linkName) {
+    let tabs = App.store.getState().page.tabs;
+    let links = App.store.getState().page.links;
+    let position = links[linkName]["position"];
     Object.keys(links).forEach((key) => {
-      if(links[key]["position"] == position) { components.push("#" + key + "-root")}
+      if(links[key]["position"] == position) {
+        tabs[key] = "hide";
+        links[key].active = false;
+      }
     });
-    components.forEach(function(el){
-      $(el).hide();
-    });
-    $("#" + tab + "-root").show();
+    tabs[linkName] = "show";
+    links[linkName].active = true;
+    App.store.dispatch({type: "PAGE:LINK_CLICKED", page: {links: links, tabs: tabs}});
   }
 
   setUpListeners() {
@@ -63,6 +53,8 @@ class PageComponentManager {
   }
 
   resizing() {
+    // this is nasty and should be destroyed when i update the card animations
+    // to use https://facebook.github.io/react/docs/animation.html
     $(".card").attr("style", "");
     this.init();
   }
@@ -80,12 +72,12 @@ class PageComponentManager {
 
   links() {
     return ({
-      "game": {title: "Back to Game", position: this.linkPosition("middle"), active: this.activeLink("game"), key: 1},
-      "ladder": {title: "Tournament Position", position: this.linkPosition("top"), active: this.activeLink("ladder"), key: 2},
-      "chips": {title: "Score and Rebuys", position: this.linkPosition("top"), active: this.activeLink("chips"), key: 3},
-      "chat": {title: "Tournament Room Chat", position: this.linkPosition("bottom"), active: this.activeLink("chat"), key: 4},
-      "rules": {title: "Tournament / Game Rules", position: this.linkPosition("bottom"), active: this.activeLink("rules"), key: 5},
-      "profile": {title: "My Profile", position: this.linkPosition("bottom"), active: this.activeLink("profile"), key: 6}
+      "game": {title: "Back to Game", position: this.linkPosition("middle"), active: this.activeLink("game")},
+      "ladder": {title: "Tournament Position", position: this.linkPosition("top"), active: this.activeLink("ladder")},
+      "chips": {title: "Score and Rebuys", position: this.linkPosition("top"), active: this.activeLink("chips")},
+      "chat": {title: "Tournament Room Chat", position: this.linkPosition("bottom"), active: this.activeLink("chat")},
+      "rules": {title: "Tournament / Game Rules", position: this.linkPosition("bottom"), active: this.activeLink("rules")},
+      "profile": {title: "My Profile", position: this.linkPosition("bottom"), active: this.activeLink("profile")}
     })
   }
 

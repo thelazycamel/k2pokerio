@@ -13,7 +13,7 @@ class ChipsComponent extends React.Component {
   render() {
     return(
       <Provider store={this.props.store}>
-        <div id="chips-root">
+        <div id="chips-root" className={this.props.page.tabs["chips"]}>
           <div id="chips-inner">
             <Scoreboard current_score={this.props.player.current_score} key="tournament" />
             <div className="players-online">Players Online: 2000</div>
@@ -29,6 +29,7 @@ class ChipsComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    page: state.page,
     tournament: state.tournament,
     player: state.player
   }

@@ -68,7 +68,7 @@ class CardAnimator {
       $card.animate({
         top: "0px",
         zIndex: 10
-      }, 200, "swing",
+      }, 100, "swing",
         function(){
           //TODO - this should all be held by some redux state, 
           //i dont link removing it here, perhaps the discarded

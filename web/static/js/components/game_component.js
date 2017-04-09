@@ -147,7 +147,7 @@ class GameComponent extends React.Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <div id="game-root">
+        <div id="game-root" className={this.props.page.tabs["game"]}>
           <div id="game-inner">
             <div id="game" className={this.resultClassName()} >
               <div id="shine"></div>
@@ -169,6 +169,7 @@ class GameComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    page: state.page,
     game: state.game,
     player: state.player
   }
