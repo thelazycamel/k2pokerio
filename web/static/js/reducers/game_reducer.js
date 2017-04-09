@@ -6,6 +6,10 @@ var gameReducer = function(state = {}, action) {
     case "GAME:PLAY":
       return state;
     case "GAME:DISCARD":
+      let cards = state.cards;
+      cards[action.card_index] = "discarded";
+      if(state.status == "river"){ cards = ["discarded", "discarded"] }
+      return Object.assign({}, state, {cards: cards});
       return state;
     case "GAME:FOLD":
        return state;

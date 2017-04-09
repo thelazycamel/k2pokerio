@@ -1,8 +1,5 @@
 const gameEventsMiddleware = store => next => action => {
   switch(action.type) {
-    case "GAME:ANIMATE_CARD":
-      App.cardAnimator.animate(action.card_id);
-      break;
     case "GAME:PLAY":
       App.gameChannel.push("game:play");
       break;
@@ -19,7 +16,6 @@ const gameEventsMiddleware = store => next => action => {
       App.gameChannel.push("game:bot_request");
       break;
     case "GAME:DATA_RECEIVED":
-      App.cardAnimator.discards(action.game);
       switch(action.game.status) {
         case "finished":
           App.playerChannel.push("player:get_current_score");

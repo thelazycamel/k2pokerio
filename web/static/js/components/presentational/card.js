@@ -1,11 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class Card extends React.Component {
-
-  componentDidMount(){
-    App.store.dispatch({type: "GAME:ANIMATE_CARD", card_id: this.cardId()});
-  }
 
   classNames() {
     return `card ${this.props.type}-card card-${this.props.card} ${this.props.best_card} ${this.props.winner}`;
@@ -17,11 +14,11 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className={this.classNames()}
-        data-card={this.props.index}
-        id={this.cardId()}>
+      <CSSTransitionGroup transitionName={this.cardId() + "-deal"} transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
+        <div className={this.classNames()} data-card={this.props.index} id={this.cardId()} key={this.cardId()}>
           {this.props.card}
         </div>
+      </CSSTransitionGroup>
     )
   }
 }

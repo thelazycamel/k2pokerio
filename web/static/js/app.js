@@ -27,7 +27,6 @@ import { createStore, applyMiddleware } from 'redux'
 import mainStore from "./reducers/main_store"
 
 /* Utils */
-import cardAnimator from "./utils/card_animator"
 
 /* pages */
 import tournamentShowPage from "./pages/tournament/show"
@@ -39,7 +38,6 @@ import pageEventsMiddleware from "./middleware/page_events_middleware"
 window.App = {
 
   init: function() {
-    this.cardAnimator = new cardAnimator();
     this.createReduxStore();
     this.connectSocket();
     this.setUpCurrentPage();
