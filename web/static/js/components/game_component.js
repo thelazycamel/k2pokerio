@@ -3,10 +3,24 @@ import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import Card from './presentational/card'
-import PlayerCard from './presentational/player_card'
 import Scoreboard from './presentational/scoreboard'
+import PlayerCard from './presentational/player_card'
 
 class GameComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.game.other_player_status == "discarded" && this.props.game.other_player_status != "discarded"){
+      console.log(nextProps.game.other_player_status, this.props.game.other_player_status)
+      this.setState({opponent_discarded: true});
+    } else {
+      this.setState({opponent_discarded: false});
+    }
+  }
 
   waitingForOpponent() {
     return this.props.game.status == "standby" ? true : false;
@@ -70,17 +84,33 @@ class GameComponent extends React.Component {
       let cards = this.props.game.table_cards.map((card, index) => {
         let bestCard = this.props.game.best_cards.includes(card) ? " best-card" : "";
         let winningCardClass = this.isAWinningCard(card);
-        return <Card card={card} index={index+1} best_card={bestCard} type="table" key={index} winner={winningCardClass} />
+        return <Card card={card} index={index+1} best_card={bestCard} type="table" key={index} winner={winningCardClass} discarded="" />
       });
       return cards;
     }
   }
 
+  // TODO all this changing discarded state should be set in K2poker
+  // and not dealt with here, this should just be the presentational layer
+  opponentDiscarded() {
+    let discards = ["",""];
+    if(this.state.opponent_discarded) {
+      if(this.props.game.status == "river") {
+        discards = ["discarded", "discarded"];
+      } else {
+        let index = Math.floor((Math.random() * 2));
+        discards[index] = "discarded";
+      }
+    }
+    return discards;
+  }
+
   renderOpponentCards() {
     if(this.waitingForOpponent()) { return };
+    let discarded = this.opponentDiscarded();
     let cards = this.opponentCards().map((card, index) => {
       let winningCardClass = this.isAWinningCard(card);
-      return <Card card={card} index={index+1} best_card="" type="opponent" key={index} winner={winningCardClass} />
+      return <Card card={card} index={index+1} best_card="" type="opponent" key={index} winner={winningCardClass} discarded={discarded[index]} />
     });
     return cards;
   }

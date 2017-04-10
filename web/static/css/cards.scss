@@ -633,18 +633,23 @@
   }
 }
 
-#player-card-1.discarded {
-  transform: rotate(-180deg);
-  background-image: url("/images/deck/card-back.svg") !important;
+.player-card.discarded {
+  transform: rotateX(180deg);
+  background-image: url("/images/deck/card-back.svg");
 }
 
-#player-card-2.discarded {
-  transform: rotate(180deg);
-  background-image: url("/images/deck/card-back.svg") !important;
-}
-
-.card.new-card {
-  transform: rotate(0deg);
+.player-card.new-card {
+  transform: rotateX(0deg);
   transition: transform 0.3s ease-in;
 }
 
+#opponent-card-1.discarded {
+  transform: rotateX(360deg);
+  transition: transform 0.5s ease-in;
+}
+
+#opponent-card-2.discarded {
+  transform: rotateX(360deg);
+  transition: transform 0.5s ease-in;
+  transition-delay: 0.1s;
+}

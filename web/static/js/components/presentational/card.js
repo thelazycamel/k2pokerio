@@ -5,7 +5,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 class Card extends React.Component {
 
   classNames() {
-    return `card ${this.props.type}-card card-${this.props.card} ${this.props.best_card} ${this.props.winner}`;
+    return `card ${this.props.type}-card card-${this.props.card} ${this.props.best_card} ${this.props.winner} ${this.props.discarded}`;
   }
 
   cardId() {

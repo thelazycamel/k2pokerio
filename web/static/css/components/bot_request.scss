@@ -11,7 +11,7 @@
     margin-left: -150px;
     margin-top: -150px;
     background-color: #74A124;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 5px 5px 5px 0px rgba(1,1,22,0.75);
     padding: 10px;
     &.show {
@@ -53,6 +53,7 @@
       .btn {
         margin: 10px;
         width: 115px;
+        border-radius: 7px;
       }
       .btn-danger {
         position: absolute;
