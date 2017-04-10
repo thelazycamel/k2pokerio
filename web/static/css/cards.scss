@@ -597,8 +597,8 @@
     z-index: 6;
     transition: all 0.3s ease-in;
   }
-}
 
+}
 .table-card-5-deal-appear {
   transform: translate(-150px, -400px);
   z-index: 100;
@@ -634,11 +634,16 @@
 }
 
 .player-card.discarded {
-  transform: rotateX(180deg);
+  transform: rotateX(360deg);
   background-image: url("/images/deck/card-back.svg");
 }
 
-.player-card.new-card {
+#player-card-1.new-card {
+  transform: rotateX(0deg);
+  transition: transform 0.3s ease-in;
+}
+
+#player-card-2.new-card {
   transform: rotateX(0deg);
   transition: transform 0.3s ease-in;
 }

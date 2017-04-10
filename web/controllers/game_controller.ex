@@ -5,6 +5,12 @@ defmodule K2pokerIo.GameController do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinCommand
 
+  #TODO just create a game "play" method
+  # tnen we can simply land on the game play route and it will
+  # join or wait for the next game, if you are part of a game
+  # within the utd then you should be given that game, otherwise
+  # join and find a new one
+
   def join(conn, _params) do
     #TODO move this check to see if they are already in a game to the join command
     if user_tournament_detail = get_user_tournament_detail(get_session(conn, :player_id)) do

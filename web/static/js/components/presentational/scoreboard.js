@@ -1,7 +1,21 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class Scoreboard extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.current_score != nextProps.current_score){
+      this.setState({animate: "animate"});
+    } else {
+      this.setState({animate: ""});
+    }
+  }
 
   buildScoreboard(){
     let score = "0000000" + this.props.current_score;
@@ -13,7 +27,7 @@ class Scoreboard extends React.Component {
     scores.splice(1, 0, "spacer")
     scores.splice(5, 0, "spacer");
     let elements = scores.map( (number, index) => {
-      return <span className={"number number-" + number} key={"score"+index}></span>
+      return <span className={"number number-" + number + " ani-num-" + index + " " + this.state.animate} key={"score"+index}></span>
     })
     return elements;
   }

@@ -59,8 +59,41 @@
       &.number-9 {
         background-position: -270px 0px;
       }
+      &.ani-num-0.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.6s;
+      }
+      &.ani-num-2.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.5s;
+      }
+      &.ani-num-3.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.4s;
+      }
+      &.ani-num-4.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.3s;
+      }
+      &.ani-num-6.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.2s;
+      }
+      &.ani-num-7.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+        transition-delay: 0.1s;
+      }
+      &.ani-num-8.animate {
+        transform: rotateX(360deg);
+        transition: transform 0.5s;
+      }
     }
   }
 }
-
 
