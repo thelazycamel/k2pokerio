@@ -70,27 +70,6 @@ defmodule K2pokerIo.GameChannel do
     end
   end
 
-  #this is wrong, i am sending new game join data for down the
-  #old channel id, i have to do something different here
-
-  def handle_in("game:next_game", _params, socket) do
-    player_id = socket.assigns[:player_id]
-    if utd = Repo.get_by(UserTournamentDetail, player_id: player_id) |> Repo.preload(:game) do
-       case JoinCommand.execute(utd) do
-        {:ok, game} -> broadcast! socket, "game:new_game", %{game_id: game.id, player_id: player_id}
-        _ -> nil
-      end
-    end
-    {:reply, :ok, socket}
-  end
-
-  def handle_out("game:new_game", %{game_id: game_id, player_id: player_id}, socket) do
-    if player_id == socket.assigns[:player_id] do
-      push socket, "game:new_game", %{game_id: game_id}
-    end
-    {:noreply, socket}
-  end
-
   def handle_out("game:new_game_data", _params, socket) do
     player_id = socket.assigns[:player_id]
     payload = GetDataCommand.execute(get_game_id(socket), player_id)

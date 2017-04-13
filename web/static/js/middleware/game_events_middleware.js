@@ -10,7 +10,10 @@ const gameEventsMiddleware = store => next => action => {
       App.gameChannel.push("game:fold");
       break;
     case "GAME:NEXT_GAME":
-      App.gameChannel.push("game:next_game");
+      App.gameChannel.leave().receive("ok", ()=> {
+        delete App.gameChannel
+        App.page.loadNewGame();
+      });
       break;
     case "GAME:BOT_REQUEST":
       App.gameChannel.push("game:bot_request");

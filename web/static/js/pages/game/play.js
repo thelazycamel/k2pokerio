@@ -27,9 +27,9 @@ class GamePlayPage extends page {
 
   setUpPage() {
     new tournamentChannel();
-    new gameChannel();
     new chatChannel();
     new playerChannel();
+    this.loadNewGame();
     this.initializeComponents();
     App.pageComponentManager = new PageComponentManager();
     App.pageComponentManager.init();
@@ -55,6 +55,10 @@ class GamePlayPage extends page {
 
   clearBotRequest() {
     clearTimeout(this.botPopupRequest);
+  }
+
+  loadNewGame() {
+    new gameChannel();
   }
 
   initializeLadderComponent() {
