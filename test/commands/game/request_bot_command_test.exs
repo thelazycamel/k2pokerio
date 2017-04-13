@@ -18,10 +18,10 @@ defmodule K2pokerIo.RequestBotCommandTest do
   test "It should do nothing if an opponent exists", context do
     {:ok, _} = JoinCommand.execute(context.p1_utd)
     {:ok, game} = JoinCommand.execute(context.p2_utd)
-    {:error, error} = RequestBotCommand.execute(game.id)
+    request = RequestBotCommand.execute(game.id)
     game_data = Game.decode_game_data(game.data)
     game_data_player_ids = Enum.map(game_data.players, fn(p) -> p.id end)
-    assert(error == "opponent_exists")
+    assert(request == {:error})
     assert(Enum.member?(game_data_player_ids, context.p2_utd.player_id))
     assert(game.player2_id == context.p2_utd.player_id)
   end
