@@ -17,7 +17,7 @@ defmodule K2pokerIo.Router do
   scope "/", K2pokerIo do
     pipe_through :browser # Use the default browser stack
 
-    resources "/games", GameController, only: [:show]
+    get "/games/play", GameController, :play
     post "/games/join", GameController, :join
     post "/anon-user", PageController, :anon_user_create
 

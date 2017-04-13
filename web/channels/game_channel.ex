@@ -70,6 +70,9 @@ defmodule K2pokerIo.GameChannel do
     end
   end
 
+  #this is wrong, i am sending new game join data for down the
+  #old channel id, i have to do something different here
+
   def handle_in("game:next_game", _params, socket) do
     player_id = socket.assigns[:player_id]
     if utd = Repo.get_by(UserTournamentDetail, player_id: player_id) |> Repo.preload(:game) do

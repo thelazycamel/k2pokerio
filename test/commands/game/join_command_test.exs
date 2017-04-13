@@ -45,7 +45,5 @@ defmodule K2pokerIo.JoinCommandTest do
     assert(p2_utd.game_id == game.id)
   end
 
-  # TODO create tests to check for expired games
-
 
 end

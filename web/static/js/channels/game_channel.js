@@ -1,27 +1,55 @@
 class GameChannel {
 
   constructor(){
-    let element = document.getElementById("game-holder");
-    let gameId = element.getAttribute("data-game");
-    if(!element || !gameId) { return; }
-    this.joinGameChannel(gameId, element);
+    let _this = this;
+    $.when(this.getGameId()).then(function() {
+      _this.joinGameChannel();
+      _this.setEventListeners()
+    });
   }
 
-  joinGameChannel(gameId, element) {
-    App.gameChannel = App.socket.channel("game:" + gameId);
-    let _this = this;
+  getGameId() {
+    $.ajax({
+      url: "/games/join",
+      method: "POST",
+      dataType: "json",
+      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', $("meta[name='csrf_token']").attr("content"))}
+    }).done(function(data){
+      console.log("joined response",data);
+      App.gameID = data.game_id;
+    }).fail(function(data){
+      alert("failed to join")
+      console.log(data);
+    });
+  }
+
+  joinGameChannel() {
+    App.gameChannel = App.socket.channel("game:" + App.gameID);
     App.gameChannel.join().receive("ok", function(resp) {
       App.gameChannel.push("game:refresh_data");
     }).receive("error", reason =>
       console.log("join failed")
     )
+  }
 
+  setEventListeners() {
     App.gameChannel.on("game:new_game_data", function(resp) {
+      console.log("****** new response ******");
+      console.log(App.gameID);
+      console.log(resp);
       App.store.dispatch({type: "GAME:DATA_RECEIVED", game: resp})
     });
 
+    App.gameChannel.onClose(function() {
+      alert("closing");
+    });
+
     App.gameChannel.on("game:new_game", function(resp) {
-      window.location = "/games/" + resp.game_id;
+      App.gameChannel.leave().receive("ok", ()=> {
+        alert("I have left the channel");
+        delete App.gameChannel
+        App.gameChannel = new GameChannel();
+      });
     });
 
   }

@@ -10,7 +10,7 @@
     <p><span class="highlighted">2000</span> players</p>
     <p>in the tournament</p>
     <div class="btn-k2poker-wrapper">
-      <button id="play-tournament" class="btn btn-large btn-k2poker">Play</button>
+      <a href="/games/play" id="play-tournament" class="btn btn-large btn-k2poker">Play</a>
     </div>
     <div class="center" id="bigred">
       <img src="/images/k2poker-bigred.png" alt="K2 Poker"/>

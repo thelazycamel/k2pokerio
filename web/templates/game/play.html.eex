@@ -1,5 +1,5 @@
 <div id="section-wrapper">
-  <section id="game-holder" data-tournament="<%= @tournament_id %>" data-game="<%= @game_id %>">
+  <section id="game-holder" data-tournament="<%= @tournament_id %>">
     <div id="game-root">
       <div id="game-inner">
         <div id="game">

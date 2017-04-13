@@ -19,7 +19,7 @@ import PageComponentManager from "../../utils/page_component_manager"
 
 import page from "../page"
 
-class GameShowPage extends page {
+class GamePlayPage extends page {
 
   constructor(opts={}) {
     super(opts);
@@ -86,7 +86,7 @@ class GameShowPage extends page {
   }
 
   initializeSideNavComponent() {
-    ReactDOM.render(<SideNavComponent store={App.store} page_name="game-show"/>, document.getElementById('nav-holder'));
+    ReactDOM.render(<SideNavComponent store={App.store} />, document.getElementById('nav-holder'));
   }
 
   initializeBotRequestComponent() {
@@ -95,4 +95,4 @@ class GameShowPage extends page {
 
 }
 
-export default GameShowPage;
+export default GamePlayPage;

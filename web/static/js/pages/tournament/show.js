@@ -18,34 +18,9 @@ class TournamentShowPage extends page {
     new tournamentChannel();
     new chatChannel(this.tournamentId);
     new playerChannel();
-    this.eventListeners();
     this.initializeLadderComponent();
     this.initializeChatComponent();
   }
-
-  eventListeners(){
-    let playButton = document.getElementById("play-tournament");
-    let _this = this;
-    if(playButton){
-      playButton.addEventListener("click", function(){
-        _this.playButtonClicked();
-      });
-    }
-  }
-
-  playButtonClicked() {
-    $.ajax({
-      url: "/games/join",
-      method: "POST",
-      dataType: "json",
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', $("meta[name='csrf_token']").attr("content"))}
-    }).done(function(data){
-      window.location = `/games/${data.game_id}`;
-    }).fail(function(data){
-      alert("failed to join")
-      console.log(data);
-    });
-   }
 
   initializeLadderComponent() {
     ReactDOM.render(<LadderComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('ladder-holder'));
