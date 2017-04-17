@@ -3,6 +3,7 @@ defmodule K2pokerIo.TournamentController do
   use K2pokerIo.Web, :controller
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.Commands.Tournament.JoinCommand
 
   # TODO the index will only be for logged in players
   # and should list all the current tournaments available
@@ -13,7 +14,7 @@ defmodule K2pokerIo.TournamentController do
   # in the future an admin (manager) should be able to create open tournaments
   # in the backend.
   #
-  def index(conn, params) do
+  def index(conn, _) do
     tournaments = Repo.all(Tournament)
     render(conn, "index.html", tournaments: tournaments)
   end
@@ -31,6 +32,13 @@ defmodule K2pokerIo.TournamentController do
       true ->
       detail = Repo.get_by(UserTournamentDetail, player_id: player_id)
       render(conn, "show.html", tournament: tournament, player_id: player_id, username: detail.username, current_score: detail.current_score)
+    end
+  end
+
+  def join(conn, %{"id" => id}) do
+    case JoinCommand.execute(current_user(conn), id) do
+      {:ok} -> redirect conn, to: tournament_path(conn, :show, id)
+      {:error} -> redirect conn, to: tournament_path(conn, :index) #with a flash message
     end
   end
 

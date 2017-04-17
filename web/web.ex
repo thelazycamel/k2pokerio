@@ -19,7 +19,6 @@ defmodule K2pokerIo.Web do
   below.
   """
 
-  import K2pokerIo.Session, only: [current_user: 1, logged_in?: 1]
 
   def model do
     quote do
@@ -41,6 +40,7 @@ defmodule K2pokerIo.Web do
 
       import K2pokerIo.Router.Helpers
       import K2pokerIo.Gettext
+      import K2pokerIo.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 
@@ -50,6 +50,7 @@ defmodule K2pokerIo.Web do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
+      import K2pokerIo.Session, only: [current_user: 1, logged_in?: 1]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML

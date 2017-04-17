@@ -15,7 +15,7 @@
 
   <body class="<%= body_classes(@conn) %>" data-page="<%= body_page_data(@conn) %>">
 
-    <%= render "_header.html" %>
+    <%= render "_header.html", conn: @conn %>
 
     <div id="main-content" class="container">
       <main role="main">

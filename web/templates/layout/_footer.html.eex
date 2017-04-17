@@ -5,12 +5,22 @@
       <ul class="footer-nav">
         <li><a href="#">About<span class="reflection">About</span></a></li>
         <li><a href="#">Partners<span class="reflection">Partners</span></a></li>
-        <li><a href="#">Poker<span class="reflection">Poker</a></li>
-        <li><a href="#">Rules<span class="reflection">Rules</a></a></li>
-        <li><a href="#">Bonuses<span class="reflection">Bonuses</a></a></li>
-        <li><a href="#">Info<span class="reflection">Info</a></a></li>
-        <li><a href="#">K2Poker App<span class="reflection">K2Poker App</a></a></li>
-        <li><a href="#">Sign Up<span class="reflection">Sign-up</a></a></li>
+        <li><a href="#">Poker<span class="reflection">Poker</span></a></li>
+        <li><a href="#">Rules<span class="reflection">Rules</span></a></li>
+        <li><a href="#">Info<span class="reflection">Info</span></a></li>
+        <li><a href="#">K2Poker App<span class="reflection">K2Poker App</span></a></li>
+        <%= unless logged_in?(@conn) do %>
+          <li>
+            <%= link to: registration_path(@conn, :new) do %>
+              Sign-up<span class='reflection'>Sign-up</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link to: session_path(@conn, :new) do %>
+              Login<span class='reflection'>Login</span>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
 
       <img src="<%= static_path(@conn, "/images/footer-logo.png") %>" alt="K2Poker.io" id="footer-logo">

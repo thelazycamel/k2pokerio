@@ -32,12 +32,13 @@ defmodule K2pokerIo.UserSocket do
           # return error is user_id is blank
           player_id == "" -> :error
           player_id == nil -> :error
-          # simple check to see if user is an anon user
+          # simple check to see if user is an anon_user or user
           String.match?(player_id, ~r/^anon/) ->
             socket = assign(socket, :player_id, player_id)
             {:ok, socket}
-          #TODO match a user_id to a db user and return its user_id to :player_id
-          # user = Repo.get!(User, user_id)
+          String.match?(player_id, ~r/^user/) ->
+            socket = assign(socket, :player_id, player_id)
+            {:ok, socket}
           true -> :error
         end
       {:error, _} -> :error

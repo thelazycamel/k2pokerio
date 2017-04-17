@@ -15,9 +15,9 @@ defmodule K2pokerIo.RegistrationController do
     case Registration.create(changeset, Repo) do
       {:ok, changeset} ->
         conn
-        |> put_session(:current_user, changeset.id)
+        |> put_session(:player_id, "user-#{changeset.id}")
         |> put_flash(:info, "Your account was created")
-        |> redirect(to: "/")
+        |> redirect(to: "/tournaments/")
       {:error, changeset} ->
         conn
         |> put_flash(:info, "Unable to create account")

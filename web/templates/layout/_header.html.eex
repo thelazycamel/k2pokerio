@@ -3,8 +3,14 @@
     <a class="navbar-brand main-title" href="#">K2Poker.io</a>
     <div id="header-nav-component-holder"></div>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Sign-Up</a></li>
-        <li id="hamburger-menu"><a href="#"></a></li>
+        <%= if logged_in?(@conn) do %>
+          <li><a href="/profile"><%= current_user(@conn).username %></a></li>
+          <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
+        <% else %>
+          <li><%= link "Sign-up", to: registration_path(@conn, :new) %></li>
+          <li><%= link "Login", to: session_path(@conn, :new) %></li>
+          <li id="hamburger-menu"><a href="#"></a></li>
+        <% end %>
         </li>
       </ul>
   </div>
