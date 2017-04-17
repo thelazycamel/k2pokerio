@@ -40,6 +40,7 @@ defmodule K2pokerIo.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:comeonin, "~> 1.0"},
       {:k2poker, path: "~/dev/k2_poker/elixir/k2poker"}
     ]
   end

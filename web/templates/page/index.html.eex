@@ -2,6 +2,10 @@
 
 <div id="homepage">
 
+  <div class="btn-k2poker-wrapper">
+    <%= link "Log In", to: session_path(@conn, :new), class: "btn btn-lg btn-k2poker" %>
+  </div>
+
   <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
 
     <div class="input-group">
@@ -15,7 +19,8 @@
   <% end %>
 
   <div class="btn-k2poker-wrapper">
-   <button class="btn btn-lg btn-k2poker">Sign Up</button>
+    <%= link "Sign Up", to: registration_path(@conn, :new), class: "btn btn-lg btn-k2poker" %>
   </div>
+
 
 </div>

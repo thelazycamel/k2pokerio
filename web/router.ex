@@ -22,6 +22,11 @@ defmodule K2pokerIo.Router do
     post "/anon-user", PageController, :anon_user_create
 
     resources "/tournaments", TournamentController, only: [:index, :show]
+    resources "/registrations", RegistrationController, only: [:new, :create]
+
+    get    "/login",  SessionController, :new
+    post   "/login",  SessionController, :create
+    delete "/logout", SessionController, :delete
 
     get "/", PageController, :index
   end

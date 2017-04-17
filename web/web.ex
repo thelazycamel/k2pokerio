@@ -1,5 +1,7 @@
 defmodule K2pokerIo.Web do
   @moduledoc """
+
+
   A module that keeps using definitions for controllers,
   views and so on.
 
@@ -12,9 +14,12 @@ defmodule K2pokerIo.Web do
   controller, etc, so keep them short and clean, focused
   on imports, uses and aliases.
 
+
   Do NOT define functions inside the quoted expressions
   below.
   """
+
+  import K2pokerIo.Session, only: [current_user: 1, logged_in?: 1]
 
   def model do
     quote do
