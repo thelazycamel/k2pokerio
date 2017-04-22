@@ -10,8 +10,6 @@ defmodule K2pokerIo.GameController do
       if utd = get_user_tournament_detail(player_id) do
         render(conn, "play.html", tournament_id: utd.tournament_id, player_id: player_id)
       else
-        #TODO change this to redirect to tournament home page when tournaments have been set up
-        # for logged in users
         redirect(conn, to: "/tournament/1")
       end
       redirect(conn, to: "/")

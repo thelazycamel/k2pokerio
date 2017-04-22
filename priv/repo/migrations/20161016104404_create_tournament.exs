@@ -15,7 +15,7 @@ defmodule K2pokerIo.Repo.Migrations.CreateTournament do
       add :start_time, :datetime
       add :player_ids, {:array, :string}
 
-      timestamps
+      timestamps()
 
     end
 

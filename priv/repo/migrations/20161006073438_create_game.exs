@@ -10,7 +10,7 @@ defmodule K2pokerIo.Repo.Migrations.CreateGame do
       add :status, :string
       add :data, :binary
 
-      timestamps
+      timestamps()
 
     end
 

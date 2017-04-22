@@ -1,5 +1,7 @@
 defmodule K2pokerIo.UserSocket do
   use Phoenix.Socket
+  alias K2pokerIo.Repo
+  alias K2pokerIo.User
 
   ## Channels
   channel "tournament:*", K2pokerIo.TournamentChannel
@@ -37,7 +39,9 @@ defmodule K2pokerIo.UserSocket do
             socket = assign(socket, :player_id, player_id)
             {:ok, socket}
           String.match?(player_id, ~r/^user/) ->
+            user_id = List.last(String.split(player_id, "-"))
             socket = assign(socket, :player_id, player_id)
+             |> assign(:current_user, Repo.get(User, user_id))
             {:ok, socket}
           true -> :error
         end

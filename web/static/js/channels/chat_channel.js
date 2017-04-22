@@ -12,6 +12,11 @@ class ChatChannel {
     ).receive("error", reason =>
       console.log("join failed")
     )
+
+    App.chatChannel.on("chat:comment", function(resp) {
+      App.store.dispatch({type: "CHAT:COMMENT_RECEIVED", comment: resp})
+    });
+
   }
 
 }

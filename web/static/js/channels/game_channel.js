@@ -7,7 +7,6 @@ class GameChannel {
   }
 
   joinGameChannel(data) {
-    console.log("join data: ", data);
     App.gameChannel = App.socket.channel("game:" + data.game_id);
     App.gameChannel.join().receive("ok", function(resp) {
       App.gameChannel.push("game:refresh_data");

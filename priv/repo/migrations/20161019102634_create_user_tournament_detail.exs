@@ -12,7 +12,7 @@ defmodule K2pokerIo.Repo.Migrations.CreateUserTournamentDetail do
       add :current_score, :integer
       add :rebuys, {:array, :integer}
 
-      timestamps
+      timestamps()
 
     end
 

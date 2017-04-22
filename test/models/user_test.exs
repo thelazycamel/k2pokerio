@@ -3,8 +3,8 @@ defmodule K2pokerIo.UserTest do
 
   alias K2pokerIo.User
 
-  @valid_attrs %{crypted_password: "some content", email: "some content"}
-  @invalid_attrs %{}
+  @valid_attrs %{password: "abc123", email: "bob@test.com", username: "bob"}
+  @invalid_attrs %{password: "abc123", email: "wrong"}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)

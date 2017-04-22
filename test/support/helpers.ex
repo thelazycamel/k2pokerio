@@ -3,6 +3,8 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
   alias K2pokerIo.Tournament
+  alias K2pokerIo.User
+  alias K2pokerIo.Chat
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
@@ -25,6 +27,14 @@ defmodule K2pokerIo.Test.Helpers do
 
   def create_tournament do
     Repo.insert!(%Tournament{name: "K2 Summit Ascent Test", default: true, private: false, finished: false})
+  end
+
+  def create_user(username) do
+    Repo.insert!(%User{username: username, email: "#{username}@test.com", password: "abc123"})
+  end
+
+  def create_chat(tournament_id, user_id, comment, admin) do
+    Repo.insert!(%Chat{tournament_id: tournament_id, user_id: user_id, comment: comment, admin: admin})
   end
 
   def join_game(user_tournament_detail) do
