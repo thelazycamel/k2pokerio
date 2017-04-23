@@ -3,11 +3,15 @@
 var chatReducer = function(state = {comments:[]}, action) {
 
   switch(action.type) {
-    case "CHAT:CREATE":
+    case "CHAT:CREATE_COMMENT":
       return state;
       break;
     case "CHAT:COMMENT_RECEIVED":
-      return { chosen: [...state.comments, action.comment] }
+      return { comments: [...state.comments, action.comment] }
+      break;
+    case "CHAT:NEW_LIST_RECEIVED":
+      console.log("HERE: ", action.comments);
+      return { comments: action.comments }
       break;
     default:
       return state;

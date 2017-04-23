@@ -34,17 +34,25 @@ import tournamentIndexPage from "./pages/tournament/index"
 import gamePlayPage from "./pages/game/play"
 import gameEventsMiddleware from "./middleware/game_events_middleware"
 import pageEventsMiddleware from "./middleware/page_events_middleware"
+import chatEventsMiddleware from "./middleware/chat_events_middleware"
 
 window.App = {
 
   init: function() {
+    this.setConstants();
     this.createReduxStore();
     this.connectSocket();
     this.setUpCurrentPage();
   },
 
+  setConstants: function() {
+    this.settings = {}
+    let configurations = document.getElementsByTagName("body")[0].dataset;
+    this.settings = Object.assign({}, configurations);
+  },
+
   createReduxStore: function() {
-    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware);
+    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware, chatEventsMiddleware);
     this.store = createStore(mainStore, middleware);
   },
 

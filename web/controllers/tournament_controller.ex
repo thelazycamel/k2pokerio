@@ -31,7 +31,7 @@ defmodule K2pokerIo.TournamentController do
         redirect conn, to: page_path(conn, :index)
       true ->
       detail = Repo.get_by(UserTournamentDetail, player_id: player_id)
-      render(conn, "show.html", tournament: tournament, player_id: player_id, username: detail.username, current_score: detail.current_score)
+      render(conn, "show.html", player_id: player_id, tournament: tournament, username: detail.username, logged_in: logged_in?(conn), tournament_id: tournament.id)
     end
   end
 

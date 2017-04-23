@@ -5,8 +5,17 @@ defmodule K2pokerIo.LayoutView do
     "#{get_controller(conn)} #{get_action(conn)}"
   end
 
-  def body_page_data(conn) do
-    "#{get_controller(conn)}#{String.capitalize(get_action(conn))}"
+  def body_data(conn) do
+    Enum.map(data_for_app(conn), fn ({k,v}) -> "data-#{k}=#{v}" end)
+    |> Enum.join(" ")
+  end
+
+  def data_for_app(conn) do
+    [
+      page: "#{get_controller(conn)}#{String.capitalize(get_action(conn))}",
+      tournament_id: conn.assigns[:tournament_id],
+      logged_in: conn.assigns[:logged_in]
+    ]
   end
 
   def user_token(player_id) do

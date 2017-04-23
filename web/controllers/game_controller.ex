@@ -8,7 +8,7 @@ defmodule K2pokerIo.GameController do
   def play(conn, _params) do
     if player_id = get_session(conn, :player_id) do
       if utd = get_user_tournament_detail(player_id) do
-        render(conn, "play.html", tournament_id: utd.tournament_id, player_id: player_id)
+        render(conn, "play.html", player_id: player_id, tournament_id: utd.tournament_id, logged_in: logged_in?(conn))
       else
         redirect(conn, to: "/tournament/1")
       end

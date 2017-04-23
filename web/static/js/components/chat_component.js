@@ -2,8 +2,24 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
+import Comment from './presentational/comment'
 
 class ChatComponent extends React.Component {
+
+  handleKeyPress(e) {
+    if(e.key == "Enter") {
+      App.store.dispatch({type: "CHAT:CREATE_COMMENT", comment: e.currentTarget.value});
+      e.currentTarget.value = "";
+    }
+  }
+
+  renderComments() {
+    if(this.props.chat.comments) {
+      return this.props.chat.comments.map( (comment) =>
+        <Comment comment={comment} key={comment.id} />
+      )
+    }
+  }
 
   render() {
     return (<Provider store={this.props.store}>
@@ -11,9 +27,9 @@ class ChatComponent extends React.Component {
           <div id="chat-inner">
             <h2>Tournament Name</h2>
             <ul id="chats">
-              <li><span className="chat-user">Bob</span><span className="chat-text">This is a comment This is a comment This is a comment This is a comment This is a comment This is a comment</span></li>
+            { this.renderComments() }
             </ul>
-            <input type="text" id="new-chat" placeholder=">"/>
+            <input type="text" id="new-chat" onKeyPress={this.handleKeyPress.bind(this)} />
           </div>
         </div>
       </Provider>)
