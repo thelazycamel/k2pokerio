@@ -64,7 +64,7 @@ window.App = {
   },
 
   setUpCurrentPage: function(){
-    let currentPage = this.pages()[$("body").data("page")]
+    let currentPage = this.pages()[$("body").data("page")];
     this.page = new currentPage;
   },
 

@@ -3,6 +3,11 @@ import ReactDOM from "react-dom"
 
 class Comment extends React.Component {
 
+  componentDidMount() {
+    let el = document.getElementById("comment-" +this.props.comment.id);
+    el.scrollIntoView();
+  }
+
   render() {
     return (
       <li className="chat-comment" id={"comment-"+this.props.comment.id}>
