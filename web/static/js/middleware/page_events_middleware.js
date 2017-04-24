@@ -7,7 +7,6 @@ const pageEventsMiddleware = store => next => action => {
     case "PAGE:CLEAR_BOT_POPUP":
       App.page.clearBotRequest();
       break;
-    default:
   }
   next(action);
 };

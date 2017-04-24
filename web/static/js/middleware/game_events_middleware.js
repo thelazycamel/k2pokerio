@@ -35,7 +35,6 @@ const gameEventsMiddleware = store => next => action => {
           App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
           App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
       }
-    default:
   }
   next(action);
 };

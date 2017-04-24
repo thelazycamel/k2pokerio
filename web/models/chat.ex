@@ -7,7 +7,6 @@ defmodule K2pokerIo.Chat do
     belongs_to :tournament, K2pokerIo.Tournament
     field :comment, :string
     field :admin, :boolean
-
     timestamps()
   end
 
