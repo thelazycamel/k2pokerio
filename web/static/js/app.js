@@ -29,6 +29,7 @@ import mainStore from "./reducers/main_store"
 /* Utils */
 
 /* pages */
+import defaultPage from "./pages/default"
 import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
 import gamePlayPage from "./pages/game/play"
@@ -63,17 +64,15 @@ window.App = {
     }
   },
 
-  setUpCurrentPage: function(){
-    let currentPage = this.pages()[$("body").data("page")];
-    this.page = new currentPage;
+  pages: {
+    "gamePlay":        gamePlayPage,
+    "tournamentShow":  tournamentShowPage,
+    "tournamentIndex": tournamentIndexPage
   },
 
-
-  pages: function() {
-    return { "gamePlay":        gamePlayPage,
-             "tournamentShow":  tournamentShowPage,
-             "tournamentIndex": tournamentIndexPage
-    }
+  setUpCurrentPage: function(){
+    let currentPage = this.pages[$("body").data("page")] || defaultPage;
+    this.page = new currentPage;
   }
 
 };

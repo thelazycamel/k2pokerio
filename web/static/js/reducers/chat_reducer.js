@@ -10,7 +10,6 @@ var chatReducer = function(state = {comments:[]}, action) {
       return { comments: [...state.comments, action.comment] }
       break;
     case "CHAT:NEW_LIST_RECEIVED":
-      console.log("HERE: ", action.comments);
       return { comments: action.comments }
       break;
     default:

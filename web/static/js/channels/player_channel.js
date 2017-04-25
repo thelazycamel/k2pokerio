@@ -15,7 +15,7 @@ class PlayerChannel {
     )
 
     App.playerChannel.on("player:updated_score", function(resp) {
-      App.store.dispatch({type: "PLAYER:UPDATE_PLAYER_SCORE", player: resp})
+      App.store.dispatch({type: "PLAYER:UPDATE_PLAYER_SCORE", player: resp});
     });
 
   }

@@ -25,14 +25,13 @@
       }
       span.chat-user {
         display: block;
-        width: 60px;
         color: #c1c1c1;
         overflow: hidden;
-        flex-basis: 15%;
+        flex-basis: 20%;
       }
       span.chat-text {
         display: block;
-        flex-basis: 85%;
+        flex-basis: 80%;
       }
     }
 
@@ -46,10 +45,17 @@
       border-top: none;
       line-height: 1.5em;
       padding-left: 10px;
-      font-size: 1.5em;
+      font-size: 1em;
       height: 40px;
       color: #ffffff;
       border-radius: 0px 0px 10px 10px;
+      &.logged-in {
+        padding-left: 35px;
+        font-size: 1.5em;
+        background-image: url("/images/input-background.png");
+        background-repeat: no-repeat;
+        background-position: 10px 12px;
+      }
     }
   }
 }
@@ -122,12 +128,11 @@
       display: none;
       height: auto;
       top: 0px;
-      background: none;
       border-radius: 10px;
       width: 320px;
       height: 554px;
       ul#chats {
-        height: 504px;
+        height: 474px;
       }
     }
 

@@ -11,7 +11,7 @@ const gameEventsMiddleware = store => next => action => {
       break;
     case "GAME:NEXT_GAME":
       App.gameChannel.leave().receive("ok", ()=> {
-        delete App.gameChannel
+        delete App.gameChannel;
         App.page.loadNewGame();
       });
       break;

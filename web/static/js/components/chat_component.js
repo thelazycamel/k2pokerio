@@ -21,6 +21,14 @@ class ChatComponent extends React.Component {
     }
   }
 
+  renderInput() {
+    if(App.settings.logged_in == "true"){
+      return <input type="text" className="logged-in" id="new-chat" onKeyPress={this.handleKeyPress.bind(this)} />
+    } else {
+      return <input type="text" id="new-chat" placeholder="Log in to join the conversation" disabled />
+    }
+ }
+
   render() {
     return (<Provider store={this.props.store}>
         <div id="chat-root" className={this.props.page.tabs["chat"]}>
@@ -29,7 +37,7 @@ class ChatComponent extends React.Component {
             <ul id="chats">
             { this.renderComments() }
             </ul>
-            <input type="text" id="new-chat" onKeyPress={this.handleKeyPress.bind(this)} />
+            { this.renderInput() }
           </div>
         </div>
       </Provider>)

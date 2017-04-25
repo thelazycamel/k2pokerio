@@ -1,14 +1,11 @@
 class TournamentChannel {
 
   constructor(){
-    let element = document.getElementById("ladder-holder");
-    let tournamentId = element.getAttribute("data-tournament");
-    if(!element || !tournamentId) { return; }
-    this.joinTournamentChannel(tournamentId, element);
+    this.joinTournamentChannel();
   }
 
-  joinTournamentChannel(tournamentId, element) {
-    console.log(App.socket);
+  joinTournamentChannel() {
+    let tournamentId = App.settings.tournament_id;
     App.tournamentChannel = App.socket.channel("tournament:" + tournamentId);
     App.tournamentChannel.join().receive("ok", function(resp){
       console.log(`initialized the Tournament channel for Tournament: ${tournamentId}`);

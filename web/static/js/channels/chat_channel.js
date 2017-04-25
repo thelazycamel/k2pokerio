@@ -2,7 +2,7 @@ class ChatChannel {
 
   constructor() {
     if(App.settings.tournament_id){
-      this.joinChatChannel()
+      this.joinChatChannel();
     }
   }
 
@@ -16,11 +16,11 @@ class ChatChannel {
     )
 
     App.chatChannel.on("chat:new_list", function(resp){
-      App.store.dispatch({type: "CHAT:NEW_LIST_RECEIVED", comments: resp.comments})
+      App.store.dispatch({type: "CHAT:NEW_LIST_RECEIVED", comments: resp.comments});
     });
 
     App.chatChannel.on("chat:new_comment", function(resp) {
-      App.store.dispatch({type: "CHAT:COMMENT_RECEIVED", comment: resp})
+      App.store.dispatch({type: "CHAT:COMMENT_RECEIVED", comment: resp});
     });
 
   }
