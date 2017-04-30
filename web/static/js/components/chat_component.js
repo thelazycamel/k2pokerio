@@ -33,6 +33,7 @@ class ChatComponent extends React.Component {
     return (<Provider store={this.props.store}>
         <div id="chat-root" className={this.props.page.tabs["chat"]}>
           <div id="chat-inner">
+            <div id="chat-fader"></div>
             <h2>Tournament Name</h2>
             <ul id="chats">
             { this.renderComments() }
