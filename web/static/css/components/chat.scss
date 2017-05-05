@@ -33,16 +33,24 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-      }
-      span.chat-user {
-        display: block;
-        color: #c1c1c1;
-        overflow: hidden;
-        flex-basis: 20%;
-      }
-      span.chat-text {
-        display: block;
-        flex-basis: 80%;
+        span.chat-user {
+          display: block;
+          color: #c1c1c1;
+          overflow: hidden;
+          flex-basis: 20%;
+        }
+        span.chat-text {
+          display: block;
+          flex-basis: 80%;
+        }
+        &.admin {
+          span.chat-user {
+            color: #a1750b;
+          }
+          span.chat-text {
+            color: #a1750b;
+          }
+        }
       }
     }
 

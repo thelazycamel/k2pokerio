@@ -4,7 +4,11 @@ defmodule K2pokerIo.ChatChannel do
   alias K2pokerIo.Commands.Chat.CreateCommentCommand
 
   def join("chat:" <> tournament_id, _params, socket) do
-    send self(), {:after_join, tournament_id}
+    username = case socket.assigns[:current_user] do
+      nil -> nil
+      _ -> socket.assigns[:current_user].username
+    end
+    send self(), {:after_join, tournament_id: tournament_id, username: username}
     {:ok, socket}
   end
 
@@ -21,9 +25,13 @@ defmodule K2pokerIo.ChatChannel do
     {:noreply, socket}
   end
 
-  def handle_info({:after_join, tournament_id}, socket) do
+  def handle_info({:after_join, tournament_id: tournament_id, username: username}, socket) do
     {tournament_id, _} = Integer.parse(tournament_id)
     comments = Chat.get_ten_json(tournament_id)
+    if username do
+      dom_id = :rand.uniform(100000000)
+      broadcast! socket, "chat:new_comment", %{username: username, comment: "has joined the tournament", admin: true, id: "admin-#{dom_id}"}
+    end
     push socket, "chat:new_list", %{comments: comments}
     {:noreply, socket}
   end

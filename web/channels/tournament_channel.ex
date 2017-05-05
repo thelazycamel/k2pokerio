@@ -1,18 +1,18 @@
 defmodule K2pokerIo.TournamentChannel do
   use K2pokerIo.Web, :channel
-  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Tournament.GetPlayerCount
   alias K2pokerIo.UserTournamentDetail
 
   def join("tournament:" <> tournament_id, _params, socket) do
-    IO.puts "***** You are in the Tournament Channel for " <> tournament_id <> " *****"
-    :timer.send_interval(20000, :ping)
+    send self(), {:after_join, tournament_id}
     {:ok, socket}
   end
 
-  def handle_info(:ping, socket) do
-    count = socket.assigns[:count] || 1
-    push socket, "ping", %{count: count}
-    {:noreply, assign(socket, :count, count+1)}
+  def handle_info({:after_join, tournament_id}, socket) do
+    {tournament_id, _} = Integer.parse(tournament_id)
+    player_count = GetPlayerCount.execute(tournament_id)
+    broadcast! socket, "tournament:update_count", %{player_count: player_count}
+    {:noreply, socket}
   end
 
 

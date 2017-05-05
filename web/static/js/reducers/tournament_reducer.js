@@ -3,9 +3,9 @@
 var tournamentReducer = function(state = {}, action) {
 
   switch(action.type) {
-    case "TOURNAMENT:DATA_RECEIVED":
-      console.log("Tournament data received");
-      return state;
+    case "TOURNAMENT:UPDATE_COUNT":
+      console.log("HERE: COUNT: ", action)
+      return Object.assign({}, state, {player_count: action.player_count});
     default:
       return state;
   }

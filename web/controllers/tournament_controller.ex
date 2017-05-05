@@ -19,26 +19,10 @@ defmodule K2pokerIo.TournamentController do
     render(conn, "index.html", tournaments: tournaments)
   end
 
-  # TODO once logged in users are created we need to check
-  # if user has access to the tournament
-  # To start with I will just be using the ONE tournament.
-  #
-  def show(conn, %{"id" => id}) do
-    tournament = Repo.get!(Tournament, id)
-    player_id = get_session(conn, :player_id)
-    cond do
-      player_id == nil ->
-        redirect conn, to: page_path(conn, :index)
-      true ->
-      detail = Repo.get_by(UserTournamentDetail, player_id: player_id)
-      render(conn, "show.html", player_id: player_id, tournament: tournament, username: detail.username, logged_in: logged_in?(conn), tournament_id: tournament.id)
-    end
-  end
-
   def join(conn, %{"id" => id}) do
     case JoinCommand.execute(current_user(conn), id) do
-      {:ok} -> redirect conn, to: tournament_path(conn, :show, id)
-      {:error} -> redirect conn, to: tournament_path(conn, :index) #with a flash message
+      {:ok} -> redirect conn, to: game_path(conn, :play)
+      {:error} -> redirect conn, to: page_path(conn, :index)
     end
   end
 

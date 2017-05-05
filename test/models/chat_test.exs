@@ -26,7 +26,7 @@ defmodule K2pokerIo.ChatTest do
     assert Enum.count(comments) == 10
     first_comment = List.first(comments)
     assert first_comment[:username] == "stu"
-    assert first_comment[:comment] == "11th comment for K2 Summit Ascent Test"
+    assert first_comment[:comment] == "2nd comment for K2 Summit Ascent Test"
   end
 
 end

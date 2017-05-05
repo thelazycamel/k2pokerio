@@ -16,7 +16,7 @@ class ChipsComponent extends React.Component {
         <div id="chips-root" className={this.props.page.tabs["chips"]}>
           <div id="chips-inner">
             <Scoreboard current_score={this.props.player.current_score} key="tournament" />
-            <div className="players-online">Players Online: 2000</div>
+            <div className="players-online">No. Players: {this.props.tournament.player_count}</div>
             <div className="rebuys">Rebuys: 128, 1024</div>
             <div className={this.chipsClass()} id="player-chips"></div>
           </div>

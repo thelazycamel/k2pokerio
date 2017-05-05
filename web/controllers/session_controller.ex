@@ -4,7 +4,11 @@ defmodule K2pokerIo.SessionController do
   alias K2pokerIo.Repo
 
   def new(conn, _params) do
-    render conn, "new.html"
+    if logged_in?(conn) do
+      redirect conn, to: tournament_path(conn, :index)
+    else
+      render conn, "new.html"
+    end
   end
 
   def create(conn, %{"session" => session_params}) do

@@ -30,7 +30,6 @@ import mainStore from "./reducers/main_store"
 
 /* pages */
 import defaultPage from "./pages/default"
-import tournamentShowPage from "./pages/tournament/show"
 import tournamentIndexPage from "./pages/tournament/index"
 import gamePlayPage from "./pages/game/play"
 import gameEventsMiddleware from "./middleware/game_events_middleware"
@@ -66,7 +65,6 @@ window.App = {
 
   pages: {
     "gamePlay":        gamePlayPage,
-    "tournamentShow":  tournamentShowPage,
     "tournamentIndex": tournamentIndexPage
   },
 
