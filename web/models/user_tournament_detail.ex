@@ -4,12 +4,15 @@ defmodule K2pokerIo.UserTournamentDetail do
   #TODO look at expiring these after 24 hours of no updates
   # or moving them into a (redis) session store to automatically expire
 
+  #TODO as we will have multiple utds per user, dont think this can be a redis store
+  # need to create index for player-id
+
   schema "user_tournament_details" do
 
-    field :player_id, :string
+    field :player_id, :string #note - cant belong to user because of anon-user! 
     field :username, :string
     belongs_to :tournament, K2pokerIo.Tournament
-    belongs_to :game, K2pokerIo.Game #SHOULDNT THIS BE HAS ONE GAME ?
+    belongs_to :game, K2pokerIo.Game
     field :current_score, :integer
     field :rebuys, {:array, :integer}
 

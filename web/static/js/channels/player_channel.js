@@ -9,7 +9,7 @@ class PlayerChannel {
     App.playerChannel = App.socket.channel("player:" + window.userToken);
 
     App.playerChannel.join().receive("ok", function(resp) {
-      App.playerChannel.push("player:get_current_score");
+      App.playerChannel.push("player:get_current_score", {tournament_id: App.settings.tournament_id});
     }).receive("error", reason =>
       console.log("join failed")
     )

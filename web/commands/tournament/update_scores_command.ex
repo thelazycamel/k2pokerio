@@ -36,7 +36,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
   end
 
   defp update_scores(game, player_id, player_data) do
-    utd = get_user_tournament_detail(player_id)
+    utd = get_user_tournament_detail(player_id, game.tournament_id)
     score = utd.current_score
     new_score = case player_data.result.status do
       "win" -> score * 2
@@ -97,8 +97,8 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
     game
   end
 
-  defp get_user_tournament_detail(player_id) do
-    Repo.get_by(UserTournamentDetail, player_id: player_id) |> Repo.preload([:game, :tournament])
+  defp get_user_tournament_detail(player_id, tournament_id) do
+    Repo.get_by(UserTournamentDetail, player_id: player_id, tournament_id: tournament_id) |> Repo.preload([:game, :tournament])
   end
 
 end

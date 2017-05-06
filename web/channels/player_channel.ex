@@ -15,9 +15,9 @@ defmodule K2pokerIo.PlayerChannel do
     end
   end
 
-  def handle_in("player:get_current_score", _params, socket) do
-    count = socket.assigns[:count] || 1
-    utd = Repo.get_by(UserTournamentDetail, player_id: socket.assigns[:player_id])
+  def handle_in("player:get_current_score", %{"tournament_id" => tournament_id}, socket) do
+    {tournament_id, _} = Integer.parse(tournament_id)
+    utd = Repo.get_by(UserTournamentDetail, player_id: socket.assigns[:player_id], tournament_id: tournament_id)
     push socket, "player:updated_score", %{current_score: utd.current_score, username: utd.username}
     {:noreply, socket}
   end

@@ -1,14 +1,23 @@
 class GameChannel {
 
   constructor(){
-    $.when(this.getGameId()).done( (data, status, jqXHR) => {
-      this.joinGameChannel(data);
+    let _this = this;
+    $.ajax({
+      url: "/games/join",
+      method: "POST",
+      dataType: "json",
+      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', $("meta[name='csrf_token']").attr("content"))}
+    }).done(function(data){
+      _this.joinGameChannel(data.game_id);
+    }).fail(function(){
+      alert("stop");
+      window.location = "/";
     });
   }
 
-  joinGameChannel(data) {
-    if(data.game_id) {
-      App.gameChannel = App.socket.channel("game:" + data.game_id);
+  joinGameChannel(game_id) {
+    if(game_id) {
+      App.gameChannel = App.socket.channel("game:" + game_id);
       App.gameChannel.join().receive("ok", function(resp) {
         App.gameChannel.push("game:refresh_data");
       }).receive("error", reason =>
@@ -23,14 +32,6 @@ class GameChannel {
     }
   }
 
-  getGameId() {
-    return $.ajax({
-      url: "/games/join",
-      method: "POST",
-      dataType: "json",
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', $("meta[name='csrf_token']").attr("content"))}
-    });
-  }
 
 }
 

@@ -21,7 +21,9 @@ defmodule K2pokerIo.TournamentController do
 
   def join(conn, %{"id" => id}) do
     case JoinCommand.execute(current_user(conn), id) do
-      {:ok} -> redirect conn, to: game_path(conn, :play)
+      {:ok, utd_id: utd_id} ->
+        conn = put_session(conn, :utd_id, utd_id)
+        redirect conn, to: game_path(conn, :play)
       {:error} -> redirect conn, to: page_path(conn, :index)
     end
   end

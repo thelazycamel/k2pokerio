@@ -15,6 +15,7 @@ defmodule K2pokerIo.PageController do
     case K2pokerIo.AnonUser.create(conn, anon_username, default_tournament) do
       {:ok, utd} ->
         conn = put_session(conn, :player_id, utd.player_id)
+        |> put_session(:utd_id, utd.id)
         redirect conn, to: game_path(conn, :play)
       {:error, _} ->
         redirect conn, to: page_path(conn, :index)
