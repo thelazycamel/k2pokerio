@@ -21,7 +21,7 @@ const gameEventsMiddleware = store => next => action => {
     case "GAME:DATA_RECEIVED":
       switch(action.game.status) {
         case "finished":
-          App.playerChannel.push("player:get_current_score");
+          App.playerChannel.push("player:get_current_score", {tournament_id: App.settings.tournament_id});
           break;
         case "new":
           App.playerChannel.push("player:get_current_score");

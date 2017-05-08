@@ -28,4 +28,16 @@ defmodule K2pokerIo.TournamentController do
     end
   end
 
+  def new(conn, _) do
+    if logged_in?(conn) do
+      render conn, "new.html"
+    else
+      redirect conn, to: "/"
+    end
+  end
+
+  def create(conn, %{"tournament" => tournament_params}) do
+
+  end
+
 end

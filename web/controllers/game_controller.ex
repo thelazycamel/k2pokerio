@@ -16,14 +16,7 @@ defmodule K2pokerIo.GameController do
   end
 
   def join(conn, _params) do
-    IO.puts "******** HERE **********"
-    IO.puts get_user_tournament_detail(conn).id
-    IO.puts "************************"
     if utd = get_user_tournament_detail(conn) do
-      IO.puts "******** HERE **********"
-      IO.puts user_already_in_a_game?(utd.game)
-      IO.puts "************************"
-      utd
       if user_already_in_a_game?(utd.game) do
         json conn, %{status: "ok", game_id: utd.game_id, joined: true}
       else

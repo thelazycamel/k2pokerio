@@ -3,15 +3,16 @@ defmodule K2pokerIo.Tournament do
 
   schema "tournaments" do
     field :name, :string
-    field :default, :boolean #only true for the main "K2 Summit Ascent"
+    field :default, :boolean
     field :finished, :boolean
-    field :top_player, :string #player_id keep reference to player
-    #PRIVATE TOURNAMENT INFO
     field :private, :boolean
-    field :player_id, :string #this should be user_id #Creators player_id, note can be anon player
-    field :rebuys, :binary #number of rebuys allowed, default event = [0] TODO: decide on format probably [1,1,1,1,1] for 5 rebuys, [1024, 1] etc, and just [0] for unlimited
+    belongs_to :user, K2pokerIo.User
+    field :rebuys, :binary
     field :start_time, Ecto.DateTime
-    field :player_ids, {:array, :string} #private tourneys, keep an array of player ids allowed to play
+    field :lose_type, :string
+    field :starting_chips, :integer
+    field :max_score, :integer
+    field :bots, :boolean
     timestamps()
   end
 

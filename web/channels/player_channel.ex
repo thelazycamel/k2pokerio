@@ -3,6 +3,11 @@ defmodule K2pokerIo.PlayerChannel do
   alias K2pokerIo.UserTournamentDetail
 
   def join("player:" <> player_token, _params, socket) do
+    #TODO consider passing the tournament_id here and assigning it to the socket,
+    # we need to collect the players current score (for the tournament they are in) and
+    # i have to keep passing the tournament id down the line
+    # might need to consider removing this as a websocket and just have a standard rest
+    # call to get the current score if we dont use this channel for anything else
     case Phoenix.Token.verify(K2pokerIo.Endpoint, "player_id", player_token, max_age: 86400000) do
       {:ok,  player_id} ->
         cond do

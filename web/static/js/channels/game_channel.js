@@ -10,7 +10,6 @@ class GameChannel {
     }).done(function(data){
       _this.joinGameChannel(data.game_id);
     }).fail(function(){
-      alert("stop");
       window.location = "/";
     });
   }
