@@ -4,4 +4,4 @@
   <li><a href="/tournaments/join/1">K2 Ascent</a></li>
 </ul>
 <h2>Private</h2>
-<h2>Create a private tournament</h2>
+<%= link "Create a Private Game or Tournament", to: tournament_path(@conn, :new) %>

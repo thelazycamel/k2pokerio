@@ -22,7 +22,6 @@ import "phoenix_html"
 var $ = require("jquery")
 
 /* local */
-import socket from "./socket"
 import { createStore, applyMiddleware } from 'redux'
 import mainStore from "./reducers/main_store"
 
@@ -31,7 +30,10 @@ import mainStore from "./reducers/main_store"
 /* pages */
 import defaultPage from "./pages/default"
 import tournamentIndexPage from "./pages/tournament/index"
+import tournamentNewPage from "./pages/tournament/new"
 import gamePlayPage from "./pages/game/play"
+
+/* middleware */
 import gameEventsMiddleware from "./middleware/game_events_middleware"
 import pageEventsMiddleware from "./middleware/page_events_middleware"
 import chatEventsMiddleware from "./middleware/chat_events_middleware"
@@ -41,7 +43,6 @@ window.App = {
   init: function() {
     this.setConstants();
     this.createReduxStore();
-    this.connectSocket();
     this.setUpCurrentPage();
   },
 
@@ -56,16 +57,10 @@ window.App = {
     this.store = createStore(mainStore, middleware);
   },
 
-  connectSocket: function() {
-    if(window.userToken != "") {
-      this.socket = socket;
-      this.socket.connect();
-    }
-  },
-
   pages: {
     "gamePlay":        gamePlayPage,
-    "tournamentIndex": tournamentIndexPage
+    "tournamentIndex": tournamentIndexPage,
+    "tournamentNew":   tournamentNewPage
   },
 
   setUpCurrentPage: function(){

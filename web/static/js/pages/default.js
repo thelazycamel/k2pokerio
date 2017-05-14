@@ -7,7 +7,7 @@ class DefaultPage extends page {
   }
 
   setUpPage() {
-    console.log("THE JS FOR THIS PAGE HAS NOT BEEN SETUP YET");
+    console.log("no js required");
   }
 
 }

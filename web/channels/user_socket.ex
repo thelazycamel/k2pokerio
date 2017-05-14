@@ -28,6 +28,7 @@ defmodule K2pokerIo.UserSocket do
   # it is picked up in the app layout and converted to a token in the layout_view
   #
   def connect(%{"token" => token}, socket) do
+    {:ok, player_id} = Phoenix.Token.verify(K2pokerIo.Endpoint, "player_id", token, max_age: 86400000)
     case Phoenix.Token.verify(K2pokerIo.Endpoint, "player_id", token, max_age: 86400000) do
       {:ok, player_id} ->
         cond do
@@ -43,7 +44,8 @@ defmodule K2pokerIo.UserSocket do
             socket = assign(socket, :player_id, player_id)
              |> assign(:current_user, Repo.get(User, user_id))
             {:ok, socket}
-          true -> :error
+          true ->
+            :error
         end
       {:error, _} -> :error
     end

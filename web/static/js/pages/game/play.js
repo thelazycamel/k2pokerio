@@ -26,6 +26,7 @@ class GamePlayPage extends page {
   }
 
   setUpPage() {
+    this.connectSocket();
     new tournamentChannel();
     new chatChannel();
     new playerChannel();

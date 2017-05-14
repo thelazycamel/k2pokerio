@@ -15,6 +15,9 @@ defmodule K2pokerIo.TournamentController do
   # in the backend.
   #
   def index(conn, _) do
+    #TODO get a list of available tournaments for the current user,
+    # K2 Ascent should always be available, and add any admin generate public tournaments
+    # then get all their private games/tournaments
     tournaments = Repo.all(Tournament)
     render(conn, "index.html", tournaments: tournaments)
   end
