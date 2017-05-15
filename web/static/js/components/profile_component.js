@@ -9,9 +9,11 @@ class ProfileComponent extends React.Component {
     return (<Provider store={this.props.store}>
         <div id="profile-root" className={this.props.page.tabs["profile"]}>
           <div id="profile-inner">
-            <h2>Profile</h2>
+            <h2>Opponents Profile</h2>
             <div id="profile-information">
-              <p>user or opponents profile</p>
+              <p>Username: {this.props.opponent_profile.username}</p>
+              <p>About: {this.props.opponent_profile.blurb}</p>
+              <p><a href={ "/add_friend/" + this.props.opponent_profile.id }>Friend Me</a></p>
             </div>
           </div>
         </div>
@@ -22,7 +24,7 @@ class ProfileComponent extends React.Component {
 const mapStateToProps = (state) => {
   return {
     page: state.page,
-    player: state.player
+    opponent_profile: state.opponent_profile
   }
 }
 

@@ -18,6 +18,7 @@ defmodule K2pokerIo.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/games/play", GameController, :play
+    post "/games/opponent_profile", GameController, :opponent_profile
     post "/games/join", GameController, :join
     post "/anon-user", PageController, :anon_user_create
 

@@ -27,7 +27,12 @@ import mainStore from "./reducers/main_store"
 
 /* Utils */
 
+/* Services (ajax services, not channels) */
+
+import opponentProfileService from "./services/opponent_profile_service"
+
 /* pages */
+
 import defaultPage from "./pages/default"
 import tournamentIndexPage from "./pages/tournament/index"
 import tournamentNewPage from "./pages/tournament/new"
@@ -41,15 +46,22 @@ import chatEventsMiddleware from "./middleware/chat_events_middleware"
 window.App = {
 
   init: function() {
-    this.setConstants();
+    this.setConfig();
+    this.initializeServices();
     this.createReduxStore();
     this.setUpCurrentPage();
   },
 
-  setConstants: function() {
-    this.settings = {}
+  setConfig: function() {
+    this.settings = {};
     let configurations = document.getElementsByTagName("body")[0].dataset;
+    configurations["csrf_token"] = $("meta[name='csrf_token']").attr("content");
     this.settings = Object.assign({}, configurations);
+  },
+
+  initializeServices: function() {
+    this.services = {};
+    this.services.opponent_profile = new opponentProfileService();
   },
 
   createReduxStore: function() {

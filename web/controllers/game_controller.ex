@@ -3,6 +3,7 @@ defmodule K2pokerIo.GameController do
   use K2pokerIo.Web, :controller
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
 
   def play(conn, _params) do
     if player_id = get_session(conn, :player_id) do
@@ -29,6 +30,14 @@ defmodule K2pokerIo.GameController do
       json conn, %{status: "error"}
     end
   end
+
+  def opponent_profile(conn, _params) do
+    utd = get_user_tournament_detail(conn)
+    opponent_profile = GetOpponentProfileCommand.execute(utd.game, utd.player_id)
+    json conn, opponent_profile
+  end
+
+  #PRIVATE METHODS
 
   defp get_user_tournament_detail(conn) do
     utd_id = get_session(conn, :utd_id)

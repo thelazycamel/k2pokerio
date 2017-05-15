@@ -19,10 +19,13 @@ const gameEventsMiddleware = store => next => action => {
       App.gameChannel.push("game:bot_request");
       break;
     case "GAME:DATA_RECEIVED":
+      /* TODO: consider moving this large switch statement out of here */
       switch(action.game.status) {
         case "finished":
           App.playerChannel.push("player:get_current_score", {tournament_id: App.settings.tournament_id});
           break;
+        case "deal":
+          App.services.opponent_profile.call();
         case "new":
           App.playerChannel.push("player:get_current_score");
           App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
