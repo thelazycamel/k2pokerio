@@ -9,6 +9,7 @@ class GameChannel {
       beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
     }).done(function(data){
       _this.joinGameChannel(data.game_id);
+      App.services.player_score.call();
     }).fail(function(){
       window.location = "/";
     });

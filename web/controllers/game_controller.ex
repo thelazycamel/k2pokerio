@@ -37,6 +37,11 @@ defmodule K2pokerIo.GameController do
     json conn, opponent_profile
   end
 
+  def player_score(conn, _params) do
+    utd = get_user_tournament_detail(conn)
+    json conn, %{current_score: utd.current_score, username: utd.username}
+  end
+
   #PRIVATE METHODS
 
   defp get_user_tournament_detail(conn) do

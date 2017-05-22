@@ -28,6 +28,15 @@
           border-radius: 10px 10px 0px 0px;
         }
 
+        #opponent-image {
+          position: absolute;
+          display: block;
+          z-index: 6;
+          border-radius: 20px;
+          padding: 2px;
+          background: linear-gradient(to bottom, #cdcccc 0%,#020101 50%);
+        }
+
         .card {
           position: absolute;
           box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
@@ -120,6 +129,19 @@
         #shine {
           width: 625px;
           height: 130px;
+        }
+
+        #opponent-image {
+          top: 41px;
+          left: 77px;
+          width: 85px;
+          height: 85px;
+          img {
+            cursor: pointer;
+            width: 81px;
+            height: 81px;
+            border-radius: 20px;
+          }
         }
 
         #opponent-card-1 {
@@ -224,6 +246,19 @@
         #shine {
           width: 534px;
           height: 120px;
+        }
+
+        #opponent-image {
+          top: 43px;
+          left: 47px;
+          width: 85px;
+          height: 85px;
+          img {
+            cursor: pointer;
+            width: 81px;
+            height: 81px;
+            border-radius: 20px;
+          }
         }
 
         #opponent-card-1 {
@@ -360,6 +395,20 @@
             height: 120px;
           }
 
+          #opponent-image {
+            top: 37px;
+            left: 33px;
+            width: 61px;
+            height: 61px;
+            border-radius: 15px;
+            img {
+              cursor: pointer;
+              width: 57px;
+              height: 57px;
+              border-radius: 15px;
+            }
+          }
+
           #opponent-card-1 {
             top: 17px;
             left: 127px;
@@ -485,6 +534,21 @@
             height: 80px;
             border-radius: 0;
           }
+
+          #opponent-image {
+            top: 30px;
+            left: 23px;
+            width: 53px;
+            height: 53px;
+            border-radius: 15px;
+            img {
+              cursor: pointer;
+              width: 49px;
+              height: 49px;
+              border-radius: 15px;
+            }
+          }
+
 
           #opponent-card-1 {
             top: 21px;

@@ -1,0 +1,9 @@
+<form
+  action="<%= profile_path(@conn, :update, @profile.id) %>"
+  method="post"
+  name="profile"
+  id="edit-profile"
+  data-username="<%= @profile.username %>"
+  data-blurb="<%= @profile.blurb %>"
+  data-image="<%= @profile.image %>" >
+</form>

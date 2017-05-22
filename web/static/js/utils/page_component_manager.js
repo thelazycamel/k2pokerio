@@ -1,6 +1,3 @@
-/* TODO: this whole class is a mess to handle the links and tabs opening for different
- * responsive states, move it to react */
-
 class PageComponentManager {
 
   init() {
@@ -14,8 +11,6 @@ class PageComponentManager {
     return this.defaultTabs()[this.screenSwitcher()];
   }
 
-  // TODO this is this initial state on page load, would be good to have a local store to keep the users
-  // preferences between games
   defaultTabs() {
     return ({
       "monitor": {"game": "show", "chips": "show", "ladder": "show", "chat": "show", "rules": "hide", "profile": "hide"},
@@ -53,8 +48,6 @@ class PageComponentManager {
   }
 
   resizing() {
-    // this is nasty and should be destroyed when i update the card animations
-    // to use https://facebook.github.io/react/docs/animation.html
     $(".card").attr("style", "");
     this.init();
   }

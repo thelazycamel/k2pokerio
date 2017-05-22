@@ -174,6 +174,22 @@ class GameComponent extends React.Component {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
+  openOpponentProfile(e) {
+    e.preventDefault();
+    App.pageComponentManager.linkClicked("profile");
+  }
+
+  renderOpponentImage(){
+    if (this.waitingForOpponent()) { return;}
+    if(this.props.opponent_profile && this.props.opponent_profile.image) {
+      return (
+        <a id="opponent-image" onClick={this.openOpponentProfile.bind(this)}>
+          <img src= {"/images/profile-images/" +this.props.opponent_profile.image} alt={this.props.opponent_profile.username}/>
+        </a>
+      )
+    }
+  }
+
   render() {
     return (
       <Provider store={this.props.store}>
@@ -181,6 +197,7 @@ class GameComponent extends React.Component {
           <div id="game-inner">
             <div id="game" className={this.resultClassName()} >
               <div id="shine"></div>
+              {this.renderOpponentImage()}
               <div id="opponent-cards">{this.renderOpponentCards()}</div>
               { this.foldButton() }
               <div id="table-cards">{this.renderTableCards()}</div>
@@ -201,7 +218,8 @@ const mapStateToProps = (state) => {
   return {
     page: state.page,
     game: state.game,
-    player: state.player
+    player: state.player,
+    opponent_profile: state.opponent_profile
   }
 }
 

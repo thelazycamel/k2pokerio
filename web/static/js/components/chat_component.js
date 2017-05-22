@@ -34,7 +34,7 @@ class ChatComponent extends React.Component {
         <div id="chat-root" className={this.props.page.tabs["chat"]}>
           <div id="chat-inner">
             <div id="chat-fader"></div>
-            <h2>Tournament Name</h2>
+            <h2>{this.props.tournament.tournament_name}</h2>
             <ul id="chats">
             { this.renderComments() }
             </ul>
@@ -48,7 +48,8 @@ class ChatComponent extends React.Component {
 const mapStateToProps = (state) => {
   return {
     page: state.page,
-    chat: state.chat
+    chat: state.chat,
+    tournament: state.tournament
   }
 }
 

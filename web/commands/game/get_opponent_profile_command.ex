@@ -37,7 +37,7 @@ defmodule K2pokerIo.Commands.Game.GetOpponentProfileCommand do
   end
 
   defp get_opponent_detail(opponent_id) do
-    detail = Repo.one(from u in User, where: u.id == ^opponent_id, select: %{id: u.id, username: u.username})
+    detail = Repo.one(from u in User, where: u.id == ^opponent_id, select: %{id: u.id, username: u.username, blurb: u.blurb, image: u.image})
     Map.put(detail, :opponent, "user")
   end
 

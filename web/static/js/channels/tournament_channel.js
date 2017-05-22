@@ -12,8 +12,8 @@ class TournamentChannel {
       console.log("join failed")
     )
 
-    App.tournamentChannel.on("tournament:update_count", (resp) =>
-      App.store.dispatch({type: "TOURNAMENT:UPDATE_COUNT", player_count: resp.player_count})
+    App.tournamentChannel.on("tournament:update", (data) =>
+      App.store.dispatch({type: "TOURNAMENT:UPDATE", data: data})
     )
 
   }

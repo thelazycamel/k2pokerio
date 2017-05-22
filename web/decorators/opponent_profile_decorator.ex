@@ -11,15 +11,15 @@ defmodule K2pokerIo.Decorators.OpponentProfileDecorator do
   end
 
   defp present_anon_user(detail) do
-    %{id: nil, username: detail.username, blurb: "Meh, just an anonymous fish"}
+    %{id: nil, username: detail.username, blurb: "Meh, just an anonymous fish", image: "fish.png"}
   end
 
   defp present_bot do
-    %{id: nil, username: "RandomBot", blurb: "Don't be intimidated by my AI, I'm a poor poker player"}
+    %{id: nil, username: "RandomBot", blurb: "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.", image: "bender.png"}
   end
 
   defp present_user(detail) do
-    %{id: detail.id, username: detail.username, blurb: "TODO, allow users to add a blurb and photo, etc"}
+    %{id: detail.id, username: detail.username, blurb: detail.blurb, image: detail.image}
   end
 
 end

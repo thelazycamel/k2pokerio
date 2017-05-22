@@ -17,14 +17,20 @@ defmodule K2pokerIo.Router do
   scope "/", K2pokerIo do
     pipe_through :browser # Use the default browser stack
 
-    get "/games/play", GameController, :play
-    post "/games/opponent_profile", GameController, :opponent_profile
-    post "/games/join", GameController, :join
     post "/anon-user", PageController, :anon_user_create
 
     resources "/tournaments", TournamentController
     get "/tournaments/join/:id", TournamentController, :join
+
+    get "/games/play", GameController, :play
+    post "/games/opponent_profile", GameController, :opponent_profile
+    post "/games/player_score", GameController, :player_score
+    post "/games/join", GameController, :join
+
     resources "/registrations", RegistrationController, only: [:new, :create]
+
+    get "/profile", ProfileController, :edit
+    resources "/profiles", ProfileController, only: [:show, :update]
 
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create

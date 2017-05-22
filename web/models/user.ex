@@ -6,6 +6,8 @@ defmodule K2pokerIo.User do
     field :username, :string
     field :crypted_password, :string
     field :password, :string, virtual: true
+    field :image, :string
+    field :blurb, :string
     timestamps()
   end
 
@@ -24,4 +26,10 @@ defmodule K2pokerIo.User do
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 5)
   end
+
+  def profile_changeset(struct, params) do
+    struct
+    |> cast(params, [:username, :image, :blurb])
+  end
+
 end

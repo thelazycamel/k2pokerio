@@ -30,6 +30,7 @@ import mainStore from "./reducers/main_store"
 /* Services (ajax services, not channels) */
 
 import opponentProfileService from "./services/opponent_profile_service"
+import playerScoreService from "./services/player_score_service"
 
 /* pages */
 
@@ -37,6 +38,7 @@ import defaultPage from "./pages/default"
 import tournamentIndexPage from "./pages/tournament/index"
 import tournamentNewPage from "./pages/tournament/new"
 import gamePlayPage from "./pages/game/play"
+import profileEditPage from "./pages/profile/edit"
 
 /* middleware */
 import gameEventsMiddleware from "./middleware/game_events_middleware"
@@ -62,6 +64,7 @@ window.App = {
   initializeServices: function() {
     this.services = {};
     this.services.opponent_profile = new opponentProfileService();
+    this.services.player_score = new playerScoreService();
   },
 
   createReduxStore: function() {
@@ -72,7 +75,8 @@ window.App = {
   pages: {
     "gamePlay":        gamePlayPage,
     "tournamentIndex": tournamentIndexPage,
-    "tournamentNew":   tournamentNewPage
+    "tournamentNew":   tournamentNewPage,
+    "profileEdit":     profileEditPage
   },
 
   setUpCurrentPage: function(){

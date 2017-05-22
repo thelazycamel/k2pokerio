@@ -7,7 +7,6 @@ defmodule K2pokerIo.UserSocket do
   channel "tournament:*", K2pokerIo.TournamentChannel
   channel "game:*", K2pokerIo.GameChannel
   channel "chat:*", K2pokerIo.ChatChannel
-  channel "player:*", K2pokerIo.PlayerChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

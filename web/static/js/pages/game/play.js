@@ -4,7 +4,6 @@ import ReactDOM from "react-dom"
 import tournamentChannel from "../../channels/tournament_channel"
 import chatChannel from "../../channels/chat_channel"
 import gameChannel from "../../channels/game_channel"
-import playerChannel from "../../channels/player_channel"
 
 import LadderComponent from "../../components/ladder_component"
 import ChipsComponent from "../../components/chips_component"
@@ -29,7 +28,6 @@ class GamePlayPage extends page {
     this.connectSocket();
     new tournamentChannel();
     new chatChannel();
-    new playerChannel();
     this.loadNewGame();
     this.initializeComponents();
     App.pageComponentManager = new PageComponentManager();
