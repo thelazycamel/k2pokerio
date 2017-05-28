@@ -2,6 +2,7 @@ defmodule K2pokerIo.Commands.Game.GetOpponentProfileCommand do
 
   alias K2pokerIo.User
   alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.Commands.User.GetFriendStatusCommand
   alias K2pokerIo.Decorators.OpponentProfileDecorator
   alias K2pokerIo.Repo
   import Ecto.Query
@@ -24,6 +25,7 @@ defmodule K2pokerIo.Commands.Game.GetOpponentProfileCommand do
       String.match?(opponent_id, ~r/^user/) ->
         id = List.last(String.split(opponent_id, "-"))
         get_opponent_detail(id)
+        |> add_friend_status(current_player_id, opponent_id)
       true -> %{opponent: nil}
     end
   end
@@ -40,6 +42,24 @@ defmodule K2pokerIo.Commands.Game.GetOpponentProfileCommand do
     detail = Repo.one(from u in User, where: u.id == ^opponent_id, select: %{id: u.id, username: u.username, blurb: u.blurb, image: u.image})
     Map.put(detail, :opponent, "user")
   end
+
+  defp add_friend_status(detail, current_player_id, opponent_player_id) do
+    friend_status = cond do
+      String.match?(current_player_id, ~r/^user/) ->
+        {user_id, _} = get_id_from_player_id(current_player_id)
+        {opponent_id, _} = get_id_from_player_id(opponent_player_id)
+        GetFriendStatusCommand.execute(user_id, opponent_id)
+      true -> :na
+    end
+    Map.put(detail, :friend, friend_status)
+  end
+
+  defp get_id_from_player_id(player_id) do
+    String.split(player_id, "-")
+    |> List.last
+    |> Integer.parse
+  end
+
 
   defp get_anon_detail(opponent_id) do
     detail = Repo.one(from u in UserTournamentDetail, where: u.player_id == ^opponent_id, select: %{id: u.id, username: u.username})

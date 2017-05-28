@@ -10,6 +10,7 @@ const gameEventsMiddleware = store => next => action => {
       App.gameChannel.push("game:fold");
       break;
     case "GAME:NEXT_GAME":
+      App.store.dispatch({type: "OPPONENT_PROFILE:CLEAR"});
       App.gameChannel.leave().receive("ok", ()=> {
         delete App.gameChannel;
         App.page.loadNewGame();

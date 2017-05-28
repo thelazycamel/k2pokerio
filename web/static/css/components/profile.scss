@@ -14,6 +14,19 @@
         border-radius: 10px;
       }
     }
+    .friend-status {
+      clear: right;
+      float: right;
+      text-align: center;
+      margin: 10px;
+      width: 100px;
+      &.friend {
+        color: #3d6fe1;
+      }
+      &.pending {
+        color: #a1750b;
+      }
+    }
     #profile-information {
       padding: 10px;
     }

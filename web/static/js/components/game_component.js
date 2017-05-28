@@ -185,6 +185,7 @@ class GameComponent extends React.Component {
       return (
         <a id="opponent-image" onClick={this.openOpponentProfile.bind(this)}>
           <img src= {"/images/profile-images/" +this.props.opponent_profile.image} alt={this.props.opponent_profile.username}/>
+          <div id="opponent-name">{this.props.opponent_profile.username }</div>
         </a>
       )
     }

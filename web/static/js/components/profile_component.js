@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class ProfileComponent extends React.Component {
 
-  renderProfileImage(){
+  renderProfileImage() {
     if(this.props.opponent_profile.image) {
       return(
         <div id="profile-image">
@@ -15,14 +15,37 @@ class ProfileComponent extends React.Component {
     }
   }
 
+  friendRequest() {
+    App.services.request_friend.call(this.props.opponent_profile.id);
+  }
+
+  friendConfirm() {
+    App.services.confirm_friend.call(this.props.opponent_profile.id);
+  }
+
+  renderFriendLink() {
+    if(this.props.opponent_profile) {
+      switch(this.props.opponent_profile.friend) {
+        case "friend":
+          return <h4 className="friend friend-status">Friend</h4>
+        case "not_friends":
+          return <h4 className="not-friends friend-status"><a href={ "#" + this.props.opponent_profile.id } onClick={this.friendRequest.bind(this)}>Friend Me</a></h4>
+        case "pending_them":
+          return <h4 className="pending friend-status">Pending</h4>
+        case "pending_me":
+          return <h4 className="confirm friend-status"><a href={ "#" + this.props.opponent_profile.id } onClick={this.friendConfirm.bind(this)}>Confirm</a></h4>
+      }
+    }
+  }
+
   render() {
     return (<Provider store={this.props.store}>
         <div id="profile-root" className={this.props.page.tabs["profile"]}>
           <div id="profile-inner">
             <h2>{this.props.opponent_profile.username}</h2>
             <div id="profile-information">
-            { this.renderProfileImage() }
-              <h4><a href={ "/add_friend/" + this.props.opponent_profile.id }>Friend Me</a></h4>
+              { this.renderProfileImage() }
+              { this.renderFriendLink() }
               <p>{this.props.opponent_profile.blurb}</p>
             </div>
           </div>

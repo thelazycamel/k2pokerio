@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <a class="navbar-brand main-title" href="#">K2Poker.io</a>
+    <a class="navbar-brand main-title" href="/">K2Poker.io</a>
     <div id="header-nav-component-holder"></div>
     <ul class="nav navbar-nav navbar-right">
         <%= if logged_in?(@conn) do %>

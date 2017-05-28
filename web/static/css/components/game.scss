@@ -35,6 +35,24 @@
           border-radius: 20px;
           padding: 2px;
           background: linear-gradient(to bottom, #cdcccc 0%,#020101 50%);
+          img {
+            filter: grayscale(75%);
+            &:hover {
+              filter: grayscale(0);
+            }
+          }
+          #opponent-name {
+            position: absolute;
+            bottom: 0;
+            font-size: 0.8em;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: linear-gradient(to bottom, rgba(01,01,16,0.5) 50%,rgba(01,01,16,1) 100%);
+            width: 100%;
+            color: #ccc;
+          }
         }
 
         .card {
@@ -141,6 +159,10 @@
             width: 81px;
             height: 81px;
             border-radius: 20px;
+          }
+          #opponent-name {
+            padding: 5px 2px 10px 2px;
+            border-radius: 0 0 20px 20px;
           }
         }
 
@@ -258,6 +280,10 @@
             width: 81px;
             height: 81px;
             border-radius: 20px;
+          }
+          #opponent-name {
+            padding: 5px 2px 10px 2px;
+            border-radius: 0 0 20px 20px;
           }
         }
 
@@ -407,6 +433,11 @@
               height: 57px;
               border-radius: 15px;
             }
+            #opponent-name {
+              padding: 3px 2px 5px 2px;
+              border-radius: 0 0 15px 15px;
+            }
+
           }
 
           #opponent-card-1 {
@@ -546,6 +577,10 @@
               width: 49px;
               height: 49px;
               border-radius: 15px;
+            }
+            #opponent-name {
+              padding: 1px 2px 5px 2px;
+              border-radius: 0 0 15px 15px;
             }
           }
 

@@ -27,6 +27,10 @@ defmodule K2pokerIo.Router do
     post "/games/player_score", GameController, :player_score
     post "/games/join", GameController, :join
 
+    post "/friend/request", FriendController, :request
+    post "/friend/confirm", FriendController, :confirm
+    post "/friend/destroy", FriendController, :destroy
+
     resources "/registrations", RegistrationController, only: [:new, :create]
 
     get "/profile", ProfileController, :edit
