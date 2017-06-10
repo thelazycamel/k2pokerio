@@ -30,6 +30,7 @@ defmodule K2pokerIo.Router do
     post "/friend/request", FriendController, :request
     post "/friend/confirm", FriendController, :confirm
     post "/friend/destroy", FriendController, :destroy
+    post "/friend/search", FriendController, :search
 
     resources "/registrations", RegistrationController, only: [:new, :create]
 
