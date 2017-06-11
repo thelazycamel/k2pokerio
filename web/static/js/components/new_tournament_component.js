@@ -3,19 +3,18 @@ import ReactDOM from "react-dom"
 
 class NewTournamentComponent extends React.Component {
 
-  /* TODO: show the options depending on the number of friends selected */
-
   constructor(props) {
     super(props);
     this.state = {
-      friends: [],
+      friends: props.friends,
       game: "tournament",
     }
   }
 
   changeGameType(e) {
+    this.unselectAllFriends();
     let val = e.currentTarget.value;
-    this.setState(Object.assign({}, this.state, {game: val, friends: []}));
+    this.setState({game: val});
   }
 
   isDuel() {
@@ -26,14 +25,38 @@ class NewTournamentComponent extends React.Component {
     return this.state.game == "tournament";
   }
 
-  searchFriends(e) {
-    let val = e.currentTarget.value;
-    if(val.length > 2) {
-      let friends = this.state.friends;
-      App.services.search_friends.call({query: val, game: this.state.game}, function(resp){
-        console.log("SEARCH FRIENDS RESP", resp);
-      });
-    }
+  selectedFriendClass(selected){
+    return selected ? "success" : "default";
+  }
+
+  unselectAllFriends() {
+    let friends = this.state.friends.map( (friend) => {
+      return {user_id: friend.user_id, username: friend.username, selected: false}
+    });
+    this.setState(Object.assign({}, this.state, {friends: friends}));
+  }
+
+  toggleSelectedFriend(user_id) {
+    let friends = this.state.friends.map((friend) => {
+      if(friend.user_id == user_id) {
+        return {user_id: friend.user_id, username: friend.username, selected: true};
+      } else if(this.state.game == "duel") {
+        return {user_id: friend.user_id, username: friend.username, selected: false}
+      } else {
+        return friend;
+      }
+    });
+    this.setState(Object.assign({}, this.state, {friends: friends}));
+  }
+
+  renderFriends() {
+    return(
+      this.state.friends.map( (friend) => {
+        return(
+          <div key={friend.user_id} onClick={this.toggleSelectedFriend.bind(this, friend.user_id)} className={"btn btn-large btn-" + this.selectedFriendClass(friend.selected)}>{friend.username}</div>
+        )
+      })
+    )
   }
 
   render() {
@@ -51,10 +74,7 @@ class NewTournamentComponent extends React.Component {
             Duel
           </label>
         </div>
-        <div className="form-group">
-          <label>Invitees</label>
-          <input type="text" name="friends" className="form-control" placeholder="text search to find list of friends, all at the top" onKeyUp={this.searchFriends.bind(this)}/>
-        </div>
+        { this.renderFriends() }
         <div className="form-group">
           <submit className="btn btn-primary">Create</submit>
         </div>

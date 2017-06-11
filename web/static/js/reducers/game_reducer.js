@@ -13,7 +13,6 @@ var gameReducer = function(state = {}, action) {
         cards = ["discarded", "discarded"];
       }
       return Object.assign({}, state, {cards: cards});
-      return state;
     case "GAME:FOLD":
        return state;
     case "GAME:DATA_RECEIVED":

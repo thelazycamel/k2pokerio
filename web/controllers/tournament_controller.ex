@@ -4,6 +4,7 @@ defmodule K2pokerIo.TournamentController do
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.JoinCommand
+  alias K2pokerIo.Queries.Friends.FriendsQuery
 
   # TODO the index will only be for logged in players
   # and should list all the current tournaments available
@@ -33,7 +34,8 @@ defmodule K2pokerIo.TournamentController do
 
   def new(conn, _) do
     if logged_in?(conn) do
-      render conn, "new.html"
+      friends = FriendsQuery.all(current_user(conn).id)
+      render conn, "new.html", friends: friends
     else
       redirect conn, to: "/"
     end

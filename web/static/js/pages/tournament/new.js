@@ -13,8 +13,16 @@ class TournamentIndexPage extends page {
     this.initializeNewTournamentComponent();
   }
 
+  element() {
+    return document.getElementById("new-tournament");
+  }
+
+  friends() {
+    return window.PageData.friends;
+  }
+
   initializeNewTournamentComponent() {
-    ReactDOM.render(<NewTournamentComponent />, document.getElementById('new-tournament'));
+    ReactDOM.render(<NewTournamentComponent friends={this.friends()}/>, this.element());
   }
 
 }

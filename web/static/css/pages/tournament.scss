@@ -43,3 +43,15 @@ body.tournament {
     }
   }
 }
+
+body.tournament.new {
+  .friend-select {
+    input {
+      display: none;
+    }
+    .btn {
+      width: 200px;
+    }
+  }
+}
+
