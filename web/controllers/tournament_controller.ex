@@ -5,6 +5,7 @@ defmodule K2pokerIo.TournamentController do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.JoinCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Commands.Tournament.CreateCommand
 
   # TODO the index will only be for logged in players
   # and should list all the current tournaments available
@@ -42,7 +43,8 @@ defmodule K2pokerIo.TournamentController do
   end
 
   def create(conn, %{"tournament" => tournament_params}) do
-
+    CreateCommand.execute(current_user(conn).id, tournament_params)
+    render conn, "index.html"
   end
 
 end

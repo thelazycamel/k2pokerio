@@ -3,8 +3,8 @@ defmodule K2pokerIo.Repo.Migrations.CreateFriendships do
 
   def change do
     create table(:friendships) do
-      add :user_id, references(:users, on_delete: :nothing)
-      add :friend_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :delete_all)
+      add :friend_id, references(:users, on_delete: :delete_all)
       add :status, :boolean
 
       timestamps()

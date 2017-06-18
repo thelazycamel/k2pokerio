@@ -7,7 +7,7 @@ class NewTournamentComponent extends React.Component {
     super(props);
     this.state = {
       friends: props.friends,
-      game: "tournament",
+      game: "tournament"
     }
   }
 
@@ -59,24 +59,39 @@ class NewTournamentComponent extends React.Component {
     )
   }
 
+  gameTypeChecked(type){
+    return type == this.state.game;
+  }
+
+  renderGameTypeRadioButton(type) {
+   return (
+    <div className="radio">
+      <label htmlFor={"game_type_" + type}>
+        <input type="radio" name="tournament[game_type]" id={"game_type_"+type} value={type} onChange={this.changeGameType.bind(this)} defaultChecked={this.gameTypeChecked(type)} />
+        {type}
+      </label>
+    </div>
+   )
+  }
+
+  prepareForSubmit(){
+    let element = document.getElementById("friend-ids");
+    let selectedFriendIds = this.state.friends.map(function(friend){ if(friend.selected) { return friend.user_id }}).filter(Number);
+    if(selectedFriendIds.length == 0) { return false; }
+    element.value = selectedFriendIds.join(",");
+    document.getElementById("new-tournament").submit();
+  }
+
   render() {
     return (
       <div id="form-holder">
-        <div className="radio">
-          <label htmlFor="normal-game">
-            <input type="radio" name="game_type" id="normal-game" value="tournament" onClick={this.changeGameType.bind(this)}/>
-            Tournament
-          </label>
-        </div>
-        <div className="radio">
-          <label htmlFor="duel-game">
-            <input type="radio" name="game_type" id="duel-game" value="duel" onClick={this.changeGameType.bind(this)} />
-            Duel
-          </label>
-        </div>
+        <input type="hidden" name="tournament[friend_ids]" id="friend-ids" value=""/>
+        <input type="hidden" name="_csrf_token" value={App.settings.csrf_token}/>
+        { this.renderGameTypeRadioButton("tournament") }
+        { this.renderGameTypeRadioButton("duel") }
         { this.renderFriends() }
         <div className="form-group">
-          <submit className="btn btn-primary">Create</submit>
+          <button className="btn btn-primary" onClick={this.prepareForSubmit.bind(this)}>Create</button>
         </div>
       </div>
     )
