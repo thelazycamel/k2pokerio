@@ -1,0 +1,20 @@
+#tournament-index-root {
+
+  .tournament-table {
+    width: 50%;
+
+    tr {
+      th {
+        padding: 1px 10px;
+      }
+      td {
+        padding: 1px;
+      }
+      td.action, td.score {
+        width: 15%;
+        text-align: center;
+      }
+    }
+  }
+
+}

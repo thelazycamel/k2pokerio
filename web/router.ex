@@ -21,6 +21,7 @@ defmodule K2pokerIo.Router do
 
     resources "/tournaments", TournamentController
     get "/tournaments/join/:id", TournamentController, :join
+    post "/tournaments/for_user", TournamentController, :for_user
 
     get "/games/play", GameController, :play
     post "/games/opponent_profile", GameController, :opponent_profile
@@ -31,6 +32,9 @@ defmodule K2pokerIo.Router do
     post "/friend/confirm", FriendController, :confirm
     post "/friend/destroy", FriendController, :destroy
     post "/friend/search", FriendController, :search
+
+    post "/invitation/accept", InvitationController, :accept
+    post "/invitation/destroy", InvitationController, :destroy
 
     resources "/registrations", RegistrationController, only: [:new, :create]
 

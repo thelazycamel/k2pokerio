@@ -15,6 +15,7 @@
 @include "components/scoreboard"
 @include "components/side_nav"
 @include "components/bot_request"
+@include "components/tournament_index"
 
 /* pages */
 @include "pages/home"

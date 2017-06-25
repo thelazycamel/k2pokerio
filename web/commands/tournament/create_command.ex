@@ -4,30 +4,31 @@ defmodule K2pokerIo.Commands.Tournament.CreateCommand do
   alias K2pokerIo.Invitation
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Repo
+  alias K2pokerIo.User
   import Ecto
   import Ecto.Query
 
-  def execute(current_user_id, params) do
-    create_tournament(current_user_id, params)
-    |> invite_friends(current_user_id, params)
+  def execute(current_user, params) do
+    create_tournament(current_user, params)
+    |> invite_friends(current_user, params)
   end
 
-  defp create_tournament(current_user_id, params) do
+  defp create_tournament(current_user, params) do
     changeset = case params["game_type"] do
-     "tournament" -> tournament_changeset(current_user_id, params)
-     "duel"       -> duel_changeset(current_user_id, params)
+     "tournament" -> tournament_changeset(current_user, params)
+     "duel"       -> duel_changeset(current_user, params)
     end
     {:ok, tournament} = Repo.insert(changeset)
     tournament
   end
 
-  def tournament_changeset(current_user_id, params) do
+  def tournament_changeset(current_user, params) do
     %Tournament{
-      name: "My Tourny",
+      name: params["name"],
       default: false,
       finished: false,
       private: true,
-      user_id: current_user_id,
+      user_id: current_user.id,
       lose_type: "all",
       starting_chips: 1,
       max_score: 1048576,
@@ -35,13 +36,15 @@ defmodule K2pokerIo.Commands.Tournament.CreateCommand do
     }
   end
 
-  def duel_changeset(current_user_id, params) do
+  def duel_changeset(current_user, params) do
+    opponent_id = List.first(extract_friend_ids_from_params(params))
+    opponent = Repo.get(User, opponent_id)
     %Tournament{
-      name: "My Tourny",
+      name: "#{current_user.username} v #{opponent.username}",
       default: false,
       finished: false,
       private: true,
-      user_id: current_user_id,
+      user_id: current_user.id,
       lose_type: "half",
       starting_chips: 1024,
       max_score: 1048576,
@@ -49,10 +52,10 @@ defmodule K2pokerIo.Commands.Tournament.CreateCommand do
     }
   end
 
-  defp invite_friends(tournament, current_user_id, params) do
-    filter_valid_friends(current_user_id, params)
+  defp invite_friends(tournament, current_user, params) do
+    filter_valid_friends(current_user.id, params)
     |> Enum.each( fn user_id -> create_invitation(tournament.id, user_id, false) end)
-    create_invitation(tournament.id, current_user_id, true)
+    create_invitation(tournament.id, current_user.id, true)
   end
 
   defp create_invitation(tournament_id, user_id, accepted) do

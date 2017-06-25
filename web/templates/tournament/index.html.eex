@@ -1,7 +1,1 @@
-<h1>Available Tournaments</h1>
-<h2>Public</h2>
-<ul>
-  <li><a href="/tournaments/join/1">K2 Ascent</a></li>
-</ul>
-<h2>Private</h2>
-<%= link "Create a Private Game or Tournament", to: tournament_path(@conn, :new) %>
+<div id="tournament-index-wrapper"></div>

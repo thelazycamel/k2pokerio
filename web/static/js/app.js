@@ -28,12 +28,15 @@ import mainStore from "./reducers/main_store"
 /* Utils */
 
 /* Services (ajax services, not channels) */
+/* TODO: only import this into the pages that require them, no need to load all these
+ * services on every page */
 
 import opponentProfileService from "./services/opponent_profile_service"
 import playerScoreService from "./services/player_score_service"
 import requestFriendService from  "./services/request_friend_service"
 import confirmFriendService from  "./services/confirm_friend_service"
 import searchFriendsService from  "./services/search_friends_service"
+import getTournamentsForUserService from  "./services/get_tournaments_for_user_service"
 
 
 /* pages */
@@ -65,9 +68,6 @@ window.App = {
     this.settings = Object.assign({}, configurations);
   },
 
-  // TODO: think about moving these to the pages that require them so they dont
-  // have to be loaded on every page.
-  //
   initializeServices: function() {
     this.services = {};
     this.services.opponent_profile = new opponentProfileService();
@@ -75,6 +75,7 @@ window.App = {
     this.services.request_friend = new requestFriendService();
     this.services.confirm_friend = new confirmFriendService();
     this.services.search_friends = new searchFriendsService();
+    this.services.get_tournaments_for_user_service = new getTournamentsForUserService();
   },
 
   createReduxStore: function() {

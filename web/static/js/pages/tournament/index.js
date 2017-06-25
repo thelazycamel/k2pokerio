@@ -1,4 +1,7 @@
+import React from "react"
+import ReactDOM from "react-dom"
 import page from "../page"
+import TournamentIndexComponent from "../../components/tournament_index_component"
 
 class TournamentIndexPage extends page {
 
@@ -7,7 +10,16 @@ class TournamentIndexPage extends page {
   }
 
   setUpPage() {
-    console.log("you are on the tournament index");
+    this.initializeTournamentIndexComponent();
+    this.getTournaments();
+  }
+
+  getTournaments() {
+    App.services.get_tournaments_for_user_service.call();
+  }
+
+  initializeTournamentIndexComponent() {
+    ReactDOM.render(<TournamentIndexComponent store={App.store} />, document.getElementById("tournament-index-wrapper"));
   }
 
 }

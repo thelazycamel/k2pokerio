@@ -7,6 +7,7 @@ defmodule K2pokerIo.Tournament do
     field :finished, :boolean
     field :private, :boolean
     belongs_to :user, K2pokerIo.User
+    has_many :user_tournament_details, K2pokerIo.UserTournamentDetail
     field :rebuys, :binary
     field :start_time, Ecto.DateTime
     field :lose_type, :string

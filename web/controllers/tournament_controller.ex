@@ -5,23 +5,24 @@ defmodule K2pokerIo.TournamentController do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.JoinCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
   alias K2pokerIo.Commands.Tournament.CreateCommand
 
-  # TODO the index will only be for logged in players
-  # and should list all the current tournaments available
-  # for the given user:
-  # All Open tournaments, that are not finished and all
-  # Private tournaments (where the users id is in the array of player_ids) that are not finished
-  # Note to self, users should only be allowed to create private tournaments,
-  # in the future an admin (manager) should be able to create open tournaments
-  # in the backend.
-  #
   def index(conn, _) do
-    #TODO get a list of available tournaments for the current user,
-    # K2 Ascent should always be available, and add any admin generate public tournaments
-    # then get all their private games/tournaments
-    tournaments = Repo.all(Tournament)
-    render(conn, "index.html", tournaments: tournaments)
+    if logged_in?(conn) do
+      render(conn, "index.html")
+    else
+      redirect conn, to: "/"
+    end
+  end
+
+  def for_user(conn, _) do
+    if logged_in?(conn) do
+      tournaments = GetTournamentsForUserQuery.for_user(current_user(conn).id)
+      json conn, tournaments
+    else
+      json conn, %{error: true}
+    end
   end
 
   def join(conn, %{"id" => id}) do
@@ -43,8 +44,8 @@ defmodule K2pokerIo.TournamentController do
   end
 
   def create(conn, %{"tournament" => tournament_params}) do
-    CreateCommand.execute(current_user(conn).id, tournament_params)
-    render conn, "index.html"
+    CreateCommand.execute(current_user(conn), tournament_params)
+    redirect conn, to: tournament_path(conn, :index)
   end
 
 end
