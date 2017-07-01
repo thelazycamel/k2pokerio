@@ -3,10 +3,11 @@ defmodule K2pokerIo.TournamentController do
   use K2pokerIo.Web, :controller
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIo.Commands.Tournament.JoinCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
   alias K2pokerIo.Commands.Tournament.CreateCommand
+  alias K2pokerIo.Commands.Tournament.JoinCommand
+  alias K2pokerIo.Commands.Tournament.DestroyCommand
 
   def index(conn, _) do
     if logged_in?(conn) do
@@ -46,6 +47,11 @@ defmodule K2pokerIo.TournamentController do
   def create(conn, %{"tournament" => tournament_params}) do
     CreateCommand.execute(current_user(conn), tournament_params)
     redirect conn, to: tournament_path(conn, :index)
+  end
+
+  def delete(conn, %{"id" => id}) do
+    DestroyCommand.execute(current_user(conn), id)
+    json conn, %{tournament_id: id}
   end
 
 end

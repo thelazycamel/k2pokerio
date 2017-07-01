@@ -37,6 +37,8 @@ import requestFriendService from  "./services/request_friend_service"
 import confirmFriendService from  "./services/confirm_friend_service"
 import searchFriendsService from  "./services/search_friends_service"
 import getTournamentsForUserService from  "./services/get_tournaments_for_user_service"
+import destroyInviteService from "./services/destroy_invite_service"
+import destroyTournamentService from "./services/destroy_tournament_service"
 
 
 /* pages */
@@ -51,6 +53,7 @@ import profileEditPage from "./pages/profile/edit"
 import gameEventsMiddleware from "./middleware/game_events_middleware"
 import pageEventsMiddleware from "./middleware/page_events_middleware"
 import chatEventsMiddleware from "./middleware/chat_events_middleware"
+import tournamentEventsMiddleware from "./middleware/tournament_events_middleware"
 
 window.App = {
 
@@ -70,6 +73,8 @@ window.App = {
 
   initializeServices: function() {
     this.services = {};
+    this.services.destroy_invite = new destroyInviteService();
+    this.services.destroy_tournament = new destroyTournamentService();
     this.services.opponent_profile = new opponentProfileService();
     this.services.player_score = new playerScoreService();
     this.services.request_friend = new requestFriendService();
@@ -79,7 +84,7 @@ window.App = {
   },
 
   createReduxStore: function() {
-    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware, chatEventsMiddleware);
+    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware, chatEventsMiddleware, tournamentEventsMiddleware);
     this.store = createStore(mainStore, middleware);
   },
 

@@ -10,7 +10,7 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.public.map((tournament, index) => {
         return (
           <tr key={"tournament-" + tournament.id}>
-            <td>{tournament.name}</td>
+            <th>{tournament.name}</th>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
               <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
@@ -40,13 +40,29 @@ class TournamentIndexComponent extends React.Component {
               <a className="btn btn-info" href={"/tournaments/info/"+tournament.id}>Info</a>
             </td>
             <td className="action">
-              <a className="btn btn-danger" href={"/tournaments/leave/"+tournament.id}>Leave</a>
+              <a className="btn btn-danger" onClick={this.destroyTournament.bind(this, tournament.id)}>Delete</a>
             </td>
           </tr>
         )
       });
       return ( <table id="current" className="tournament-table"><tbody>{tournaments}</tbody></table>)
     }
+  }
+
+  destroyInvite(invite_id) {
+    App.store.dispatch({type: "TOURNAMENT:DESTROY_INVITE", invite_id: invite_id});
+    //TODO remove this invite id from the state["invites"]
+    return false;
+  }
+
+  destroyTournament(tournament_id) {
+    App.store.dispatch({type: "TOURNAMENT:DESTROY_TOURNAMENT", tournament_id: tournament_id});
+    //TODO remove this tournament id from the state["current"]
+    return false;
+  }
+
+  tournamentInfoInviteClicked() {
+    App.store.dispatch({type: "TOURNAMENT:INFO_WITH_INVITE", invite_id: invite_id})
   }
 
   renderInvites() {
@@ -57,13 +73,13 @@ class TournamentIndexComponent extends React.Component {
             <th>{invite.name} from {invite.username }</th>
             <td className="score">&nbsp;</td>
             <td className="action">
-              <a className="btn btn-success" href={"/invitations/accept/"+invite.id}>Accept</a>
+              <a className="btn btn-success" href={"/invitation/accept/"+invite.id}>Accept</a>
             </td>
             <td className="action">
-              <a className="btn btn-info" href={"/tournaments/info/"+invite.tournament_id}>Info</a>
+              <a className="btn btn-info" onClick={this.tournamentInfoInviteClicked.bind(this, invite.id)}>Info</a>
             </td>
             <td className="action">
-              <a className="btn btn-danger" href={"/invitations/destroy/"+invite.id}>Delete</a>
+              <a className="btn btn-danger" onClick={this.destroyInvite.bind(this, invite.id)}>Delete</a>
             </td>
           </tr>
         )
@@ -83,7 +99,7 @@ class TournamentIndexComponent extends React.Component {
             {this.renderCurrentTournaments() }
           <h2>Invitations</h2>
             {this.renderInvites() }
-          <a className="btn btn-succes" href="/tournaments/new">Create a Private Tournament</a>
+          <a className="btn btn-success" href="/tournaments/new">Create a Private Tournament</a>
         </div>
       </Provider>
     )
