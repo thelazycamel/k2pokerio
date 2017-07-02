@@ -50,6 +50,7 @@ defmodule K2pokerIo.TournamentController do
   end
 
   def delete(conn, %{"id" => id}) do
+    id = String.to_integer(id)
     DestroyCommand.execute(current_user(conn), id)
     json conn, %{tournament_id: id}
   end

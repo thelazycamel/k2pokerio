@@ -51,13 +51,11 @@ class TournamentIndexComponent extends React.Component {
 
   destroyInvite(invite_id) {
     App.store.dispatch({type: "TOURNAMENT:DESTROY_INVITE", invite_id: invite_id});
-    //TODO remove this invite id from the state["invites"]
     return false;
   }
 
   destroyTournament(tournament_id) {
     App.store.dispatch({type: "TOURNAMENT:DESTROY_TOURNAMENT", tournament_id: tournament_id});
-    //TODO remove this tournament id from the state["current"]
     return false;
   }
 

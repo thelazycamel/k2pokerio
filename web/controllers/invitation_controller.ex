@@ -14,6 +14,7 @@ defmodule K2pokerIo.InvitationController do
   end
 
   def destroy(conn, %{"id" => id}) do
+    id = String.to_integer(id)
     DestroyCommand.execute(current_user(conn), id)
     json conn, %{invite_id: id}
   end
