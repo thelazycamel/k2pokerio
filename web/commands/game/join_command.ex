@@ -16,7 +16,7 @@ defmodule K2pokerIo.Commands.Game.JoinCommand do
   end
 
   defp find_or_create_game(user_tournament_detail) do
-    if game = List.first(Repo.all(game_waiting_query(user_tournament_detail))) do
+    if game = get_game(user_tournament_detail) do
       join_game(user_tournament_detail, game)
     else
       create_new_game(user_tournament_detail)
@@ -50,14 +50,29 @@ defmodule K2pokerIo.Commands.Game.JoinCommand do
     Repo.update(utd_changeset)
   end
 
-  # TODO check created_at for being less than 1 minute and make sure player2_id is null
-  #
-  defp game_waiting_query(utd) do
-    from Game, where: [tournament_id: ^utd.tournament_id,
+  defp get_game(utd) do
+    tournament = utd.tournament
+    cond do
+      tournament.private && tournament.bots == false -> any_available_game(utd)
+      true -> game_by_current_score(utd)
+    end
+  end
+
+  defp any_available_game(utd) do
+    query = from Game, where: [tournament_id: ^utd.tournament_id,
+                       waiting_for_players: true,
+                       open: true
+                       ], limit: 1
+    List.first(Repo.all(query))
+  end
+
+  defp game_by_current_score(utd) do
+    query = from Game, where: [tournament_id: ^utd.tournament_id,
                        value: ^utd.current_score,
                        waiting_for_players: true,
                        open: true
                        ], limit: 1
+    List.first(Repo.all(query))
   end
 
 end

@@ -40,7 +40,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
     score = utd.current_score
     new_score = case player_data.result.status do
       "win" -> score * 2
-      "lose" -> 1
+      "lose" -> tournament_lose_policy(score, utd.tournament)
       "draw" -> score
       "folded" -> round(score / 2)
       "other_player_folded" -> score
@@ -50,9 +50,15 @@ defmodule K2pokerIo.Commands.Tournament.UpdateScoresCommand do
       new_score <= 1 -> 1
       true -> new_score
     end
-    #new_score = 1 #THIS IS FOR TESTING PURPOSES TO KEEP THE PLAYERS ON THE SAME LEVEL
     update_user_tournament_detail(utd, game.id, new_score, player_id)
     game
+  end
+
+  defp tournament_lose_policy(score, tournament) do
+    case tournament.lose_type do
+      "all" -> 1
+      "half" -> round(score / 2)
+    end
   end
 
   # TODO badges
