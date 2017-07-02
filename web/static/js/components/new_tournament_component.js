@@ -87,7 +87,7 @@ class NewTournamentComponent extends React.Component {
       <div id="form-holder">
         <input type="hidden" name="tournament[friend_ids]" id="friend-ids" value=""/>
         <input type="hidden" name="_csrf_token" value={App.settings.csrf_token}/>
-        <label for="tournament[name]" className="col-5 col-form-label">Name</label>
+        <label htmlFor="tournament[name]" className="col-5 col-form-label">Tournament Name</label>
         <input type="text" name="tournament[name]" className="form-control"/>
         { this.renderGameTypeRadioButton("tournament") }
         { this.renderGameTypeRadioButton("duel") }
