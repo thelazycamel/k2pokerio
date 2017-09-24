@@ -1,4 +1,5 @@
 defmodule K2pokerIo.UserTest do
+
   use K2pokerIo.ModelCase
 
   alias K2pokerIo.User

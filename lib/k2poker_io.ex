@@ -11,7 +11,7 @@ defmodule K2pokerIo do
       # Start the Ecto repository
       supervisor(K2pokerIo.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(K2pokerIo.Endpoint, []),
+      supervisor(K2pokerIoWeb.Endpoint, []),
       # Start your own worker by calling: K2pokerIo.Worker.start_link(arg1, arg2, arg3)
       # worker(K2pokerIo.Worker, [arg1, arg2, arg3]),
     ]
@@ -25,7 +25,8 @@ defmodule K2pokerIo do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    K2pokerIo.Endpoint.config_change(changed, removed)
+    K2pokerIoWeb.Endpoint.config_change(changed, removed)
     :ok
   end
+
 end

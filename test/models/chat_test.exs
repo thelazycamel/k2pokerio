@@ -1,4 +1,5 @@
 defmodule K2pokerIo.ChatTest do
+
   use K2pokerIo.ModelCase
 
   alias K2pokerIo.Chat

@@ -1,5 +1,5 @@
 defmodule K2pokerIo.PageControllerTest do
-  use K2pokerIo.ConnCase
+  use K2pokerIoWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

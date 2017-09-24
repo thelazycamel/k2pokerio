@@ -1,4 +1,4 @@
-defmodule K2pokerIo.ChannelCase do
+defmodule K2pokerIoWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule K2pokerIo.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint K2pokerIo.Endpoint
+      @endpoint K2pokerIoWeb.Endpoint
     end
   end
 

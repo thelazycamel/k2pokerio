@@ -1,4 +1,4 @@
-defmodule K2pokerIo.ConnCase do
+defmodule K2pokerIoWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule K2pokerIo.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import K2pokerIo.Router.Helpers
+      import K2pokerIoWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint K2pokerIo.Endpoint
+      @endpoint K2pokerIoWeb.Endpoint
     end
   end
 

@@ -10,10 +10,10 @@ config :k2poker_io,
   ecto_repos: [K2pokerIo.Repo]
 
 # Configures the endpoint
-config :k2poker_io, K2pokerIo.Endpoint,
+config :k2poker_io, K2pokerIoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "PwMUU1X7uIJOIwgxJ19EsBhrYmZK7RaSy7qap8ohnFkpTlU/919kcE5jgoF8OxAb",
-  render_errors: [view: K2pokerIo.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: K2pokerIoWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: K2pokerIo.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

@@ -4,9 +4,9 @@ defmodule K2pokerIo.GameControllerTest do
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
 
-  use K2pokerIo.ConnCase
+  use K2pokerIoWeb.ConnCase
 
-  doctest K2pokerIo.GameController
+  doctest K2pokerIoWeb.GameController
 
 
 end
