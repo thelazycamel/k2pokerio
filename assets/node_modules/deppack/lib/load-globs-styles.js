@@ -1,6 +1,6 @@
 'use strict';
 
-const sysPath = require('path');
+const sysPath = require('./path');
 const promisify = require('micro-promisify');
 const each = promisify(require('async-each'));
 const makeRelative = require('./helpers').makeRelative;

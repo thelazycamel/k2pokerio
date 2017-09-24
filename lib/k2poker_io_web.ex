@@ -45,7 +45,7 @@ defmodule K2pokerIoWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/my_app_web/templates", namespace: K2pokerIoWeb
+      use Phoenix.View, root: "lib/k2poker_io_web/templates", namespace: K2pokerIoWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]

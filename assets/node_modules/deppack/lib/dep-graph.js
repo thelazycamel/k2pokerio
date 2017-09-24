@@ -73,7 +73,7 @@ class DepGraph {
   serialize(modMap, fileReflection) {
     const generateFileBasedModuleName = require('./module-naming').generateFileBasedModuleName;
     const pathToName = path => {
-      if (path === "___globals___") return path;
+      if (path === '___globals___') return path;
       if (fileReflection.isApp(path)) {
         return modMap.cleanMod(path);
       } else {

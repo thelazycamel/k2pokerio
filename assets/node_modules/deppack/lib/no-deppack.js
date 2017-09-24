@@ -5,6 +5,9 @@ class NoDeppack {
     return Promise.resolve({components: []});
   }
 
+  setPlugins() {
+  }
+
   exploreDeps(sourceFile) {
     return Promise.resolve(sourceFile);
   }

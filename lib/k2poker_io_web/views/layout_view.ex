@@ -23,7 +23,7 @@ defmodule K2pokerIoWeb.LayoutView do
   def user_token(player_id) do
     cond do
       player_id == "" -> ""
-      true -> Phoenix.Token.sign(K2pokerIo.Endpoint, "player_id", player_id)
+      true -> Phoenix.Token.sign(K2pokerIoWeb.Endpoint, "player_id", player_id)
     end
   end
 

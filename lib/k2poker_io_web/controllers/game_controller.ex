@@ -1,4 +1,4 @@
-defmodule K2pokerIoweb.GameController do
+defmodule K2pokerIoWeb.GameController do
 
   use K2pokerIoWeb, :controller
   alias K2pokerIo.UserTournamentDetail

@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Game.FoldCommand do
+defmodule K2pokerIoWeb.Commands.Game.FoldCommand do
 
   alias K2pokerIo.Game
   alias K2pokerIo.Repo

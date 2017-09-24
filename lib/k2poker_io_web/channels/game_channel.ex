@@ -3,13 +3,14 @@ defmodule K2pokerIoWeb.GameChannel do
   use K2pokerIoWeb, :channel
 
   alias K2pokerIo.Game
+  alias K2pokerIo.UserTournamentDetail
+
   alias K2pokerIoWeb.Commands.Game.PlayCommand
   alias K2pokerIoWeb.Commands.Game.DiscardCommand
   alias K2pokerIoWeb.Commands.Game.FoldCommand
   alias K2pokerIoWeb.Commands.Game.JoinCommand
   alias K2pokerIoWeb.Commands.Game.GetDataCommand
   alias K2pokerIoWeb.Commands.Game.RequestBotCommand
-  alias K2pokerIoWeb.UserTournamentDetail
 
   intercept ["game:new_game_data", "game:new_game"]
 
@@ -19,7 +20,7 @@ defmodule K2pokerIoWeb.GameChannel do
     if game && Enum.member?([game.player1_id, game.player2_id], player_id) do
       {:ok, socket}
     else
-      :error
+      {:error, :error}
     end
   end
 

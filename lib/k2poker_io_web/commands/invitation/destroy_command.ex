@@ -21,7 +21,7 @@ defmodule K2pokerIoWeb.Commands.Invitation.DestroyCommand do
   end
 
   def destroy_tournament(tournament_id, current_user) do
-    K2pokerIo.Commands.Tournament.DestroyCommand.execute(current_user, tournament_id)
+    K2pokerIoWeb.Commands.Tournament.DestroyCommand.execute(current_user, tournament_id)
   end
 
 end

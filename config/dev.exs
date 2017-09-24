@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :k2poker_io, K2pokerIo.Endpoint,
+config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -16,7 +16,7 @@ config :k2poker_io, K2pokerIo.Endpoint,
 
 
 # Watch static and templates for browser reloading.
-config :k2poker_io, K2pokerIo.Endpoint,
+config :k2poker_io, K2pokerIoWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},

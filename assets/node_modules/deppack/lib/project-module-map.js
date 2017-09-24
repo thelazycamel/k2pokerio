@@ -2,10 +2,10 @@
 
 const withoutExt = mod => mod.split('.').slice(0, -1).join('.');
 const extRe = /\.(\w+)$/;
-const ext = mod => {
-  const match = extRe.exec(mod)
+const ext = (mod) => {
+  const match = extRe.exec(mod);
   return match && match[1];
-}
+};
 const indexRe = /\/index$/;
 
 // maps project files to module names, also shims

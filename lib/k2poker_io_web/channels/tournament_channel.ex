@@ -20,5 +20,4 @@ defmodule K2pokerIoWeb.TournamentChannel do
     {:noreply, socket}
   end
 
-
 end

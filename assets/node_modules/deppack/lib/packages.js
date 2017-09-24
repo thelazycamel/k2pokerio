@@ -1,6 +1,6 @@
 'use strict';
 
-const sysPath = require('path');
+const sysPath = require('./path');
 const deepAssign = require('deep-assign');
 const moduleNaming = require('./module-naming');
 const shims = require('./shims');

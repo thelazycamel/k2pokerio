@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :k2poker_io, K2pokerIo.Endpoint,
+config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4001],
   server: false
 
