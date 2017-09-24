@@ -2,6 +2,7 @@ class GameChannel {
 
   constructor(){
     let _this = this;
+    //TODO move this to a service
     $.ajax({
       url: "/games/join",
       method: "POST",
@@ -10,7 +11,7 @@ class GameChannel {
     }).done(function(data){
       _this.joinGameChannel(data.game_id);
       App.services.player_score.call();
-    }).fail(function(){
+    }).fail(function(data, status, jqXHR){
       window.location = "/";
     });
   }

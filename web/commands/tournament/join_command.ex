@@ -2,6 +2,7 @@ defmodule K2pokerIo.Commands.Tournament.JoinCommand do
 
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Tournament
+  alias K2pokerIo.Invitation
   alias K2pokerIo.Repo
   alias K2pokerIo.User
   import Ecto
@@ -18,7 +19,7 @@ defmodule K2pokerIo.Commands.Tournament.JoinCommand do
 
   defp user_has_access?(current_user, tournament) do
     if tournament.private do
-      true
+      Repo.get_by!(Invitation, user_id: current_user.id, tournament_id: tournament.id)
     else
       current_user
     end

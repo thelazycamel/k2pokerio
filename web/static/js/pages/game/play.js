@@ -28,10 +28,10 @@ class GamePlayPage extends page {
     this.connectSocket();
     new tournamentChannel();
     new chatChannel();
-    this.loadNewGame();
     this.initializeComponents();
     App.pageComponentManager = new PageComponentManager();
     App.pageComponentManager.init();
+    this.loadNewGame();
   }
 
   initializeComponents() {
@@ -47,9 +47,11 @@ class GamePlayPage extends page {
   }
 
   setBotRequest() {
-    this.botPopupRequest = setTimeout(function(){
-      App.store.dispatch({type: "PAGE:SHOW_BOT_POPUP"});
-    },5000)
+    if(App.settings.bots == "true"){
+      this.botPopupRequest = setTimeout(function(){
+        App.store.dispatch({type: "PAGE:SHOW_BOT_POPUP"});
+      },5000);
+    }
   }
 
   clearBotRequest() {

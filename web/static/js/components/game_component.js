@@ -140,7 +140,10 @@ class GameComponent extends React.Component {
   playButton() {
     if(this.isFinished()) {
       return(<a id="play-button" className="next-game" onClick={this.nextGameButtonClicked}>Next Game</a>);
-    } else if(this.waitingForOpponent() || this.waitingForOpponentToPlay()) {
+    } else if(this.waitingForOpponent()){
+      let buttonText = App.settings.bots == true ? "Searching..." : "Waiting...";
+      return(<a id="play-button" className="waiting">{buttonText}</a>);
+    } else if(this.waitingForOpponentToPlay()) {
       return(<a id="play-button" className="waiting">Waiting...</a>);
     } else {
       return(<a id="play-button" onClick={this.playButtonClicked}>Play</a>);

@@ -14,7 +14,8 @@ defmodule K2pokerIo.LayoutView do
     [
       page: "#{get_controller(conn)}#{String.capitalize(get_action(conn))}",
       tournament_id: conn.assigns[:tournament_id],
-      logged_in: conn.assigns[:logged_in]
+      logged_in: conn.assigns[:logged_in],
+      bots: conn.assigns[:bots]
     ]
   end
 
