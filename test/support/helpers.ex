@@ -22,7 +22,7 @@ defmodule K2pokerIo.Test.Helpers do
   def create_user_tournament_detail(username, tournament_id) do
     detail = %{player_id: anon_player_id(username), username: username, tournament_id: tournament_id, current_score: 1, rebuys: [0]}
     changeset = UserTournamentDetail.changeset(%UserTournamentDetail{}, detail)
-    Repo.insert!(changeset)
+    Repo.insert!(changeset) |> Repo.preload(:tournament)
   end
 
   def create_tournament do
