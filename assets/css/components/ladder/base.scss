@@ -1,0 +1,70 @@
+#ladder-holder {
+  #ladder-root {
+    position: absolute;
+    height: 319px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+    overflow: hidden;
+    #score-ladder {
+      margin-top: 2px;
+      text-align: center;
+
+      tr {
+
+        /*
+        background: linear-gradient(to bottom, #010116 0%, #010116 80%, #172a55 100%);
+
+         &:nth-child(even) {
+          background-color: #172a55;
+        }
+
+        &:nth-child(odd) {
+          background-color: transparent;
+        } */
+
+        td {
+          width: 50%;
+          position: relative;
+
+          .tournament-score-name {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+
+            .username {
+              position: absolute;
+              right: 35px;
+              max-width: 80px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .tournament-chip {
+              display: inline-block;
+              top: 0px;
+              right: 0px;
+              width: 30px;
+              height: 14px;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              &.tournament-player-chip {
+                background-image: url("/images/tournament/player-chip.svg");
+              }
+
+              &.tournament-leader-chip {
+                background-image: url("/images/tournament/chip-leader-chip.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "./phone";
+@import "./plablet";
+@import "./small";
+@import "./medium";
+@import "./large";

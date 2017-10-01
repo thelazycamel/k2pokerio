@@ -1,0 +1,17 @@
+@import "../variables";
+
+@media (min-width: $media-medium-min) {
+
+  &.player-card {
+    width: 131px;
+    height: 175px;
+    cursor: pointer;
+  }
+
+  &.table-card,
+  &.opponent-card {
+    width: 90px;
+    height: 120px;
+  }
+
+}

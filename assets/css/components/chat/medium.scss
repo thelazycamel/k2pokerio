@@ -1,0 +1,12 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  #chat-holder {
+    #chat-root {
+      left: 538px;
+      width: 366px;
+    }
+  }
+
+}

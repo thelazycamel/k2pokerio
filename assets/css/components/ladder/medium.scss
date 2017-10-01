@@ -1,0 +1,17 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  #ladder-holder {
+    #ladder-root {
+      left: 538px;
+      width: 366px;
+
+      #score-ladder {
+        font-size: 0.8em;
+        width: 100%;
+      }
+    }
+  }
+
+}

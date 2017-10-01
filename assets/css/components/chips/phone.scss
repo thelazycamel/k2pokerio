@@ -1,0 +1,30 @@
+@import "../../variables";
+
+@media (max-width: $media-phone-max) {
+
+  #chips-holder {
+    #chips-root {
+      left: 0px;
+      top: 0px;
+      width: 320px;
+      height: 554px;
+      .scoreboard {
+        display: block;
+        left: 45px;
+        top: 20px;
+      }
+      .players-online {
+        top: 80px;
+      }
+      .rebuys {
+        top: 105px;
+        bottom: auto;
+      }
+      #player-chips {
+        top: 200px;
+        left: 35px;
+      }
+    }
+  }
+
+}

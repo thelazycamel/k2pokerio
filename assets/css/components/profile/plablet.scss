@@ -1,0 +1,26 @@
+@import "../../variables";
+
+@media (min-width: $media-plablet-min) and (max-width: $media-plablet-max) {
+
+  #profile-holder {
+    #profile-root {
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      border-radius: 10px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
+      #profile-inner {
+        background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+        border-radius: 10px;
+        overflow: hidden;
+        height: 100%;
+        h2 {
+          border-radius: 10px 10px 0px 0px;
+        }
+      }
+    }
+  }
+
+}

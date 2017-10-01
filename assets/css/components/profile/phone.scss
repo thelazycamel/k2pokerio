@@ -1,0 +1,17 @@
+@import "../../variables";
+
+@media (max-width: $media-phone-max) {
+
+  #profile-holder {
+    #profile-root {
+      display: none;
+      top: 0px;
+      background: none;
+      width: 320px;
+      height: 540px;
+      p {
+        padding: 5px;
+      }
+    }
+  }
+}

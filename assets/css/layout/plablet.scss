@@ -1,0 +1,19 @@
+@import "../variables";
+
+@media (max-width: $media-plablet-max) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  header {
+
+    .scoreboard {
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      margin-left: -118px;
+    }
+
+  }
+}

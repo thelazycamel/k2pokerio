@@ -1,0 +1,27 @@
+@import "../../variables";
+
+@media (min-width: $media-phone-min) {
+
+  body.page.index {
+
+    #main-content {
+
+      #homepage {
+        height: 400px;
+        background-position: top center;
+        .anon-player-form {
+          margin: 186px auto 0px auto;
+          width: 280px;
+          .input-group {
+            input.anon-nickname {
+              width: 150px;
+            }
+            button.btn-play {
+              width: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

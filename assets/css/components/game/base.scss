@@ -1,0 +1,141 @@
+#game-holder {
+
+  #game-root {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 2px;
+    height: 619px;
+    background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+    border-radius: 10px;
+
+    #game-inner {
+      background-image: url("/images/blue-back.png");
+      background-position: center;
+      height: 615px;
+      border-radius: 10px;
+
+      #game {
+        position: relative;
+
+        #shine {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: 5;
+          background-image: url("/images/shine.svg");
+          background-repeat: no-repeat;
+          border-radius: 10px 10px 0px 0px;
+        }
+
+        #opponent-image {
+          position: absolute;
+          display: block;
+          z-index: 6;
+          border-radius: 20px;
+          padding: 2px;
+          background: linear-gradient(to bottom, #cdcccc 0%,#020101 50%);
+          img {
+            filter: grayscale(75%);
+            &:hover {
+              filter: grayscale(0);
+            }
+          }
+          #opponent-name {
+            position: absolute;
+            bottom: 0;
+            font-size: 0.8em;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: linear-gradient(to bottom, rgba(01,01,16,0.5) 50%,rgba(01,01,16,1) 100%);
+            width: 100%;
+            color: #ccc;
+          }
+        }
+
+        .card {
+          position: absolute;
+          box-shadow: 2px 2px 2px 0px rgba(2,1,1,0.50);
+        }
+
+        &.result {
+          .card {
+            opacity: 0.25;
+          }
+
+          .card.winner {
+            opacity: 1;
+          }
+        }
+
+        #game-status .win-status {
+          font-size: 1.3em;
+          line-height: 2em;
+          color: #C6C82C;
+        }
+
+        #game-status .lose-status {
+          font-size: 1.3em;
+          line-height: 2em;
+          color: #DE1F1B;
+        }
+
+        #best-hand .result-hand {
+          font-size: 1.1em;
+          line-height: 2.5em;
+        }
+      }
+    }
+  }
+
+
+  #play-button {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    background-image: url("/images/play-button.svg");
+    text-align: center;
+    color: #c3c3c3;
+
+    &:hover {
+      text-decoration: none;
+      color: #f3f3f3;
+      background-image: url("/images/play-button-hover.svg");
+    }
+
+    &.waiting {
+      background-image: url("/images/wait-button.svg");
+    }
+
+    &.waiting:hover {
+      background-image: url("/images/wait-button.svg");
+    }
+
+  }
+
+  #fold-button {
+    position: absolute;
+    z-index: 6;
+    display: inline-block;
+    cursor: pointer;
+    background-image: url("/images/fold-button.svg");
+    text-align: center;
+    color: #c3c3c3;
+
+    &:hover {
+      text-decoration: none;
+      color: #f3f3f3;
+      background-image: url("/images/fold-button-hover.svg");
+    }
+  }
+
+}
+
+
+@import "./phone";
+@import "./plablet";
+@import "./small";
+@import "./medium";
+@import "./large";

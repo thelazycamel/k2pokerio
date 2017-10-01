@@ -1,0 +1,25 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) {
+
+  body.page.index {
+
+    #main-content {
+
+      #homepage {
+        .anon-player-form {
+          width: 500px;
+          .input-group {
+            input.anon-nickname {
+              width: 360px;
+            }
+            button.btn-play {
+              width: 120px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

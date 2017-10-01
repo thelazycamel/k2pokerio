@@ -1,0 +1,11 @@
+@import "../../variables";
+
+@media (min-width: $media-large-min){
+
+  footer .footer-reflection  {
+    background-image: url("/images/home-footer-reflection.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 200px;
+  }
+}

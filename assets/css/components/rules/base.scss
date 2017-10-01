@@ -1,0 +1,19 @@
+#rules-holder {
+  #rules-root {
+    position: absolute;
+    top: 319px;
+    height: 300px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+    .rules-section {
+      padding: 10px;
+    }
+  }
+
+}
+
+@import "./phone";
+@import "./plablet";
+@import "./small";
+@import "./medium";
+@import "./large";

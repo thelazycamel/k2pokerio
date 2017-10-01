@@ -1,0 +1,181 @@
+#chips-holder {
+
+  #chips-root {
+    position: absolute;
+    left: 629px;
+    width: 261px;
+    height: 319px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+
+    .players-online {
+      position: absolute;
+      top: 60px;
+      left: 15px;
+      z-index: 2;
+      color: #d4d4d4;
+      background-color: transparent;
+      opacity: 0.7;
+    }
+
+    .rebuys {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      z-index: 2;
+      color: #d4d4d4;
+      background-color: transparent;
+      opacity: 0.7;
+    }
+
+    .scoreboard {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+
+    #player-chips {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 250px;
+      height: 250px;
+      background-size: cover;
+      opacity: 0.1;
+
+      &.chips-1 {
+        background-image: url("/images/chips/chips-1.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-2 {
+        background-image: url("/images/chips/chips-2.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-4 {
+        background-image: url("/images/chips/chips-4.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-8 {
+        background-image: url("/images/chips/chips-8.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-16 {
+        background-image: url("/images/chips/chips-16.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-32 {
+        background-image: url("/images/chips/chips-32.png");
+        transition: opacity 1s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-64 {
+        background-image: url("/images/chips/chips-64.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-128 {
+        background-image: url("/images/chips/chips-128.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-256 {
+        background-image: url("/images/chips/chips-256.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-512 {
+        background-image: url("/images/chips/chips-512.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-1024 {
+        background-image: url("/images/chips/chips-1024.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-2048 {
+        background-image: url("/images/chips/chips-2048.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-4096 {
+        background-image: url("/images/chips/chips-4096.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-8192 {
+        background-image: url("/images/chips/chips-8192.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-16384 {
+        background-image: url("/images/chips/chips-16384.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-32768 {
+        background-image: url("/images/chips/chips-32768.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-65536 {
+        background-image: url("/images/chips/chips-65536.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-131072 {
+        background-image: url("/images/chips/chips-131072.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-262144 {
+        background-image: url("/images/chips/chips-262144.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-524288 {
+        background-image: url("/images/chips/chips-524288.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+      &.chips-1048576 {
+        background-image: url("/images/chips/chips-1048576.png");
+        transition: opacity .5s ease-in;
+        opacity: 1;
+      }
+
+    }
+  }
+
+}
+
+@import "./phone";
+@import "./plablet";
+@import "./small";
+@import "./medium";
+@import "./large";

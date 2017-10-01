@@ -1,0 +1,12 @@
+@import "../../variables";
+
+@media (min-width: $media-large-min) {
+
+  #chips-holder {
+    #chips-root {
+      border-radius: 0px 0px 0px 10px;
+    }
+  }
+
+}
+

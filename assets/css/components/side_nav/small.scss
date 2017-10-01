@@ -1,0 +1,21 @@
+@import "../../variables";
+
+@media (min-width: $media-small-min) and (max-width: $media-small-max) {
+
+  #nav-holder {
+    left: 669px;
+    #nav-root {
+      a.side-nav-item {
+        .link-title {
+          display: none;
+        }
+
+        &#nav-game {
+          display: none;
+        }
+
+      }
+    }
+  }
+
+}

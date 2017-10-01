@@ -1,0 +1,20 @@
+@import "../../variables";
+
+@media (min-width: $media-large-min) {
+
+  #ladder-holder {
+    #ladder-root {
+      left: 890px;
+      width: 250px;
+      border-radius: 0px 0px 10px 0px;
+      #score-ladder {
+        font-size: 0.8em;
+        float: right;
+        width: 250px;
+      }
+    }
+
+  }
+
+}
+

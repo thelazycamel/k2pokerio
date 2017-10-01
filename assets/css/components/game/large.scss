@@ -1,0 +1,122 @@
+@import "../../variables";
+
+@media (min-width: $media-large-min) {
+
+  #game-holder {
+    #game-root {
+      width: 629px;
+      #game {
+        width: 625px;
+        height: 615px;
+        background-image: url("/images/play-area-large.svg");
+        background-size: cover;
+
+        #shine {
+          width: 625px;
+          height: 130px;
+        }
+
+        #opponent-image {
+          top: 41px;
+          left: 77px;
+          width: 85px;
+          height: 85px;
+          img {
+            cursor: pointer;
+            width: 81px;
+            height: 81px;
+            border-radius: 20px;
+          }
+          #opponent-name {
+            padding: 5px 2px 10px 2px;
+            border-radius: 0 0 20px 20px;
+          }
+        }
+
+        #opponent-card-1 {
+          top: 27px;
+          left: 216px;
+        }
+
+        #opponent-card-2 {
+          top: 27px;
+          left: 317px;
+        }
+
+        #fold-button {
+          top: 46px;
+          left: 464px;
+          width: 85px;
+          height: 85px;
+          background-size: 85px 85px;
+          font-size: 1.2em;
+          line-height: 4.8em;
+        }
+
+        #play-button {
+          top: 313px;
+          left: 215px;
+          width: 200px;
+          height: 55px;
+          background-size: 200px 55px;
+          font-size: 1.4em;
+          line-height: 2.6em;
+        }
+
+        #table-card-1 {
+          top: 167px;
+          left: 67px;
+        }
+
+        #table-card-2 {
+          top: 167px;
+          left: 167px;
+        }
+
+        #table-card-3 {
+          top: 167px;
+          left: 267px;
+        }
+
+        #table-card-4 {
+          top: 167px;
+          left: 367px;
+        }
+
+        #table-card-5 {
+          top: 167px;
+          left: 467px;
+        }
+
+        #player-card-1 {
+          top: 387px;
+          left: 169px;
+        }
+
+        #player-card-2 {
+          top: 387px;
+          left: 316px;
+        }
+
+
+        #game-status {
+          position: absolute;
+          text-align: center;
+          top: 306px;
+          left: 33px;
+          padding: 15px 10px;
+          width: 154px;
+        }
+
+        #best-hand {
+          position: absolute;
+          text-align: center;
+          top: 306px;
+          left: 439px;
+          padding: 15px 10px;
+          width: 154px;
+        }
+      }
+    }
+  }
+}

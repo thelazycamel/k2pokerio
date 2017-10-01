@@ -1,0 +1,23 @@
+@import "../../variables";
+
+@media (max-width: $media-phone-max) {
+
+  #chat-holder {
+    #chat-root {
+      display: none;
+      height: auto;
+      top: 0px;
+      border-radius: 10px;
+      width: 320px;
+      height: 554px;
+      #chat-fader{
+        height: 200px;
+      }
+      ul#chats {
+        height: 474px;
+      }
+    }
+
+  }
+
+}

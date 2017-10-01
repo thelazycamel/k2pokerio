@@ -1,0 +1,17 @@
+@import "../variables";
+
+@media (min-width: $media-medium-min) {
+  footer {
+    .container {
+      #footer-chips {
+        display: block;
+      }
+      ul.footer-nav {
+        width: 55%;
+      }
+      #footer-logo {
+        display: block;
+      }
+    }
+  }
+}

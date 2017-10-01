@@ -1,5 +1,9 @@
-/* unable to use vars in media queries but keeping them here for easy look-up */
-$media-phone: 320px;
-$media-small: 768px;
-$media-medium: 992px;
-$media-large: 1200px;
+$media-phone-min: 320px;
+$media-phone-max: 499px;
+$media-plablet-min: 500px;
+$media-plablet-max: 767px;
+$media-small-min: 768px;
+$media-small-max: 991px;
+$media-medium-min: 992px;
+$media-medium-max: 1199px;
+$media-large-min: 1200px;

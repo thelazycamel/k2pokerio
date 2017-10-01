@@ -1,0 +1,12 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  #profile-holder {
+    #profile-root {
+      left: 538px;
+      width: 366px;
+    }
+  }
+
+}

@@ -1,0 +1,47 @@
+@import "../../variables";
+
+@media (min-width: $media-plablet-min) and (max-width: $media-plablet-max) {
+
+  #ladder-holder {
+    #ladder-root {
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
+      #ladder-inner {
+        background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+        border-radius: 10px;
+        overflow: hidden;
+        #score-ladder {
+          width: 100%;
+          font-size: 1.5em;
+          line-height: 1.4em;
+          margin-top: 6px;
+          tr {
+            td {
+              .tournament-score-name {
+                  right: auto;
+                  left: 10px;
+                .username {
+                  right: auto;
+                  left: 10px;
+                  max-width: 150px;
+                }
+                .tournament-chip {
+                  position: absolute;
+                  left: 175px;
+                  width: 50px;
+                  height: 27px;
+                  top: 2px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

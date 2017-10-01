@@ -1,0 +1,18 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  #chips-holder {
+    #chips-root {
+      left: 538px;
+      width: 366px;
+      .scoreboard {
+        left: 62px;
+      }
+      #player-chips {
+        margin-left: 43px;
+      }
+    }
+  }
+
+}

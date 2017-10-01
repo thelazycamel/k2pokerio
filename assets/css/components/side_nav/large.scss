@@ -1,0 +1,54 @@
+@import "../../variables";
+
+@media (min-width: $media-large-min) {
+  #nav-holder {
+    z-index: 10;
+    left: 1030px;
+    top: 322px;
+    background: none;
+    width: 116px;
+    height: 30px;
+
+   #nav-root {
+
+      a.side-nav-item {
+        height: 26px;
+        background: none;
+        border: none;
+        .link-title {
+          display: none;
+        }
+        &.active {
+          background: none;
+        }
+        .icon {
+          position: relative;
+          top: 0px;
+          left: 0px;
+        }
+
+        &#nav-game {
+          display: none;
+        }
+        &#nav-chips {
+          display: none;
+        }
+        &#nav-ladder {
+          display: none;
+        }
+        &#nav-chat {
+          top: 2px;
+          left: 10px;
+        }
+        &#nav-rules {
+          top: 2px;
+          left: 46px;
+        }
+        &#nav-profile {
+          top: 2px;
+          left: 80px;
+        }
+      }
+    }
+  }
+}

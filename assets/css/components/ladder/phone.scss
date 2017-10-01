@@ -1,0 +1,43 @@
+@import "../../variables";
+
+@media (max-width: $media-phone-max) {
+
+  #ladder-holder {
+    #ladder-root {
+      display: none;
+      height: 554px;
+      width: 320px;
+      border-radius: 10px;
+      #score-ladder {
+        margin-top: 50px;
+        width: 100%;
+        font-size: 1.2em;
+        line-height: 1.4em;
+        tr {
+          td {
+            .tournament-score-name {
+                right: auto;
+                left: 10px;
+              .username {
+                right: auto;
+                left: 10px;
+                max-width: 100px;
+              }
+              .tournament-chip {
+                position: absolute;
+                left: 150px;
+                width: 40px;
+                height: 20px;
+                top: 2px;
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+
+}
+
