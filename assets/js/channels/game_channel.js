@@ -1,19 +1,7 @@
 class GameChannel {
 
-  constructor(){
-    let _this = this;
-    //TODO move this to a service
-    $.ajax({
-      url: "/games/join",
-      method: "POST",
-      dataType: "json",
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(data){
-      _this.joinGameChannel(data.game_id);
-      App.services.player_score.call();
-    }).fail(function(data, status, jqXHR){
-      window.location = "/";
-    });
+  constructor(game_id){
+    this.joinGameChannel(game_id);
   }
 
   joinGameChannel(game_id) {

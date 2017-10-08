@@ -1,5 +1,13 @@
+import GameChannel from "../channels/game_channel"
+
 const gameEventsMiddleware = store => next => action => {
   switch(action.type) {
+    case "GAME:JOINED":
+      new GameChannel(action.game_id);
+      break;
+    case "GAME:JOIN_FAILED":
+      window.location = "/";
+      break;
     case "GAME:PLAY":
       App.gameChannel.push("game:play");
       break;

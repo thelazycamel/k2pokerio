@@ -32,6 +32,7 @@ class GamePlayPage extends page {
     App.pageComponentManager = new PageComponentManager();
     App.pageComponentManager.init();
     this.loadNewGame();
+    App.services.player_score.call();
   }
 
   initializeComponents() {
@@ -59,7 +60,7 @@ class GamePlayPage extends page {
   }
 
   loadNewGame() {
-    new gameChannel();
+    App.services.join_game_service.call();
   }
 
   initializeLadderComponent() {

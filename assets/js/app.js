@@ -39,6 +39,7 @@ import searchFriendsService from  "./services/search_friends_service"
 import getTournamentsForUserService from  "./services/get_tournaments_for_user_service"
 import destroyInviteService from "./services/destroy_invite_service"
 import destroyTournamentService from "./services/destroy_tournament_service"
+import JoinGameService from "./services/join_game_service"
 
 
 /* pages */
@@ -81,6 +82,7 @@ window.App = {
     this.services.confirm_friend = new confirmFriendService();
     this.services.search_friends = new searchFriendsService();
     this.services.get_tournaments_for_user_service = new getTournamentsForUserService();
+    this.services.join_game_service = new JoinGameService();
   },
 
   createReduxStore: function() {
