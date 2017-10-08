@@ -26,7 +26,7 @@ defmodule K2pokerIo.Test.Helpers do
   end
 
   def create_tournament do
-    Repo.insert!(%Tournament{name: "K2 Summit Ascent Test", default: true, private: false, finished: false})
+    Repo.insert!(%Tournament{name: "K2 Summit Ascent Test", default_tournament: true, private: false, finished: false})
   end
 
   def create_user(username) do

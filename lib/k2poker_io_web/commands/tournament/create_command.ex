@@ -26,7 +26,7 @@ defmodule K2pokerIoWeb.Commands.Tournament.CreateCommand do
   def tournament_changeset(current_user, params) do
     %Tournament{
       name: params["name"],
-      default: false,
+      default_tournament: false,
       finished: false,
       private: true,
       user_id: current_user.id,
@@ -42,7 +42,7 @@ defmodule K2pokerIoWeb.Commands.Tournament.CreateCommand do
     opponent = Repo.get(User, opponent_id)
     %Tournament{
       name: "#{current_user.username} v #{opponent.username}",
-      default: false,
+      default_tournament: false,
       finished: false,
       private: true,
       user_id: current_user.id,

@@ -4,7 +4,7 @@ defmodule K2pokerIo.Tournament do
 
   schema "tournaments" do
     field :name, :string
-    field :default, :boolean
+    field :default_tournament, :boolean
     field :finished, :boolean
     field :private, :boolean
     belongs_to :user, K2pokerIo.User

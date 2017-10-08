@@ -24,7 +24,7 @@ defmodule K2pokerIoWeb.PageController do
   end
 
   defp default_tournament do
-    default_tournament = Repo.get_by(K2pokerIo.Tournament, default: true)
+    default_tournament = Repo.get_by(K2pokerIo.Tournament, default_tournament: true)
   end
 
 end

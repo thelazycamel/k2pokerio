@@ -38,6 +38,6 @@ config :k2poker_io, K2pokerIo.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "stuart",
   password: "aurora1",
-  database: "k2poker_io_dev",
+  database: "k2poker_dev",
   hostname: "localhost",
   pool_size: 10
