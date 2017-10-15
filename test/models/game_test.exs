@@ -21,7 +21,7 @@ defmodule K2pokerIo.GameTest do
       waiting_for_players: true,
       open: true
       }
-    new_changeset = Game.create_new_changeset(%Game{}, params)
+    new_changeset = Game.new_changeset(%Game{}, params)
     game = Repo.insert!(new_changeset)
     new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
     join_changeset = Game.join_changeset(game, new_params)

@@ -32,7 +32,7 @@ defmodule K2pokerIoWeb.Commands.Game.JoinCommand do
   end
 
   defp create_new_game(utd) do
-    changeset = Game.create_new_changeset(%Game{}, %{
+    changeset = Game.new_changeset(%Game{}, %{
       player1_id:          utd.player_id,
       tournament_id:       utd.tournament_id,
       value:               utd.current_score,

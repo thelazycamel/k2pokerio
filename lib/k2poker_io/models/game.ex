@@ -32,7 +32,7 @@ defmodule K2pokerIo.Game do
     |> create_game_data(model)
   end
 
-  def create_new_changeset(model, params \\ %{}) do
+  def new_changeset(model, params \\ %{}) do
     model
     |> cast(params, [:player1_id, :tournament_id, :value, :waiting_for_players, :open])
     |> validate_required(:player1_id)

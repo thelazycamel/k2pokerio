@@ -19,15 +19,15 @@ defmodule K2pokerIo.NewChangesetTest do
       waiting_for_players: true,
       open: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     %{changeset: changeset, player_utd: player_utd}
   end
 
-  test "create_new_changeset with valid params", context do
+  test "#new_changeset with valid params", context do
     assert(context.changeset.valid?)
   end
 
-  test "create_new_changeset without player_id should err", context do
+  test "#new_changeset without player_id should err", context do
     player_utd = context.player_utd
     params = %{
       tournament_id: player_utd.tournament_id,
@@ -35,14 +35,14 @@ defmodule K2pokerIo.NewChangesetTest do
       waiting_for_players: true,
       open: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     refute(changeset.valid?)
     {text, [error]} = changeset.errors[:player1_id]
     assert(text == "can't be blank")
     assert(error == {:validation, :required})
   end
 
-  test "create_new_changeset without tournament_id should err", context do
+  test "#new_changeset without tournament_id should err", context do
     player_utd = context.player_utd
     params = %{
       player1_id: player_utd.player_id,
@@ -50,14 +50,14 @@ defmodule K2pokerIo.NewChangesetTest do
       waiting_for_players: true,
       open: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     refute(changeset.valid?)
     {text, [error]} = changeset.errors[:tournament_id]
     assert(text == "can't be blank")
     assert(error == {:validation, :required})
   end
 
-  test "create_new_changeset without value should err", context do
+  test "#new_changeset without value should err", context do
     player_utd = context.player_utd
     params = %{
       player1_id: player_utd.player_id,
@@ -65,14 +65,14 @@ defmodule K2pokerIo.NewChangesetTest do
       waiting_for_players: true,
       open: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     refute(changeset.valid?)
     {text, [error]} = changeset.errors[:value]
     assert(text == "can't be blank")
     assert(error == {:validation, :required})
   end
 
-  test "create_new_changeset without waiting_for_players should err", context do
+  test "#new_changeset without waiting_for_players should err", context do
     player_utd = context.player_utd
     params = %{
       player1_id: player_utd.player_id,
@@ -80,14 +80,14 @@ defmodule K2pokerIo.NewChangesetTest do
       value: player_utd.current_score,
       open: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     refute(changeset.valid?)
     {text, [error]} = changeset.errors[:waiting_for_players]
     assert(text == "must be accepted")
     assert(error == {:validation, :acceptance})
   end
 
-  test "create_new_changeset without open should err", context do
+  test "#new_changeset without open should err", context do
     player_utd = context.player_utd
     params = %{
       player1_id: player_utd.player_id,
@@ -95,7 +95,7 @@ defmodule K2pokerIo.NewChangesetTest do
       value: player_utd.current_score,
       waiting_for_players: true
       }
-    changeset = Game.create_new_changeset(%Game{}, params)
+    changeset = Game.new_changeset(%Game{}, params)
     refute(changeset.valid?)
     {text, [error]} = changeset.errors[:open]
     assert(text == "must be accepted")
