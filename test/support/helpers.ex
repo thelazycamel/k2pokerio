@@ -8,13 +8,13 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIoWeb.Commands.Game.JoinCommand
   alias K2pokerIoWeb.Commands.Game.GetDataCommand
-  alias K2pokerIoWeb.Commands.Tournament.UpdateScoresCommand
+  alias K2pokerIoWeb.Commands.Game.EndGameCommand
 
   # basic_set_up, sets up a game with a List of 2 players and returns
   # a map %{player1: p1, player2: p2, game: game} (where p1, p2 are user_tournament_details)
   #
   def basic_set_up(players) do
-    create_tournament
+    create_tournament()
     |> create_user_tournament_details(players)
     |> create_game
   end
@@ -55,7 +55,7 @@ defmodule K2pokerIo.Test.Helpers do
 
   def update_scores(game_id) do
     game = Repo.get(Game, game_id)
-    UpdateScoresCommand.execute(game)
+    EndGameCommand.execute(game)
   end
 
   def get_player_data(game_id, player_id) do
@@ -183,7 +183,7 @@ defmodule K2pokerIo.Test.Helpers do
 
   defp get_other_player_id(game, player_id) do
     case game.player1_id do
-      player_id -> game.player2_id
+      ^player_id -> game.player2_id
       _ -> game.player1_id
     end
   end

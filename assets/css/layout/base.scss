@@ -41,11 +41,13 @@ header {
   }
 }
 
-main {
-  position: relative;
-  margin: 0px;
-  width: 100%;
-  overflow: hidden;
+#main-content {
+  main {
+    position: relative;
+    margin: 0px;
+    width: 100%;
+    overflow: hidden;
+  }
 }
 
 footer {

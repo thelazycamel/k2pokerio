@@ -3,7 +3,6 @@ defmodule K2pokerIoWeb.Commands.Tournament.UpdatePlayerScoreCommand do
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
-  import Ecto.Changeset
 
   def execute(game, player_id) do
     update_score(game, player_id)

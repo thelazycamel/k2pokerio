@@ -29,7 +29,7 @@ defmodule K2pokerIo.Game do
   def join_changeset(model, params \\ %{}) do
     model
     |> changeset(params)
-    |> create_poker_data(model)
+    |> create_game_data(model)
   end
 
   def create_new_changeset(model, params \\ %{}) do
@@ -38,13 +38,18 @@ defmodule K2pokerIo.Game do
     |> validate_required(:player1_id)
     |> validate_required(:tournament_id)
     |> validate_required(:value)
-    |> validate_required(:waiting_for_players)
+    |> validate_acceptance(:waiting_for_players)
+    |> validate_acceptance(:open)
   end
 
-  def create_poker_data(changeset, model) do
-    game_data = K2poker.new(model.player1_id, changeset.changes.player2_id)
-    encoded_game_data = Poison.encode!(game_data)
-    put_change(changeset, :data, encoded_game_data)
+  def create_game_data(changeset, model) do
+    if changeset.valid? do
+      game_data = K2poker.new(model.player1_id, changeset.changes.player2_id)
+      encoded_game_data = Poison.encode!(game_data)
+      put_change(changeset, :data, encoded_game_data)
+    else
+      changeset
+    end
   end
 
   def decode_game_data(game_data) do
