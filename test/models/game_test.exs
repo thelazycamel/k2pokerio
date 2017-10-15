@@ -1,6 +1,6 @@
 defmodule K2pokerIo.GameTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIo.ModelCase
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Game

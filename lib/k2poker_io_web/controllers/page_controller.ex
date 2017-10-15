@@ -13,7 +13,7 @@ defmodule K2pokerIoWeb.PageController do
   end
 
   def anon_user_create(conn, %{"anon_user" => %{"username" => anon_username}}) do
-    case K2pokerIo.AnonUser.create(conn, anon_username, default_tournament) do
+    case K2pokerIo.AnonUser.create(anon_username) do
       {:ok, utd} ->
         conn = put_session(conn, :player_id, utd.player_id)
         |> put_session(:utd_id, utd.id)
@@ -23,8 +23,5 @@ defmodule K2pokerIoWeb.PageController do
     end
   end
 
-  defp default_tournament do
-    default_tournament = Repo.get_by(K2pokerIo.Tournament, default_tournament: true)
-  end
 
 end

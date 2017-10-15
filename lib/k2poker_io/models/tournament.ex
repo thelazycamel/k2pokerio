@@ -1,5 +1,7 @@
 defmodule K2pokerIo.Tournament do
 
+  alias K2pokerIo.Repo
+
   use K2pokerIoWeb, :model
 
   schema "tournaments" do
@@ -23,6 +25,10 @@ defmodule K2pokerIo.Tournament do
     model
     |> cast(params, [:name, :private, :player_id, :rebuys, :start_time, :player_ids])
     |> validate_required(:name)
+  end
+
+  def default do
+    Repo.get_by(K2pokerIo.Tournament, default_tournament: true)
   end
 
 end
