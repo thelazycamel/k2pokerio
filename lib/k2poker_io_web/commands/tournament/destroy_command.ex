@@ -5,9 +5,6 @@ defmodule K2pokerIoWeb.Commands.Tournament.DestroyCommand do
   alias K2pokerIo.Invitation
   alias K2pokerIo.UserTournamentDetail
 
-  import Ecto
-  import Ecto.Query
-
   def execute(current_user, tournament_id) do
     destroy_tournament(current_user, tournament_id)
   end

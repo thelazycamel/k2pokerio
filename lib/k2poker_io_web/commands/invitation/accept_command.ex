@@ -1,11 +1,7 @@
 defmodule K2pokerIoWeb.Commands.Invitation.AcceptCommand do
 
   alias K2pokerIo.Repo
-  alias K2pokerIo.Tournament
   alias K2pokerIo.Invitation
-
-  import Ecto
-  import Ecto.Query
 
   def execute(current_user, invite_id) do
     update_invitation(current_user, invite_id)

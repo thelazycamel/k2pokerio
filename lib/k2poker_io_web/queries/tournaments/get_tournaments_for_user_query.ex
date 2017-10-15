@@ -1,11 +1,10 @@
 defmodule K2pokerIoWeb.Queries.Tournaments.GetTournamentsForUserQuery do
 
   alias K2pokerIo.Repo
-  alias K2pokerIo.User
   alias K2pokerIo.Tournament
   alias K2pokerIo.Invitation
   alias K2pokerIo.UserTournamentDetail
-  import Ecto
+
   import Ecto.Query
 
   #TODO: Join all these queries as one query

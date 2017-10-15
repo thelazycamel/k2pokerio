@@ -2,9 +2,6 @@ defmodule K2pokerIoWeb.Commands.Game.RequestBotCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
-  alias K2pokerIo.UserTournamentDetail
-
-  import Ecto.Changeset
 
   def execute(game_id) do
     game = get_game(game_id)
@@ -22,6 +19,7 @@ defmodule K2pokerIoWeb.Commands.Game.RequestBotCommand do
   #TODO when setting up specific tournaments
   defp tournament_allows_bots?(game) do
     #check for game.tournament.bots
+    %{game: game}
     true
   end
 

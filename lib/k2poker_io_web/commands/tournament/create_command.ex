@@ -6,9 +6,6 @@ defmodule K2pokerIoWeb.Commands.Tournament.CreateCommand do
   alias K2pokerIo.User
   alias K2pokerIoWeb.Queries.Friends.FriendsQuery
 
-  import Ecto
-  import Ecto.Query
-
   def execute(current_user, params) do
     create_tournament(current_user, params)
     |> invite_friends(current_user, params)

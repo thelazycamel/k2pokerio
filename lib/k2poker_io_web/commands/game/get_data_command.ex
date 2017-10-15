@@ -3,7 +3,6 @@ defmodule K2pokerIoWeb.Commands.Game.GetDataCommand do
   alias K2pokerIo.Game
   alias K2pokerIoWeb.Commands.Game.EndGameCommand
   alias K2pokerIo.Repo
-  import Ecto.Changeset
 
   @doc "gets the game data for the player (and checks if game is finished?)"
 

@@ -4,7 +4,6 @@ defmodule K2pokerIoWeb.Commands.Game.EndGameCommand do
   alias K2pokerIo.Game
   alias K2pokerIoWeb.Commands.Tournament.UpdatePlayerScoreCommand
   alias K2pokerIoWeb.Commands.Badges.UpdateGameBadgesCommand
-  import Ecto.Changeset
 
   @doc "runs over each player in the game and performs end game functions, update_scores and badges, checks tournament win/lose"
 

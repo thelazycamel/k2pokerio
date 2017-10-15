@@ -6,9 +6,6 @@ defmodule K2pokerIoWeb.Commands.Tournament.JoinCommand do
   alias K2pokerIo.Invitation
   alias K2pokerIo.User
 
-  import Ecto
-  import Ecto.Query
-
   def execute(current_user, tournament_id) do
     tournament = Repo.get(Tournament, tournament_id)
     if user_has_access?(current_user, tournament) do

@@ -1,10 +1,8 @@
 defmodule K2pokerIoWeb.Commands.User.GetFriendStatusCommand do
 
   alias K2pokerIo.Repo
-  alias K2pokerIo.User
   alias K2pokerIo.Friendship
 
-  import Ecto
   import Ecto.Query
 
   def execute(user_id, opponent_id) do

@@ -2,9 +2,6 @@ defmodule K2pokerIoWeb.Commands.Game.PlayCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
-  alias K2pokerIo.UserTournamentDetail
-
-  import Ecto.Changeset
 
   def execute(game_id, player_id) do
     if game = get_game(game_id) do

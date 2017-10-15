@@ -3,7 +3,6 @@ defmodule K2pokerIoWeb.Commands.Tournament.GetPlayerCount do
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
 
-  import Ecto
   import Ecto.Query
 
   def execute(tournament_id) do

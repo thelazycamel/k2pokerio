@@ -4,7 +4,6 @@ defmodule K2pokerIoWeb.Queries.Friends.FriendsQuery do
   alias K2pokerIo.User
   alias K2pokerIo.Friendship
 
-  import Ecto
   import Ecto.Query
 
   def all(current_user_id) do
@@ -30,7 +29,7 @@ defmodule K2pokerIoWeb.Queries.Friends.FriendsQuery do
       join: u in assoc(f, :user),
       where: (f.friend_id == ^current_user_id and f.status == true),
       select: [u.id, u.username]
-    my_friends = Repo.all(query)
+    Repo.all(query)
   end
 
   #TODO: above queries should be joined  to be one!
@@ -38,7 +37,7 @@ defmodule K2pokerIoWeb.Queries.Friends.FriendsQuery do
   # i need to understand how to build these queries up and add them together
 
   def new_all(current_user_id) do
-    query = Friendship
+    Friendship
     |> all_my_friends(current_user_id)
     |> who_im_friends_of(current_user_id)
     |> Repo.all
@@ -59,7 +58,6 @@ defmodule K2pokerIoWeb.Queries.Friends.FriendsQuery do
     #  where: (f.friend_id == ^current_user_id and f.status == true),
     #  select: [u.id, u.username]
   end
-
 
 
 end

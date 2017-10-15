@@ -2,7 +2,6 @@ defmodule K2pokerIoWeb.Commands.Game.DiscardCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
-  import Ecto.Changeset
 
   @doc "Sends discard to K2poker for the (given) players (given) card and updates the game"
 

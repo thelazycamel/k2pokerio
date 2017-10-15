@@ -2,7 +2,6 @@ defmodule K2pokerIoWeb.Commands.Game.FoldCommand do
 
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
-  import Ecto.Changeset
 
   @doc "sends fold to K2poker and updates the game"
   def execute(game_id, player_id) do

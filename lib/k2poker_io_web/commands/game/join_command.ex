@@ -4,7 +4,6 @@ defmodule K2pokerIoWeb.Commands.Game.JoinCommand do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
 
-  import Ecto
   import Ecto.Query
 
   def execute(user_tournament_detail) do
