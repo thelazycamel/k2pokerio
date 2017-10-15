@@ -12,7 +12,7 @@ defmodule K2pokerIo.Tournament do
     belongs_to :user, K2pokerIo.User
     has_many :user_tournament_details, K2pokerIo.UserTournamentDetail
     has_many :invitations, K2pokerIo.Invitation
-    field :rebuys, :binary
+    field :rebuys, {:array, :integer}
     field :start_time, Ecto.DateTime
     field :lose_type, :string
     field :starting_chips, :integer
@@ -23,7 +23,7 @@ defmodule K2pokerIo.Tournament do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :private, :player_id, :rebuys, :start_time, :player_ids])
+    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type])
     |> validate_required(:name)
   end
 

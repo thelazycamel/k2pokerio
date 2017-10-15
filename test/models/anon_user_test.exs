@@ -8,9 +8,7 @@ defmodule K2pokerIo.AnonUserTest do
   doctest K2pokerIo.AnonUser
 
   setup do
-    unless K2pokerIo.Tournament.default do
-      Helpers.create_tournament()
-    end
+    Helpers.create_tournament()
     {:ok, anon_user} = AnonUser.create("stu")
     %{anon_user: anon_user}
   end

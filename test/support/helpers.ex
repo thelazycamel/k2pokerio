@@ -26,7 +26,11 @@ defmodule K2pokerIo.Test.Helpers do
   end
 
   def create_tournament do
-    Repo.insert!(%Tournament{name: "K2 Summit Ascent Test", default_tournament: true, private: false, finished: false})
+    if Tournament.default do
+      Tournament.default
+    else
+      Repo.insert!(%Tournament{name: "The Big Kahuna", default_tournament: true, private: false, finished: false, rebuys: [0]})
+    end
   end
 
   def create_user(username) do
