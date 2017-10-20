@@ -13,14 +13,14 @@ defmodule K2pokerIoWeb.Commands.Tournament.CreateCommand do
 
   defp create_tournament(current_user, params) do
     changeset = case params["game_type"] do
-     "tournament" -> tournament_changeset(current_user, params)
-     "duel"       -> duel_changeset(current_user, params)
+     "tournament" -> tournament_params(current_user, params)
+     "duel"       -> duel_params(current_user, params)
     end
     {:ok, tournament} = Repo.insert(changeset)
     tournament
   end
 
-  def tournament_changeset(current_user, params) do
+  defp tournament_params(current_user, params) do
     %Tournament{
       name: params["name"],
       default_tournament: false,
@@ -34,7 +34,7 @@ defmodule K2pokerIoWeb.Commands.Tournament.CreateCommand do
     }
   end
 
-  def duel_changeset(current_user, params) do
+  defp duel_params(current_user, params) do
     opponent_id = List.first(extract_friend_ids_from_params(params))
     opponent = Repo.get(User, opponent_id)
     %Tournament{

@@ -12,9 +12,9 @@ defmodule K2pokerIo.Tournament do
     belongs_to :user, K2pokerIo.User
     has_many :user_tournament_details, K2pokerIo.UserTournamentDetail
     has_many :invitations, K2pokerIo.Invitation
-    field :rebuys, {:array, :integer}
+    field :rebuys, {:array, :integer}  # can be for example [128,1024]
     field :start_time, Ecto.DateTime
-    field :lose_type, :string
+    field :lose_type, :string  #one of "all" or "half"
     field :starting_chips, :integer
     field :max_score, :integer
     field :bots, :boolean
