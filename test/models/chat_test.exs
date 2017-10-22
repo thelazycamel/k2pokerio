@@ -22,6 +22,33 @@ defmodule K2pokerIo.ChatTest do
     %{tournament_id: tournament.id, user_id: user.id}
   end
 
+  test "changeset should validate user_id", context do
+    params = %{tournament_id: context.tournament_id, comment: "Test Comment"}
+    changeset = Chat.changeset(%Chat{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:user_id]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
+  end
+
+  test "changeset should validate tournament_id", context do
+    params = %{user_id: context.user_id, comment: "Test Comment"}
+    changeset = Chat.changeset(%Chat{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:tournament_id]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
+  end
+
+  test "changeset should validate comment", context do
+    params = %{user_id: context.user_id, tournament_id: context.tournament_id, comment: ""}
+    changeset = Chat.changeset(%Chat{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:comment]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
+  end
+
   test "get_ten", context do
     comments = Chat.get_ten_json(context.tournament_id)
     assert Enum.count(comments) == 10
