@@ -3,11 +3,11 @@ defmodule K2pokerIo.DiscardCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
-  alias K2pokerIoWeb.Commands.Game.DiscardCommand
+  alias K2pokerIo.Commands.Game.DiscardCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIo.ModelCase
 
-  doctest K2pokerIoWeb.Commands.Game.DiscardCommand
+  doctest K2pokerIo.Commands.Game.DiscardCommand
 
   setup do
     Helpers.basic_set_up(["bob", "stu"])

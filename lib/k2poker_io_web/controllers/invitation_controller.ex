@@ -2,8 +2,8 @@ defmodule K2pokerIoWeb.InvitationController do
 
   use K2pokerIoWeb, :controller
 
-  alias K2pokerIoWeb.Commands.Invitation.AcceptCommand
-  alias K2pokerIoWeb.Commands.Invitation.DestroyCommand
+  alias K2pokerIo.Commands.Invitation.AcceptCommand
+  alias K2pokerIo.Commands.Invitation.DestroyCommand
 
   def accept(conn, %{"id" => invite_id}) do
     case AcceptCommand.execute(current_user(conn), invite_id) do

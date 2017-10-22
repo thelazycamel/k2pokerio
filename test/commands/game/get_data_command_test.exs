@@ -2,11 +2,11 @@ defmodule K2pokerIo.GetDataCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
-  alias K2pokerIoWeb.Commands.Game.GetDataCommand
+  alias K2pokerIo.Commands.Game.GetDataCommand
 
   use K2pokerIoWeb.ConnCase
 
-  doctest K2pokerIoWeb.Commands.Game.GetDataCommand
+  doctest K2pokerIo.Commands.Game.GetDataCommand
 
   setup do
     Helpers.basic_set_up(["bob", "stu"])

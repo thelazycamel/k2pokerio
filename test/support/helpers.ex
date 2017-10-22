@@ -6,9 +6,9 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.User
   alias K2pokerIo.Chat
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIoWeb.Commands.Game.JoinCommand
-  alias K2pokerIoWeb.Commands.Game.GetDataCommand
-  alias K2pokerIoWeb.Commands.Game.EndGameCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.GetDataCommand
+  alias K2pokerIo.Commands.Game.EndGameCommand
 
   # basic_set_up, sets up a game with a List of 2 players and returns
   # a map %{player1: p1, player2: p2, game: game} (where p1, p2 are user_tournament_details)

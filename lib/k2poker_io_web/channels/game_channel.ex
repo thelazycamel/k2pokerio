@@ -5,12 +5,12 @@ defmodule K2pokerIoWeb.GameChannel do
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
 
-  alias K2pokerIoWeb.Commands.Game.PlayCommand
-  alias K2pokerIoWeb.Commands.Game.DiscardCommand
-  alias K2pokerIoWeb.Commands.Game.FoldCommand
-  alias K2pokerIoWeb.Commands.Game.JoinCommand
-  alias K2pokerIoWeb.Commands.Game.GetDataCommand
-  alias K2pokerIoWeb.Commands.Game.RequestBotCommand
+  alias K2pokerIo.Commands.Game.PlayCommand
+  alias K2pokerIo.Commands.Game.DiscardCommand
+  alias K2pokerIo.Commands.Game.FoldCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.GetDataCommand
+  alias K2pokerIo.Commands.Game.RequestBotCommand
 
   intercept ["game:new_game_data", "game:new_game"]
 

@@ -8,8 +8,7 @@ defmodule K2pokerIo.FriendshipTest do
   setup do
     user1 = Helpers.create_user("stu")
     user2 = Helpers.create_user("bob")
-    user3 = Helpers.create_user("fred")
-    %{user1: user1, user2: user2, user3: user3}
+    %{user1: user1, user2: user2}
   end
 
   test "changeset should validate user_id", context do

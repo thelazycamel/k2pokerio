@@ -3,8 +3,8 @@ defmodule K2pokerIo.RequestBotCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
-  alias K2pokerIoWeb.Commands.Game.JoinCommand
-  alias K2pokerIoWeb.Commands.Game.RequestBotCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.RequestBotCommand
 
   use K2pokerIoWeb.ConnCase
 

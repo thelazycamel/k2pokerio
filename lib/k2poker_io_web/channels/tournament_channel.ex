@@ -5,7 +5,7 @@ defmodule K2pokerIoWeb.TournamentChannel do
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
 
-  alias K2pokerIoWeb.Commands.Tournament.GetPlayerCount
+  alias K2pokerIo.Commands.Tournament.GetPlayerCount
 
   def join("tournament:" <> tournament_id, _params, socket) do
     send self(), {:after_join, tournament_id}

@@ -3,11 +3,11 @@ defmodule K2pokerIo.PlayCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
-  alias K2pokerIoWeb.Commands.Game.PlayCommand
+  alias K2pokerIo.Commands.Game.PlayCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIo.ModelCase
 
-  doctest K2pokerIoWeb.Commands.Game.PlayCommand
+  doctest K2pokerIo.Commands.Game.PlayCommand
 
   setup do
     Helpers.basic_set_up(["bob", "stu"])

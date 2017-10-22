@@ -2,8 +2,8 @@ defmodule K2pokerIoWeb.GameController do
 
   use K2pokerIoWeb, :controller
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIoWeb.Commands.Game.JoinCommand
-  alias K2pokerIoWeb.Commands.Game.GetOpponentProfileCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
 
   def play(conn, _params) do
     if player_id = get_session(conn, :player_id) do

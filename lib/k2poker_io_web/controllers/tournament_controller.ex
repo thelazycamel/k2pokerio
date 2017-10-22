@@ -4,11 +4,11 @@ defmodule K2pokerIoWeb.TournamentController do
 
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIoWeb.Queries.Friends.FriendsQuery
-  alias K2pokerIoWeb.Queries.Tournaments.GetTournamentsForUserQuery
-  alias K2pokerIoWeb.Commands.Tournament.CreateCommand
-  alias K2pokerIoWeb.Commands.Tournament.JoinCommand
-  alias K2pokerIoWeb.Commands.Tournament.DestroyCommand
+  alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
+  alias K2pokerIo.Commands.Tournament.CreateCommand
+  alias K2pokerIo.Commands.Tournament.JoinCommand
+  alias K2pokerIo.Commands.Tournament.DestroyCommand
 
   def index(conn, _) do
     if logged_in?(conn) do

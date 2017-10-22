@@ -3,7 +3,7 @@ defmodule K2pokerIoWeb.ChatChannel do
   use K2pokerIoWeb, :channel
 
   alias K2pokerIo.Chat
-  alias K2pokerIoWeb.Commands.Chat.CreateCommentCommand
+  alias K2pokerIo.Commands.Chat.CreateCommentCommand
 
   def join("chat:" <> tournament_id, _params, socket) do
     username = case socket.assigns[:current_user] do

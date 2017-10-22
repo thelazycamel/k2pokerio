@@ -3,11 +3,11 @@ defmodule K2pokerIo.FoldCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIoWeb.Commands.Game.FoldCommand
+  alias K2pokerIo.Commands.Game.FoldCommand
 
   use K2pokerIoWeb.ConnCase
 
-  doctest K2pokerIoWeb.Commands.Game.FoldCommand
+  doctest K2pokerIo.Commands.Game.FoldCommand
 
   setup do
     Helpers.basic_set_up(["bob", "stu"])

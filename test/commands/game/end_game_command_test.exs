@@ -3,14 +3,14 @@ defmodule K2pokerIo.EndGameCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIoWeb.Commands.Game.JoinCommand
-  alias K2pokerIoWeb.Commands.Game.RequestBotCommand
-  alias K2pokerIoWeb.Commands.Game.FoldCommand
-  alias K2pokerIoWeb.Commands.Game.EndGameCommand
+  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.RequestBotCommand
+  alias K2pokerIo.Commands.Game.FoldCommand
+  alias K2pokerIo.Commands.Game.EndGameCommand
 
   use K2pokerIoWeb.ConnCase
 
-  doctest K2pokerIoWeb.Commands.Game.EndGameCommand
+  doctest K2pokerIo.Commands.Game.EndGameCommand
 
   setup do
     Helpers.basic_set_up(["bob", "stu"])
