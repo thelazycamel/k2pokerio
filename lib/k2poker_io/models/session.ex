@@ -10,13 +10,6 @@ defmodule K2pokerIo.Session do
     end
   end
 
-  defp authenticate(user, password) do
-    case user do
-      nil -> false
-      _   -> Comeonin.Bcrypt.checkpw(password, user.crypted_password)
-    end
-  end
-
   def current_user(conn) do
     if raw_player_id = Plug.Conn.get_session(conn, :player_id) do
       cond do
@@ -29,5 +22,13 @@ defmodule K2pokerIo.Session do
   end
 
   def logged_in?(conn), do: !!current_user(conn)
+
+  defp authenticate(user, password) do
+    case user do
+      nil -> false
+      _   -> Comeonin.Bcrypt.checkpw(password, user.crypted_password)
+    end
+  end
+
 
 end

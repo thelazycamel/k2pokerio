@@ -1,4 +1,5 @@
-defmodule K2pokerIo.Registration do
+#TODO this is not a model, it should be a command
+defmodule K2pokerIo.RegisterCommand do
 
   import Ecto.Changeset, only: [put_change: 3]
 
@@ -11,4 +12,5 @@ defmodule K2pokerIo.Registration do
   defp hashed_password(password) do
      Comeonin.Bcrypt.hashpwsalt(password)
   end
+
 end

@@ -2,8 +2,7 @@ defmodule K2pokerIoWeb.RegistrationController do
 
   use K2pokerIoWeb, :controller
   alias K2pokerIo.User
-  alias K2pokerIo.Repo
-  alias K2pokerIo.Registration
+  alias K2pokerIo.Commands.User.RegisterCommand
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -13,7 +12,7 @@ defmodule K2pokerIoWeb.RegistrationController do
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
-    case Registration.create(changeset, Repo) do
+    case RegisterCommand.create(changeset) do
       {:ok, changeset} ->
         conn
         |> put_session(:player_id, "user-#{changeset.id}")

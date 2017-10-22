@@ -5,6 +5,8 @@ defmodule K2pokerIo.FriendshipTest do
   alias K2pokerIo.Friendship
   alias K2pokerIo.Test.Helpers
 
+  doctest K2pokerIo.Friendship
+
   setup do
     user1 = Helpers.create_user("stu")
     user2 = Helpers.create_user("bob")
@@ -37,6 +39,5 @@ defmodule K2pokerIo.FriendshipTest do
     assert(text == "can't be blank")
     assert(error == {:validation, :required})
   end
-
 
 end

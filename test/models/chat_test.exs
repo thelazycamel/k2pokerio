@@ -5,6 +5,8 @@ defmodule K2pokerIo.ChatTest do
   alias K2pokerIo.Chat
   alias K2pokerIo.Test.Helpers
 
+  doctest K2pokerIo.Chat
+
   setup do
     user = Helpers.create_user("stu")
     tournament = Helpers.create_tournament()

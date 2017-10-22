@@ -2,8 +2,6 @@ defmodule K2pokerIoWeb.TournamentController do
 
   use K2pokerIoWeb, :controller
 
-  alias K2pokerIo.Tournament
-  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
   alias K2pokerIo.Commands.Tournament.CreateCommand

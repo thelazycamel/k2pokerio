@@ -13,14 +13,14 @@ defmodule K2pokerIoWeb.ProfileController do
     render(conn, "edit.html", profile: current_user(conn))
   end
 
-  def update(conn, %{"id" => id, "profile" => profile_params}) do
+  def update(conn, %{"profile" => profile_params}) do
     changeset = User.profile_changeset(current_user(conn), profile_params)
     case Repo.update(changeset) do
-      {:ok, profile} ->
+      {:ok, _} ->
         conn
         |> put_flash(:info, "Profile Updated")
         |> redirect(to: profile_path(conn, :edit))
-      {:error, profile} ->
+      {:error, _} ->
         conn
         |> put_flash(:info, "An error occurred, please try again")
         |> redirect(to: profile_path(conn, :edit))
