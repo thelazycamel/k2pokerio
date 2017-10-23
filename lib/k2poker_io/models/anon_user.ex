@@ -4,6 +4,7 @@ defmodule K2pokerIo.AnonUser do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Tournament
 
+  # this is not a model its a command!
   # Creates a user_tournament_detail for a non-signed in user
 
   def create(anon_username) do

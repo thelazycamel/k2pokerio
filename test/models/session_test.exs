@@ -1,6 +1,6 @@
 defmodule K2pokerIo.SessionTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIoWeb.ConnCase
 
   alias K2pokerIo.Session
   alias K2pokerIo.User
@@ -22,6 +22,12 @@ defmodule K2pokerIo.SessionTest do
     assert(user.id == context.user.id)
   end
 
-  #TODO current_user
+  test "current_user" do
+    #TODO current_user
+  end
+
+  test "logged_in?" do
+    #TODO logged_in?
+  end
 
 end
