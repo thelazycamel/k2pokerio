@@ -5,7 +5,7 @@ defmodule K2pokerIo.TournamentTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Tournament
 
-  doctest K2pokerIo.AnonUser
+  doctest K2pokerIo.Tournament
 
   setup do
     Helpers.create_tournament()

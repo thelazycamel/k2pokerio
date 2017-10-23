@@ -1,15 +1,15 @@
-defmodule K2pokerIo.AnonUserTest do
+defmodule K2pokerIo.CreateAnonUserTest do
 
   use K2pokerIo.ModelCase
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.AnonUser
+  alias K2pokerIo.Commands.User.CreateAnonUser
 
-  doctest K2pokerIo.AnonUser
+  doctest K2pokerIo.Commands.User.CreateAnonUser
 
   setup do
     Helpers.create_tournament()
-    {:ok, anon_user} = AnonUser.create("stu")
+    {:ok, anon_user} = CreateAnonUser.execute("stu")
     %{anon_user: anon_user}
   end
 
