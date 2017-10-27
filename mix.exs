@@ -42,7 +42,8 @@ defmodule K2pokerIo.Mixfile do
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 1.0"},
       {:k2poker, path: "~/dev/k2_poker/elixir/k2poker"},
-      {:mix_test_watch, "~> 0.3", only: :dev}
+      {:mix_test_watch, "~> 0.3", only: :dev},
+      {:phoenix_html_sanitizer, "~> 1.0.0"}
     ]
   end
 

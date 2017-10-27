@@ -10,20 +10,63 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.EndGameCommand
 
-  # basic_set_up, sets up a game with a List of 2 players and returns
-  # a map %{player1: p1, player2: p2, game: game} (where p1, p2 are user_tournament_details)
+  # basic_set_up(["bob","stu"]), sets up a game with
+  # 2 anonamous players and returns a map
+  # %{player1: p1, player2: p2, game: game, tournament: tournament} (where p1, p2 are user_tournament_details)
   #
   def basic_set_up(players) do
-    create_tournament()
-    |> create_user_tournament_details(players)
-    |> create_game
+    tournament = create_tournament()
+    utds = create_anon_user_tournament_details(tournament, players)
+    game = create_game(utds)
+    %{
+      player1: Repo.get(UserTournamentDetail, List.first(utds).id),
+      player2: Repo.get(UserTournamentDetail, List.last(utds).id),
+      tournament: tournament,
+      game: game
+     }
   end
 
-  def create_user_tournament_detail(username, tournament_id) do
-    detail = %{player_id: anon_player_id(username), username: username, tournament_id: tournament_id, current_score: 1, rebuys: [0]}
+
+  # advanced_set_up(["bob","stu"]), sets up a game with
+  # 2 real players and returns a map
+  # %{
+  #    player_1:    player1,
+  #    player_2:    player2,
+  #    p1_utd:      p1_utd,
+  #    p2_utd:      p2_utd,
+  #    game:        game,
+  #    tournament:  tournament
+  #  }
+  #
+
+  def advanced_set_up(players) do
+    tournament = create_tournament()
+    player1 = create_user(List.first(players))
+    player2 = create_user(List.last(players))
+    p1_utd = create_user_tournament_detail(User.player_id(player1), player1.username, tournament.id)
+    p2_utd = create_user_tournament_detail(User.player_id(player2), player2.username, tournament.id)
+    game = create_game([p1_utd, p2_utd])
+    %{
+      tournament: tournament,
+      player1:    player1,
+      player2:    player2,
+      p1_utd:     p1_utd,
+      p2_utd:     p2_utd,
+      game:       game
+    }
+  end
+
+  def create_user_tournament_detail(player_id, username, tournament_id) do
+    detail = %{player_id: player_id, username: username, tournament_id: tournament_id, current_score: 1, rebuys: [0]}
     changeset = UserTournamentDetail.changeset(%UserTournamentDetail{}, detail)
     Repo.insert!(changeset) |> Repo.preload(:tournament)
   end
+
+  def create_user_tournament_detail(username, tournament_id) do
+    player_id = anon_player_id(username)
+    create_user_tournament_detail(player_id, username, tournament_id)
+  end
+
 
   def create_tournament do
     if Tournament.default do
@@ -50,11 +93,7 @@ defmodule K2pokerIo.Test.Helpers do
       join_game(user_tournament_detail)
     end)
     {:ok, game} = List.last(games)
-    %{
-      player1: Repo.get(UserTournamentDetail, List.first(utds).id),
-      player2: Repo.get(UserTournamentDetail, List.last(utds).id),
-      game: game
-     }
+    game
   end
 
   def update_scores(game_id) do
@@ -164,7 +203,7 @@ defmodule K2pokerIo.Test.Helpers do
 
   #PRIVATE
 
-  defp create_user_tournament_details(tournament, players) do
+  defp create_anon_user_tournament_details(tournament, players) do
     Enum.map(players, fn(player) ->
       create_user_tournament_detail(player, tournament.id)
     end)

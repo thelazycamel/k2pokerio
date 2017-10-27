@@ -8,7 +8,6 @@ defmodule K2pokerIoWeb.GameChannel do
   alias K2pokerIo.Commands.Game.PlayCommand
   alias K2pokerIo.Commands.Game.DiscardCommand
   alias K2pokerIo.Commands.Game.FoldCommand
-  alias K2pokerIo.Commands.Game.JoinCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.RequestBotCommand
 

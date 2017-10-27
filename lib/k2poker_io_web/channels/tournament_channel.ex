@@ -3,7 +3,6 @@ defmodule K2pokerIoWeb.TournamentChannel do
   use K2pokerIoWeb, :channel
 
   alias K2pokerIo.Tournament
-  alias K2pokerIo.UserTournamentDetail
 
   alias K2pokerIo.Commands.Tournament.GetPlayerCount
 

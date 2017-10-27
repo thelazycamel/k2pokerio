@@ -46,7 +46,7 @@ defmodule K2pokerIoWeb.GameController do
 
   defp get_user_tournament_detail(conn) do
     utd_id = get_session(conn, :utd_id)
-    utd = Repo.get(UserTournamentDetail, utd_id) |> Repo.preload([:game, :tournament])
+    Repo.get(UserTournamentDetail, utd_id) |> Repo.preload([:game, :tournament])
   end
 
   defp user_already_in_a_game?(game) do
