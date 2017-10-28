@@ -18,7 +18,7 @@ defmodule K2pokerIo.Commands.Game.GetOpponentProfileCommand do
       type == :user  -> user_profile_decorator(current_player_id, opponent_id)
       type == :anon  -> anon_user_profile_decorator(opponent_player_id)
       type == :bot   -> bot_profile_decorator()
-      type == :error -> %{}
+      true           -> %{}
     end
   end
 

@@ -46,10 +46,17 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     assert(opponent.username == "RandomBot")
     assert(opponent.opponent == :bot)
     assert(opponent.blurb == "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.")
-    assert(opponent.image == "bender.png"
+    assert(opponent.image == "bender.png")
     assert(opponent.friend == :na)
   end
 
-
+  test "returns an empty profile" do
+    tournament = Helpers.create_tournament()
+    player = Helpers.create_user("stu")
+    utd = Helpers.create_user_tournament_detail(User.player_id(player), player.username, tournament.id)
+    {:ok, game} = Helpers.join_game(utd)
+    opponent = GetOpponentProfileCommand.execute(game, User.player_id(player))
+    assert(Enum.count(Map.to_list(opponent)) == 0)
+  end
 
 end
