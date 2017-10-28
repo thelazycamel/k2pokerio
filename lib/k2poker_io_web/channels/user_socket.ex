@@ -31,16 +31,13 @@ defmodule K2pokerIoWeb.UserSocket do
   def connect(%{"token" => token}, socket) do
     case Phoenix.Token.verify(K2pokerIoWeb.Endpoint, "player_id", token, max_age: 86400000) do
       {:ok, player_id} ->
+        {type, user_id} = User.get_id(player_id)
         cond do
-          # return error is user_id is blank
-          player_id == "" -> :error
-          player_id == nil -> :error
-          # simple check to see if user is an anon_user or user
-          String.match?(player_id, ~r/^anon/) ->
+          type == :error -> :error
+          type == :anon ->
             socket = assign(socket, :player_id, player_id)
             {:ok, socket}
-          String.match?(player_id, ~r/^user/) ->
-            user_id = List.last(String.split(player_id, "-"))
+          type == :user ->
             socket = assign(socket, :player_id, player_id)
              |> assign(:current_user, Repo.get(User, user_id))
             {:ok, socket}

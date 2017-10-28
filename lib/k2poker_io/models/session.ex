@@ -11,11 +11,10 @@ defmodule K2pokerIo.Session do
   end
 
   def current_user(conn) do
-    if raw_player_id = Plug.Conn.get_session(conn, :player_id) do
+    if player_id = Plug.Conn.get_session(conn, :player_id) do
+      {type, user_id} = User.get_id(player_id)
       cond do
-        String.match?(raw_player_id, ~r/^user/) ->
-          id = List.last(String.split(raw_player_id, "-"))
-          if id, do: K2pokerIo.Repo.get(User, id)
+        type == :user -> K2pokerIo.Repo.get(User, user_id)
         true -> false
       end
     end

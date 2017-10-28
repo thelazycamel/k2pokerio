@@ -22,7 +22,28 @@ defmodule K2pokerIo.UserTest do
 
   test "#player_id" do
     user = Helpers.create_user("stu")
-    assert(User.player_id(user) == "user-#{user.id}")
+    assert(User.player_id(user) == "user|#{user.id}")
+  end
+
+  test "#get_id for a user should return a user type and user id" do
+    player_id = "user|123"
+    {type, user_id} = User.get_id(player_id)
+    assert(type == :user)
+    assert(user_id == 123)
+  end
+
+  test "#get_id for an anon-user should return a user type, but not an id" do
+    player_id = "anon|1234"
+    {type, user_id} = User.get_id(player_id)
+    assert(type == :anon)
+    assert(user_id == nil)
+  end
+
+  test "#get_id for a Bot should return a user type and user id" do
+    player_id = "BOT"
+    {type, user_id} = User.get_id(player_id)
+    assert(type == :bot)
+    assert(user_id == nil)
   end
 
 end

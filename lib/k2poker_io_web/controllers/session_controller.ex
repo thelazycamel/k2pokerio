@@ -17,7 +17,7 @@ defmodule K2pokerIoWeb.SessionController do
     case Session.login(session_params, Repo) do
       {:ok, user} ->
         conn
-        |> put_session(:player_id, "user-#{user.id}")
+        |> put_session(:player_id, "user|#{user.id}")
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/tournaments")
       :error ->

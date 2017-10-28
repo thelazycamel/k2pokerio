@@ -15,7 +15,7 @@ defmodule K2pokerIoWeb.RegistrationController do
     case RegisterCommand.create(changeset) do
       {:ok, changeset} ->
         conn
-        |> put_session(:player_id, "user-#{changeset.id}")
+        |> put_session(:player_id, "user|#{changeset.id}")
         |> put_flash(:info, "Your account was created")
         |> redirect(to: "/tournaments/")
       {:error, changeset} ->
