@@ -77,7 +77,8 @@ defmodule K2pokerIo.Test.Helpers do
   end
 
   def create_user(username) do
-    Repo.insert!(%User{username: username, email: "#{username}@test.com", password: "abc123"})
+    email = "#{username}=#{:rand.uniform(100000000)}@test.com"
+    Repo.insert!(%User{username: username, email: email, password: "abc123"})
   end
 
   def create_chat(tournament_id, user_id, comment, admin) do

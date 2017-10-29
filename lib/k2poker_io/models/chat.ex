@@ -27,7 +27,7 @@ defmodule K2pokerIo.Chat do
       limit: 10,
       order_by: [desc: c.inserted_at],
       select: %{id: c.id, username: u.username, comment: c.comment, admin: c.admin}
-    comments = K2pokerIo.Repo.all query
+    comments = Repo.all query
     Enum.reverse(comments)
   end
 

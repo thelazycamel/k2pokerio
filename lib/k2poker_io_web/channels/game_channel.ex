@@ -3,7 +3,6 @@ defmodule K2pokerIoWeb.GameChannel do
   use K2pokerIoWeb, :channel
 
   alias K2pokerIo.Game
-  alias K2pokerIo.UserTournamentDetail
 
   alias K2pokerIo.Commands.Game.PlayCommand
   alias K2pokerIo.Commands.Game.DiscardCommand
@@ -56,8 +55,7 @@ defmodule K2pokerIoWeb.GameChannel do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}
-        :error ->
-          :error
+      :error -> :error
     end
   end
 
@@ -67,8 +65,7 @@ defmodule K2pokerIoWeb.GameChannel do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}
-        :error ->
-          :error
+      :error -> :error
     end
   end
 

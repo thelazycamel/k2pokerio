@@ -31,8 +31,14 @@ defmodule K2pokerIoWeb.ChatChannel do
     {tournament_id, _} = Integer.parse(tournament_id)
     comments = Chat.get_ten_json(tournament_id)
     if username do
-      dom_id = :rand.uniform(100000000)
-      broadcast! socket, "chat:new_comment", %{username: username, comment: "has joined the tournament", admin: true, id: "admin-#{dom_id}"}
+      admin_id = "admin-#{:rand.uniform(100000000)}"
+      broadcast! socket, "chat:new_comment",
+        %{
+          username: username,
+          comment: "has joined the tournament",
+          admin: true,
+          id: admin_id
+        }
     end
     push socket, "chat:new_list", %{comments: comments}
     {:noreply, socket}
