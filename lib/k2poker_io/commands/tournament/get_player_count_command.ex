@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Tournament.GetPlayerCount do
+defmodule K2pokerIo.Commands.Tournament.GetPlayerCountCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail

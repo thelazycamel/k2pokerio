@@ -15,6 +15,7 @@ defmodule K2pokerIo.GameChannelTest do
     Helpers.advanced_set_up(["bob", "stu"])
   end
 
+  @tag :skip
   test "game:game_play", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -28,6 +29,7 @@ defmodule K2pokerIo.GameChannelTest do
     assert(player_data.player_status == "ready")
   end
 
+  @tag :skip
   test "game:bot_request" do
     tournament = Helpers.create_tournament()
     player = Helpers.create_user("bob")
@@ -46,6 +48,7 @@ defmodule K2pokerIo.GameChannelTest do
     assert(game.player2_id == "BOT")
   end
 
+  @tag :skip
   test "game:game_discard", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -59,6 +62,7 @@ defmodule K2pokerIo.GameChannelTest do
     assert(player_data.player_status == "discarded")
   end
 
+  @tag :skip
   test "game:fold", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})

@@ -16,8 +16,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateCommand do
      "tournament" -> tournament_params(current_user, params)
      "duel"       -> duel_params(current_user, params)
     end
-    {:ok, tournament} = Repo.insert(changeset)
-    tournament
+    Repo.insert!(changeset)
   end
 
   defp tournament_params(current_user, params) do
@@ -54,6 +53,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateCommand do
     filter_valid_friends(current_user.id, params)
     |> Enum.each( fn user_id -> create_invitation(tournament.id, user_id, false) end)
     create_invitation(tournament.id, current_user.id, true)
+    tournament
   end
 
   defp create_invitation(tournament_id, user_id, accepted) do

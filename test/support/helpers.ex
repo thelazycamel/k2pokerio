@@ -67,6 +67,21 @@ defmodule K2pokerIo.Test.Helpers do
     create_user_tournament_detail(player_id, username, tournament_id)
   end
 
+  def create_private_tournament(user) do
+    Repo.insert!(%Tournament{
+      name: "My Private Tournament",
+      default_tournament: false,
+      private: true,
+      finished: false,
+      user_id: user.id,
+      lose_type: "all",
+      starting_chips: 1,
+      max_score: 1024,
+      bots: true,
+      rebuys: [0]
+    })
+  end
+
 
   def create_tournament do
     if Tournament.default do
