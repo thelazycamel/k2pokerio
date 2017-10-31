@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Tournament.DestroyCommand do
+defmodule K2pokerIo.Commands.Tournament.DestroyTournamentCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Tournament
@@ -37,7 +37,7 @@ defmodule K2pokerIo.Commands.Tournament.DestroyCommand do
   end
 
   defp destroyable(current_user, tournament) do
-    (current_user == tournament.user) || (Enum.count(tournament.invitations) <= 2 && tournament.private)
+    (current_user.id == tournament.user_id) || (Enum.count(tournament.invitations) <= 2 && tournament.private)
   end
 
 end

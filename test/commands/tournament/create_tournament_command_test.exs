@@ -1,7 +1,7 @@
 defmodule K2pokerIo.CreateTournamentCommandTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Commands.Tournament.CreateCommand
+  alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Tournament
   alias K2pokerIo.Friendship
   alias K2pokerIo.Invitation
@@ -9,7 +9,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
 
   use K2pokerIo.ModelCase
 
-  doctest K2pokerIo.Commands.Tournament.CreateCommand
+  doctest K2pokerIo.Commands.Tournament.CreateTournamentCommand
 
   setup do
     player1 = Helpers.create_user("bob")
@@ -29,7 +29,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "user_id" => context.player1.id,
       "friend_ids" => "#{context.player2.id},#{context.player3.id},#{context.player4.id}"
       }
-    tournament = CreateCommand.execute(context.player1, params)
+    tournament = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
     assert(tournament.name == "My Test Tournament")
     assert(tournament.lose_type == "all")
@@ -42,11 +42,26 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "user_id" => context.player1.id,
       "friend_ids" => to_string(context.player2.id)
       }
-    tournament = CreateCommand.execute(context.player1, params)
+    tournament = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
     assert(tournament.name == "bob v stu")
     assert(tournament.lose_type == "half")
     assert(invite_count == 2)
+  end
+
+  test "it should not send invitations to non-friends", context do
+    player5 = Helpers.create_user("enemy")
+    params = %{
+      "game_type" => "tournament",
+      "name" => "My Test Tournament",
+      "user_id" => context.player1.id,
+      "friend_ids" => "#{context.player2.id},#{player5.id}"
+      }
+    tournament = CreateTournamentCommand.execute(context.player1, params)
+    invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
+    player5_invite = Repo.one(from i in Invitation, where: i.user_id == ^player5.id)
+    assert(invite_count == 2)
+    refute(player5_invite)
   end
 
 end

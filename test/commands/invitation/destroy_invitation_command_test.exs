@@ -2,11 +2,11 @@ defmodule K2pokerIo.DestroyInvitationCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Invitation
-  alias K2pokerIo.Commands.Invitation.DestroyCommand
+  alias K2pokerIo.Commands.Invitation.DestroyInvitationCommand
 
   use K2pokerIo.ModelCase
 
-  doctest K2pokerIo.Commands.Invitation.DestroyCommand
+  doctest K2pokerIo.Commands.Invitation.DestroyInvitationCommand
 
   setup do
     player1 = Helpers.create_user("stu")
@@ -47,13 +47,13 @@ defmodule K2pokerIo.DestroyInvitationCommandTest do
 
   test "it should destroy the invitation request", context do
     invite = Repo.one(from i in Invitation, where: i.user_id == ^context.player1.id)
-    DestroyCommand.execute(context.player1, invite.id)
+    DestroyInvitationCommand.execute(context.player1, invite.id)
     refute(Repo.one(from i in Invitation, where: i.id == ^invite.id))
   end
 
   test "it should not destroy the invitation request with the wrong user", context do
     p2_invite = Repo.one(from i in Invitation, where: i.user_id == ^context.player2.id)
-    DestroyCommand.execute(context.player3, p2_invite.id)
+    DestroyInvitationCommand.execute(context.player3, p2_invite.id)
     response = Repo.one(from i in Invitation, where: i.id == ^p2_invite.id)
     assert(response.id == p2_invite.id)
   end

@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Tournament.CreateCommand do
+defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Tournament

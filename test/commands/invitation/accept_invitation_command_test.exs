@@ -2,11 +2,11 @@ defmodule K2pokerIo.AcceptInvitationCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Invitation
-  alias K2pokerIo.Commands.Invitation.AcceptCommand
+  alias K2pokerIo.Commands.Invitation.AcceptInvitationCommand
 
   use K2pokerIo.ModelCase
 
-  doctest K2pokerIo.Commands.Invitation.AcceptCommand
+  doctest K2pokerIo.Commands.Invitation.AcceptInvitationCommand
 
   setup do
     Helpers.advanced_set_up(["bob", "stu"])
@@ -21,7 +21,7 @@ defmodule K2pokerIo.AcceptInvitationCommandTest do
       }
     )
     {:ok, invite} = Repo.insert(changeset)
-    {:ok, accepted_invite} = AcceptCommand.execute(context.player1, invite.id)
+    {:ok, accepted_invite} = AcceptInvitationCommand.execute(context.player1, invite.id)
     assert(accepted_invite.accepted == true)
   end
 

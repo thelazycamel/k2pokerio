@@ -3,7 +3,7 @@ defmodule K2pokerIo.RequestBotCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
-  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.RequestBotCommand
 
   use K2pokerIoWeb.ConnCase
@@ -16,8 +16,8 @@ defmodule K2pokerIo.RequestBotCommandTest do
   end
 
   test "It should do nothing if an opponent exists", context do
-    {:ok, _} = JoinCommand.execute(context.p1_utd)
-    {:ok, game} = JoinCommand.execute(context.p2_utd)
+    {:ok, _} = JoinGameCommand.execute(context.p1_utd)
+    {:ok, game} = JoinGameCommand.execute(context.p2_utd)
     request = RequestBotCommand.execute(game.id)
     game_data = Game.decode_game_data(game.data)
     game_data_player_ids = Enum.map(game_data.players, fn(p) -> p.id end)
@@ -27,7 +27,7 @@ defmodule K2pokerIo.RequestBotCommandTest do
   end
 
   test "It should set the bot if no opponent exists", context do
-    {:ok, game} = JoinCommand.execute(context.p1_utd)
+    {:ok, game} = JoinGameCommand.execute(context.p1_utd)
     {:ok, game} = RequestBotCommand.execute(game.id)
     game_data = Game.decode_game_data(game.data)
     game_data_player_ids = Enum.map(game_data.players, fn(p) -> p.id end)

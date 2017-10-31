@@ -1,7 +1,8 @@
-defmodule K2pokerIo.Commands.Invitation.DestroyCommand do
+defmodule K2pokerIo.Commands.Invitation.DestroyInvitationCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Invitation
+  alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
 
   def execute(current_user, invite_id) do
     destroy_invitation(current_user, invite_id)
@@ -17,7 +18,7 @@ defmodule K2pokerIo.Commands.Invitation.DestroyCommand do
   end
 
   def destroy_tournament(tournament_id, current_user) do
-    K2pokerIo.Commands.Tournament.DestroyCommand.execute(current_user, tournament_id)
+    DestroyTournamentCommand.execute(current_user, tournament_id)
   end
 
 end

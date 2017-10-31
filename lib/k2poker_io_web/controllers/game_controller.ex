@@ -2,7 +2,7 @@ defmodule K2pokerIoWeb.GameController do
 
   use K2pokerIoWeb, :controller
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
 
   def play(conn, _params) do
@@ -21,7 +21,7 @@ defmodule K2pokerIoWeb.GameController do
       if user_already_in_a_game?(utd.game) do
         json conn, %{status: "ok", game_id: utd.game_id, joined: true}
       else
-        case JoinCommand.execute(utd) do
+        case JoinGameCommand.execute(utd) do
           {:ok, game} -> json conn, %{status: "ok", game_id: game.id, joined: true}
           {:error} -> json conn, %{status: "error"}
         end

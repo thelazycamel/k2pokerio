@@ -6,7 +6,7 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.User
   alias K2pokerIo.Chat
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.EndGameCommand
 
@@ -101,7 +101,7 @@ defmodule K2pokerIo.Test.Helpers do
   end
 
   def join_game(user_tournament_detail) do
-    JoinCommand.execute(user_tournament_detail)
+    JoinGameCommand.execute(user_tournament_detail)
   end
 
   def create_game(utds) do

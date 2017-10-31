@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Invitation.AcceptCommand do
+defmodule K2pokerIo.Commands.Invitation.AcceptInvitationCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Invitation

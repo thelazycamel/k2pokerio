@@ -3,7 +3,7 @@ defmodule K2pokerIo.EndGameCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail
-  alias K2pokerIo.Commands.Game.JoinCommand
+  alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.RequestBotCommand
   alias K2pokerIo.Commands.Game.FoldCommand
   alias K2pokerIo.Commands.Game.EndGameCommand
@@ -101,7 +101,7 @@ defmodule K2pokerIo.EndGameCommandTest do
   test "It should not try and update score if bot" do
     tournament = Helpers.create_tournament
     p1_utd = Helpers.create_user_tournament_detail("bob", tournament.id)
-    {:ok, game} = JoinCommand.execute(p1_utd)
+    {:ok, game} = JoinGameCommand.execute(p1_utd)
     {:ok, game} = RequestBotCommand.execute(game.id)
     FoldCommand.execute(game.id, p1_utd.player_id)
     EndGameCommand.execute(game)
