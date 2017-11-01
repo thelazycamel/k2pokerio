@@ -6,20 +6,22 @@ defmodule K2pokerIo.Commands.Tournament.JoinTournamentCommand do
   alias K2pokerIo.Invitation
   alias K2pokerIo.User
 
+  import Ecto.Query
+
   def execute(current_user, tournament_id) do
     tournament = Repo.get(Tournament, tournament_id)
     if user_has_access?(current_user, tournament) do
       find_or_create_user_tournament_detail(current_user, tournament)
     else
-      {:error}
+      {:error, :unauthorized_tournament}
     end
   end
 
   defp user_has_access?(current_user, tournament) do
     if tournament.private do
-      Repo.get_by!(Invitation, user_id: current_user.id, tournament_id: tournament.id)
+      Repo.one(from i in Invitation, where: [user_id: ^current_user.id, tournament_id: ^tournament.id])
     else
-      current_user
+      signed_in?(current_user)
     end
   end
 
@@ -37,6 +39,10 @@ defmodule K2pokerIo.Commands.Tournament.JoinTournamentCommand do
           {:error}
       end
     end
+  end
+
+  defp signed_in?(current_user) do
+    current_user
   end
 
 end

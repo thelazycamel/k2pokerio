@@ -30,7 +30,7 @@ defmodule K2pokerIoWeb.TournamentController do
       {:ok, utd_id: utd_id} ->
         conn = put_session(conn, :utd_id, utd_id)
         redirect conn, to: game_path(conn, :play)
-      {:error} -> redirect conn, to: page_path(conn, :index)
+      {:error, _} -> redirect conn, to: page_path(conn, :index)
     end
   end
 
