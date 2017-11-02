@@ -3,7 +3,6 @@ defmodule K2pokerIo.JoinTournamentCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Friendship
   alias K2pokerIo.Tournament
-  alias K2pokerIo.User
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
 

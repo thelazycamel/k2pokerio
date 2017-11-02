@@ -2,7 +2,6 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
-  alias K2pokerIo.Tournament
   alias K2pokerIo.Friendship
   alias K2pokerIo.Invitation
   alias K2pokerIo.Repo
