@@ -3,7 +3,7 @@ defmodule K2pokerIoWeb.SessionController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.Repo
-  alias K2pokerIo.Session
+  alias K2pokerIoWeb.Helpers.Session
 
   def new(conn, _params) do
     if logged_in?(conn) do

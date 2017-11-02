@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Session do
+defmodule K2pokerIoWeb.Helpers.Session do
 
   alias K2pokerIo.User
 

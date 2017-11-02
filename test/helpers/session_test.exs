@@ -2,12 +2,12 @@ defmodule K2pokerIo.SessionTest do
 
   use K2pokerIoWeb.ConnCase
 
-  alias K2pokerIo.Session
+  alias K2pokerIoWeb.Helpers.Session
   alias K2pokerIo.User
   alias K2pokerIo.Commands.User.RegisterCommand
   alias K2pokerIo.Repo
 
-  doctest K2pokerIo.Session
+  doctest K2pokerIoWeb.Helpers.Session
 
   setup do
     params = %{username: "bob", email: "bob@test.com", password: "password"}
