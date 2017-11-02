@@ -29,5 +29,4 @@ defmodule K2pokerIoWeb.Helpers.Session do
     end
   end
 
-
 end
