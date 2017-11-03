@@ -12,7 +12,7 @@ defmodule K2pokerIoWeb.RegistrationController do
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
-    case RegisterCommand.create(changeset) do
+    case RegisterCommand.execute(changeset) do
       {:ok, changeset} ->
         conn
         |> put_session(:player_id, "user|#{changeset.id}")

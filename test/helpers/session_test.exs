@@ -19,7 +19,7 @@ defmodule K2pokerIo.SessionTest do
         password: "abc123"
       }
     )
-    {:ok, user} = RegisterCommand.create(changeset)
+    {:ok, user} = RegisterCommand.execute(changeset)
     %{user: user}
   end
 

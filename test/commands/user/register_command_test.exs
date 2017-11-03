@@ -10,7 +10,7 @@ defmodule K2pokerIo.RegisterCommandTest do
   test "it should create a user" do
     params = %{username: "bob", email: "bob@test.com", password: "password"}
     changeset = User.changeset(%User{}, params)
-    {:ok, user} = RegisterCommand.create(changeset)
+    {:ok, user} = RegisterCommand.execute(changeset)
     assert(user.email == "bob@test.com")
     refute(user.crypted_password == "password")
   end
