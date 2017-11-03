@@ -35,8 +35,7 @@ defmodule K2pokerIo.SessionTest do
   end
 
   test "current_user", %{conn: conn, user: user} do
-    conn = conn
-      |> init_test_session(player_id: "user|#{user.id}")
+    conn = init_test_session(conn, player_id: User.player_id(user))
     current_user = Session.current_user(conn)
     assert(current_user.id == user.id)
   end
