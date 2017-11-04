@@ -23,5 +23,4 @@ defmodule K2pokerIoWeb.PageController do
     end
   end
 
-
 end

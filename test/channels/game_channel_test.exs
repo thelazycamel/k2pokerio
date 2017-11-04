@@ -15,6 +15,7 @@ defmodule K2pokerIo.GameChannelTest do
     Helpers.advanced_set_up(["bob", "stu"])
   end
 
+  @tag :skip
   test "game:game_play", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -25,7 +26,6 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "ready")
-    leave(socket)
   end
 
   @tag :skip
@@ -39,12 +39,12 @@ defmodule K2pokerIo.GameChannelTest do
     {:ok, _, socket} = socket("", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{game.id}")
 
-    assert push(socket, "game:bot_request", %{})
+    ref = push(socket, "game:bot_request", %{})
     assert_broadcast "game:new_game_data", %{}
+    assert_reply(ref, :ok)
 
     game = Repo.get(Game, game.id)
     assert(game.player2_id == "BOT")
-    leave(socket)
   end
 
   @tag :skip
@@ -52,9 +52,9 @@ defmodule K2pokerIo.GameChannelTest do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
-    assert push(socket, "game:discard", %{"card_index" => "0"})
+    ref = push(socket, "game:discard", %{"card_index" => "0"})
     assert_broadcast "game:new_game_data", %{}
-    leave(socket)
+    assert_reply(ref, :ok)
 
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
@@ -66,9 +66,9 @@ defmodule K2pokerIo.GameChannelTest do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
-    assert push(socket, "game:fold", %{})
+    ref = push(socket, "game:fold", %{})
     assert_broadcast "game:new_game_data", %{}
-    leave(socket)
+    assert_reply(ref, :ok)
 
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)

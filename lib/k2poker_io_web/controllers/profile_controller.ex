@@ -4,7 +4,7 @@ defmodule K2pokerIoWeb.ProfileController do
 
   alias K2pokerIo.User
 
-  def show(conn, %{id: id}) do
+  def show(conn, %{"id" => id}) do
     user = Repo.get(User, id)
     render(conn, "show.html", user: user)
   end

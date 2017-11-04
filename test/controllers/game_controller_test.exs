@@ -26,7 +26,7 @@ defmodule K2pokerIo.GameControllerTest do
       |> get(game_path(conn, :play))
       |> response(200)
     expected = ~r/\<body\ class\=.game play/
-    assert(String.match?(response, expected))
+    assert(response =~ expected)
   end
 
   test "#play should redirect to root unless player", context do
@@ -35,7 +35,7 @@ defmodule K2pokerIo.GameControllerTest do
       |> get(game_path(conn, :play))
       |> response(302)
     expected = ~r/href="\/">redirected/
-    assert(String.match?(response, expected))
+    assert(response =~ expected)
   end
 
   test "#play should redirect to tournament index unless user_tournament_detail", context do
@@ -45,7 +45,7 @@ defmodule K2pokerIo.GameControllerTest do
       |> get(game_path(conn, :play))
       |> response(302)
     expected = ~r/href="\/tournaments"\>redirected/
-    assert(String.match?(response,expected))
+    assert(response =~ expected)
   end
 
   test "#join should join a new game for the tournament, via the user_tournament_detail", context do

@@ -16,4 +16,5 @@ config :k2poker_io, K2pokerIo.Repo,
   password: "aurora1",
   database: "k2poker_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  ownership_timeout: 60_000

@@ -53,9 +53,4 @@ defmodule K2pokerIo.FriendControllerTest do
     assert(status == "pending_them")
   end
 
-  @tag :skip
-  test "#search it should return the current_users friends with given search params" do
-    #TODO the controller action for this is not implemented yet
-  end
-
 end
