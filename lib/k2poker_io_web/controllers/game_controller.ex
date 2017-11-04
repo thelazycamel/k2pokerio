@@ -12,6 +12,7 @@ defmodule K2pokerIoWeb.GameController do
       else
         redirect(conn, to: "/tournaments")
       end
+    else
       redirect(conn, to: "/")
     end
   end
@@ -45,8 +46,11 @@ defmodule K2pokerIoWeb.GameController do
   #PRIVATE METHODS
 
   defp get_user_tournament_detail(conn) do
-    utd_id = get_session(conn, :utd_id)
-    Repo.get(UserTournamentDetail, utd_id) |> Repo.preload([:game, :tournament])
+    if utd_id = get_session(conn, :utd_id) do
+      Repo.get(UserTournamentDetail, utd_id) |> Repo.preload([:game, :tournament])
+    else
+      nil
+    end
   end
 
   defp user_already_in_a_game?(game) do
