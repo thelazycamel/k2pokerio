@@ -17,7 +17,7 @@ defmodule K2pokerIoWeb.RegistrationController do
         conn
         |> put_session(:player_id, "user|#{changeset.id}")
         |> put_flash(:info, "Your account was created")
-        |> redirect(to: "/tournaments/")
+        |> redirect(to: "/tournaments")
       {:error, changeset} ->
         conn
         |> put_flash(:info, "Unable to create account")
