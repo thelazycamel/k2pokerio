@@ -6,6 +6,10 @@ class DefaultPage extends page {
     super(opts);
   }
 
+  test() {
+    return "Hello World";
+  }
+
   setUpPage() {
     console.log("no js required");
   }

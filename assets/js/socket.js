@@ -1,10 +1,15 @@
 import {Socket} from "phoenix"
 
-let socket = new Socket("/socket", {
-  params: {token:  window.userToken},
-  logger: (kind, msg, data) => {
-    console.log(`${kind}: ${msg}`, data);
-  }
-});
+let socket = {};
+
+// check for window object as doesn't exist in tests, hmmpf
+if(typeof window === "object") {
+  socket = new Socket("/socket", {
+    params: {token:  window.userToken},
+    logger: (kind, msg, data) => {
+      console.log(`${kind}: ${msg}`, data);
+    }
+  });
+}
 
 export default socket;

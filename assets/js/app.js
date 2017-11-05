@@ -65,6 +65,10 @@ window.App = {
     this.setUpCurrentPage();
   },
 
+  test: function() {
+    return "Hello World";
+  },
+
   setConfig: function() {
     this.settings = {};
     let configurations = document.getElementsByTagName("body")[0].dataset;
