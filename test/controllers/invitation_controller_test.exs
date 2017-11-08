@@ -1,7 +1,6 @@
 defmodule K2pokerIo.InvitationControllerTest do
 
   use K2pokerIoWeb.ConnCase
-
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Invitation
   alias K2pokerIo.User

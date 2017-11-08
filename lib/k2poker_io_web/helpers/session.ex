@@ -1,9 +1,10 @@
 defmodule K2pokerIoWeb.Helpers.Session do
 
   alias K2pokerIo.User
+  alias K2pokerIo.Repo
 
-  def login(params, repo) do
-    user = repo.get_by(User, email: String.downcase(params["email"]))
+  def login(params) do
+    user = Repo.get_by(User, email: String.downcase(params["email"]))
     case authenticate(user, params["password"]) do
       true -> {:ok, user}
       _    -> :error
@@ -14,7 +15,7 @@ defmodule K2pokerIoWeb.Helpers.Session do
     if player_id = Plug.Conn.get_session(conn, :player_id) do
       {type, user_id} = User.get_id(player_id)
       cond do
-        type == :user -> K2pokerIo.Repo.get(User, user_id)
+        type == :user -> Repo.get(User, user_id)
         true -> false
       end
     end

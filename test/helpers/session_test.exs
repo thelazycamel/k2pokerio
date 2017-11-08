@@ -5,7 +5,6 @@ defmodule K2pokerIo.SessionTest do
   alias K2pokerIoWeb.Helpers.Session
   alias K2pokerIo.User
   alias K2pokerIo.Commands.User.RegisterCommand
-  alias K2pokerIo.Repo
 
   import Plug.Test
 
@@ -25,13 +24,13 @@ defmodule K2pokerIo.SessionTest do
 
   test "login", context do
     params = %{"email" => "bob@test.com", "password" => "abc123"}
-    {:ok, user} = Session.login(params, Repo)
+    {:ok, user} = Session.login(params)
     assert(user.id == context.user.id)
   end
 
   test "login fail" do
     params = %{"email" => "bob@test.com", "password" => "wrongPassword"}
-    assert(:error = Session.login(params, Repo))
+    assert(:error = Session.login(params))
   end
 
   test "current_user", %{conn: conn, user: user} do
