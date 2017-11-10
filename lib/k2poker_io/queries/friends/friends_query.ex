@@ -16,6 +16,8 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     |> Enum.map(fn [id, username] -> id end)
   end
 
+  #private
+
   defp my_friends(current_user_id) do
     query = from f in Friendship,
       join: u in assoc(f, :friend),

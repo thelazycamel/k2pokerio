@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Queries.Tournament.GetPlayersQuery do
+defmodule K2pokerIo.Queries.Tournaments.GetPlayersQuery do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.UserTournamentDetail

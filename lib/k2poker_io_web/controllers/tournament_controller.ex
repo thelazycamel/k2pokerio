@@ -18,7 +18,7 @@ defmodule K2pokerIoWeb.TournamentController do
 
   def for_user(conn, _) do
     if logged_in?(conn) do
-      tournaments = GetTournamentsForUserQuery.for_user(current_user(conn).id)
+      tournaments = GetTournamentsForUserQuery.for_user(current_user(conn))
       json conn, tournaments
     else
       json conn, %{error: true}
@@ -44,8 +44,12 @@ defmodule K2pokerIoWeb.TournamentController do
   end
 
   def create(conn, %{"tournament" => tournament_params}) do
-    CreateTournamentCommand.execute(current_user(conn), tournament_params)
-    redirect conn, to: tournament_path(conn, :index)
+    if logged_in?(conn) do
+      CreateTournamentCommand.execute(current_user(conn), tournament_params)
+      redirect conn, to: tournament_path(conn, :index)
+    else
+      redirect conn, to: "/"
+    end
   end
 
   def delete(conn, %{"id" => id}) do

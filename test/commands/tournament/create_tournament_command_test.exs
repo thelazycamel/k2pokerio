@@ -25,7 +25,6 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "tournament",
       "name" => "My Test Tournament",
-      "user_id" => context.player1.id,
       "friend_ids" => "#{context.player2.id},#{context.player3.id},#{context.player4.id}"
       }
     tournament = CreateTournamentCommand.execute(context.player1, params)
@@ -38,7 +37,6 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
   test "it should create a duel with invitations", context do
     params = %{
       "game_type" => "duel",
-      "user_id" => context.player1.id,
       "friend_ids" => to_string(context.player2.id)
       }
     tournament = CreateTournamentCommand.execute(context.player1, params)
@@ -53,7 +51,6 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "tournament",
       "name" => "My Test Tournament",
-      "user_id" => context.player1.id,
       "friend_ids" => "#{context.player2.id},#{player5.id}"
       }
     tournament = CreateTournamentCommand.execute(context.player1, params)

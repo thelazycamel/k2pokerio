@@ -13,7 +13,7 @@ defmodule K2pokerIo.InvitationControllerTest do
   setup do
     player1 = Helpers.create_user("bob")
     player2 = Helpers.create_user("stu")
-    tournament = Helpers.create_private_tournament(player1)
+    tournament = Helpers.create_private_tournament(player1, "bobs tourney")
     RequestFriendCommand.execute(player1.id, player2.id)
     invitation = Repo.insert!(Invitation.changeset(
       %Invitation{}, %{ user_id: player2.id, tournament_id: tournament.id, accepted: false})

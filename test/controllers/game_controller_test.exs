@@ -49,7 +49,7 @@ defmodule K2pokerIo.GameControllerTest do
   end
 
   test "#join should join a new game for the tournament, via the user_tournament_detail", context do
-    tournament = Helpers.create_private_tournament(context.player1)
+    tournament = Helpers.create_private_tournament(context.player1, "bobs tourney")
     player1_id = User.player_id(context.player1)
     utd = Helpers.create_user_tournament_detail(player1_id, "bob", tournament.id)
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})

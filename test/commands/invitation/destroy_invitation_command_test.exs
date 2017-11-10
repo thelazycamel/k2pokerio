@@ -13,7 +13,7 @@ defmodule K2pokerIo.DestroyInvitationCommandTest do
     player2 = Helpers.create_user("bob")
     player3 = Helpers.create_user("pip")
     player4 = Helpers.create_user("salma")
-    tournament = Helpers.create_private_tournament(player1)
+    tournament = Helpers.create_private_tournament(player1, "stus tourney")
     Repo.insert(Invitation.changeset(%Invitation{},
       %{
         user_id: player1.id,

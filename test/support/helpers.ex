@@ -67,9 +67,9 @@ defmodule K2pokerIo.Test.Helpers do
     create_user_tournament_detail(player_id, username, tournament_id)
   end
 
-  def create_private_tournament(user) do
+  def create_private_tournament(user, tournament_name) do
     Repo.insert!(%Tournament{
-      name: "My Private Tournament",
+      name: tournament_name,
       default_tournament: false,
       private: true,
       finished: false,
@@ -81,7 +81,6 @@ defmodule K2pokerIo.Test.Helpers do
       rebuys: [0]
     })
   end
-
 
   def create_tournament do
     if Tournament.default do

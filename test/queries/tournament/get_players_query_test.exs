@@ -3,12 +3,12 @@ defmodule K2pokerIo.GetPlayersQueryTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
   alias K2pokerIo.Friendship
-  alias K2pokerIo.Queries.Tournament.GetPlayersQuery
+  alias K2pokerIo.Queries.Tournaments.GetPlayersQuery
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
 
   use K2pokerIo.ModelCase
 
-  doctest K2pokerIo.Queries.Tournament.GetPlayersQuery
+  doctest K2pokerIo.Queries.Tournaments.GetPlayersQuery
 
   setup do
     player1 = Helpers.create_user("bob")

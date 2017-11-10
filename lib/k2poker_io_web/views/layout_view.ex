@@ -11,6 +11,9 @@ defmodule K2pokerIoWeb.LayoutView do
     |> Enum.join(" ")
   end
 
+  #TODO move this to a json call, probably logged_in and page can stay (why do i record page here?)
+  # but definately tournament_id and bots should be called via service api, we can collect any other info there too.
+  #
   def data_for_app(conn) do
     [
       page: "#{get_controller(conn)}#{String.capitalize(get_action(conn))}",
