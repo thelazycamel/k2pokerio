@@ -1,6 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class Scoreboard extends React.Component {
 
