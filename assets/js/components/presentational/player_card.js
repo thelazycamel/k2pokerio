@@ -44,6 +44,8 @@ class PlayerCard extends React.Component {
     return (
       <TransitionGroup>
         <CSSTransition
+          appear={true}
+          enter={false}
           key={this.cardId()}
           classNames={{
             enter: this.cardId() + "-deal-enter",
