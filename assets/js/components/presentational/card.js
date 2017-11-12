@@ -19,8 +19,8 @@ class Card extends React.Component {
         <CSSTransition
           key={this.cardId()}
           classNames={{
-            appear: this.cardId() + "-deal-enter",
-            appearActive: this.cardId() + "-deal-enter-active"
+            enter: this.cardId() + "-deal-enter",
+            enterActive: this.cardId() + "-deal-enter-active"
           }}
           timeout={0} >
           <div className={this.classNames()} data-card={this.props.index} id={this.cardId()} key={this.cardId()}>
