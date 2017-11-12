@@ -76,7 +76,7 @@ class GamePlayPage extends page {
   }
 
   initializeChatComponent() {
-    ReactDOM.render(<ChatComponent store={App.store} title="Tournament Name" page="Tournament"/>, document.getElementById('chat-holder'));
+    ReactDOM.render(<ChatComponent store={App.store} />, document.getElementById('chat-holder'));
   }
 
   initializeGameComponent() {

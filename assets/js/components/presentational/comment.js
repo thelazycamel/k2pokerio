@@ -5,7 +5,9 @@ class Comment extends React.Component {
 
   componentDidMount() {
     let el = document.getElementById("chats");
-    el.scrollTop = el.scrollHeight;
+    if(el){
+      el.scrollTop = el.scrollHeight;
+    }
   }
 
   admin_class() {
