@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import TransitionGroup from 'react-transition-group/TransitionGroup'
-import CSSTransition from 'react-transition-group/CSSTransition'
+import {TransitionGroup} from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 
 class PlayerCard extends React.Component {
 
@@ -44,13 +44,11 @@ class PlayerCard extends React.Component {
     return (
       <TransitionGroup>
         <CSSTransition
+          in={true}
           appear={true}
-          enter={false}
+          enter={true}
           key={this.cardId()}
-          classNames={{
-            enter: this.cardId() + "-deal-enter",
-            enterActive: this.cardId() + "-deal-enter-active"
-          }}
+          classNames={this.cardId() + "-deal"}
           timeout={0}>
           <div className={ this.classNames() }
                data-card={this.props.index}
