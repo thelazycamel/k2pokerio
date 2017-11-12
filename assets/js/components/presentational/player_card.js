@@ -41,15 +41,16 @@ class PlayerCard extends React.Component {
   }
 
   render() {
+    let _this = this;
     return (
       <TransitionGroup>
         <CSSTransition
-          in={true}
-          appear={true}
-          enter={true}
+          appear
+          enter={false}
+          exit={false}
           key={this.cardId()}
           classNames={this.cardId() + "-deal"}
-          timeout={0}>
+          timeout={1000}>
           <div className={ this.classNames() }
                data-card={this.props.index}
                id={this.cardId()}

@@ -238,10 +238,10 @@
 
 }
 
-.opponent-card-1-deal-enter {
+.opponent-card-1-deal-appear {
   transform: translate(-50px, -200px);
   z-index: 10;
-   &.opponent-card-1-deal-enter-active {
+   &.opponent-card-1-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
@@ -249,11 +249,11 @@
   }
 }
 
-.opponent-card-2-deal-enter {
+.opponent-card-2-deal-appear {
   transform: translate(-50px, -300px);
   z-index: 10;
 
-  &.opponent-card-2-deal-enter-active {
+  &.opponent-card-2-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
@@ -261,22 +261,22 @@
   }
 }
 
-.table-card-1-deal-enter {
+.table-card-1-deal-appear {
   transform: translate(150px, -400px);
   z-index: 10;
 
-  &.table-card-1-deal-enter-active {
+  &.table-card-1-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
   }
 }
 
-.table-card-2-deal-enter {
+.table-card-2-deal-appear {
   transform: translate(75px, -400px);
   z-index: 10;
 
-  &.table-card-2-deal-enter-active {
+  &.table-card-2-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
@@ -284,11 +284,11 @@
   }
 }
 
-.table-card-3-deal-enter {
+.table-card-3-deal-appear {
   transform: translate(0px, -400px);
   z-index: 10;
 
-  &.table-card-3-deal-enter-active {
+  &.table-card-3-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
@@ -296,44 +296,44 @@
   }
 }
 
-.table-card-4-deal-enter {
+.table-card-4-deal-appear {
   transform: translate(-75px, -400px);
   z-index: 10;
 
-  &.table-card-4-deal-enter-active {
+  &.table-card-4-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
   }
 
 }
-.table-card-5-deal-enter {
+.table-card-5-deal-appear {
   transform: translate(-150px, -400px);
   z-index: 100;
 
-  &.table-card-5-deal-enter-active {
+  &.table-card-5-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
   }
 }
 
-.player-card-1-deal-enter {
+.player-card-1-deal-appear {
   transform: translate(100px, -600px);
   z-index: 10;
 
-  &.player-card-1-deal-enter-active {
+  &.player-card-1-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
   }
 }
 
-.player-card-2-deal-enter {
+.player-card-2-deal-appear {
   transform: translate(-100px, -600px);
   z-index: 10;
 
-  &.player-card-2-deal-enter-active {
+  &.player-card-2-deal-appear-active {
     transform: translate(0px, 0px);
     z-index: 6;
     transition: all 0.3s ease-in;
