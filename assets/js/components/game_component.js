@@ -14,10 +14,14 @@ class GameComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
+    this.setOpponentDiscardedAnimation(nextProps);
+  }
+
+  setOpponentDiscardedAnimation(nextProps){
     if(nextProps.game.other_player_status == "discarded" && this.props.game.other_player_status != "discarded"){
-      this.setState({opponent_discarded: true});
+      this.setState({opponent_discarded_animation: true});
     } else {
-      this.setState({opponent_discarded: false});
+      this.setState({opponent_discarded_animation: false});
     }
   }
 
@@ -29,6 +33,7 @@ class GameComponent extends React.Component {
     return (this.props.game.player_status == "ready") ? true : false;
   }
 
+  //TOOD maybe move this out to another component
   currentStatus(){
     if(this.waitingForOpponent()) {return this.props.game.status};
     let playerStatus = "";
@@ -59,6 +64,23 @@ class GameComponent extends React.Component {
     App.store.dispatch({type: "GAME:NEXT_GAME"})
   }
 
+  renderPlayerCards() {
+    if(this.props.game.cards){
+      let cards = this.props.game.cards.map((card, index) => {
+        let bestCardClass = this.props.game.best_cards.includes(card) ? "best-card" : "";
+        let winningCardClass = this.isAWinningCard(card);
+        return <PlayerCard
+                  card={card}
+                  index={index}
+                  best_card={bestCardClass}
+                  key={index}
+                  winner={winningCardClass}
+                  status={this.props.game.player_status} />
+      });
+      return cards;
+    }
+  }
+
   isAWinningCard(card) {
     if(this.props.game.status == "finished" && this.props.game.result.winning_cards.includes(card)) {
       return "winner";
@@ -67,33 +89,28 @@ class GameComponent extends React.Component {
     }
   }
 
-  renderPlayerCards() {
-    if(this.props.game.cards){
-      let cards = this.props.game.cards.map((card, index) => {
-        let bestCardClass = this.props.game.best_cards.includes(card) ? "best-card" : "";
-        let winningCardClass = this.isAWinningCard(card);
-        return <PlayerCard card={card} index={index} best_card={bestCardClass} key={index} winner={winningCardClass} status={this.props.game.player_status} />
-      });
-      return cards;
-    }
-  }
 
   renderTableCards() {
     if(this.props.game.table_cards){
       let cards = this.props.game.table_cards.map((card, index) => {
         let bestCard = this.props.game.best_cards.includes(card) ? " best-card" : "";
         let winningCardClass = this.isAWinningCard(card);
-        return <Card card={card} index={index+1} best_card={bestCard} type="table" key={index} winner={winningCardClass} discarded="" />
+        return <Card
+                  card={card}
+                  index={index+1}
+                  best_card={bestCard}
+                  type="table"
+                  key={index}
+                  winner={winningCardClass}
+                  discarded="" />
       });
       return cards;
     }
   }
 
-  // TODO all this changing discarded state should be set in K2poker
-  // and not dealt with here, this should just be the presentational layer
   opponentDiscarded() {
     let discards = ["",""];
-    if(this.state.opponent_discarded) {
+    if(this.state.opponent_discarded_animation) {
       if(this.props.game.status == "river") {
         discards = ["discarded", "discarded"];
       } else {
@@ -108,18 +125,28 @@ class GameComponent extends React.Component {
     if(this.waitingForOpponent()) { return };
     let discarded = this.opponentDiscarded();
     let cards = this.opponentCards().map((card, index) => {
-      let winningCardClass = this.isAWinningCard(card);
-      return <Card card={card} index={index+1} best_card="" type="opponent" key={index} winner={winningCardClass} discarded={discarded[index]} />
+      return <Card
+                card={card}
+                index={index+1}
+                best_card=""
+                type="opponent"
+                key={index}
+                winner={this.isAWinningCard(card)}
+                discarded={discarded[index]} />
     });
     return cards;
   }
 
   opponentCards() {
-    if(this.props.game.result && this.props.game.result.other_player_cards.length == 2) {
+    if(this.canShowOpponentCards()) {
      return this.props.game.result.other_player_cards;
     } else {
       return ["back","back"];
     }
+  }
+
+  canShowOpponentCards() {
+    return (this.props.game.result && this.props.game.result.other_player_cards.length == 2)
   }
 
   isFinished() {
@@ -131,9 +158,13 @@ class GameComponent extends React.Component {
   }
 
   foldButton() {
-    if(!this.isFinished() && !this.waitingForOpponent()) {
+    if(this.displayFoldButton()) {
       return (<a id="fold-button" onClick={this.foldButtonClicked}>Fold</a>);
     }
+  }
+
+  displayFoldButton() {
+   return (!this.isFinished() && !this.waitingForOpponent())
   }
 
   //TODO move the play button to a new component
@@ -159,6 +190,8 @@ class GameComponent extends React.Component {
     }
   }
 
+  //TODO think about abstracting this text out to a translator
+  // and shorten this long function
   renderBestHand() {
     if(this.isFinished()) {
       let winningHand = this.props.game.result.win_description;
@@ -182,6 +215,7 @@ class GameComponent extends React.Component {
     App.pageComponentManager.linkClicked("profile");
   }
 
+  //TODO move this to a separate component
   renderOpponentImage(){
     if (this.waitingForOpponent()) { return;}
     if(this.props.opponent_profile && this.props.opponent_profile.image) {
