@@ -19,13 +19,14 @@ class PlayerCard extends React.Component {
   }
 
   classNames() {
-    let discarded = "";
+    let locked = (this.props.status == "discarded" || this.props.status == "ready") ? "locked" : "";
+    let animation_state = "";
     if(this.props.card == "discarded") {
-      discarded = "discarded";
+      animation_state = "discarded";
     } else if(this.state.new_card == true) {
-      discarded = "new-card";
+      animation_state = "new-card";
     }
-    return `card player-card card-${this.props.card} ${this.props.best_card} ${this.props.winner} ${discarded}`;
+    return `card player-card card-${this.props.card} ${this.props.best_card} ${this.props.winner} ${animation_state} ${locked}`;
   }
 
   cardId() {

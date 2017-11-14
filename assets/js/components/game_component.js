@@ -15,7 +15,6 @@ class GameComponent extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.game.other_player_status == "discarded" && this.props.game.other_player_status != "discarded"){
-      console.log(nextProps.game.other_player_status, this.props.game.other_player_status)
       this.setState({opponent_discarded: true});
     } else {
       this.setState({opponent_discarded: false});
@@ -27,7 +26,7 @@ class GameComponent extends React.Component {
   }
 
   waitingForOpponentToPlay() {
-    return this.props.game.player_status == "ready" ? true : false;
+    return (this.props.game.player_status == "ready") ? true : false;
   }
 
   currentStatus(){
@@ -137,11 +136,12 @@ class GameComponent extends React.Component {
     }
   }
 
+  //TODO move the play button to a new component
   playButton() {
     if(this.isFinished()) {
       return(<a id="play-button" className="next-game" onClick={this.nextGameButtonClicked}>Next Game</a>);
     } else if(this.waitingForOpponent()){
-      let buttonText = App.settings.bots == true ? "Searching..." : "Waiting...";
+      let buttonText = App.settings.bots == "true" ? "Searching..." : "Waiting...";
       return(<a id="play-button" className="waiting">{buttonText}</a>);
     } else if(this.waitingForOpponentToPlay()) {
       return(<a id="play-button" className="waiting">Waiting...</a>);

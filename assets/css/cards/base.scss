@@ -10,6 +10,13 @@
     /*box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.50); */
   }
 
+  &.player-card {
+    cursor: pointer;
+  }
+
+  &.player-card.locked {
+    cursor: not-allowed;
+  }
 
   /* Card images */
 

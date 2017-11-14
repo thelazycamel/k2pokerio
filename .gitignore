@@ -23,5 +23,5 @@ erl_crash.dump
 # variables.
 /config/prod.secret.exs
 
-
+.DS_Store
 *.swp
