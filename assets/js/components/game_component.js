@@ -2,9 +2,12 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
-import Card from './presentational/card'
 import Scoreboard from './presentational/scoreboard'
-import PlayerCard from './presentational/player_card'
+import PlayerCard from './game/player_card'
+import Card from './game/card'
+import BestHand from './game/best_hand'
+import PlayButton from './game/play_button'
+import GameStatus from './game/game_status'
 
 class GameComponent extends React.Component {
 
@@ -33,7 +36,7 @@ class GameComponent extends React.Component {
     return (this.props.game.player_status == "ready") ? true : false;
   }
 
-  //TOOD maybe move this out to another component
+  // TODO maybe move this out to another component and tidy up
   currentStatus(){
     if(this.waitingForOpponent()) {return this.props.game.status};
     let playerStatus = "";
@@ -67,18 +70,20 @@ class GameComponent extends React.Component {
   renderPlayerCards() {
     if(this.props.game.cards){
       let cards = this.props.game.cards.map((card, index) => {
-        let bestCardClass = this.props.game.best_cards.includes(card) ? "best-card" : "";
-        let winningCardClass = this.isAWinningCard(card);
         return <PlayerCard
                   card={card}
                   index={index}
-                  best_card={bestCardClass}
+                  best_card={this.bestCardClass(card)}
                   key={index}
-                  winner={winningCardClass}
+                  winner={this.isAWinningCard(card)}
                   status={this.props.game.player_status} />
       });
       return cards;
     }
+  }
+
+  bestCardClass(card) {
+    return this.props.game.best_cards.includes(card) ? "best-card" : "";
   }
 
   isAWinningCard(card) {
@@ -89,19 +94,16 @@ class GameComponent extends React.Component {
     }
   }
 
-
   renderTableCards() {
     if(this.props.game.table_cards){
       let cards = this.props.game.table_cards.map((card, index) => {
-        let bestCard = this.props.game.best_cards.includes(card) ? " best-card" : "";
-        let winningCardClass = this.isAWinningCard(card);
         return <Card
                   card={card}
                   index={index+1}
-                  best_card={bestCard}
+                  best_card={this.bestCardClass(card)}
                   type="table"
                   key={index}
-                  winner={winningCardClass}
+                  winner={this.isAWinningCard(card)}
                   discarded="" />
       });
       return cards;
@@ -181,6 +183,8 @@ class GameComponent extends React.Component {
     }
   }
 
+  //TODO probably better to move this out to another component and make it nicer
+  //
   renderStatus() {
     if(this.isFinished()) {
       let status = this.props.game.player_status
@@ -190,7 +194,8 @@ class GameComponent extends React.Component {
     }
   }
 
-  //TODO think about abstracting this text out to a translator
+  // TODO extract out to a separate component and tidy up
+  // think about abstracting this text out to a translator
   // and shorten this long function
   renderBestHand() {
     if(this.isFinished()) {

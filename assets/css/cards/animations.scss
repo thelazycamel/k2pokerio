@@ -1,0 +1,128 @@
+.opponent-card-1-deal-appear {
+  transform: translate(-50px, -200px);
+  z-index: 10;
+   &.opponent-card-1-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+    transition-delay: 0.2s;
+  }
+}
+
+.opponent-card-2-deal-appear {
+  transform: translate(-50px, -300px);
+  z-index: 10;
+
+  &.opponent-card-2-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+    transition-delay: 0.6s;
+  }
+}
+
+.table-card-1-deal-appear {
+  transform: translate(150px, -400px);
+  z-index: 10;
+
+  &.table-card-1-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.table-card-2-deal-appear {
+  transform: translate(75px, -400px);
+  z-index: 10;
+
+  &.table-card-2-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+    transition-delay: 0.2s;
+  }
+}
+
+.table-card-3-deal-appear {
+  transform: translate(0px, -400px);
+  z-index: 10;
+
+  &.table-card-3-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+    transition-delay: 0.4s;
+  }
+}
+
+.table-card-4-deal-appear {
+  transform: translate(-75px, -400px);
+  z-index: 10;
+
+  &.table-card-4-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+  }
+
+}
+.table-card-5-deal-appear {
+  transform: translate(-150px, -400px);
+  z-index: 100;
+
+  &.table-card-5-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.player-card-1-deal-appear {
+  transform: translate(100px, -600px);
+  z-index: 10;
+
+  &.player-card-1-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.player-card-2-deal-appear {
+  transform: translate(-100px, -600px);
+  z-index: 10;
+
+  &.player-card-2-deal-appear-active {
+    transform: translate(0px, 0px);
+    z-index: 6;
+    transition: all 0.3s ease-in;
+    transition-delay: 0.4s;
+  }
+}
+
+.player-card.discarded {
+  transform: rotateX(360deg);
+  background-image: url("/images/deck/card-back.svg");
+}
+
+#player-card-1.new-card {
+  transform: rotateX(0deg);
+  transition: transform 0.3s ease-in;
+}
+
+#player-card-2.new-card {
+  transform: rotateX(0deg);
+  transition: transform 0.3s ease-in;
+}
+
+#opponent-card-1.discarded {
+  transform: rotateX(360deg);
+  transition: transform 0.5s ease-in;
+}
+
+#opponent-card-2.discarded {
+  transform: rotateX(360deg);
+  transition: transform 0.5s ease-in;
+  transition-delay: 0.1s;
+}
