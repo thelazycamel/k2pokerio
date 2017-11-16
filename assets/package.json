@@ -3,8 +3,9 @@
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin",
-    "test": "jest"
+    "watch": "node_modules/.bin/jest run test --watch",
+    "test": "node_modules/.bin/jest",
+    "test:watch": "node_modules/.bin/jest run test --watch"
   },
   "jest": {
     "setupFiles": [

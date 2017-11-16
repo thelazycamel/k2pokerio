@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import {TransitionGroup} from 'react-transition-group'
 import {CSSTransition} from 'react-transition-group'
 
-class Card extends React.Component {
+class CardComponent extends React.Component {
 
   classNames() {
     return `card ${this.props.type}-card card-${this.props.card} ${this.props.best_card} ${this.props.winner} ${this.props.discarded}`;
@@ -32,4 +32,4 @@ class Card extends React.Component {
   }
 }
 
-export default Card;
+export default CardComponent;

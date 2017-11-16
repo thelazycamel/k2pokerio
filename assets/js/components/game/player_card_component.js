@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import {TransitionGroup} from 'react-transition-group'
 import {CSSTransition} from 'react-transition-group'
 
-class PlayerCard extends React.Component {
+class PlayerCardComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -64,4 +64,4 @@ class PlayerCard extends React.Component {
   }
 }
 
-export default PlayerCard;
+export default PlayerCardComponent;

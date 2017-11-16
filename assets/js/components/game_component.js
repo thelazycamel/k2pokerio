@@ -3,11 +3,11 @@ import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import Scoreboard from './presentational/scoreboard'
-import PlayerCard from './game/player_card'
-import Card from './game/card'
-import BestHand from './game/best_hand'
-import PlayButton from './game/play_button'
-import GameStatus from './game/game_status'
+import PlayerCardComponent from './game/player_card_component'
+import CardComponent from './game/card_component'
+import BestHandComponent from './game/best_hand_component'
+import PlayButtonComponent from './game/play_button_component'
+import GameStatusComponent from './game/game_status_component'
 
 class GameComponent extends React.Component {
 
@@ -70,7 +70,7 @@ class GameComponent extends React.Component {
   renderPlayerCards() {
     if(this.props.game.cards){
       let cards = this.props.game.cards.map((card, index) => {
-        return <PlayerCard
+        return <PlayerCardComponent
                   card={card}
                   index={index}
                   best_card={this.bestCardClass(card)}
@@ -97,7 +97,7 @@ class GameComponent extends React.Component {
   renderTableCards() {
     if(this.props.game.table_cards){
       let cards = this.props.game.table_cards.map((card, index) => {
-        return <Card
+        return <CardComponent
                   card={card}
                   index={index+1}
                   best_card={this.bestCardClass(card)}
@@ -127,7 +127,7 @@ class GameComponent extends React.Component {
     if(this.waitingForOpponent()) { return };
     let discarded = this.opponentDiscarded();
     let cards = this.opponentCards().map((card, index) => {
-      return <Card
+      return <CardComponent
                 card={card}
                 index={index+1}
                 best_card=""
@@ -194,23 +194,6 @@ class GameComponent extends React.Component {
     }
   }
 
-  // TODO extract out to a separate component and tidy up
-  // think about abstracting this text out to a translator
-  // and shorten this long function
-  renderBestHand() {
-    if(this.isFinished()) {
-      let winningHand = this.props.game.result.win_description;
-      if(!winningHand){return};
-      let humanizedWinningHand = winningHand.split("_").map((word) => { return this.titlize(word)}).join(" ");
-      return ( <div id="best-hand"><span className="result-hand">{humanizedWinningHand}</span></div>);
-    } else {
-      let bestHand = this.props.game.hand_description;
-      if(!bestHand){return};
-      let humanizedBestHand = bestHand.split("_").map((word) => { return this.titlize(word)}).join(" ");
-      return ( <div id="best-hand">Best Hand<br/>{humanizedBestHand}</div>);
-    }
-  }
-
   titlize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
@@ -233,6 +216,12 @@ class GameComponent extends React.Component {
     }
   }
 
+  winDescription(){
+    if(this.props.game.result){
+      return this.props.game.result.win_description;
+    }
+  }
+
   render() {
     return (
       <Provider store={this.props.store}>
@@ -247,8 +236,8 @@ class GameComponent extends React.Component {
               <div id="game-status">{this.renderStatus()}</div>
               { this.playButton() }
               <div id="player-cards">{this.renderPlayerCards()}</div>
-              { this.renderBestHand() }
-              <Scoreboard current_score = {this.props.player.current_score} />
+              <BestHandComponent is_finished={this.isFinished()} winning_hand={this.winDescription()} hand={this.props.game.hand_description} />
+              <Scoreboard current_score={this.props.player.current_score} />
             </div>
           </div>
         </div>
