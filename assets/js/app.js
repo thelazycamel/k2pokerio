@@ -22,10 +22,11 @@ import "phoenix_html"
 var $ = require("jquery")
 
 /* local */
-import { createStore, applyMiddleware } from 'redux'
-import mainStore from "./reducers/main_store"
+import { createStore, applyMiddleware } from "redux";
+import mainStore from "./reducers/main_store";
 
 /* Utils */
+import Translate from "./utils/translate";
 
 /* Services (ajax services, not channels) */
 /* TODO: only import this into the pages that require them, no need to load all these
@@ -63,10 +64,7 @@ window.App = {
     this.initializeServices();
     this.createReduxStore();
     this.setUpCurrentPage();
-  },
-
-  test: function() {
-    return "Hello World";
+    this.setUpTranslations();
   },
 
   setConfig: function() {
@@ -74,6 +72,11 @@ window.App = {
     let configurations = document.getElementsByTagName("body")[0].dataset;
     configurations["csrf_token"] = $("meta[name='csrf_token']").attr("content");
     this.settings = Object.assign({}, configurations);
+  },
+
+  setUpTranslations(){
+    var translations = new Translate(this.settings.locale);
+    this.t = function(key){ return translations.translate(key) }
   },
 
   initializeServices: function() {

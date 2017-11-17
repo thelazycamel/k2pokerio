@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow, mount, render} from 'enzyme';
 import configureStore from 'redux-mock-store'
+import MockApp from '../../support/mock_app';
 import GameComponent from '../../../js/components/game_component';
 
 const mockStore = configureStore();
@@ -8,14 +9,7 @@ let store, gameComponent;
 
 beforeEach(() => {
 
-  window.App = {
-    settings: {
-      page: "gamePlay",
-      logged_in: "true",
-      tournament_id: 1,
-      bots: "true"
-    }
-  };
+  window.App = MockApp;
 
   let initialState = {
     page: {tabs: {}, links: {}},
@@ -59,7 +53,7 @@ describe("Game States: Player wins", () => {
   });
 
   test('The best hand show show a status', () => {
-    expect(gameComponent.find("#best-hand").text()).toMatch("Four Of A Kind");
+    expect(gameComponent.find("#best-hand").text()).toMatch("Four of a Kind");
   });
 
   test('The winning cards should have the winning class', () => {

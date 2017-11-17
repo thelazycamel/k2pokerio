@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow, mount, render} from 'enzyme';
-import configureStore from 'redux-mock-store'
+import configureStore from 'redux-mock-store';
+import MockApp from '../../support/mock_app';
 import GameComponent from '../../../js/components/game_component';
 
 const mockStore = configureStore();
@@ -8,14 +9,7 @@ let store, gameComponent;
 
 beforeEach(() => {
 
-  window.App = {
-    settings: {
-      page: "gamePlay",
-      logged_in: "true",
-      tournament_id: 1,
-      bots: "true"
-    }
-  };
+  window.App = MockApp;
 
   let initialState = {
     page: {tabs: {}, links: {}},
