@@ -61,10 +61,10 @@ window.App = {
 
   init: function() {
     this.setConfig();
+    this.setUpTranslations();
     this.initializeServices();
     this.createReduxStore();
     this.setUpCurrentPage();
-    this.setUpTranslations();
   },
 
   setConfig: function() {

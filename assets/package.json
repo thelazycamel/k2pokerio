@@ -16,6 +16,7 @@
     "babel-preset-react": "^6.16.0",
     "enzyme-adapter-react-16": "^1.0.4",
     "jquery": "^3.1.1",
+    "jsdom": "^11.3.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "react": "^16.1.0",
