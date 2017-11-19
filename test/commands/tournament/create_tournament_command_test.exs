@@ -27,7 +27,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "name" => "My Test Tournament",
       "friend_ids" => "#{context.player2.id},#{context.player3.id},#{context.player4.id}"
       }
-    tournament = CreateTournamentCommand.execute(context.player1, params)
+    {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
     assert(tournament.name == "My Test Tournament")
     assert(tournament.lose_type == "all")
@@ -39,7 +39,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "game_type" => "duel",
       "friend_ids" => to_string(context.player2.id)
       }
-    tournament = CreateTournamentCommand.execute(context.player1, params)
+    {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
     assert(tournament.name == "bob v stu")
     assert(tournament.lose_type == "half")
@@ -52,12 +52,25 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "game_type" => "tournament",
       "name" => "My Test Tournament",
       "friend_ids" => "#{context.player2.id},#{player5.id}"
-      }
-    tournament = CreateTournamentCommand.execute(context.player1, params)
+    }
+    {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
     player5_invite = Repo.one(from i in Invitation, where: i.user_id == ^player5.id)
     assert(invite_count == 2)
     refute(player5_invite)
+  end
+
+  @tag :skip
+  test "it should not allow the creation of a tournament if one already exists for the given users", context do
+    params = %{
+      "game_type" => "tournament",
+      "name" => "Duel 1",
+      "friend_ids" => to_string(context.player2.id)
+    }
+    {:ok, tournament_1} = CreateTournamentCommand.execute(context.player1, params)
+    refute(tournament_1.finished)
+    {error, _} = CreateTournamentCommand.execute(context.player1, params)
+    assert(error == :error)
   end
 
 end

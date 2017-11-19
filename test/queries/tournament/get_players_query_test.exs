@@ -20,7 +20,7 @@ defmodule K2pokerIo.GetPlayersQueryTest do
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player3.id, status: true}))
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player4.id, status: true}))
     friend_ids = Enum.join([player2.id, player3.id, player4.id], ",")
-    tournament = CreateTournamentCommand.execute(player1, %{"game_type" => "tournament", "name" => "My Test Tournament", "friend_ids" => friend_ids})
+    {:ok, tournament} = CreateTournamentCommand.execute(player1, %{"game_type" => "tournament", "name" => "My Test Tournament", "friend_ids" => friend_ids})
     Helpers.create_user_tournament_detail(User.player_id(player1), player1.username, tournament.id)
     Helpers.create_user_tournament_detail(User.player_id(player2), player2.username, tournament.id)
     Helpers.create_user_tournament_detail(User.player_id(player3), player3.username, tournament.id)

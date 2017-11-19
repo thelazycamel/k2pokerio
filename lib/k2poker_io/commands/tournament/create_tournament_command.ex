@@ -2,13 +2,18 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Tournament
+  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Invitation
   alias K2pokerIo.User
   alias K2pokerIo.Queries.Friends.FriendsQuery
 
+  import Ecto.Query
+
   def execute(current_user, params) do
-    create_tournament(current_user, params)
-    |> invite_friends(current_user, params)
+    case create_tournament(current_user, params) do
+      {:ok, tournament} -> invite_friends(tournament, current_user, params)
+      true -> {:error, "Unable to create the tournament"}
+    end
   end
 
   defp create_tournament(current_user, params) do
@@ -16,7 +21,20 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
      "tournament" -> tournament_params(current_user, params)
      "duel"       -> duel_params(current_user, params)
     end
-    Repo.insert!(changeset)
+    if params["game_type"] == "duel" do
+      opponent_id = List.first(extract_friend_ids_from_params(params))
+      # collect the tournament ids utds by player ids where tournament is duel
+      # and finished is false
+      # something like
+      # where utd.player_id in [opp.player_id, current_user.player_id],
+      # utd.joins.tournaments where tournament is duel and finished is false
+      # collect tournament_ids
+      # then check if any duplicates tournament_ids,
+      # means both users in same open tournament already
+      Repo.insert(changeset)
+    else
+      Repo.insert(changeset)
+    end
   end
 
   defp tournament_params(current_user, params) do
@@ -53,7 +71,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
     filter_valid_friends(current_user.id, params)
     |> Enum.each( fn user_id -> create_invitation(tournament.id, user_id, false) end)
     create_invitation(tournament.id, current_user.id, true)
-    tournament
+    {:ok, tournament}
   end
 
   defp create_invitation(tournament_id, user_id, accepted) do

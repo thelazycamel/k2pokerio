@@ -83,7 +83,7 @@ defmodule K2pokerIo.UpdatePlayerScoreCommandTest do
       "user_id" => context.player1.id,
       "friend_ids" => to_string(context.player2.id)
       }
-    duel = CreateTournamentCommand.execute(context.player1, params)
+    {:ok, duel} = CreateTournamentCommand.execute(context.player1, params)
     {:ok, [utd_id: p1_utd_id]} = JoinTournamentCommand.execute(context.player1, duel.id)
     {:ok, [utd_id: p2_utd_id]} = JoinTournamentCommand.execute(context.player2, duel.id)
     p1_utd = Repo.one(from utd in UserTournamentDetail, where: utd.id == ^p1_utd_id, preload: :tournament)
@@ -110,7 +110,7 @@ defmodule K2pokerIo.UpdatePlayerScoreCommandTest do
       "user_id" => context.player1.id,
       "friend_ids" => to_string(context.player2.id)
       }
-    duel = CreateTournamentCommand.execute(context.player1, params)
+    {:ok, duel} = CreateTournamentCommand.execute(context.player1, params)
     {:ok, [utd_id: p1_utd_id]} = JoinTournamentCommand.execute(context.player1, duel.id)
     {:ok, [utd_id: p2_utd_id]} = JoinTournamentCommand.execute(context.player2, duel.id)
     p1_utd = Repo.one(from utd in UserTournamentDetail, where: utd.id == ^p1_utd_id, preload: :tournament)
