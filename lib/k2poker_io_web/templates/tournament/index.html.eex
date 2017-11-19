@@ -1,1 +1,8 @@
-<div id="tournament-index-wrapper"></div>
+<div id="section-wrapper">
+  <section id="tournament-index-wrapper">
+    <div id="tournament-index-root"></div>
+  </section>
+  <section id="chat-holder" class="full-height tournament-index-page">
+    <div id="chat-root"></div>
+  </section>
+</div>

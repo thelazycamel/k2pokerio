@@ -15,7 +15,7 @@
     <div id="chips-root"></div>
   </section>
   <section id="nav-holder"></section>
-  <section id="chat-holder" data-tournament="<%= @tournament_id %>">
+  <section id="chat-holder">
     <div id="chat-root"></div>
   </section>
   <section id="rules-holder"></section>

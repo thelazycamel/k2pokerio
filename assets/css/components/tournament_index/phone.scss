@@ -1,0 +1,19 @@
+@import "../../variables";
+
+@media (max-width: $media-phone-max) {
+
+  #section-wrapper {
+    position: relative;
+    width: 320px;
+    margin: 0px auto;
+  }
+
+  #tournament-index-wrapper {
+    #tournament-index-root {
+      padding: 0px;
+      height: 554px;
+      width: 320px;
+      border-radius: 0px 0px 10px 10px;
+    }
+  }
+}

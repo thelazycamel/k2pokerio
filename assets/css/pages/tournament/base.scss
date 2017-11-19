@@ -1,19 +1,7 @@
 body.tournament {
 
-  &.show {
-
-    #chat-holder {
-      display: none;
-    }
-
-    #ladder-holder {
-      display: none;
-    }
-
-  }
-
   main {
-
+    height: 619px;
     background: linear-gradient(to bottom, #1c45a1 0%,#091122 50%);
 
     #tournament-lobby {
@@ -55,3 +43,8 @@ body.tournament.new {
   }
 }
 
+body.tournament.index {
+  main {
+    background: none;
+  }
+}

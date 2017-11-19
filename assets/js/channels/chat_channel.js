@@ -9,10 +9,12 @@ class ChatChannel {
   joinChatChannel() {
     App.chatChannel = App.socket.channel("chat:" + App.settings.tournament_id);
 
-    App.chatChannel.join().receive("ok", resp =>
-      console.log("joined chat ok")
-    ).receive("error", reason =>
-      console.log("join failed")
+    App.chatChannel.join().receive("ok", resp => {
+        console.log("joined chat channel");
+      }
+    ).receive("error", reason => {
+        console.log("join failed");
+      }
     )
 
     App.chatChannel.on("chat:new_list", function(resp){

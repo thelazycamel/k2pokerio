@@ -19,8 +19,8 @@ defmodule K2pokerIoWeb.LayoutView do
       page: "#{get_controller(conn)}#{String.capitalize(get_action(conn))}",
       tournament_id: conn.assigns[:tournament_id],
       logged_in: conn.assigns[:logged_in],
+      locale: "en",  #TODO set a 2char locale (from the request) in the conn to be picked up here
       bots: conn.assigns[:bots],
-      locale: "en"  #TODO set a 2char locale (from the request) in the conn to be picked up here
     ]
   end
 

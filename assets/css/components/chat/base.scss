@@ -85,3 +85,14 @@
 @import "./medium";
 @import "./large";
 
+
+#chat-holder.full-height {
+  #chat-root {
+    position: absolute;
+    top: 0px;
+    height: 619px;
+    border-radius: 0px 0px 10px 10px;
+    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+  }
+}
+

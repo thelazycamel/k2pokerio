@@ -7,10 +7,11 @@ defmodule K2pokerIoWeb.TournamentController do
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
+  alias K2pokerIo.Tournament
 
   def index(conn, _) do
-    if logged_in?(conn) do
-      render(conn, "index.html")
+    if player_id = get_session(conn, :player_id) do
+      render(conn, "index.html", logged_in: logged_in?(conn), tournament_id: Tournament.default.id, player_id: player_id)
     else
       redirect conn, to: "/"
     end
