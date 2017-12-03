@@ -1,0 +1,10 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  #tournament-area-wrapper {
+    #tournament-area-root {
+      width: 538px;
+    }
+  }
+}

@@ -23,7 +23,7 @@ defmodule K2pokerIo.Tournament do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type])
+    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type, :finished])
     |> validate_required(:name)
   end
 

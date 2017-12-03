@@ -31,6 +31,7 @@ defmodule K2pokerIo.Commands.User.CreateAnonUser do
   defp utd_params(anon_username) do
     %{
       player_id: generate_anon_player_id(anon_username),
+      user_id: nil,
       username: anon_username,
       tournament_id: Tournament.default.id,
       current_score: 1,

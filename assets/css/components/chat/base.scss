@@ -79,13 +79,6 @@
   }
 }
 
-@import "./phone";
-@import "./plablet";
-@import "./small";
-@import "./medium";
-@import "./large";
-
-
 #chat-holder.full-height {
   #chat-root {
     position: absolute;
@@ -95,4 +88,10 @@
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
   }
 }
+
+@import "./phone";
+@import "./plablet";
+@import "./small";
+@import "./medium";
+@import "./large";
 

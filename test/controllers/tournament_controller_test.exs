@@ -39,6 +39,35 @@ defmodule K2pokerIo.TournamentControllerTest do
     assert(response =~ expected)
   end
 
+  test "#show should redirect to root player does not have access to tournament", context do
+    private_tournament = Helpers.create_private_tournament(context.player2, "Private Tourney")
+    conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
+    response = conn
+      |> get(tournament_path(conn, :show, private_tournament.id))
+      |> response(302)
+    expected = ~r/redirected/
+    assert(response =~ expected)
+  end
+
+
+  test "#show should redirect to root if not signed in", context do
+    conn = context.conn
+    response = conn
+      |> get(tournament_path(conn, :show, context.tournament.id))
+      |> response(302)
+    expected = ~r/redirected/
+    assert(response =~ expected)
+  end
+
+  test "#show should return 200 if signed in and tournament accessible", context do
+    conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
+    response = conn
+      |> get(tournament_path(conn, :show, context.tournament.id))
+      |> response(200)
+    expected = ~r/body\ class=.tournament\ show./
+    assert(response =~ expected)
+  end
+
   test "#for_user should return the available tournaments for the user", context do
     tournament = Helpers.create_private_tournament(context.player1, "Stus tourney")
     tournament2 = Helpers.create_private_tournament(context.player2, "Bobs tourney")

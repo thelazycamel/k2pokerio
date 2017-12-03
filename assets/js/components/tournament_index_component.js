@@ -10,13 +10,13 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.public.map((tournament, index) => {
         return (
           <tr key={"tournament-" + tournament.id}>
-            <th>{tournament.name}</th>
+            <td className="title">{tournament.name}</td>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
               <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
             </td>
             <td className="action">
-              <a className="btn btn-info" href={"/tournaments/info/"+tournament.id}>Info</a>
+              <a className="btn btn-info" href={"/tournaments/"+tournament.id}>Info</a>
             </td>
             <td className="action">&nbsp;</td>
           </tr>
@@ -31,13 +31,13 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.current.map((tournament, index) => {
         return (
           <tr key={"tournament-" + tournament.id}>
-            <th>{tournament.name}</th>
+            <td className="title">{tournament.name}</td>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
               <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
             </td>
             <td className="action">
-              <a className="btn btn-info" href={"/tournaments/info/"+tournament.id}>Info</a>
+              <a className="btn btn-info" href={"/tournaments/"+tournament.id}>Info</a>
             </td>
             <td className="action">
               <a className="btn btn-danger" onClick={this.destroyTournament.bind(this, tournament.id)}>Delete</a>
@@ -68,7 +68,7 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.invites.map((invite, index) => {
         return (
           <tr key={"invite-" + invite.id} className="invitation">
-            <th>{invite.name} from {invite.username }</th>
+            <td className="title">{invite.name} from {invite.username }</td>
             <td className="score">&nbsp;</td>
             <td className="action">
               <a className="btn btn-success" href={"/invitation/accept/"+invite.id}>Accept</a>

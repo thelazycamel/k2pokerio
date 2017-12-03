@@ -60,10 +60,9 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     refute(player5_invite)
   end
 
-  @tag :skip
-  test "it should not allow the creation of a tournament if one already exists for the given users", context do
+  test "it should not allow the creation of a duel if one already exists between the 2 players", context do
     params = %{
-      "game_type" => "tournament",
+      "game_type" => "duel",
       "name" => "Duel 1",
       "friend_ids" => to_string(context.player2.id)
     }

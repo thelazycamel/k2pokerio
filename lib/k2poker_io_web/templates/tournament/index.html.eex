@@ -2,7 +2,7 @@
   <section id="tournament-index-wrapper">
     <div id="tournament-index-root"></div>
   </section>
-  <section id="chat-holder" class="full-height tournament-index-page">
+  <section id="chat-holder" class="full-height tournament-page">
     <div id="chat-root"></div>
   </section>
 </div>

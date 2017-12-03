@@ -69,4 +69,13 @@ defmodule K2pokerIo.UserTournamentDetailTest do
     assert(changeset.valid?)
   end
 
+  test "creates a user_id if real user", context do
+    player = Helpers.create_user("bob")
+    params = Map.merge(context, %{user_id: player.id})
+    changeset = UserTournamentDetail.changeset(%UserTournamentDetail{}, params)
+    utd = Repo.insert!(changeset)
+    assert(changeset.valid?)
+    assert(utd.user_id == player.id)
+  end
+
 end

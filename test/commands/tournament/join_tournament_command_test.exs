@@ -3,8 +3,12 @@ defmodule K2pokerIo.JoinTournamentCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Friendship
   alias K2pokerIo.Tournament
+  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
+  alias K2pokerIo.Repo
+
+  import Ecto.Query
 
   use K2pokerIo.ModelCase
 
@@ -61,6 +65,12 @@ defmodule K2pokerIo.JoinTournamentCommandTest do
   test "a logged out user can not join an open tournament", context do
     {:error, message} = JoinTournamentCommand.execute(nil, context.freeroll_tournament.id)
     assert(message == :unauthorized_tournament)
+  end
+
+  test "it creates a user_tournament_detail with a user_id", context do
+    {:ok, [utd_id: utd_id]} = JoinTournamentCommand.execute(context.player1, context.private_tournament.id)
+    utd = Repo.one(from u in UserTournamentDetail, where: u.id == ^utd_id)
+    assert(utd.user_id == context.player1.id)
   end
 
 end

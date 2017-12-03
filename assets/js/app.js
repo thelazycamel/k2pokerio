@@ -47,6 +47,7 @@ import JoinGameService from "./services/join_game_service"
 
 import defaultPage from "./pages/default"
 import tournamentIndexPage from "./pages/tournament/index"
+import tournamentShowPage from "./pages/tournament/show"
 import tournamentNewPage from "./pages/tournament/new"
 import gamePlayPage from "./pages/game/play"
 import profileEditPage from "./pages/profile/edit"
@@ -100,6 +101,7 @@ window.App = {
   pages: {
     "gamePlay":        gamePlayPage,
     "tournamentIndex": tournamentIndexPage,
+    "tournamentShow": tournamentShowPage,
     "tournamentNew":   tournamentNewPage,
     "profileEdit":     profileEditPage
   },

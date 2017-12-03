@@ -3,11 +3,16 @@ defmodule K2pokerIoWeb.TournamentController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Queries.Tournaments.GetPlayersQuery
   alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
+  alias K2pokerIo.Policies.Tournament.AccessPolicy
   alias K2pokerIo.Tournament
+  alias K2pokerIo.Repo
+
+  import Ecto.Query
 
   def index(conn, _) do
     if player_id = get_session(conn, :player_id) do
@@ -15,6 +20,18 @@ defmodule K2pokerIoWeb.TournamentController do
     else
       redirect conn, to: "/"
     end
+  end
+
+  def show(conn, %{"id" => tournament_id}) do
+    player_id = get_session(conn, :player_id)
+    tournament = get_tournament(tournament_id)
+    players = GetPlayersQuery.all(tournament_id)
+    if current_user(conn) && AccessPolicy.accessible?(current_user(conn), tournament) do
+      render(conn, "show.html", logged_in: logged_in?(conn), tournament_id: tournament.id, player_id: player_id, tournament: tournament, players: players)
+    else
+      redirect conn, to: "/"
+    end
+
   end
 
   def for_user(conn, _) do
@@ -46,8 +63,12 @@ defmodule K2pokerIoWeb.TournamentController do
 
   def create(conn, %{"tournament" => tournament_params}) do
     if logged_in?(conn) do
-      CreateTournamentCommand.execute(current_user(conn), tournament_params)
-      redirect conn, to: tournament_path(conn, :index)
+      case CreateTournamentCommand.execute(current_user(conn), tournament_params) do
+        {:ok, _} -> redirect conn, to: tournament_path(conn, :index)
+        {:error, message} -> conn
+          |> put_flash(:error, message)
+          |> redirect(to: tournament_path(conn, :new))
+      end
     else
       redirect conn, to: "/"
     end
@@ -57,6 +78,10 @@ defmodule K2pokerIoWeb.TournamentController do
     id = String.to_integer(id)
     DestroyTournamentCommand.execute(current_user(conn), id)
     json conn, %{tournament_id: id}
+  end
+
+  defp get_tournament(tournament_id) do
+    Repo.one from(t in Tournament, where: t.id == ^tournament_id)
   end
 
 end

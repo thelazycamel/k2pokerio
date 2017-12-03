@@ -10,8 +10,9 @@ defmodule K2pokerIo.UserTournamentDetail do
 
   schema "user_tournament_details" do
 
-    field :player_id, :string #note - cant belong to user because of anon-user! 
+    field :player_id, :string
     field :username, :string
+    field :user_id, :integer  #note - cant belong to user because of anon-user! / use player_id where possible
     belongs_to :tournament, K2pokerIo.Tournament
     belongs_to :game, K2pokerIo.Game
     field :current_score, :integer
@@ -22,7 +23,7 @@ defmodule K2pokerIo.UserTournamentDetail do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player_id, :username, :tournament_id, :game_id, :current_score, :rebuys])
+    |> cast(params, [:player_id, :username, :tournament_id, :game_id, :current_score, :rebuys, :user_id])
     |> validate_required(:player_id)
     |> validate_required(:username)
     |> validate_required(:tournament_id)

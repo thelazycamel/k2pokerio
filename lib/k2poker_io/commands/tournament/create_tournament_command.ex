@@ -2,16 +2,15 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Tournament
-  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Invitation
   alias K2pokerIo.User
   alias K2pokerIo.Queries.Friends.FriendsQuery
-
-  import Ecto.Query
+  alias K2pokerIo.Queries.Tournaments.PlayersUnfinishedTournamentsQuery
 
   def execute(current_user, params) do
     case create_tournament(current_user, params) do
       {:ok, tournament} -> invite_friends(tournament, current_user, params)
+      {:error, error} -> {:error, error}
       true -> {:error, "Unable to create the tournament"}
     end
   end
@@ -21,20 +20,24 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
      "tournament" -> tournament_params(current_user, params)
      "duel"       -> duel_params(current_user, params)
     end
-    if params["game_type"] == "duel" do
-      opponent_id = List.first(extract_friend_ids_from_params(params))
-      # collect the tournament ids utds by player ids where tournament is duel
-      # and finished is false
-      # something like
-      # where utd.player_id in [opp.player_id, current_user.player_id],
-      # utd.joins.tournaments where tournament is duel and finished is false
-      # collect tournament_ids
-      # then check if any duplicates tournament_ids,
-      # means both users in same open tournament already
-      Repo.insert(changeset)
+    if has_unfinished_tournament_with_opponent?(current_user, params) do
+      {:error, "You already have a duel open with this player"}
     else
       Repo.insert(changeset)
     end
+  end
+
+  defp has_unfinished_tournament_with_opponent?(current_user, params) do
+    if params["game_type"] == "duel" do
+      opponent_unfinished_duels = unfinished_duels(List.first(extract_friend_ids_from_params(params)))
+      Enum.any?(unfinished_duels(current_user.id), fn (tournament_id) -> Enum.member?(opponent_unfinished_duels, tournament_id) end)
+    else
+      false
+    end
+  end
+
+  defp unfinished_duels(user_id) do
+    PlayersUnfinishedTournamentsQuery.unfinished_duels(user_id)
   end
 
   defp tournament_params(current_user, params) do

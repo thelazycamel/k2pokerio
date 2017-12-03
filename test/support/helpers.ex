@@ -5,6 +5,7 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.Tournament
   alias K2pokerIo.User
   alias K2pokerIo.Chat
+  alias K2pokerIo.Invitation
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
@@ -65,6 +66,25 @@ defmodule K2pokerIo.Test.Helpers do
   def create_user_tournament_detail(username, tournament_id) do
     player_id = anon_player_id(username)
     create_user_tournament_detail(player_id, username, tournament_id)
+  end
+
+  def create_duel(user, opponent) do
+    Repo.insert!(%Tournament{
+      name: "#{user.username} v #{opponent.username}",
+      default_tournament: false,
+      private: true,
+      finished: false,
+      user_id: user.id,
+      lose_type: "half",
+      starting_chips: 1024,
+      max_score: 1048576,
+      bots: false,
+      rebuys: [0]
+    })
+  end
+
+  def create_invitation(tournament_id, user_id, accepted) do
+    Repo.insert(%Invitation{tournament_id: tournament_id, user_id: user_id, accepted: accepted})
   end
 
   def create_private_tournament(user, tournament_name) do

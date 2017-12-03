@@ -25,3 +25,7 @@ erl_crash.dump
 
 .DS_Store
 *.swp
+
+#ignore nodemodules, there are too god damn many of them!
+
+/assets/node_modules

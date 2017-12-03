@@ -19,7 +19,7 @@ defmodule K2pokerIo.Mixfile do
   def application do
     [mod: {K2pokerIo, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :k2poker]]
+                    :phoenix_ecto, :postgrex, :k2poker, :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -44,7 +44,8 @@ defmodule K2pokerIo.Mixfile do
       {:k2poker, path: "~/dev/k2_poker/elixir/k2poker"},
       {:mix_test_watch, "~> 0.3", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
-      {:phoenix_html_sanitizer, "~> 1.0.0"}
+      {:phoenix_html_sanitizer, "~> 1.0.0"},
+      {:timex, "~> 3.1"}
     ]
   end
 
