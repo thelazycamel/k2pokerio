@@ -32,14 +32,12 @@ defmodule K2pokerIoWeb.UserSocket do
     case Phoenix.Token.verify(K2pokerIoWeb.Endpoint, "player_id", token, max_age: 86400000) do
       {:ok, player_id} ->
         {type, user_id} = User.get_id(player_id)
-        IO.puts player_id
         cond do
           type == :error -> :error
           type == :anon ->
             socket = assign(socket, :player_id, player_id)
             {:ok, socket}
           type == :user ->
-            IO.puts "**** IN THE SOCKET ***"
             socket = assign(socket, :player_id, player_id)
              |> assign(:current_user, Repo.get(User, user_id))
             {:ok, socket}
