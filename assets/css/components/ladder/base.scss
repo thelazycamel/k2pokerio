@@ -41,6 +41,7 @@
                 display: inline-block;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                text-align: right;
               }
               .tournament-chip {
                 position: absolute;
@@ -97,6 +98,7 @@
                 left: 35px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                text-align: left;
               }
               .tournament-chip {
                 position: absolute;

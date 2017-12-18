@@ -16,19 +16,34 @@
           tr {
             td {
               .size-xlarge {
-                width: 150px;
+                width: 175px;
+                .username {
+                  max-width: 140px;
+                }
               }
               .size-large {
-                width: 150px;
+                width: 170px;
+                .username {
+                  max-width: 135px;
+                }
               }
               .size-medium {
-                width: 150px;
+                width: 165px;
+                .username {
+                  max-width: 130px;
+                }
               }
               .size-small {
-                width: 150px;
+                width: 163px;
+                .username {
+                  max-width: 137px;
+                }
               }
-              .size-small {
-                width: 150px;
+              .size-xsmall {
+                width: 160px;
+                .username {
+                  max-width: 125px;
+                }
               }
             }
           }

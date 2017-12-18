@@ -8,36 +8,71 @@
       height: 554px;
       width: 320px;
       border-radius: 10px;
-      #score-ladder {
-        margin-top: 50px;
-        width: 100%;
-        font-size: 1.2em;
-        line-height: 1.4em;
-        tr {
-          td {
-            .tournament-score-name {
-                right: auto;
-                left: 10px;
-              .username {
-                right: auto;
-                left: 10px;
-                max-width: 100px;
+      #ladder-inner {
+        #score-ladder {
+          margin-top: 50px;
+          width: 100%;
+          font-size: 1.2em;
+          line-height: 1.4em;
+          tr {
+            height: 24px;
+            td {
+              font-size: 14px;
+              div.player-score {
+                height: 24px;
+                .username {
+                  right: 45px;
+                }
+                .tournament-chip {
+                  width: 40px;
+                  height: 20px;
+                }
               }
-              .tournament-chip {
-                position: absolute;
-                left: 150px;
-                width: 40px;
-                height: 20px;
-                top: 2px;
+              div.other-player-score {
+                height: 30px;
+                .username {
+                  left: 45px;
+                }
+                .tournament-chip {
+                  width: 40px;
+                  height: 20px;
+                }
+              }
+              .size-xlarge {
+                width: 150px;
+                .username {
+                  max-width: 115px;
+                }
+              }
+              .size-large {
+                width: 145px;
+                .username {
+                  max-width: 110px;
+                }
+              }
+              .size-medium {
+                width: 140px;
+                .username {
+                  max-width: 105px;
+                }
+              }
+              .size-small {
+                width: 135px;
+                .username {
+                  max-width: 85px;
+                }
+              }
+              .size-xsmall {
+                width: 130px;
+                .username {
+                  max-width: 80px;
+                }
               }
             }
           }
         }
-
       }
-
     }
   }
-
 }
 

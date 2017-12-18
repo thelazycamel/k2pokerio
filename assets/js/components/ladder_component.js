@@ -12,8 +12,30 @@ class LadderComponent extends React.Component {
         return(
             <div className={"player-score size-" + this.size(value)}>
               <span className="username">{this.props.player.username}</span>
-              <span className="tournament-chip"></span>
+              <span className="tournament-chip" title={this.props.player.username}></span>
             </div>
+        )
+      }
+    }
+  }
+
+  renderScoreCell(value){
+    return(
+      <td className="score-cell">
+        {this.renderPlayer(value)}
+        {value}
+        {this.renderOtherPlayer(value)}
+      </td>);
+  }
+
+  renderOtherPlayer(value){
+    if(this.props.tournament.winner){
+      if(this.props.tournament.winner.current_score == value){
+        return(
+          <div className={"other-player-score size-" + this.size(value)}>
+            <div className="tournament-chip" title={this.props.tournament.winner.username}></div>
+            <div className="username">{this.props.tournament.winner.username}</div>
+          </div>
         )
       }
     }
@@ -33,27 +55,6 @@ class LadderComponent extends React.Component {
     }
   }
 
-  renderScoreCell(value){
-    return(
-      <td className="score-cell">
-        {this.renderPlayer(value)}
-        {value}
-        {this.renderOtherPlayer(value)}
-      </td>);
-  }
-
-  renderOtherPlayer(value){
-    if(this.props.tournament.winner){
-      if(this.props.tournament.winner.current_score == value){
-        return(
-          <div className={"other-player-score size-" + this.size(value)}>
-            <div className="tournament-chip"></div>
-            <div className="username">{this.props.tournament.winner.username}</div>
-          </div>
-        )
-      }
-    }
-  }
 
   renderRows() {
     let rowNo = 20;
