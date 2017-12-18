@@ -2,10 +2,12 @@
 
 @media (min-width: $media-large-min) {
 
-  #tournament-area-wrapper {
-    #tournament-area-root {
-      width: 629px;
+  #tournament-area {
+    width: 629px;
+  }
 
-    }
+  #tournament-bottom-actions {
+    width: 629px;
   }
 }
+

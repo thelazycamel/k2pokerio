@@ -23,6 +23,7 @@ defmodule K2pokerIoWeb.Router do
     resources "/tournaments", TournamentController
     get "/tournaments/join/:id", TournamentController, :join
     post "/tournaments/for_user", TournamentController, :for_user
+    post "/tournaments/get_scores", TournamentController, :get_scores
 
     get "/games/play", GameController, :play
     post "/games/opponent_profile", GameController, :opponent_profile

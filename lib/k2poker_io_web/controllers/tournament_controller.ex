@@ -9,7 +9,9 @@ defmodule K2pokerIoWeb.TournamentController do
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
   alias K2pokerIo.Policies.Tournament.AccessPolicy
+  alias K2pokerIo.Queries.Tournaments.GetWinnersQuery
   alias K2pokerIo.Tournament
+  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
 
   import Ecto.Query
@@ -41,6 +43,12 @@ defmodule K2pokerIoWeb.TournamentController do
     else
       json conn, %{error: true}
     end
+  end
+
+  def get_scores(conn, _) do
+    utd = get_user_tournament_detail(conn)
+    scores = GetWinnersQuery.current_winners(utd.player_id, utd.tournament)
+    json conn, scores
   end
 
   def join(conn, %{"id" => id}) do
@@ -80,8 +88,18 @@ defmodule K2pokerIoWeb.TournamentController do
     json conn, %{tournament_id: id}
   end
 
+  #PRIVATE METHODS
+
   defp get_tournament(tournament_id) do
     Repo.one from(t in Tournament, where: t.id == ^tournament_id)
+  end
+
+  defp get_user_tournament_detail(conn) do
+    if utd_id = get_session(conn, :utd_id) do
+      Repo.get(UserTournamentDetail, utd_id) |> Repo.preload([:game, :tournament])
+    else
+      nil
+    end
   end
 
 end

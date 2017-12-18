@@ -6,15 +6,16 @@
     position: relative;
     width: 440px;
     margin: 0px auto;
-  }
+    height: 100%;
 
-}
+    #tournament-area {
+      width: 419px;
+    }
 
-@media (min-width: $media-plablet-min) and (max-width: $media-small-max) {
-
-  #tournament-area-wrapper {
-    #tournament-area-root {
+    #tournament-bottom-actions {
       width: 419px;
     }
   }
+
 }
+

@@ -32,7 +32,7 @@ class GamePlayPage extends page {
     App.pageComponentManager = new PageComponentManager();
     App.pageComponentManager.init();
     this.loadNewGame();
-    App.services.player_score.call();
+    App.services.get_scores.call();
   }
 
   initializeComponents() {

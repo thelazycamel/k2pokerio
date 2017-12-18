@@ -16,25 +16,60 @@
         overflow: hidden;
         #score-ladder {
           width: 100%;
-          font-size: 1.5em;
-          line-height: 1.4em;
+          height: 100%;
           margin-top: 6px;
           tr {
+            height: 29px;
             td {
-              .tournament-score-name {
-                  right: auto;
-                  left: 10px;
+              font-size: 18px;
+              div.player-score {
+                height: 30px;
                 .username {
-                  right: auto;
-                  left: 10px;
-                  max-width: 150px;
+                  right: 55px;
                 }
                 .tournament-chip {
-                  position: absolute;
-                  left: 175px;
                   width: 50px;
-                  height: 27px;
-                  top: 2px;
+                  height: 25px;
+                }
+              }
+              div.other-player-score {
+                height: 30px;
+                .username {
+                  left: 55px;
+                }
+                .tournament-chip {
+                  width: 50px;
+                  height: 25px;
+                }
+              }
+              .size-xlarge {
+                width: 190px;
+                .username {
+                  max-width: 145px;
+                }
+              }
+              .size-large {
+                width: 185px;
+                .username {
+                  max-width: 140px;
+                }
+              }
+              .size-medium {
+                width: 180px;
+                .username {
+                  max-width: 125px;
+                }
+              }
+              .size-small {
+                width: 175px;
+                .username {
+                  max-width: 120px;
+                }
+              }
+              .size-xsmall {
+                width: 170px;
+                .username {
+                  max-width: 115px;
                 }
               }
             }
@@ -43,5 +78,4 @@
       }
     }
   }
-
 }

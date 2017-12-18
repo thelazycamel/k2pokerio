@@ -30,7 +30,7 @@ const gameEventsMiddleware = store => next => action => {
     case "GAME:DATA_RECEIVED":
       switch(action.game.status) {
         case "finished":
-          App.services.player_score.call();
+          App.services.get_scores.call();
           break;
         case "deal":
           App.services.opponent_profile.call();

@@ -26,9 +26,15 @@
         font-weight: bold;
         font-size: 1.1em;
       }
-      &.action, &.score {
+      &.action {
         width: 15%;
         text-align: center;
+      }
+
+      &.score {
+        width: 15%;
+        text-align: right;
+        padding-right: 10px;
       }
     }
   }

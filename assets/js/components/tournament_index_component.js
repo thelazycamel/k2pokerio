@@ -97,7 +97,6 @@ class TournamentIndexComponent extends React.Component {
             {this.renderCurrentTournaments() }
           <h2>Invitations</h2>
             {this.renderInvites() }
-          <a className="btn btn-success" href="/tournaments/new">Create a Private Tournament</a>
         </div>
       </Provider>
     )

@@ -1,7 +1,7 @@
-class PlayerScoreService {
+class ScoresService {
 
   constructor(){
-    this.url = "/games/player_score/";
+    this.url = "/tournaments/get_scores/";
   }
 
   call() {
@@ -12,7 +12,8 @@ class PlayerScoreService {
       dataType: "json",
       beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
     }).done(function(resp){
-      App.store.dispatch({type: "PLAYER:UPDATE_PLAYER_SCORE", data: resp});
+      App.store.dispatch({type: "PLAYER:UPDATE_PLAYER_SCORE", data: resp.current_player});
+      App.store.dispatch({type: "TOURNAMENT:UPDATE_WINNER_SCORE", data: resp.other_player});
     }).fail(function(resp){
       App.store.dispatch({type: "PLAYER:UPDATE_PLAYER_SCORE", current_score: 1, username: "error"});
     });
@@ -20,4 +21,4 @@ class PlayerScoreService {
 
 }
 
-export default PlayerScoreService;
+export default ScoresService;

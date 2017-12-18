@@ -7,6 +7,8 @@ var tournamentReducer = function(state = {}, action) {
       return Object.assign({}, state, action.data);
     case "TOURNAMENT:RECEIVED_USER_TOURNAMENTS":
       return Object.assign({}, state, action.data);
+    case "TOURNAMENT:UPDATE_WINNER_SCORE":
+      return Object.assign({}, state, {winner: action.data});
     case "TOURNAMENT:DESTROYED":
       let tournaments = state.current;
       tournaments.splice(tournaments.findIndex(function(tournament){ return tournament.id == action.data.tournament_id}));

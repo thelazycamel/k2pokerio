@@ -5,15 +5,19 @@
   #section-wrapper {
     position: relative;
     width: 320px;
+    height: 100%;
     margin: 0px auto;
-  }
 
-  #tournament-area-wrapper {
-    #tournament-area-root {
+    #tournament-area {
       padding: 0px;
       height: 554px;
       width: 320px;
       border-radius: 0px 0px 10px 10px;
     }
+
+    #tournament-bottom-actions {
+      width: 320px;
+    }
   }
+
 }

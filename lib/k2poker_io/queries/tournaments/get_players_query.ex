@@ -25,12 +25,15 @@ defmodule K2pokerIo.Queries.Tournaments.GetPlayersQuery do
     end
   end
 
+  # TODO this is limited to 100 so tournament count will be max 100, we probably need to use the
+  # above count to correctly obtain the number of players
   defp players_started(tournament_id) do
+    one_hour_ago = Timex.now |> Timex.shift(minutes: -60)
     query = from utd in UserTournamentDetail,
       left_join: u in User, on: u.id == utd.user_id,
       select: %{player_id: utd.player_id, last_seen: utd.updated_at, username: utd.username, current_score: utd.current_score, invite: false, image: u.image},
-      where: utd.tournament_id == ^tournament_id,
-      order_by: [desc: :current_score],
+      where: utd.tournament_id == ^tournament_id and utd.updated_at > ^one_hour_ago,
+      order_by: [desc: :current_score, desc: :updated_at],
       limit: 100
     Repo.all(query)
   end

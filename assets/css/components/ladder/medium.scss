@@ -7,9 +7,32 @@
       left: 538px;
       width: 366px;
 
-      #score-ladder {
-        font-size: 0.8em;
-        width: 100%;
+      #ladder-inner {
+
+        #score-ladder {
+          font-size: 0.8em;
+          width: 100%;
+
+          tr {
+            td {
+              .size-xlarge {
+                width: 150px;
+              }
+              .size-large {
+                width: 150px;
+              }
+              .size-medium {
+                width: 150px;
+              }
+              .size-small {
+                width: 150px;
+              }
+              .size-small {
+                width: 150px;
+              }
+            }
+          }
+        }
       }
     }
   }

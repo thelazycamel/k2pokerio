@@ -1,32 +1,33 @@
 <div id="section-wrapper">
-  <section id="tournament-area-wrapper">
-    <div id="tournament-area-root">
-      <h2><%= @tournament.name %></h2>
-      <p>Number of Players <%= Enum.count(@players) %></p>
-      <p>Private: <%= if @tournament.private, do: "Yes", else: "No" %></p>
-      <p>Bots in Play: <%= if @tournament.bots, do: "Yes", else: "No" %></p>
-      <table class="tournament-table">
-        <thead>
-          <tr>
-            <th colspan="2">User</th>
-            <th>Last seen</th>
-            <th class="score">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= for {player, _} <- Enum.with_index(@conn.assigns[:players]) do %>
-              <tr>
-                <td><%= player.username %></td>
-                <td><img src=<%= profile_image_url(player.image) %> width="50px" height="50px"/></td>
-                <td><%= time_ago(player.last_seen) %></td>
-                <td><%= if player.invite, do: "Invited", else: player.current_score %></td>
-              </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <a href="/tournaments" class=" btn btn-default">Back</a>
-      <a href="/tournaments/join/<%=@conn.assigns[:tournament_id]%>" class=" btn btn-success">Play</a>
-    </div>
+  <section id="tournament-area">
+    <table class="tournament-table">
+      <thead>
+        <tr>
+          <th><%= @tournament.name %></th>
+          <th>No. of Players <%= Enum.count(@players) %></th>
+          <th><%= if @tournament.private, do: "Private", else: "Public" %></th>
+          <th><%= if @tournament.bots, do: "Bots in Play", else: "No Bots" %></th>
+        <tr height="50px">
+          <th colspan="2">User</th>
+          <th>Last seen</th>
+          <th class="score">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for {player, _} <- Enum.with_index(@conn.assigns[:players]) do %>
+            <tr>
+              <td><%= player.username %></td>
+              <td><img src=<%= profile_image_url(player.image) %> width="50px" height="50px"/></td>
+              <td><%= time_ago(player.last_seen) %></td>
+              <td class="score"><%= if player.invite, do: "Invited", else: player.current_score %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <section id="tournament-bottom-actions">
+    <a href="/tournaments" class=" btn btn-default">Back</a>
+    <a href="/tournaments/join/<%=@conn.assigns[:tournament_id]%>" class=" btn btn-success">Play</a>
   </section>
   <section id="chat-holder" class="full-height tournament-page">
     <div id="chat-root"></div>

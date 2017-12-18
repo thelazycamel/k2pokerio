@@ -1,59 +1,112 @@
 #ladder-holder {
   #ladder-root {
+
     position: absolute;
     height: 319px;
     border-radius: 10px;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
     overflow: hidden;
-    #score-ladder {
-      margin-top: 2px;
-      text-align: center;
 
-      tr {
+    #ladder-inner {
 
-        /*
-        background: linear-gradient(to bottom, #010116 0%, #010116 80%, #172a55 100%);
+      #score-ladder {
+        z-index: 1;
+        background-image: url("/images/mountain.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+        margin-top: 2px;
+        text-align: center;
 
-         &:nth-child(even) {
-          background-color: #172a55;
-        }
-
-        &:nth-child(odd) {
-          background-color: transparent;
-        } */
-
-        td {
-          width: 50%;
-          position: relative;
-
-          .tournament-score-name {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-
-            .username {
-              position: absolute;
-              right: 35px;
-              max-width: 80px;
-              overflow: hidden;
-              text-overflow: ellipsis;
+        tr {
+          height: 15px;
+          td {
+            width: 100%;
+            position: relative;
+            font-size: 10px;
+            &.score-cell {
+              color: #6f8ba3;
             }
-
-            .tournament-chip {
-              display: inline-block;
-              top: 0px;
-              right: 0px;
-              width: 30px;
-              height: 14px;
-              background-repeat: no-repeat;
-              background-size: cover;
-
-              &.tournament-player-chip {
-                background-image: url("/images/tournament/player-chip.svg");
+            div.player-score {
+              position: absolute;
+              left: 0;
+              top: 0;
+              height: 15px;
+              overflow: hidden;
+              .username {
+                position: absolute;
+                top: 1px;
+                right: 35px;
+                color: #ffffff;
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
-
-              &.tournament-leader-chip {
+              .tournament-chip {
+                position: absolute;
+                display: inline-block;
+                background-image: url("/images/tournament/player-chip.svg");
+                top: 0px;
+                right: 0px;
+                width: 30px;
+                height: 15px;
+                background-repeat: no-repeat;
+                background-size: cover;
+              }
+            }
+            .size-xlarge {
+              width: 115px;
+              .username {
+                right: 35px;
+                max-width: 65px;
+              }
+            }
+            .size-large {
+              width: 113px;
+              .username {
+                max-width: 65px;
+              }
+            }
+            .size-medium {
+              width: 110px;
+              .username {
+                max-width: 65px;
+              }
+            }
+            .size-small {
+              width: 107px;
+              .username {
+                max-width: 65px;
+              }
+            }
+            .size-xsmall {
+              width: 104px;
+              .username {
+                max-width: 65px;
+              }
+            }
+            div.other-player-score {
+              position: absolute;
+              right: 0;
+              top: 0;
+              height: 20px;
+              .username {
+                color: #ffffff;
+                position: absolute;
+                top: 1px;
+                left: 35px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .tournament-chip {
+                position: absolute;
                 background-image: url("/images/tournament/chip-leader-chip.svg");
+                top: 0px;
+                left: 0px;
+                width: 30px;
+                height: 15px;
+                background-repeat: no-repeat;
+                background-size: cover;
               }
             }
           }

@@ -32,15 +32,15 @@ import Translate from "./utils/translate";
 /* TODO: only import this into the pages that require them, no need to load all these
  * services on every page */
 
-import opponentProfileService from "./services/opponent_profile_service"
-import playerScoreService from "./services/player_score_service"
-import requestFriendService from  "./services/request_friend_service"
-import confirmFriendService from  "./services/confirm_friend_service"
-import searchFriendsService from  "./services/search_friends_service"
+import opponentProfileService from        "./services/opponent_profile_service"
+import scoresService from                 "./services/scores_service"
+import requestFriendService from          "./services/request_friend_service"
+import confirmFriendService from          "./services/confirm_friend_service"
+import searchFriendsService from          "./services/search_friends_service"
 import getTournamentsForUserService from  "./services/get_tournaments_for_user_service"
-import destroyInviteService from "./services/destroy_invite_service"
-import destroyTournamentService from "./services/destroy_tournament_service"
-import JoinGameService from "./services/join_game_service"
+import destroyInviteService from          "./services/destroy_invite_service"
+import destroyTournamentService from      "./services/destroy_tournament_service"
+import JoinGameService from               "./services/join_game_service"
 
 
 /* pages */
@@ -82,26 +82,31 @@ window.App = {
 
   initializeServices: function() {
     this.services = {};
-    this.services.destroy_invite = new destroyInviteService();
+    this.services.destroy_invite     = new destroyInviteService();
     this.services.destroy_tournament = new destroyTournamentService();
-    this.services.opponent_profile = new opponentProfileService();
-    this.services.player_score = new playerScoreService();
-    this.services.request_friend = new requestFriendService();
-    this.services.confirm_friend = new confirmFriendService();
-    this.services.search_friends = new searchFriendsService();
+    this.services.opponent_profile   = new opponentProfileService();
+    this.services.get_scores         = new scoresService();
+    this.services.request_friend     = new requestFriendService();
+    this.services.confirm_friend     = new confirmFriendService();
+    this.services.search_friends     = new searchFriendsService();
+    this.services.join_game_service  = new JoinGameService();
     this.services.get_tournaments_for_user_service = new getTournamentsForUserService();
-    this.services.join_game_service = new JoinGameService();
   },
 
   createReduxStore: function() {
-    let middleware = applyMiddleware(gameEventsMiddleware, pageEventsMiddleware, chatEventsMiddleware, tournamentEventsMiddleware);
+    let middleware = applyMiddleware(
+        gameEventsMiddleware,
+        pageEventsMiddleware,
+        chatEventsMiddleware,
+        tournamentEventsMiddleware
+    );
     this.store = createStore(mainStore, middleware);
   },
 
   pages: {
     "gamePlay":        gamePlayPage,
     "tournamentIndex": tournamentIndexPage,
-    "tournamentShow": tournamentShowPage,
+    "tournamentShow":  tournamentShowPage,
     "tournamentNew":   tournamentNewPage,
     "profileEdit":     profileEditPage
   },

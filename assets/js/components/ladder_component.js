@@ -6,31 +6,53 @@ import Scoreboard from './presentational/scoreboard'
 
 class LadderComponent extends React.Component {
 
-  randomScore() {
-    let number = Math.floor((Math.random() * 20))
-    return Math.pow(2, number);
-   }
-
-  chipLeader() {
-    return { username: "ChipLeader", score: this.randomScore() }
+  renderPlayer(value){
+    if(this.props.player){
+      if(this.props.player.current_score == value){
+        return(
+            <div className={"player-score size-" + this.size(value)}>
+              <span className="username">{this.props.player.username}</span>
+              <span className="tournament-chip"></span>
+            </div>
+        )
+      }
+    }
   }
 
-  playerChip() {
-   return (<div className="tournament-score-name"><span className="username">{this.props.player.username}</span> <span className="tournament-chip tournament-player-chip"></span></div>)
-  }
-
-  chipLeaderChip() {
-   return (<div className="tournament-score-name"><span className="username">{this.chipLeader().username}</span> <span className="tournament-chip tournament-leader-chip"></span></div>)
-  }
-
-  renderPlayerCell(value) {
-    let player = (value == this.props.player.current_score) ? this.playerChip() : "";
-    let chipleader = (value == this.chipLeader().score) && (this.props.player.current_score != this.chipLeader().score) ? this.chipLeaderChip() : "";
-    return(<td>{player} {chipleader}</td>);
+  size(value){
+    if(value < 100) {
+      return "xlarge";
+    } else if((value >= 100) && (value <= 1000)) {
+      return "large";
+    } else if((value >= 1000) && (value <= 10000)) {
+      return "medium";
+    } else if((value >= 10000) && (value <= 100000)) {
+      return "small";
+    } else {
+      return "xsmall";
+    }
   }
 
   renderScoreCell(value){
-    return(<td>{value}</td>);
+    return(
+      <td className="score-cell">
+        {this.renderPlayer(value)}
+        {value}
+        {this.renderOtherPlayer(value)}
+      </td>);
+  }
+
+  renderOtherPlayer(value){
+    if(this.props.tournament.winner){
+      if(this.props.tournament.winner.current_score == value){
+        return(
+          <div className={"other-player-score size-" + this.size(value)}>
+            <div className="tournament-chip"></div>
+            <div className="username">{this.props.tournament.winner.username}</div>
+          </div>
+        )
+      }
+    }
   }
 
   renderRows() {
@@ -40,7 +62,6 @@ class LadderComponent extends React.Component {
       let value = Math.pow(2, rowNo);
       rows.push(
         <tr key={"row-"+rowNo}>
-          {this.renderPlayerCell(value)}
           {this.renderScoreCell(value)}
         </tr>
       );
