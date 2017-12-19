@@ -25,10 +25,20 @@ class RulesComponent extends React.Component {
               </ul>
             </div>
             <div id="rules-tournament" className="rules-section">
-              <p>current tournament rules go here</p>
             </div>
             <div id="rules-rankings" className="rules-section">
-              <p>nice images of card rankings go here</p>
+              <ul>
+                <li>Royal Flush</li>
+                <li>Straight Flush</li>
+                <li>Four of a Kind</li>
+                <li>Full House</li>
+                <li>Flush</li>
+                <li>Straight</li>
+                <li>Three of a Kind</li>
+                <li>Two Pair</li>
+                <li>Pair</li>
+                <li>High Card</li>
+              </ul>
             </div>
             <div id="rules-general" className="rules-section">
               <p>general K2poker rules go here</p>

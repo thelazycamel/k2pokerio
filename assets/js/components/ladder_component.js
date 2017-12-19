@@ -6,6 +6,12 @@ import Scoreboard from './presentational/scoreboard'
 
 class LadderComponent extends React.Component {
 
+  scoreClass(value){
+    if(this.props.player){
+      return (this.props.player.current_score == value) ? "current-score" : "";
+    }
+  }
+
   renderPlayer(value){
     if(this.props.player){
       if(this.props.player.current_score == value){
@@ -23,7 +29,7 @@ class LadderComponent extends React.Component {
     return(
       <td className="score-cell">
         {this.renderPlayer(value)}
-        {value}
+        <span className={this.scoreClass(value)}>{value}</span>
         {this.renderOtherPlayer(value)}
       </td>);
   }

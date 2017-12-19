@@ -26,6 +26,9 @@
             font-size: 10px;
             &.score-cell {
               color: #6f8ba3;
+              span.current-score {
+                color: #ffffff;
+              }
             }
             div.player-score {
               position: absolute;
