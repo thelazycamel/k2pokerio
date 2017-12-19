@@ -6,18 +6,18 @@ import { Provider } from 'react-redux'
 class BotRequestComponent extends React.Component {
 
   close() {
-    App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
-    App.store.dispatch({type: "PAGE:SET_BOT_POPUP"});
+    App.store.dispatch({type: "GAME:REMOVE_BOT_BUTTON"});
+    App.store.dispatch({type: "PAGE:SET_BOT_TIMER"});
   }
 
   playBot() {
     App.store.dispatch({type: "GAME:BOT_REQUEST"});
-    App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+    App.store.dispatch({type: "GAME:REMOVE_BOT_BUTTON"});
     App.pageComponentManager.linkClicked("game");
   }
 
   showOrHide() {
-    return this.props.page.botRequest ? this.props.page.botRequest : "hide";
+    return this.props.game.bot_request ? this.props.game.bot_request : "hide";
   }
 
   render() {
@@ -48,7 +48,7 @@ class BotRequestComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    page: state.page
+    game: state.game
   }
 }
 

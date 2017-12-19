@@ -50,8 +50,8 @@ class GamePlayPage extends page {
   setBotRequest() {
     if(App.settings.bots == "true"){
       this.botPopupRequest = setTimeout(function(){
-        App.store.dispatch({type: "PAGE:SHOW_BOT_POPUP"});
-      },5000);
+        App.store.dispatch({type: "GAME:SHOW_BOT_BUTTON"});
+      },3000);
     }
   }
 

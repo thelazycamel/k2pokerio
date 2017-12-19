@@ -19,6 +19,12 @@ var gameReducer = function(state = {}, action) {
       return Object.assign({}, action.game);
     case "GAME:NEXT_GAME":
       return state;
+    case "GAME:SHOW_BOT_BUTTON":
+      return Object.assign({}, state, {bot_request: "show"});
+      break;
+    case "GAME:REMOVE_BOT_BUTTON":
+      return Object.assign({}, state, {bot_request: "hide"});
+      break;
     default:
       return state;
   }

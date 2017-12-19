@@ -34,17 +34,17 @@ const gameEventsMiddleware = store => next => action => {
           break;
         case "deal":
           App.services.opponent_profile.call();
-          App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
-          App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+          App.store.dispatch({type: "PAGE:CLEAR_BOT_TIMER"});
+          App.store.dispatch({type: "GAME:REMOVE_BOT_BUTTON"});
           break;
         case "new":
           break;
         case "standby":
-          App.store.dispatch({type: "PAGE:SET_BOT_POPUP"});
+          App.store.dispatch({type: "PAGE:SET_BOT_TIMER"});
           break;
         default:
-          App.store.dispatch({type: "PAGE:CLEAR_BOT_POPUP"});
-          App.store.dispatch({type: "PAGE:HIDE_BOT_POPUP"});
+          App.store.dispatch({type: "PAGE:CLEAR_BOT_TIMER"});
+          App.store.dispatch({type: "GAME:REMOVE_BOT_BUTTON"});
       }
   }
   next(action);
