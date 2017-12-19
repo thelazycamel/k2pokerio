@@ -12,7 +12,7 @@ defmodule K2pokerIoWeb.TournamentChannel do
   end
 
   def handle_info({:after_join, tournament_id}, socket) do
-    broadcast! socket, "tournament:update", %{tournament_id: tournament_id}
+    broadcast! socket, "tournament:refresh_data", %{tournament_id: tournament_id}
     {:noreply, socket}
   end
 

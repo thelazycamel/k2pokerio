@@ -1,5 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 
 class PlayButtonComponent extends React.Component {
 
@@ -40,12 +42,22 @@ class PlayButtonComponent extends React.Component {
 
   render() {
     return(
-      <a id="play-button" className={this.classNames()} onClick={this.playButtonClicked.bind(this)}>
-        {this.playButtonText()}
-      </a>
+      <Provider store={this.props.store}>
+        <a id="play-button" className={this.classNames()} onClick={this.playButtonClicked.bind(this)}>
+          {this.playButtonText()}
+        </a>
+      </Provider>
     );
   }
 
 }
 
-export default PlayButtonComponent;
+const mapStateToProps = (state) => {
+  return {
+    page: state.page
+  }
+}
+
+const ConnectedPlayButtonComponent = connect(mapStateToProps)(PlayButtonComponent)
+
+export default ConnectedPlayButtonComponent;
