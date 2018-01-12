@@ -6,7 +6,6 @@ var gameReducer = function(state = {}, action) {
     case "GAME:PLAY":
       return state;
     case "GAME:DISCARD":
-      //TODO move this probably to k2poker
       let cards = state.cards;
       cards[action.card_index] = "discarded";
       if(state.status == "river"){
@@ -20,10 +19,10 @@ var gameReducer = function(state = {}, action) {
     case "GAME:NEXT_GAME":
       return state;
     case "GAME:SHOW_BOT_BUTTON":
-      return Object.assign({}, state, {bot_request: "show"});
+      return Object.assign({}, state, {show_bot_request: true});
       break;
     case "GAME:REMOVE_BOT_BUTTON":
-      return Object.assign({}, state, {bot_request: "hide"});
+      return Object.assign({}, state, {show_bot_request: false});
       break;
     default:
       return state;

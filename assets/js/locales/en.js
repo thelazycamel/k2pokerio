@@ -22,6 +22,7 @@ class LocaleEn {
       "searching": "Searching...",
       "waiting": "Waiting...",
       "play": "Play",
+      "bot_request": "Play Bot?"
     });
   }
 

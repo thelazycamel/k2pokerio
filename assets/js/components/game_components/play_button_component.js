@@ -11,29 +11,55 @@ class PlayButtonComponent extends React.Component {
   }
 
   messageType(){
-    return this.props.finished ? "GAME:NEXT_GAME" : "GAME:PLAY";
+    if(this.props.game.show_bot_request) {
+      return "GAME:BOT_REQUEST";
+    } else {
+      return this.isFinished() ? "GAME:NEXT_GAME" : "GAME:PLAY";
+    }
   }
 
   classNames() {
     let names = [];
-    if(this.props.finished) {
+    if(this.isFinished()) {
       names.push("next-game");
     } else if(this.isWaiting()){
       names.push("waiting");
+    } else if(this.props.game.show_bot_request){
+      names.push("bot-request");
     }
     return names.join(" ");
   }
 
-  isWaiting(){
-    return (this.props.waiting || this.props.opponent_turn) ? true : false;
+  isWaiting() {
+    return (this.waitingForOpponent() || this.waitingForOpponentToPlay()) && !this.props.game.show_bot_request;
+  }
+
+  waitingForOpponentToPlay() {
+    return (this.props.game.player_status == "ready") ? true : false;
+  }
+
+  waitingForOpponent() {
+    return this.props.game.status == "standby" ? true : false;
+  }
+
+  isFinished() {
+    return this.props.game.status == "finished";
+  }
+
+  waitingStatusText(){
+    if(App.settings.bots == "true") {
+      return this.props.game.show_bot_request ? App.t("bot_request") : App.t("searching");
+    } else {
+     return App.t("waiting");
+    }
   }
 
   playButtonText() {
-    if(this.props.finished) {
-      return App.t("Next Game");
-    } else if(this.props.waiting){
-      return App.settings.bots == "true" ? App.t("searching") : App.t("waiting");
-    } else if(this.props.opponent_turn) {
+    if(this.isFinished()) {
+      return App.t("next_game");
+    } else if(this.waitingForOpponent()){
+      return this.waitingStatusText();;
+    } else if(this.waitingForOpponentToPlay()) {
       return App.t("waiting");
     } else {
       return App.t("play");
@@ -54,7 +80,7 @@ class PlayButtonComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    page: state.page
+    game: state.game
   }
 }
 

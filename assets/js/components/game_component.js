@@ -168,7 +168,7 @@ class GameComponent extends React.Component {
               { this.foldButton() }
               <div id="table-cards">{this.renderTableCards()}</div>
               <GameStatusComponent waiting={this.waitingForOpponent()} finished={this.isFinished()} game_status={this.props.game.status} player_status={this.props.game.player_status} />
-              <PlayButtonComponent waiting={this.waitingForOpponent()} finished={this.isFinished()} opponent_turn={this.waitingForOpponentToPlay()} store={this.props.store} />
+              <PlayButtonComponent store={this.props.store} />
               <div id="player-cards">{this.renderPlayerCards()}</div>
               <BestHandComponent is_finished={this.isFinished()} winning_hand={this.winDescription()} hand={this.props.game.hand_description} />
               <Scoreboard current_score={this.props.player.current_score} />

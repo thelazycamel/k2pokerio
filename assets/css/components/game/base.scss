@@ -106,11 +106,26 @@
     }
 
     &.waiting {
+      cursor: auto;
+      color: #f3f3f3;
       background-image: url("/images/wait-button.svg");
     }
 
     &.waiting:hover {
+      cursor: auto;
+      color: #f3f3f3;
       background-image: url("/images/wait-button.svg");
+    }
+
+
+    &.bot-request {
+      color: #efefef;
+      background-image: url("/images/bot-request-button.svg");
+    }
+
+    &.bot-request:hover {
+      color: #ffffff;
+      background-image: url("/images/bot-request-button-hover.svg");
     }
 
   }

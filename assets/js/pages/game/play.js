@@ -13,7 +13,6 @@ import ProfileComponent from "../../components/profile_component"
 import RulesComponent from "../../components/rules_component"
 import HeaderNavComponent from "../../components/header_nav_component"
 import SideNavComponent from "../../components/side_nav_component"
-import BotRequestComponent from "../../components/bot_request_component"
 import PageComponentManager from "../../utils/page_component_manager"
 
 import page from "../page"
@@ -44,7 +43,6 @@ class GamePlayPage extends page {
     this.initializeProfileComponent();
     this.initializeRulesComponent();
     this.initializeSideNavComponent();
-    this.initializeBotRequestComponent();
   }
 
   setBotRequest() {
@@ -95,9 +93,6 @@ class GamePlayPage extends page {
     ReactDOM.render(<SideNavComponent store={App.store} />, document.getElementById('nav-holder'));
   }
 
-  initializeBotRequestComponent() {
-    ReactDOM.render(<BotRequestComponent store={App.store}/>, document.getElementById('bot-request-holder'));
-  }
 
 }
 
