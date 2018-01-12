@@ -5,9 +5,27 @@ import { connect } from 'react-redux'
 
 class PlayButtonComponent extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {disabled: false};
+  }
+
   playButtonClicked(e) {
     e.preventDefault();
-    App.store.dispatch({type: this.messageType()})
+    if(this.state.disabled){
+      console.log("disabled");
+    } else {
+      App.store.dispatch({type: this.messageType()})
+      this.timeOutPlayButton()
+    }
+  }
+
+  timeOutPlayButton() {
+    this.setState({disabled: true});
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.setState({disabled: false})
+    }, 1000);
   }
 
   messageType(){
@@ -20,6 +38,9 @@ class PlayButtonComponent extends React.Component {
 
   classNames() {
     let names = [];
+    if(this.state.disabled) {
+      names.push("disabled");
+    }
     if(this.isFinished()) {
       names.push("next-game");
     } else if(this.isWaiting()){

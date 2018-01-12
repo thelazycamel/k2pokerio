@@ -98,6 +98,7 @@
     background-image: url("/images/play-button.svg");
     text-align: center;
     color: #c3c3c3;
+    transition: opacity .5s;
 
     &:hover {
       text-decoration: none;
@@ -117,6 +118,10 @@
       background-image: url("/images/wait-button.svg");
     }
 
+    &.disabled:hover {
+      cursor: auto;
+      opacity: 0.8;
+    }
 
     &.bot-request {
       color: #efefef;
