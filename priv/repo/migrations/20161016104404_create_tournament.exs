@@ -12,7 +12,7 @@ defmodule K2pokerIo.Repo.Migrations.CreateTournament do
       add :private, :boolean, default: true
       add :player_id, :string
       add :rebuys, {:array, :integer}
-      add :start_time, :datetime
+      add :start_time, :utc_datetime
       add :player_ids, {:array, :string}
 
       timestamps()

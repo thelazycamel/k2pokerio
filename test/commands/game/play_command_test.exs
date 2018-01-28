@@ -23,6 +23,10 @@ defmodule K2pokerIo.PlayCommandTest do
     new_decoded_game = Game.decode_game_data(reloaded_game.data)
     new_p1 = K2poker.player_data(new_decoded_game, player1_id)
     assert(new_p1.player_status == "ready")
+    #it should update the timestamp for p1
+    assert(reloaded_game.p1_timestamp != context.game.p1_timestamp)
+    #it should not update the timestamp for p2
+    assert(reloaded_game.p2_timestamp == context.game.p2_timestamp)
   end
 
 end

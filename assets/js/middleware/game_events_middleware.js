@@ -27,7 +27,17 @@ const gameEventsMiddleware = store => next => action => {
     case "GAME:BOT_REQUEST":
       App.gameChannel.push("game:bot_request");
       break;
+    case "GAME:WAITING_PING":
+      App.gameChannel.push("game:waiting_ping");
+      break;
     case "GAME:DATA_RECEIVED":
+      switch(action.game.player_status){
+        case "ready":
+          App.store.dispatch({type: "PAGE:SET_WAITING_PING"});
+          break;
+        default:
+          App.store.dispatch({type: "PAGE:CLEAR_WAITING_PING"});
+      }
       switch(action.game.status) {
         case "finished":
           App.services.get_scores.call();

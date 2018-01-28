@@ -24,7 +24,11 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   end
 
   defp join_game(utd, game) do
-    game_changeset = Game.join_changeset(game, %{player2_id: utd.player_id, waiting_for_players: false})
+    game_changeset = Game.join_changeset(game, %{
+      player2_id: utd.player_id,
+      p2_timestamp: Ecto.DateTime.utc,
+      waiting_for_players: false
+      })
     case Repo.update(game_changeset) do
       {:ok, existing_game} -> {:ok, existing_game}
       {:error, _} -> {:error}
@@ -34,6 +38,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   defp create_new_game(utd) do
     changeset = Game.new_changeset(%Game{}, %{
       player1_id:          utd.player_id,
+      p1_timestamp:        Ecto.DateTime.utc,
       tournament_id:       utd.tournament_id,
       value:               utd.current_score,
       waiting_for_players: true,

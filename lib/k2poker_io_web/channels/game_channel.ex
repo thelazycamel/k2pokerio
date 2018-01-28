@@ -9,6 +9,7 @@ defmodule K2pokerIoWeb.GameChannel do
   alias K2pokerIo.Commands.Game.FoldCommand
   alias K2pokerIo.Commands.Game.GetDataCommand
   alias K2pokerIo.Commands.Game.RequestBotCommand
+  alias K2pokerIo.Commands.Game.CheckIdlePlayerCommand
 
   intercept ["game:new_game_data", "game:new_game"]
 
@@ -40,6 +41,17 @@ defmodule K2pokerIoWeb.GameChannel do
 
   def handle_in("game:bot_request", _params, socket) do
     case RequestBotCommand.execute(get_game_id(socket)) do
+      {:ok, _} ->
+        broadcast! socket, "game:new_game_data", %{}
+        {:reply, :ok, socket}
+      {:error} ->
+        :error
+    end
+  end
+
+  def handle_in("game:waiting_ping", _params, socket) do
+    player_id = socket.assigns[:player_id]
+    case CheckIdlePlayerCommand.execute(get_game_id(socket), player_id) do
       {:ok, _} ->
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}

@@ -10,6 +10,8 @@ defmodule K2pokerIo.Game do
     field :open, :boolean
     field :p1_paid, :boolean
     field :p2_paid, :boolean
+    field :p1_timestamp, Ecto.DateTime
+    field :p2_timestamp, Ecto.DateTime
     field :waiting_for_players, :boolean
     belongs_to :tournament, K2pokerIo.Tournament
 
@@ -18,7 +20,7 @@ defmodule K2pokerIo.Game do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open, :data, :p1_paid, :p2_paid])
+    |> cast(params, [:player1_id, :player2_id, :tournament_id, :value, :waiting_for_players, :open, :data, :p1_paid, :p2_paid, :p1_timestamp, :p2_timestamp])
     |> validate_required(:player1_id)
     |> validate_required(:player2_id)
     |> validate_required(:tournament_id)
