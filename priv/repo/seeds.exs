@@ -13,5 +13,5 @@
 alias K2pokerIo.Repo
 alias K2pokerIo.Tournament
 
-Repo.insert!(%Tournament{name: "K2 Summit Ascent", default_tournament: true, private: false, finished: false, type: "tournament"})
+Repo.insert!(%Tournament{name: "K2 Summit Ascent", default_tournament: true, private: false, finished: false, bots: true, type: "tournament"})
 

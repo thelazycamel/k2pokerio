@@ -67,7 +67,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     query = from Game, where: [tournament_id: ^utd.tournament_id,
                        waiting_for_players: true,
                        open: true
-                       ], limit: 1
+                       ], limit: 1, preload: [:tournament]
     List.first(Repo.all(query))
   end
 
@@ -75,8 +75,8 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     query = from Game, where: [tournament_id: ^utd.tournament_id,
                        value: ^utd.current_score,
                        waiting_for_players: true,
-                       open: true
-                       ], limit: 1
+                       open: true,
+                       ], limit: 1, preload: [:tournament]
     List.first(Repo.all(query))
   end
 

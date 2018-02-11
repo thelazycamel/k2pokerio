@@ -3,6 +3,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   alias K2pokerIo.Repo
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.Commands.Tournament.UpdateTournamentCommand
 
   # TODO look at locking the database during these updates
 
@@ -23,7 +24,10 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
       _ -> score
     end
     new_score = if new_score <= 1, do: 1, else: new_score
-    update_user_tournament_detail(utd, game.id, new_score, player_id)
+    utd = update_user_tournament_detail(utd, game.id, new_score, player_id)
+    if new_score >= utd.tournament.max_score do
+      update_tournament(game, utd)
+    end
     game
   end
 
@@ -44,7 +48,9 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     unless player_already_paid(game, player_id) do
       changeset = UserTournamentDetail.changeset(utd, %{current_score: score})
       case Repo.update(changeset) do
-        {:ok, _} -> mark_player_as_paid_out(game, player_id)
+        {:ok, utd} ->
+          mark_player_as_paid_out(game, player_id)
+          utd
         {:error, _} -> nil
       end
     end
@@ -71,5 +77,8 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     Repo.update(changeset)
   end
 
+  defp update_tournament(game, utd) do
+    UpdateTournamentCommand.execute(game, utd)
+  end
 
 end

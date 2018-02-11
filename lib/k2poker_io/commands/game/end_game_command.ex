@@ -11,7 +11,6 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
     if game.open do
       update_each_player(game)
       |> mark_game_as_closed()
-      |> update_tournament()
     end
   end
 
@@ -43,16 +42,5 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
     game
   end
 
-  defp update_tournament(game) do
-    # TODO
-    # should this be done on a per player basis?
-    # update the tournament leader if players score > tournament_leaders score ??
-    # check if players have won or lost according to tournament.max_score
-    # and close tournament if winner -> kill all the utds for tournament ?
-    # open a pop-up for all stating player has won, unless default, maybe keep playing?
-    # update badges for player
-    game
-  end
 
 end
-
