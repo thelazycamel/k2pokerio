@@ -25,7 +25,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "tournament",
       "name" => "My Test Tournament",
-      "friend_ids" => "#{context.player2.id},#{context.player3.id},#{context.player4.id}"
+      "friend_ids" => Enum.join([context.player2.id,context.player3.id,context.player4.id], ",")
       }
     {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))

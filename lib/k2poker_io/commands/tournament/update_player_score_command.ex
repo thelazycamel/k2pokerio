@@ -4,6 +4,8 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
 
+  # TODO look at locking the database during these updates
+
   def execute(game, player_id) do
     update_score(game, player_id)
   end

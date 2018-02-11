@@ -7,6 +7,10 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Tournaments.PlayersUnfinishedTournamentsQuery
 
+  #TODO now added column "type" which will be "tournament" or "duel"
+  # so you should be able to tidy this up a bit to include the type
+  # being passed in
+
   def execute(current_user, params) do
     case create_tournament(current_user, params) do
       {:ok, tournament} -> invite_friends(tournament, current_user, params)
@@ -47,6 +51,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
       finished: false,
       private: true,
       user_id: current_user.id,
+      type: "tournament",
       lose_type: "all",
       starting_chips: 1,
       max_score: 1048576,
@@ -62,6 +67,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
       default_tournament: false,
       finished: false,
       private: true,
+      type: "duel",
       user_id: current_user.id,
       lose_type: "half",
       starting_chips: 1024,

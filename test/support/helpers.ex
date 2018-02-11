@@ -72,6 +72,7 @@ defmodule K2pokerIo.Test.Helpers do
     Repo.insert!(%Tournament{
       name: "#{user.username} v #{opponent.username}",
       default_tournament: false,
+      type: "duel",
       private: true,
       finished: false,
       user_id: user.id,
@@ -92,6 +93,7 @@ defmodule K2pokerIo.Test.Helpers do
       name: tournament_name,
       default_tournament: false,
       private: true,
+      type: "tournament",
       finished: false,
       user_id: user.id,
       lose_type: "all",
@@ -106,7 +108,7 @@ defmodule K2pokerIo.Test.Helpers do
     if Tournament.default do
       Tournament.default
     else
-      Repo.insert!(%Tournament{name: "The Big Kahuna", default_tournament: true, private: false, finished: false, rebuys: [0]})
+      Repo.insert!(%Tournament{name: "The Big Kahuna", default_tournament: true, type: "tournament", private: false, finished: false, rebuys: [0]})
     end
   end
 

@@ -15,6 +15,7 @@ defmodule K2pokerIo.Tournament do
     field :rebuys, {:array, :integer}  # can be for example [128,1024]
     field :start_time, Ecto.DateTime
     field :lose_type, :string  #one of "all" or "half"
+    field :type, :string #currently tournament or duel
     field :starting_chips, :integer
     field :max_score, :integer
     field :bots, :boolean
@@ -23,8 +24,10 @@ defmodule K2pokerIo.Tournament do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type, :finished])
+    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type, :finished, :type])
     |> validate_required(:name)
+    |> validate_required(:type)
+    |> validate_required(:lose_type)
   end
 
   def default do

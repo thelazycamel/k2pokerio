@@ -4,6 +4,7 @@ defmodule K2pokerIo.ChatTest do
 
   alias K2pokerIo.Chat
   alias K2pokerIo.Test.Helpers
+  alias K2pokerIo.Repo
 
   doctest K2pokerIo.Chat
 
@@ -53,10 +54,11 @@ defmodule K2pokerIo.ChatTest do
 
   test "get_ten", context do
     comments = Chat.get_ten_json(context.tournament_id)
+    tournament = Repo.get(K2pokerIo.Tournament, context.tournament_id)
     assert Enum.count(comments) == 10
     first_comment = List.first(comments)
     assert first_comment[:username] == "stu"
-    assert first_comment[:comment] == "2nd comment for The Big Kahuna"
+    assert first_comment[:comment] == "2nd comment for #{tournament.name}"
   end
 
 end

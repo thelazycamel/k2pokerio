@@ -46,14 +46,12 @@ class GamePlayPage extends page {
   }
 
   setWaitingPing() {
-    console.log("***** Player waiting *****");
     this.waitingPing = setTimeout(function(){
       App.store.dispatch({type: "GAME:WAITING_PING"});
     }, 16000);
   }
 
   clearWaitingPing() {
-    console.log("***** Waiting Cleared *****");
     clearTimeout(this.waitingPing);
   }
 

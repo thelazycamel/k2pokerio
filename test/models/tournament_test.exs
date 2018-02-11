@@ -13,6 +13,8 @@ defmodule K2pokerIo.TournamentTest do
     params = %{
       name: "Test Tournament",
       private: false,
+      type: "tournament",
+      lose_type: "all",
       user_id: player.id,
       rebuys: [0],
     }
@@ -44,6 +46,33 @@ defmodule K2pokerIo.TournamentTest do
   test "It should have rebuys set", context do
     tournament = context.tournament
     assert(tournament.rebuys == [0])
+  end
+
+  test "It should validate name" do
+    params = %{private: false, user_id: "123", rebuys: true, starting_chips: 1, max_score: 1048576, bots: true, lose_type: "all", finished: false, type: "tournament"}
+    changeset = Tournament.changeset(%Tournament{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:name]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
+  end
+
+  test "It should validate type" do
+    params = %{name: "test tourney", private: false, user_id: "123", rebuys: true, starting_chips: 1, max_score: 1048576, bots: true, lose_type: "all", finished: false}
+    changeset = Tournament.changeset(%Tournament{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:type]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
+  end
+
+  test "It should validate lose_type" do
+    params = %{name: "test tourney", private: false, user_id: "123", rebuys: true, starting_chips: 1, max_score: 1048576, bots: true, finished: false, type: "tournament"}
+    changeset = Tournament.changeset(%Tournament{}, params)
+    refute(changeset.valid?)
+    {text, [error]} = changeset.errors[:lose_type]
+    assert(text == "can't be blank")
+    assert(error == {:validation, :required})
   end
 
 end
