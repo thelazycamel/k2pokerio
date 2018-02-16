@@ -7,7 +7,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   import Ecto.Query
 
   def execute(user_tournament_detail) do
-    user_tournament_detail = check_and_update_current_score(user_tournament_detail)
+    user_tournament_detail = check_valid_score!(user_tournament_detail)
     case find_or_create_game(user_tournament_detail) do
      {:ok, game} ->
        update_user_tournament_detail(user_tournament_detail, game)
@@ -16,16 +16,19 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     end
   end
 
+  defp check_valid_score!(user_tournament_detail) do
+    if current_score_is_greater_than_max?(user_tournament_detail), do: reset_current_score(user_tournament_detail), else: user_tournament_detail
+  end
+
   # On the default tournament where the tournament does not finish
   # the users score needs to be reset if it goes over the tournament max_score
   #
-  defp check_and_update_current_score(user_tournament_detail) do
-    max_score = user_tournament_detail.tournament.max_score
-    user_tournament_detail = cond do
-      user_tournament_detail >= user_tournament_detail.tournament.max_score ->
-        Repo.update!(UserTournamentDetail.changeset(user_tournament_detail, %{current_score: user_tournament_detail.tournament.starting_chips}))
-      true -> user_tournament_detail
-    end
+  defp reset_current_score(user_tournament_detail) do
+    Repo.update!(UserTournamentDetail.changeset(user_tournament_detail, %{current_score: user_tournament_detail.tournament.starting_chips}))
+  end
+
+  defp current_score_is_greater_than_max?(user_tournament_detail) do
+    user_tournament_detail.current_score >= user_tournament_detail.tournament.max_score
   end
 
   defp find_or_create_game(user_tournament_detail) do

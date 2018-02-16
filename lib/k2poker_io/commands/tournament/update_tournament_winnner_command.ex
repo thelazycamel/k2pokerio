@@ -1,4 +1,4 @@
-defmodule K2pokerIo.Commands.Tournament.UpdateTournamentCommand do
+defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Tournament

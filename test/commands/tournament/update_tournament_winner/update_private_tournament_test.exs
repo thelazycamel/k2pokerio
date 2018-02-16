@@ -1,7 +1,7 @@
 defmodule K2pokerIo.UpdateTournament.UpdatePrivateTournamentTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Commands.Tournament.UpdateTournamentCommand
+  alias K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
   alias K2pokerIo.User
   alias K2pokerIo.Game
   alias K2pokerIo.Tournament
@@ -10,7 +10,7 @@ defmodule K2pokerIo.UpdateTournament.UpdatePrivateTournamentTest do
   use K2pokerIo.ModelCase
   import Ecto.Query
 
-  doctest K2pokerIo.Commands.Tournament.UpdateTournamentCommand
+  doctest K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
 
   setup do
     player1 = Helpers.create_user("stu")
@@ -24,7 +24,7 @@ defmodule K2pokerIo.UpdateTournament.UpdatePrivateTournamentTest do
 
   test "it should close the tournament if open tournament", context do
     p1_utd = Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 1048576}))
-    update = UpdateTournamentCommand.execute(context.game, p1_utd)
+    update = UpdateTournamentWinnerCommand.execute(context.game, p1_utd)
     tournament = Repo.get(Tournament, context.game.tournament_id)
     assert(tournament.finished)
   end

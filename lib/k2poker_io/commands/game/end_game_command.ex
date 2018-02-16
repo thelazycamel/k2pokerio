@@ -42,5 +42,4 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
     game
   end
 
-
 end
