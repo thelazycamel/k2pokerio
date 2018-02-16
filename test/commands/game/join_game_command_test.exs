@@ -5,6 +5,8 @@ defmodule K2pokerIo.JoinGameCommandTest do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinGameCommand
 
+  import Ecto.Query
+
   use K2pokerIoWeb.ConnCase
 
   doctest K2pokerIo.Commands.Game.JoinGameCommand
@@ -14,6 +16,14 @@ defmodule K2pokerIo.JoinGameCommandTest do
     p1_utd = Helpers.create_user_tournament_detail("bob", tournament.id)
     p2_utd = Helpers.create_user_tournament_detail("stu", tournament.id)
     %{p1_utd: p1_utd, p2_utd: p2_utd, tournament: tournament}
+  end
+
+  test "it should reset the players score if they have reached the max score", context do
+    p1_utd = Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 1048576}))
+    assert(p1_utd.current_score == 1048576)
+    {:ok, game} = JoinGameCommand.execute(p1_utd)
+    p1_utd = Repo.get(UserTournamentDetail, p1_utd.id)
+    assert(p1_utd.current_score == 1)
   end
 
   test "it should create a new game if one does not exist", context do

@@ -11,6 +11,7 @@ class GameChannel {
         App.gameChannel.push("game:refresh_data");
         App.services.opponent_profile.call();
         App.settings["game_id"] = game_id;
+        App.services.get_scores.call();
       }).receive("error", reason =>
         console.log("join failed")
       )

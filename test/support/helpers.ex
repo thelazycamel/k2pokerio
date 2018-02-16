@@ -98,7 +98,23 @@ defmodule K2pokerIo.Test.Helpers do
       user_id: user.id,
       lose_type: "all",
       starting_chips: 1,
-      max_score: 1024,
+      max_score: 1048576,
+      bots: true,
+      rebuys: [0]
+    })
+  end
+
+  def create_open_tournament(user, tournament_name) do
+    Repo.insert!(%Tournament{
+      name: tournament_name,
+      default_tournament: false,
+      private: false,
+      type: "tournament",
+      finished: false,
+      user_id: user.id,
+      lose_type: "all",
+      starting_chips: 1,
+      max_score: 1048576,
       bots: true,
       rebuys: [0]
     })
