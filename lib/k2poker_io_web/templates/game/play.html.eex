@@ -1,4 +1,5 @@
 <div id="section-wrapper">
+  <section id="popup-holder"></section>
   <section id="game-holder" data-tournament="<%= @tournament_id %>">
     <div id="game-root">
       <div id="game-inner">

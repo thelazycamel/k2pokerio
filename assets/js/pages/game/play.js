@@ -14,6 +14,8 @@ import RulesComponent from "../../components/rules_component"
 import HeaderNavComponent from "../../components/header_nav_component"
 import SideNavComponent from "../../components/side_nav_component"
 import PageComponentManager from "../../utils/page_component_manager"
+import TournamentWinnerPopup from "../../components/popups/tournament_winner_popup"
+import TournamentLoserPopup from "../../components/popups/tournament_loser_popup"
 
 import page from "../page"
 
@@ -72,13 +74,11 @@ class GamePlayPage extends page {
   }
 
   showTournamentLoserPopUp(action) {
-    console.log("tournament finished:", action);
-    alert("You Lose");
+    ReactDOM.render(<TournamentLoserPopup props={action} />, document.getElementById('popup-holder'));
   }
 
   showTournamentWinnerPopUp(action) {
-    console.log("tournament finished:", action);
-    alert("You Win");
+    ReactDOM.render(<TournamentWinnerPopup props={action} />, document.getElementById('popup-holder'));
   }
 
   initializeLadderComponent() {
