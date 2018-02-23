@@ -23,4 +23,42 @@ defmodule K2pokerIo.TournamentChannelTest do
     assert_broadcast("tournament:update", %{})
   end
 
+  test "tournament:loser does not send message to winner", context do
+    player_id = K2pokerIo.User.player_id(context.player)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
+    broadcast_from! socket, "tournament:loser", %{username: "bob", player_id: player_id}
+    refute_push "tournament:loser", %{username: "bob", player_id: player_id}
+    leave socket
+  end
+
+  test "tournament:loser sends message to the losers", context do
+    player_id = K2pokerIo.User.player_id(context.player)
+    other_player_id = K2pokerIo.User.player_id(context.other_player)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
+    broadcast_from! socket, "tournament:loser", %{username: "stu", player_id: other_player_id}
+    assert_push "tournament:loser", %{username: "stu", player_id: other_player_id}
+    leave socket
+  end
+
+  test "tournament:winner sends message to the winner", context do
+    player_id = K2pokerIo.User.player_id(context.player)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
+    broadcast_from! socket, "tournament:winner", %{username: "bob", player_id: player_id}
+    assert_push "tournament:winner", %{username: "bob", player_id: player_id}
+    leave socket
+  end
+
+  test "tournament:winner does not send message to the losers", context do
+    player_id = K2pokerIo.User.player_id(context.player)
+    other_player_id = K2pokerIo.User.player_id(context.other_player)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
+    broadcast_from! socket, "tournament:winner", %{username: "stu", player_id: other_player_id}
+    refute_push "tournament:winner", %{username: "stu", player_id: other_player_id}
+    leave socket
+  end
+
 end

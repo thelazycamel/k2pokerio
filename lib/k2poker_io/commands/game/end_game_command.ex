@@ -15,10 +15,8 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
   end
 
   defp update_each_player(game) do
-    Enum.each [game.player1_id, game.player2_id], fn (player_id) ->
-      update_player(game, player_id)
-    end
-    game
+    update_player(game, game.player1_id)
+    |> update_player(game.player2_id)
   end
 
   defp update_player(game, player_id) do
@@ -26,6 +24,7 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
       update_score(game, player_id)
       |> update_badges(player_id)
     end
+    game
   end
 
   defp update_score(game, player_id) do

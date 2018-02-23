@@ -71,6 +71,16 @@ class GamePlayPage extends page {
     App.services.join_game_service.call();
   }
 
+  showTournamentLoserPopUp(action) {
+    console.log("tournament finished:", action);
+    alert("You Lose");
+  }
+
+  showTournamentWinnerPopUp(action) {
+    console.log("tournament finished:", action);
+    alert("You Win");
+  }
+
   initializeLadderComponent() {
     ReactDOM.render(<LadderComponent store={App.store} title="Tournament Name" page="Game"/>, document.getElementById('ladder-holder'));
   }

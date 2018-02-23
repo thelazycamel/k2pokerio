@@ -16,6 +16,13 @@ class TournamentChannel {
       App.store.dispatch({type: "TOURNAMENT:UPDATE", data: data})
     )
 
+    App.tournamentChannel.on("tournament:loser", (data) =>
+      App.store.dispatch({type: "TOURNAMENT:LOSER", data: data})
+    )
+
+    App.tournamentChannel.on("tournament:winner", (data) =>
+      App.store.dispatch({type: "TOURNAMENT:WINNER", data: data})
+    )
   }
 
 };
