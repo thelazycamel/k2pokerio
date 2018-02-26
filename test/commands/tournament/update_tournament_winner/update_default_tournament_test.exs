@@ -17,7 +17,7 @@ defmodule K2pokerIo.UpdateTournament.UpdateDefaultTournamentTest do
   end
 
   test "it should not close the tournament if default", context do
-    p1_utd = Repo.update!(UserTournamentDetail.changeset(context.player1, %{current_score: 1048576}))
+    p1_utd = Repo.update!(UserTournamentDetail.changeset(context.player1, %{current_score: 1048576})) |> Repo.preload(:tournament)
     update = UpdateTournamentWinnerCommand.execute(context.game, p1_utd)
     tournament = Repo.get(Tournament, context.game.tournament_id)
     refute(tournament.finished)

@@ -7,10 +7,10 @@ const tournamentEventsMiddleware = store => next => action => {
       App.tournamentChannel.push("tournament:refresh_data", {tournament_id: action.tournament_id});
       break;
     case "TOURNAMENT:LOSER":
-      App.page.showTournamentLoserPopUp(action)
+      App.page.showTournamentLoserPopup(action);
       break;
     case "TOURNAMENT:WINNER":
-      App.page.showTournamentWinnerPopUp(action)
+      App.page.showTournamentWinnerPopup(action);
       break;
     case "TOURNAMENT:DESTROY_TOURNAMENT":
       App.services.destroy_tournament.call(action.tournament_id);

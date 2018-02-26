@@ -73,12 +73,12 @@ class GamePlayPage extends page {
     App.services.join_game_service.call();
   }
 
-  showTournamentLoserPopUp(action) {
-    ReactDOM.render(<TournamentLoserPopup props={action} />, document.getElementById('popup-holder'));
+  showTournamentLoserPopup(action) {
+    ReactDOM.render(<TournamentLoserPopup username={action.username} type={action.type}/>, document.getElementById('popup-holder'));
   }
 
-  showTournamentWinnerPopUp(action) {
-    ReactDOM.render(<TournamentWinnerPopup props={action} />, document.getElementById('popup-holder'));
+  showTournamentWinnerPopup(action) {
+    ReactDOM.render(<TournamentWinnerPopup username={action.username} type={action.type}/>, document.getElementById('popup-holder'));
   }
 
   initializeLadderComponent() {
@@ -112,7 +112,6 @@ class GamePlayPage extends page {
   initializeSideNavComponent() {
     ReactDOM.render(<SideNavComponent store={App.store} />, document.getElementById('nav-holder'));
   }
-
 
 }
 

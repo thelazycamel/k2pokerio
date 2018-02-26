@@ -43,12 +43,12 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   end
 
   defp alert_all_losers(game, utd) do
-    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:loser", %{username: utd.username, player_id: utd.player_id})
+    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:loser", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.type})
     game
   end
 
   defp alert_winner(game, utd) do
-    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:winner", %{username: utd.username, player_id: utd.player_id})
+    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:winner", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.type})
     game
   end
 

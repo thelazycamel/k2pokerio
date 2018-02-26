@@ -1,10 +1,63 @@
-.popup {
-  position: fixed;
-  z-index: 100;
-  width: 50%;
-  left: 25%;
-  height: 200px;
-  background-color: green;
+#popup-holder {
+  .popup {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    z-index: 20;
+    top: 40%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+    background-color: #74A124;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 0px rgba(1,1,22,0.75);
+    padding: 10px;
+    &.show {
+      display: block;
+    }
+    .popup-modal-header {
+      position: relative;
+      border-bottom: 1px solid #5F8817;
+      height: 40px;
+      h3 {
+        padding-top: 5px;
+        margin: 0px;
+        font-size: 1.3em;
+      }
+      button.close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+    }
+    .popup-body {
+      margin-top: 20px;
+      height: 140px;
+      border-bottom: 1px solid #5F8817;
+    }
+    .popup-footer {
+      margin-top: 10px;
+      height: 60px;
+      position: relative;
+      .btn {
+        margin: 10px;
+        width: 115px;
+        border-radius: 7px;
+        &.btn-popup {
+          background: linear-gradient(#107cad, #076794);
+        }
+        &.btn-lobby {
+          position: absolute;
+          right: 0px;
+        }
+        &.btn-again {
+          position: absolute;
+          left: 0px;
+        }
+      }
+
+    }
+  }
 }
 
 @import "./tournament_winner";

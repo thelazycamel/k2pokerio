@@ -1,0 +1,29 @@
+#tournament-loser {
+
+  background: linear-gradient(#c12c34, #610e19);
+
+  .username {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #bed5ed;
+  }
+
+  .popup-image {
+    float: right;
+    width: 70px;
+    height: 100px;
+    margin: 10px;
+    margin-bottom: 10px;
+    background-image: url("/images/players/simple-bot.svg");
+    background-size: cover;
+  }
+
+  .popup-modal-header {
+    border-bottom: 1px solid #470a12 !important;
+  }
+
+  .popup-body {
+    border-bottom: 1px solid #470a12 !important;
+  }
+
+}
