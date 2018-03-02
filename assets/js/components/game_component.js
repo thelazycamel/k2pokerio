@@ -137,7 +137,7 @@ class GameComponent extends React.Component {
   }
 
   displayFoldButton() {
-   return (!this.isFinished() && !this.waitingForOpponent())
+   return (!this.isFinished() && !this.waitingForOpponent() && this.props.game.fold)
   }
 
   winDescription(){

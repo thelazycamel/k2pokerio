@@ -1,33 +1,47 @@
 defmodule K2pokerIo.Commands.Game.FoldCommand do
 
   alias K2pokerIo.Game
+  alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
+
+  import Ecto.Query
 
   @doc "sends fold to K2poker and updates the game"
   def execute(game_id, player_id) do
-    if game = get_game(game_id) do
-      fold(game, player_id) |> update_game(game)
+    utd = get_user_tournament_detail(game_id, player_id)
+    game = game(game_id)
+    if game && can_fold?(utd) do
+      fold(game, player_id)
+      |> update_game(game)
+      :ok
     else
       :error
     end
   end
 
-  def get_game(game_id) do
+  defp can_fold?(utd) do
+    utd && utd.fold
+  end
+
+  defp get_user_tournament_detail(game_id, player_id) do
+    query = from UserTournamentDetail,
+      where: [game_id: ^game_id, player_id: ^player_id]
+    Repo.one(query)
+  end
+
+  defp game(game_id) do
     Repo.get(Game, game_id) |> Repo.preload(:tournament)
   end
 
-  def fold(game, player_id) do
+  defp fold(game, player_id) do
     Game.decode_game_data(game.data)
     |> K2poker.fold(player_id)
   end
 
-  def update_game(game_data, game) do
+  defp update_game(game_data, game) do
     encoded_game_data = Poison.encode!(game_data)
     updated_changeset = Game.changeset(game, %{data: encoded_game_data})
-    case Repo.update(updated_changeset) do
-      {:ok, updated_game} -> {:ok, updated_game}
-      {:error, _} -> :error
-    end
+    Repo.update!(updated_changeset) |> Repo.preload(:tournament)
   end
 
 end

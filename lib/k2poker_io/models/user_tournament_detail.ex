@@ -17,13 +17,14 @@ defmodule K2pokerIo.UserTournamentDetail do
     belongs_to :game, K2pokerIo.Game
     field :current_score, :integer
     field :rebuys, {:array, :integer}
+    field :fold, :boolean
 
     timestamps()
   end
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player_id, :username, :tournament_id, :game_id, :current_score, :rebuys, :user_id])
+    |> cast(params, [:player_id, :username, :tournament_id, :game_id, :current_score, :rebuys, :user_id, :fold])
     |> validate_required(:player_id)
     |> validate_required(:username)
     |> validate_required(:tournament_id)

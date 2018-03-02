@@ -84,7 +84,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
                        waiting_for_players: true,
                        open: true
                        ], limit: 1, preload: [:tournament]
-    List.first(Repo.all(query))
+    Repo.all(query) |> List.first()
   end
 
   defp game_by_current_score(utd) do

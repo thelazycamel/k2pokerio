@@ -20,12 +20,12 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
       "win" -> score * 2
       "lose" -> tournament_lose_policy(score, utd.tournament)
       "draw" -> score
-      "folded" -> round(score / 2)
+      "folded" -> player_folded_policy(score, utd)
       "other_player_folded" -> score
       _ -> score
     end
     new_score = if new_score <= 1, do: 1, else: new_score
-    update_players_score(game, utd, new_score)
+    update_players_score(game, utd, new_score, player_data.result.status)
   end
 
   defp get_player_data(game, player_id) do
@@ -44,13 +44,13 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   # updated twice or tournament winners sent twice, requires the lock nowait,
   # to make the 2nd process fall over and rollback during transaction
   #
-  defp update_players_score(game, utd, score) do
+  defp update_players_score(game, utd, score, status) do
     game = Multi.new()
     |> Multi.run(:get_game, fn %{} ->
       {:ok, Repo.one(from g in Game, where: g.id == ^game.id, lock: "FOR SHARE NOWAIT", preload: [:tournament]) }
      end)
     |> Multi.run(:updateable, fn %{get_game: get_game} -> score_already_updated?(get_game, utd.player_id) end)
-    |> Multi.update(:utd, UserTournamentDetail.changeset(utd, %{current_score: score}))
+    |> Multi.update(:utd, UserTournamentDetail.changeset(utd, utd_changeset(game, score, status)))
     |> Multi.run(:game, fn %{get_game: get_game, utd: utd} -> Repo.update(game_update_changeset(get_game, utd.player_id)) end)
     |> Multi.run(:update_tournament_winner, fn %{utd: utd, game: game} -> check_tournament_winner(game, utd) end)
     |> Repo.transaction
@@ -59,6 +59,15 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
       {:error, _, value, _} -> game
     end
   end
+
+  def utd_changeset(game, score, status) do
+    cond do
+      status == "folded" && game.tournament.type == "duel" -> %{current_score: score, fold: false}
+      status == "other_player_folded" && game.tournament.type == "duel" -> %{current_score: score, fold: true}
+      true -> %{current_score: score}
+    end
+  end
+
 
   defp score_already_updated?(game, player_id) do
     result = cond do
@@ -99,6 +108,14 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
 
   defp update_tournament_winner(game, utd) do
     UpdateTournamentWinnerCommand.execute(game, utd)
+  end
+
+  defp player_folded_policy(score, utd) do
+    if utd.tournament.type == "duel" do
+      score
+    else
+      round(score / 2)
+    end
   end
 
 end

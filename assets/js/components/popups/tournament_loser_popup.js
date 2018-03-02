@@ -32,6 +32,7 @@ class TournamentLoserPopup extends React.Component {
           <div className="popup-image"></div>
           <p>You did not reach the summit!</p>
           <p><span className="username">{this.props.username}</span> has taken all the glory</p>
+          <p>All you get is the wooden spoon.</p>
         </div>
         <div className="popup-footer">
            <button type="button" className="btn btn-popup btn-lobby" onClick={this.gotoLobby}>Lobby</button>

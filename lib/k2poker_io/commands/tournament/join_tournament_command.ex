@@ -30,7 +30,8 @@ defmodule K2pokerIo.Commands.Tournament.JoinTournamentCommand do
         username: current_user.username,
         tournament_id: tournament.id,
         current_score: tournament.starting_chips,
-        rebuys: [0]
+        rebuys: [0],
+        fold: true
         }
       changeset = UserTournamentDetail.changeset(%UserTournamentDetail{}, detail)
       case Repo.insert(changeset) do

@@ -9,14 +9,12 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
 
   def execute(game) do
     if game.open do
-      update_each_player(game)
+      update_player(game, game.player1_id)
+      |> update_player(game.player2_id)
       |> mark_game_as_closed()
+    else
+      game
     end
-  end
-
-  defp update_each_player(game) do
-    update_player(game, game.player1_id)
-    |> update_player(game.player2_id)
   end
 
   defp update_player(game, player_id) do
@@ -37,8 +35,7 @@ defmodule K2pokerIo.Commands.Game.EndGameCommand do
 
   defp mark_game_as_closed(game) do
     changeset = Game.changeset(game, %{open: false})
-    {:ok, game} = Repo.update(changeset)
-    game
+    Repo.update!(changeset) |> Repo.preload(:tournament)
   end
 
 end

@@ -74,7 +74,7 @@ defmodule K2pokerIoWeb.GameChannel do
   def handle_in("game:fold", _params, socket) do
     player_id = socket.assigns[:player_id]
     case FoldCommand.execute(get_game_id(socket), player_id) do
-      {:ok, _} ->
+      :ok ->
         broadcast! socket, "game:new_game_data", %{}
         {:reply, :ok, socket}
       :error -> :error
