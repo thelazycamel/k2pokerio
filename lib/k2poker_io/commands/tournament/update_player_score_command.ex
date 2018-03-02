@@ -68,7 +68,6 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     end
   end
 
-
   defp score_already_updated?(game, player_id) do
     result = cond do
       player_id == game.player1_id && game.p1_paid == true -> {:error, "Already Updated"}

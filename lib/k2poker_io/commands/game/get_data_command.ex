@@ -37,5 +37,5 @@ defmodule K2pokerIo.Commands.Game.GetDataCommand do
     utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player_id, tournament_id: ^tournament_id])
     Map.merge(player_data, %{fold: utd.fold})
   end
-
 end
+
