@@ -21,7 +21,7 @@ defmodule K2pokerIo.JoinGameCommandTest do
   test "it should reset the players score if they have reached the max score", context do
     p1_utd = Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 1048576}))
     assert(p1_utd.current_score == 1048576)
-    {:ok, game} = JoinGameCommand.execute(p1_utd)
+    JoinGameCommand.execute(p1_utd)
     p1_utd = Repo.get(UserTournamentDetail, p1_utd.id)
     assert(p1_utd.current_score == 1)
   end

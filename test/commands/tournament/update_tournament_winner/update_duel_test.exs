@@ -8,7 +8,6 @@ defmodule K2pokerIo.UpdateTournament.UpdateDuelTest do
   alias K2pokerIo.UserTournamentDetail
 
   use K2pokerIo.ModelCase
-  import Ecto.Query
 
   doctest K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
 
@@ -25,7 +24,7 @@ defmodule K2pokerIo.UpdateTournament.UpdateDuelTest do
   end
 
   test "it should close the tournament if duel", context do
-    update = UpdateTournamentWinnerCommand.execute(context.game, context.p1_utd)
+    UpdateTournamentWinnerCommand.execute(context.game, context.p1_utd)
     tournament = Repo.get(Tournament, context.game.tournament_id)
     assert(tournament.finished)
   end

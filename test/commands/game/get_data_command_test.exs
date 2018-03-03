@@ -2,6 +2,7 @@ defmodule K2pokerIo.GetDataCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Repo
+  alias K2pokerIo.User
   alias K2pokerIo.Commands.Game.GetDataCommand
 
   use K2pokerIoWeb.ConnCase
@@ -62,6 +63,25 @@ defmodule K2pokerIo.GetDataCommandTest do
     assert(result.player_cards == ["2s", "3c"])
     assert(result.other_player_cards == ["As", "Ac"])
     assert(result.table_cards == ["Ad", "Ah", "3d", "2c", "4h"])
+  end
+
+  test "should return fold as true for tournament", context do
+    game = Helpers.player_wins(context.game, context.player1.player_id)
+    game_data = GetDataCommand.execute(game.id, game.player2_id)
+    assert(game_data.fold)
+  end
+
+  test "should return fold as false when set in utd for duel" do
+    player1 = Helpers.create_user("bob")
+    player2 = Helpers.create_user("stu")
+    player_id = User.player_id(player1)
+    duel = Helpers.create_duel(player1, player2)
+    p1_utd = Helpers.create_user_tournament_detail(player_id, player1.username, duel.id)
+    p2_utd = Helpers.create_user_tournament_detail(User.player_id(player2), player2.username, duel.id)
+    game = Helpers.create_game([p1_utd, p2_utd])
+    |> Helpers.player_folds(User.player_id(player1))
+    game_data = GetDataCommand.execute(game.id, player_id)
+    assert(game_data.fold == false)
   end
 
 end

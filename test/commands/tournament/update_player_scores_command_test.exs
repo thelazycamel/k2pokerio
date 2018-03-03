@@ -131,4 +131,21 @@ defmodule K2pokerIo.UpdatePlayerScoreCommandTest do
     assert(p2_utd.current_score == 1)
   end
 
+  # DUEL updating fold status
+  test "it should update the utd with fold false if player folds", %{player1: player1, player2: player2} do
+    player1_id = User.player_id(player1)
+    player2_id = User.player_id(player2)
+    duel = Helpers.create_duel(player1, player2)
+    p1_utd = Helpers.create_user_tournament_detail(player1_id, player1.username, duel.id)
+    p2_utd = Helpers.create_user_tournament_detail(player2_id, player2.username, duel.id)
+    Helpers.create_game([p1_utd, p2_utd])
+    |> Helpers.player_folds(player1_id)
+    |> UpdatePlayerScoreCommand.execute(player1_id)
+    |> UpdatePlayerScoreCommand.execute(player2_id)
+    p1_utd = Repo.get(UserTournamentDetail, p1_utd.id)
+    p2_utd = Repo.get(UserTournamentDetail, p2_utd.id)
+    refute(p1_utd.fold)
+    assert(p2_utd.fold)
+  end
+
 end
