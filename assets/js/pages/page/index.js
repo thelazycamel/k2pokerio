@@ -15,12 +15,22 @@ class PageIndexPage extends page {
   }
 
   parallaxScroll() {
-    // TODO move the middle down at half speed of scroll
-    let element = document.getElementById("middle");
-    let position = element.getBoundingClientRect().top;
-    let current = parseInt(window.getComputedStyle(element).getPropertyValue("top"),10);
-    let scroll = 100 - position + current + "px";
-    //element.style.top = scroll;
+    // TODO tidy this function to calculate each element, by its z-index
+    // no need to do each individually
+    let frame = document.getElementById("homepage");
+    let position = frame.getBoundingClientRect().top;
+    if(position < 0) {position = 0;}
+    let sky = document.getElementById("sky");
+    let mountain = document.getElementById("mountain");
+    let rock = document.getElementById("middle");
+    let foreground = document.getElementById("foreground");
+    let skyTop = (50 - position) * 0.5;
+    let mountainTop = (50 - position) * 1;
+    let rockTop = (50 - position) * 1.5;
+    let foregroundTop = (50 - position) * 2;
+    mountain.style.top = mountainTop + "px";
+    rock.style.top = rockTop + "px";
+    foreground.style.top = foregroundTop + "px";
   }
 
 }
