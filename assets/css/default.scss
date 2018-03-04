@@ -7,17 +7,14 @@ h1, h2 {
   background-color: #010116;
 }
 
-.btn-k2poker-wrapper {
-  margin: 30px auto 0px auto;
-  padding: 10px;
-  width: 220px;
-  border-radius: 15px;
-  background: linear-gradient(to bottom,#00f300 0%,#006f00 100%);
-
-  .btn-k2poker {
-    width: 200px;
-    border-radius: 10px;
-    background: linear-gradient(to bottom,#00f300 0%,#006f00 100%);
+.btn-k2poker {
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #2d82e5 0%, #143a66 100%);
+  color: #ffffff;
+  border: 3px solid #143a66;
+  &:hover {
+    color: #cccccc;
+    background: linear-gradient(to bottom, #2d82e5 50%, #143a66 100%);
   }
 }
 

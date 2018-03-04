@@ -1,0 +1,15 @@
+@import "../../variables";
+
+@media (min-width: $media-small-min) and (max-width: $media-small-max) {
+
+  body.page.index {
+    #main-content {
+      #homepage {
+        #middle {
+          top: 100px;
+          left: -100px;
+        }
+      }
+    }
+  }
+}

@@ -1,16 +1,16 @@
 <script> window.userToken = "";</script>
 
 <div id="homepage">
-
-  <div class="btn-k2poker-wrapper">
-    <%= link "Log In", to: session_path(@conn, :new), class: "btn btn-lg btn-k2poker" %>
-  </div>
+  <div id="sky"></div>
+  <div id="mountain"></div>
+  <div id="middle"></div>
+  <div id="foreground"></div>
 
   <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
 
-    <div class="input-group">
+    <div class="input-group anon-nickname">
       <label for="username" class="sr-only">Username</label>
-      <%= text_input f, :username, class: "form-control anon-nickname" %>
+      <%= text_input f, :username, class: "form-control" %>
       <span class="input-group-btn">
         <%= submit "Quick Play", class: "btn btn-play" %>
       </span>
@@ -18,9 +18,9 @@
 
   <% end %>
 
-  <div class="btn-k2poker-wrapper">
-    <%= link "Sign Up", to: registration_path(@conn, :new), class: "btn btn-lg btn-k2poker" %>
-  </div>
+  <%= link "Sign Up", to: registration_path(@conn, :new), id: "sign-up-button", class: "btn btn-lg btn-k2poker" %>
+
+  <%= link "Log In", to: session_path(@conn, :new), id: "login-button", class: "btn btn-lg btn-k2poker" %>
 
 
 </div>

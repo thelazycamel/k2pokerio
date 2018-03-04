@@ -1,0 +1,26 @@
+@import "../../variables";
+
+@media (min-width: $media-plablet-min) and (max-width: $media-plablet-max) {
+
+  body.page.index {
+    #main-content {
+      #homepage {
+        #middle {
+          left: -200px;
+          top: 100px;
+        }
+
+        .anon-player-form {
+          .input-group.anon-nickname {
+            max-width: 400px;
+            margin-left: -215px;
+            input {
+              width: 300px;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

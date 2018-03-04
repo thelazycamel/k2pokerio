@@ -1,22 +1,13 @@
 @import "../../variables";
 
-@media (min-width: $media-medium-min) {
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
 
   body.page.index {
 
     #main-content {
-
       #homepage {
-        .anon-player-form {
-          width: 500px;
-          .input-group {
-            input.anon-nickname {
-              width: 360px;
-            }
-            button.btn-play {
-              width: 120px;
-            }
-          }
+        #middle {
+          left: 0px;
         }
       }
     }
