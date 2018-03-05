@@ -7,9 +7,8 @@
           <li><a href="/profile"><%= current_user(@conn).username %></a></li>
           <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
         <% else %>
-          <li><%= link "Sign-up", to: registration_path(@conn, :new) %></li>
-          <li><%= link "Login", to: session_path(@conn, :new) %></li>
-          <li id="hamburger-menu"><a href="#"></a></li>
+          <li id="sign-up-link"><%= link "Sign-up", to: registration_path(@conn, :new) %></li>
+          <li id="login-link"><%= link "Login", to: session_path(@conn, :new) %></li>
         <% end %>
         </li>
       </ul>

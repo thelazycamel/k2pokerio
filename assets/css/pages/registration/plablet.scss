@@ -1,0 +1,20 @@
+@import "../../variables";
+
+@media (min-width: $media-plablet-min) and (max-width: $media-plablet-max) {
+
+  body.registration.new {
+
+    main {
+      background-position: 210px 270px;
+      background-size: 200px 315px;
+
+      section.registration-container {
+        width: 70%;
+      }
+
+    }
+
+  }
+
+
+}

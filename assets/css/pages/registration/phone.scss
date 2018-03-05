@@ -1,0 +1,15 @@
+@import "../../variables";
+
+@media (min-width: $media-phone-min) and (max-width: $media-phone-max) {
+
+  body.registration.new {
+    main {
+      background-position: 140px 280px;
+      background-size: 200px 315px;
+      section.registration-container {
+        padding: 30px auto;
+        width: 100%;
+      }
+    }
+  }
+}

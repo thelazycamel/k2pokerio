@@ -1,0 +1,18 @@
+@import "../../variables";
+
+@media (min-width: $media-small-min) and (max-width: $media-small-max) {
+
+  body.registration.new {
+
+    main {
+      background-position: 400px 180px;
+      background-size: 300px 474px;
+      section.registration-container {
+        width: 50%;
+      }
+    }
+
+  }
+
+
+}

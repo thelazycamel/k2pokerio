@@ -1,0 +1,41 @@
+body.registration.new {
+
+  header {
+    #sign-up-link {
+      display: none;
+    }
+  }
+
+  main {
+    height: 630px;
+    background-image: url("/images/pages/sign-up.svg");
+    background-position: 580px 20px;
+    background-repeat: no-repeat;
+
+    section.registration-container {
+      padding: 30px;
+      width: 35%;
+      h2 {
+        padding-left: 0px;
+        padding-bottom: 20px;
+      }
+      form {
+        label {
+          display: none;
+        }
+        .form-link {
+          float: right;
+        }
+        #login-button {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+      }
+    }
+  }
+}
+
+@import "./medium";
+@import "./small";
+@import "./plablet";
+@import "./phone";

@@ -1,0 +1,14 @@
+@import "../../variables";
+
+@media (min-width: $media-phone-min) and (max-width: $media-phone-max) {
+
+  body.session.new {
+    main {
+      background-position: 80px 320px;
+      section.session-container {
+        padding: 30px auto;
+        width: 100%;
+      }
+    }
+  }
+}

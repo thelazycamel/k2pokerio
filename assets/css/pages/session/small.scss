@@ -1,0 +1,17 @@
+@import "../../variables";
+
+@media (min-width: $media-small-min) and (max-width: $media-small-max) {
+
+  body.session.new {
+
+    main {
+      background-position: 160px 160px;
+      section.session-container {
+        width: 50%;
+      }
+    }
+
+  }
+
+
+}

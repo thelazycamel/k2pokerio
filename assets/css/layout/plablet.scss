@@ -8,6 +8,17 @@
     padding-right: 0px;
   }
   header {
+    .navbar-right {
+      float: right;
+      margin: 0px 15px;
+      li {
+        float: left;
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
 
     .scoreboard {
       display: block;

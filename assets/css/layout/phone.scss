@@ -8,11 +8,15 @@
   }
 
   header {
-    display: none;
     .navbar-right {
       float: right;
+      margin: 0px 15px;
       li {
-        display: none;
+        float: left;
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
       }
       li#hamburger-menu {
         position: absolute;
