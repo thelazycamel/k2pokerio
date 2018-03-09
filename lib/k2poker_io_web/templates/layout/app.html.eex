@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="csrf_token" content="<%= get_csrf_token() %>">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta name="csrf_token" content="<%= get_csrf_token() %>"/>
 
     <title>K2 Poker</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>" />
     <script>window.userToken = "<%= user_token(assigns[:player_id]) %>";</script>
   </head>
 
@@ -19,8 +19,22 @@
 
     <div id="main-content" class="container">
       <main role="main">
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= if get_flash(@conn, :info) do %>
+        <div class="alert alert-success alert-dismissible show" role="alert">
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p><%= get_flash(@conn, :info) %></p>
+        </div>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <div class="alert alert-danger alert-dismissible show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p><%= get_flash(@conn, :error) %></p>
+        </div>
+      <% end %>
         <%= render @view_module, @view_template, assigns %>
       </main>
     </div>

@@ -55,7 +55,7 @@ defmodule K2pokerIo.SessionControllerTest do
     response = conn
       |> post(session_path(conn, :create, session_params))
       |> response(200)
-    expected = ~r/Wrong\ email\ or\ password/
+    expected = ~r/wrong\ email\ or\ password/
     assert(response =~ expected)
   end
 

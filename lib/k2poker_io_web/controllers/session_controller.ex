@@ -17,11 +17,11 @@ defmodule K2pokerIoWeb.SessionController do
       {:ok, user} ->
         conn
         |> put_session(:player_id, "user|#{user.id}")
-        |> put_flash(:info, "Logged in")
+        |> put_flash(:info, "Successfully Logged in")
         |> redirect(to: tournament_path(conn, :index))
       :error ->
         conn
-        |> put_flash(:info, "Wrong email or password")
+        |> put_flash(:error, "Oops, seems like a wrong email or password")
         |> render("new.html")
     end
   end
@@ -29,7 +29,7 @@ defmodule K2pokerIoWeb.SessionController do
   def delete(conn, _) do
     conn
     |> delete_session(:player_id)
-    |> put_flash(:info, "Logged out")
+    |> put_flash(:info, "Successfully Logged out")
     |> redirect(to: "/")
   end
 

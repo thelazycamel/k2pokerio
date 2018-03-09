@@ -1,3 +1,5 @@
+@import "./variables";
+
 h1, h2 {
   margin: 0px;
   font-size: 18px;
@@ -24,4 +26,25 @@ h1, h2 {
 
 .center {
   text-align: center;
+}
+
+.help-block {
+  color: #f07d75;
+}
+
+.alert {
+  z-index: 100;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+}
+
+//consider moving this if we add any more
+@media (max-width: $media-plablet-max) {
+  .alert {
+    width: 300px;
+    margin-left: -150px;
+  }
 }
