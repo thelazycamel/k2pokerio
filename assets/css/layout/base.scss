@@ -29,14 +29,41 @@ header {
 
     a {
       color: #dddddd;
-    }
+      display: inline-block;
+      &.text-link {
+        &:hover {
+          background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
+        }
+      }
+      &.icon-link {
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        margin-top: 10px;
+        margin-right: 10px;
+        background-image: url("/images/icon-sprite.svg");
+        background-size: 300px 63px;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+      &#tournament-link {
+       background-position: -198px 0px;
+       &:hover {
+        background-position: -198px 32px;
+       }
+      }
+      &#profile-link {
+        margin-right: 15px;
+       background-position: -165px 0px;
+       &:hover {
+        background-position: -165px 32px;
+       }
 
-    a:hover {
-      background: linear-gradient(to bottom,#2d82e5 0%,#143a66 100%);
-    }
-
-    #hamburger-menu {
-      display: none;
+      }
+      span {
+        display: none;
+      }
     }
   }
 }

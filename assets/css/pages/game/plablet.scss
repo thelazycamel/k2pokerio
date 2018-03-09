@@ -1,0 +1,14 @@
+@import "../../variables";
+
+@media (max-width: $media-plablet-max) {
+
+  body.game.play {
+
+    header {
+      display: none;
+    }
+
+  }
+
+}
+

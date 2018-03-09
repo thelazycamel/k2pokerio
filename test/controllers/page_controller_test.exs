@@ -3,8 +3,13 @@ defmodule K2pokerIo.PageControllerTest do
   use K2pokerIoWeb.ConnCase
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
+  alias K2pokerIo.Test.Helpers
 
   doctest K2pokerIoWeb.PageController
+
+  setup do
+    %{tournament: Helpers.create_tournament}
+  end
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

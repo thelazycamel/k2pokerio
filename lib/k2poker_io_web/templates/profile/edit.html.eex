@@ -1,3 +1,4 @@
+<%= link "Logout", to: session_path(@conn, :delete), method: :delete %>
 <form
   action="<%= profile_path(@conn, :update, @profile.id) %>"
   method="post"

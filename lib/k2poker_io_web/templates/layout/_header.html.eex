@@ -4,11 +4,11 @@
     <div id="header-nav-component-holder"></div>
     <ul class="nav navbar-nav navbar-right">
         <%= if logged_in?(@conn) do %>
-          <li><a href="/profile"><%= current_user(@conn).username %></a></li>
-          <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
+          <li><a href="/tournaments" class="icon-link" id="tournament-link" title="Tournaments"><span>Tournaments<span></a></li>
+          <li><a href="/profile" class="icon-link" id="profile-link" title="Profile (<%= current_user(@conn).username %>)"><span>Profile</span></a></li>
         <% else %>
-          <li id="sign-up-link"><%= link "Sign-up", to: registration_path(@conn, :new) %></li>
-          <li id="login-link"><%= link "Login", to: session_path(@conn, :new) %></li>
+          <li id="sign-up-link"><%= link "Sign-up", to: registration_path(@conn, :new), class: "text-link" %></li>
+          <li id="login-link"><%= link "Login", to: session_path(@conn, :new), class: "text-link" %></li>
         <% end %>
         </li>
       </ul>

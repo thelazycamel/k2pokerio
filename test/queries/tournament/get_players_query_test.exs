@@ -53,7 +53,7 @@ defmodule K2pokerIo.GetPlayersQueryTest do
   test "#all should return images for logged in players" do
     tournament = Helpers.create_tournament()
     Helpers.create_user_tournament_detail("anon", tournament.id)
-    player = Helpers.create_user("stu")
+    player = Repo.get_by(User, username: "stu")
       |> User.profile_changeset(%{image: "tester.png"})
       |> Repo.update!()
     JoinTournamentCommand.execute(player, tournament.id)

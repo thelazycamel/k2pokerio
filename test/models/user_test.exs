@@ -46,4 +46,36 @@ defmodule K2pokerIo.UserTest do
     assert(user_id == nil)
   end
 
+  test "email is case insensitive" do
+    changeset = User.changeset(%User{}, %{email: "test@test.com", password: "Abc123", username: "tester"})
+    lowercase_email = Repo.insert!(changeset)
+    uppercase_email = Repo.get_by(User, email: "TEST@TEST.com")
+    assert(lowercase_email.id == uppercase_email.id)
+  end
+
+  test "username is case insensitive" do
+    changeset = User.changeset(%User{}, %{email: "test@test.com", password: "Abc123", username: "tester"})
+    lowercase_username = Repo.insert!(changeset)
+    uppercase_username = Repo.get_by(User, username: "TESTER")
+    assert(lowercase_username.id == uppercase_username.id)
+  end
+
+  test "email is unique (case insensitive)" do
+    User.changeset(%User{}, %{email: "test@test.com", password: "Abc123", username: "tester"})
+      |> Repo.insert!
+    changeset2 = User.changeset(%User{}, %{email: "TEST@test.com", password: "Abc123", username: "tester2"})
+    {:error, user2} = Repo.insert changeset2
+    {text, []} = user2.errors[:email]
+    assert(text == "has already been taken")
+  end
+
+  test "username is unique (case insensitive)" do
+    User.changeset(%User{}, %{email: "test@test.com", password: "Abc123", username: "tester"})
+      |> Repo.insert!
+    changeset2 = User.changeset(%User{}, %{email: "test2@test.com", password: "Abc123", username: "TESTER"})
+    {:error, user2} = Repo.insert changeset2
+    {text, []} = user2.errors[:username]
+    assert(text == "has already been taken")
+  end
+
 end

@@ -3,8 +3,10 @@ defmodule K2pokerIo.Repo.Migrations.AddUsernameToUsers do
 
   def change do
     alter table(:users) do
-      add :username, :string
+      add :username, :citext, null: false
     end
+
+    create index(:users, [:username], unique: true)
   end
 
 end
