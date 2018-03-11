@@ -4,19 +4,19 @@
 
     <div class="form-group">
       <label>Email</label>
-      <%= email_input f, :email, class: "form-control", placeholder: "Email" %>
+      <%= email_input f, :email, class: "form-control", placeholder: "Email", required: true %>
       <%= error_tag f, :email %>
     </div>
 
     <div class="form-group">
       <label>Username</label>
-      <%= text_input f, :username, class: "form-control", placeholder: "Username" %>
+      <%= text_input f, :username, class: "form-control", placeholder: "Username", required: true %>
       <%= error_tag f, :username %>
     </div>
 
     <div class="form-group">
       <label>Password</label>
-      <%= password_input f, :password, class: "form-control", placeholder: "Password" %>
+      <%= password_input f, :password, class: "form-control", placeholder: "Password", required: true %>
       <%= error_tag f, :password %>
     </div>
 

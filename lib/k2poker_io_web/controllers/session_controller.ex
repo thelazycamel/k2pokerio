@@ -17,7 +17,7 @@ defmodule K2pokerIoWeb.SessionController do
       {:ok, user} ->
         conn
         |> put_session(:player_id, "user|#{user.id}")
-        |> put_flash(:info, "Successfully Logged in")
+        |> put_flash(:info, "Welcome back #{user.username}")
         |> redirect(to: tournament_path(conn, :index))
       :error ->
         conn

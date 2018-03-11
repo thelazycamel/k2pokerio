@@ -41,13 +41,17 @@ defmodule K2pokerIo.User do
     |> cast(params, [:email, :username, :password])
     |> unique_constraint(:email, on: K2pokerIo.Repo)
     |> unique_constraint(:username, on: K2pokerIo.Repo)
-    |> validate_format(:email, ~r/@/)
+    |> validate_format(:email, email_regexp)
     |> validate_length(:password, min: 5)
   end
 
   def profile_changeset(struct, params) do
     struct
     |> cast(params, [:username, :image, :blurb])
+  end
+
+  def email_regexp do
+    ~r/@/
   end
 
 end

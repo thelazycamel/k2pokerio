@@ -73,9 +73,25 @@ defmodule K2pokerIo.UserTest do
     User.changeset(%User{}, %{email: "test@test.com", password: "Abc123", username: "tester"})
       |> Repo.insert!
     changeset2 = User.changeset(%User{}, %{email: "test2@test.com", password: "Abc123", username: "TESTER"})
-    {:error, user2} = Repo.insert changeset2
+    {:error, user2} = Repo.insert(changeset2)
     {text, []} = user2.errors[:username]
     assert(text == "has already been taken")
+  end
+
+  test "email regexp with various email types should pass" do
+    ["name+tag@gmail.com", "name_surname@test.com", "nameSurname@test.com", "ñombre_1_2@åbç.com", "日本人@日人日本人.com"]
+      |> Enum.with_index |> Enum.each(fn ({email, index}) ->
+      username = "tester-#{index}"
+      changeset = User.changeset(%User{}, %{email: email, password: "Abc123", username: username})
+      {response, changeset} = Repo.insert(changeset)
+      assert(changeset.email == email)
+      assert(response == :ok)
+    end)
+  end
+
+  @tag :skip
+  test "it should return a suggested username if one already taken" do
+    # TODO this is a nice to have and can be done after beta release
   end
 
 end
