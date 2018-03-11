@@ -53,7 +53,7 @@ defmodule K2pokerIo.ChatTest do
   end
 
   test "get_ten", context do
-    comments = Chat.get_ten_json(context.tournament_id)
+    comments = Chat.get_ten_json(context.tournament_id, context.user_id)
     tournament = Repo.get(K2pokerIo.Tournament, context.tournament_id)
     assert Enum.count(comments) == 10
     first_comment = List.first(comments)

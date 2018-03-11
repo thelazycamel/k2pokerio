@@ -35,9 +35,11 @@ class ChatComponent extends React.Component {
           <div id="chat-inner">
             <div id="chat-fader"></div>
             <h2>{this.props.tournament.tournament_name}</h2>
-            <ul id="chats">
-            { this.renderComments() }
-            </ul>
+            <div id="chats">
+              <div id="comments-holder">
+                { this.renderComments() }
+              </div>
+            </div>
             { this.renderInput() }
           </div>
         </div>

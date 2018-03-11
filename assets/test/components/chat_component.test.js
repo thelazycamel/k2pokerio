@@ -15,7 +15,7 @@ beforeEach(() => {
   let initialState = {
     page: {tabs: {}, links: {}},
     chat: {comments: [
-      {id: 1, username: "bob", comment: "Hello World"}
+      {id: 1, username: "bob", image: "/profile-images/test.png", comment: "Hello World"}
    ]},
     tournament: {}
   };
@@ -27,13 +27,13 @@ beforeEach(() => {
 
 describe("ChatComponent", () => {
 
-  it("should contain the chats ul holder", () => {
-    expect(chatComponent.find("ul#chats").length).toEqual(1);
+  it("should contain the div#chats holder", () => {
+    expect(chatComponent.find("div#chats").length).toEqual(1);
   });
 
   it('should contain one comment', () => {
-    expect(chatComponent.find("li.chat-comment").length).toEqual(1);
-    expect(chatComponent.find("li.chat-comment").html()).toMatch(/chat-user.*bob.*chat-text.*Hello\ World/);
+    expect(chatComponent.find("div.chat-comment").length).toEqual(1);
+    expect(chatComponent.find("div.chat-comment").html()).toMatch(/chat-user.*bob.*chat-text.*Hello\ World/);
   });
 
   test("#renderInput() should be disabled for logged out users", () => {

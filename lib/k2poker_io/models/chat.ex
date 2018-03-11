@@ -20,15 +20,18 @@ defmodule K2pokerIo.Chat do
     |> validate_required(:comment)
   end
 
-  def get_ten_json(tournament_id) do
+  #TODO move this to a query
+
+  def get_ten_json(tournament_id, player_id) do
     query = from c in K2pokerIo.Chat,
       where: c.tournament_id == ^tournament_id,
       join: u in assoc(c, :user),
       limit: 10,
       order_by: [desc: c.inserted_at],
-      select: %{id: c.id, username: u.username, comment: c.comment, admin: c.admin}
+      preload: :user
     comments = Repo.all query
-    Enum.reverse(comments)
+    Enum.map(comments, fn (comment) -> K2pokerIo.Decorators.CommentDecorator.decorate(comment, player_id) end)
+      |> Enum.reverse
   end
 
 end

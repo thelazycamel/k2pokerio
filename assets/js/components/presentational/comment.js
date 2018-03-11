@@ -14,12 +14,35 @@ class Comment extends React.Component {
     return this.props.comment.admin ? "admin" : "";
   }
 
+  owner_comment_class() {
+    return this.props.comment.owner ? "owner" : "";
+  }
+
+  comment_classes() {
+    let classes = ["chat-comment", this.admin_class(), this.owner_comment_class()];
+    return classes.join(" ");
+  }
+
+  chat_image() {
+    if(!this.props.comment.admin && !this.props.comment.owner) {
+      return(
+        <div className="chat-user"
+          title={this.props.comment.username}
+          style={ {backgroundImage: "url('/images/profile-images/" + this.props.comment.image + "')"} }>
+        </div>
+       )
+    }
+  }
+
   render() {
     return (
-      <li className={"chat-comment " + this.admin_class()} id={"comment-"+this.props.comment.id}>
-        <span className="chat-user">{this.props.comment.username}</span>
-        <span className="chat-text">{this.props.comment.comment}</span>
-      </li>
+      <div className={this.comment_classes()} id={"comment-"+this.props.comment.id}>
+        { this.chat_image() }
+        <span className="chat-text">
+          {this.props.comment.comment}
+          <span className="quote"></span>
+        </span>
+      </div>
     )
   }
 }

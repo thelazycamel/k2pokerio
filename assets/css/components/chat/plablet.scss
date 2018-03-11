@@ -22,8 +22,11 @@
           width: 415px;
           height: 200px;
         }
-        ul#chats {
+        #chats {
           height: 545px;
+          #comments-holder {
+            width: 400px;
+          }
         }
         #new-chat {
           border-radius: 0px 0px 10px 10px;

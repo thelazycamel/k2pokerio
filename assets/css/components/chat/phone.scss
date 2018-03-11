@@ -13,8 +13,11 @@
       #chat-fader{
         height: 200px;
       }
-      ul#chats {
+      #chats {
         height: 474px;
+        #comments-holder {
+          width: 306px;
+        }
       }
     }
 

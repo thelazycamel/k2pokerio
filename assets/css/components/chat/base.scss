@@ -5,7 +5,7 @@
     top: 319px;
     height: 300px;
     border-radius: 0px 0px 10px 10px;
-    background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+    background: linear-gradient(to bottom,#010116 70%,#25417f 100%);
 
     #chat-fader {
       position:absolute;
@@ -13,47 +13,86 @@
       top: 33px;
       left: 0px;
       width: 100%;
-      height: 50px;
+      height: 100px;
       background-image: url("/images/chat-fader.svg");
       background-repeat: repeat-x;
     }
 
-    ul#chats {
+    #chats {
+      position: relative;
       color: #ffffff;
       padding: 0px 10px;
       margin: 0px;
       height: 225px;
       overflow: hidden;
       overflow-y: auto;
-      li {
-        width: 100%;
-        margin: 2px 0px;
-        padding: 0px 10px 3px 10px;
-        list-style-type: none;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        span.chat-user {
-          display: block;
-          color: #c1c1c1;
-          overflow: hidden;
-          flex-basis: 20%;
-        }
-        span.chat-text {
-          display: block;
-          flex-basis: 80%;
-        }
-        &.admin {
-          span.chat-user {
-            color: #a1750b;
+      #comments-holder {
+        width: 490px;
+        position: relative;
+        bottom: 0px;
+        .chat-comment {
+          min-height: 35px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-start;
+          width: 100%;
+          margin: 5px 0px;
+          div.chat-user {
+            flex-shrink: 0;
+            border-radius: 7px;
+            background-size: cover;
+            width: 35px;
+            height: 35px;
           }
           span.chat-text {
-            color: #a1750b;
+            position: relative;
+            display: block;
+            color: #cccccc;
+            background-color: #1c2956;
+            border-radius: 7px;
+            border-radius: 7px;
+            padding: 5px 15px;
+            margin-left: 10px;
+            max-width: 80%;
+            flex-shrink: 1;
+            span.quote {
+              display: inline-block;
+              width: 13px;
+              height: 17px;
+              position: absolute;
+              left: -6px;
+              bottom: 0;
+              background-image: url("/images/chat/comment.svg");
+              background-size: cover;
+            }
+          }
+          &.owner {
+            flex-direction: row-reverse;
+            span.chat-text {
+              position: relative;
+              text-align: right;
+              background-color: #4398c9;
+              color: #ffffff;
+              max-width: 80%;
+              margin-right: 10px;
+              span.quote {
+                right: -6px;
+                left: auto;
+                background-image: url("/images/chat/owner-comment.svg");
+              }
+            }
+          }
+          &.admin {
+            span.chat-text {
+              color: #a1750b;
+              width: auto;
+              text-align: center;
+              margin: 5px auto;
+            }
           }
         }
       }
     }
-
     #new-chat {
       position: absolute;
       bottom: 0;
@@ -86,6 +125,12 @@
     height: 619px;
     border-radius: 0px 0px 10px 10px;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+    #chat-fader {
+      top: 0px;
+    }
+    #chats {
+      height: 560px;
+    }
   }
 }
 
@@ -94,4 +139,3 @@
 @import "./small";
 @import "./medium";
 @import "./large";
-
