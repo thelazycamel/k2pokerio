@@ -21,9 +21,9 @@ defmodule K2pokerIo.Decorators.CommentDecorator do
     admin = comment.admin
     image = comment.user && comment.user.image
     cond do
-      image -> image
+      image -> "/images/profile-images/#{image}"
       admin -> ""
-      true -> "fish.png"
+      true -> "/images/profile-images/fish.png"
     end
   end
 

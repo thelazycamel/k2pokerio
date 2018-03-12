@@ -28,7 +28,7 @@ class Comment extends React.Component {
       return(
         <div className="chat-user"
           title={this.props.comment.username}
-          style={ {backgroundImage: "url('/images/profile-images/" + this.props.comment.image + "')"} }>
+          style={ {backgroundImage: "url('" + this.props.comment.image + "')"} }>
         </div>
        )
     }
@@ -38,10 +38,11 @@ class Comment extends React.Component {
     return (
       <div className={this.comment_classes()} id={"comment-"+this.props.comment.id}>
         { this.chat_image() }
-        <span className="chat-text">
+        <div className="chat-text">
+          <div className="username">{this.props.comment.username}</div>
           {this.props.comment.comment}
           <span className="quote"></span>
-        </span>
+        </div>
       </div>
     )
   }

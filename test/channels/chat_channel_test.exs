@@ -25,14 +25,14 @@ defmodule K2pokerIo.ChatChannelTest do
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     push(socket, "chat:create_comment", %{"comment" => "Hello World", "tournament_id" => tournament_id})
     assert_broadcast "chat:new_comment", %{}
-    assert_receive %Phoenix.Socket.Message{payload: %{id: _, username: "stu", image: "fish.png", comment: "Hello World", admin: false, owner: true}}
+    assert_receive %Phoenix.Socket.Message{payload: %{id: _, username: "stu", image: "/images/profile-images/fish.png", comment: "Hello World", admin: false, owner: true}}
     leave(socket)
   end
 
   test "chat:create_comment -> broadcasts the message with profile image", context do
     user = Repo.update!(User.profile_changeset(context.user, %{image: "bond.png"}))
     player_id = User.player_id(user)
-    profile_image = user.image
+    profile_image = "/images/profile-images/#{user.image}"
     tournament_id = "#{context.tournament.id}"
     {:ok, _, socket} = socket("", %{player_id: player_id, current_user: user})
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")

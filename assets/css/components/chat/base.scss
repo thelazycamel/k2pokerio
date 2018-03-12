@@ -44,9 +44,9 @@
             width: 35px;
             height: 35px;
           }
-          span.chat-text {
-            position: relative;
+          div.chat-text {
             display: block;
+            position: relative;
             color: #cccccc;
             background-color: #1c2956;
             border-radius: 7px;
@@ -55,6 +55,10 @@
             margin-left: 10px;
             max-width: 80%;
             flex-shrink: 1;
+            div.username {
+              font-size: 0.7em;
+              color: #aaaaaa;
+            }
             span.quote {
               display: inline-block;
               width: 13px;
@@ -68,7 +72,10 @@
           }
           &.owner {
             flex-direction: row-reverse;
-            span.chat-text {
+            div.chat-text {
+              div.username {
+                display: none;
+              }
               position: relative;
               text-align: right;
               background-color: #4398c9;
@@ -83,7 +90,10 @@
             }
           }
           &.admin {
-            span.chat-text {
+            div.chat-text {
+              div.username {
+                display: none;
+              }
               color: #a1750b;
               width: auto;
               text-align: center;

@@ -1,5 +1,9 @@
+//TODO remove phone min width
+// change phone max max to 374px
+// change plablet min to 375px (iphone 6,6+ etc)- this will mean changing a lot of styles
+// for plablet
 //phone
-$media-phone-min: 320px;
+$media-phone-min: 300px;
 $media-phone-max: 499px;
 //plablet
 $media-plablet-min: 500px;
