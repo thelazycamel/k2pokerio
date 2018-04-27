@@ -4,13 +4,13 @@ defmodule K2pokerIoWeb.ProfileController do
 
   alias K2pokerIo.User
 
-  def show(conn, %{"id" => id}) do
-    user = Repo.get(User, id)
-    render(conn, "show.html", user: user)
-  end
-
   def edit(conn, _params) do
     render(conn, "edit.html", profile: current_user(conn))
+  end
+
+  def settings(conn) do
+    # link to here from profile for further settings
+    # such as mail settings and crypto keys
   end
 
   def update(conn, %{"profile" => profile_params}) do

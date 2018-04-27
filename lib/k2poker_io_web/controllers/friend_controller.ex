@@ -3,7 +3,11 @@ defmodule K2pokerIoWeb.FriendController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
-  #alias K2pokerIo.Queries.Friends.SearchFriendsQuery
+
+  def index(conn) do
+    # link to here from profile to show list of friends and
+    # friends management abilities
+  end
 
   def request(conn, %{"id" => friend_id}) do
     if current_user(conn) do

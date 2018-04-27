@@ -12,12 +12,6 @@ defmodule K2pokerIo.ProfileControllerTest do
     %{player: Helpers.create_user("stu")}
   end
 
-  test "#show", %{conn: conn, player: player} do
-    conn = get(conn, profile_path(conn, :show, player.id))
-    expected = ~r/body\ class.*profile\ show/
-    assert html_response(conn, 200) =~ expected
-  end
-
   test "#edit", %{conn: conn, player: player} do
     conn = init_test_session(conn, player_id: User.player_id(player))
     conn = get(conn, profile_path(conn, :edit))

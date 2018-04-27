@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import EditProfileComponent from "../../components/edit_profile_component"
+import EditProfileComponent from "../../components/pages/edit_profile_component"
 
 class ProfileEditPage extends page {
 

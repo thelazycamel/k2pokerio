@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import NewTournamentComponent from "../../components/new_tournament_component"
+import NewTournamentComponent from "../../components/pages/new_tournament_component"
 
 class TournamentIndexPage extends page {
 
