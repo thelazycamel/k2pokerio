@@ -1,10 +1,12 @@
-<%= link "Logout", to: session_path(@conn, :delete), method: :delete %>
-<form
-  action="<%= profile_path(@conn, :update, @profile.id) %>"
-  method="post"
-  name="profile"
-  id="edit-profile"
-  data-username="<%= @profile.username %>"
-  data-blurb="<%= @profile.blurb %>"
-  data-image="<%= @profile.image %>" >
-</form>
+<div id="section-wrapper">
+  <section id="edit-profile-wrapper"
+    data-username="<%= @profile.username %>"
+    data-blurb="<%= @profile.blurb %>"
+    data-image="<%= @profile.image %>"
+    data-email="<%= @profile.email %>" >
+  </section>
+  <section id="profile-badges">
+    <h2>Badges</h2>
+    <p>Coming soon...</p>
+  </section>
+</div>

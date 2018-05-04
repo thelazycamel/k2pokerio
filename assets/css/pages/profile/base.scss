@@ -1,39 +1,145 @@
 body.profile {
 
   &.edit {
+    main {
+      height: 619px;
 
-    .form-group {
-      clear: both;
-    }
+      #edit-profile {
+        width: 550px;
 
-    .profile-image {
-      label {
-        float: left;
-        margin: 5px;
-        input {
-          display: none;
-        }
-        img {
-          filter: grayscale(1);
-          opacity: 0.5;
+        .edit-icon {
+          position: absolute;
+          display: block;
           cursor: pointer;
-          border-radius: 10px;
-          width: 150px;
-          height: 150px;
+          bottom: -2px;
+          right: -2px;
+          width: 30px;
+          height:30px;
+          background-image: url("/images/icon-sprite.svg");
+          background-size: 300px 63px;
+          background-position: -264px 32px;
           &:hover {
-            opacity: 1;
+            background-position: -264px 0px;
           }
         }
-        &.selected {
-          img {
-            filter: grayscale(0);
-            opacity: 1;
+
+        #user-details {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          #user-details-flex{
+            display: flex;
+            flex-direction: column;
+            .profile-text {
+              flex-basis: 50%;
+              justify-content: center;
+              display: flex;
+              align-items: center;
+              padding: 5px 0px;
+              .icon {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background-image: url("/images/icon-sprite.svg");
+                background-size: 300px 63px;
+                margin-right: 15px;
+                &.icon-profile {
+                  background-position: -165px 0px;
+                }
+                &.icon-email {
+                  background-position: -231px 0px;
+                }
+              }
+            }
           }
+
+          #profile-image {
+            position: relative;
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 10px;
+            }
+            #edit-image {
+            }
+          }
+
         }
+
+        #profile-buttons {
+          margin: 10px 0px;
+          display: flex;
+          justify-content: space-between;
+          .btn {
+            flex-grow: 1;
+            flex-basis: 33%;
+          }
+          .btn-password {
+            background-color: #157efa;
+            &:hover {
+              background-color: #1164c7;
+              color: #dddddd;
+            }
+            margin-right: 5px;
+          }
+          .btn-friends {
+            background-color: #03a750;
+            &:hover {
+              background-color: #027438;
+              color: #dddddd;
+            }
+          }
+          .btn-settings {
+            background-color: #ff9947;
+            margin-left: 5px;
+            &:hover {
+              background-color: #cc7a39;
+              color: #dddddd;
+            }
+          }
+
+        }
+
+        #profile-bio {
+          position: relative;
+          border: 1px solid #8393a7;
+          background-color: #09102d;
+          border-radius: 10px;
+          width: 100%;
+          height: 200px;
+          margin: 10px 0px;
+        }
+
+        #profile-logout {
+          width: 33%;
+        }
+
+      }
+
+      #profile-badges {
+        position: absolute;
+        top: 0px;
+        height: 619px;
+        left: 580px;
+        width: 550px;
+        border: 1px solid #8393a7;
+        background-color: #09102d;
+        border-radius: 10px;
+
+        h2 {
+         padding: 10px;
+         border-radius: 10px;
+         text-align: center;
+         background-color: transparent;
+        }
+
+        p {
+          padding: 15px;
+        }
+
       }
     }
-
   }
-
 }
 

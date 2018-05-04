@@ -1,0 +1,30 @@
+@import "../../variables";
+
+@media (min-width: $media-phone-min) and (max-width: $media-plablet-max) {
+
+  body.profile {
+
+    &.edit {
+      main {
+        height: auto;
+        #edit-profile {
+          width: 100%;
+
+          #profile-logout {
+            margin-left: 33%;
+            margin-right: 33%;
+          }
+
+        }
+
+        #profile-badges {
+          margin-top: 10px;
+          position: relative;
+          left: 0px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}

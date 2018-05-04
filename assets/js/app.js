@@ -29,8 +29,6 @@ import mainStore from "./reducers/main_store";
 import Translate from "./utils/translate";
 
 /* Services (ajax services, not channels) */
-/* TODO: only import this into the pages that require them, no need to load all these
- * services on every page */
 
 import opponentProfileService from        "./services/opponent_profile_service"
 import scoresService from                 "./services/scores_service"
@@ -41,7 +39,7 @@ import getTournamentsForUserService from  "./services/get_tournaments_for_user_s
 import destroyInviteService from          "./services/destroy_invite_service"
 import destroyTournamentService from      "./services/destroy_tournament_service"
 import JoinGameService from               "./services/join_game_service"
-
+import LogoutService from                 "./services/logout_service"
 
 /* pages */
 
@@ -87,6 +85,7 @@ window.App = {
     this.services.destroy_tournament = new destroyTournamentService();
     this.services.opponent_profile   = new opponentProfileService();
     this.services.get_scores         = new scoresService();
+    this.services.logout_service     = new LogoutService();
     this.services.request_friend     = new requestFriendService();
     this.services.confirm_friend     = new confirmFriendService();
     this.services.search_friends     = new searchFriendsService();

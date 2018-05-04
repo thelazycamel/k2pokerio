@@ -3,13 +3,6 @@ import ReactDOM from "react-dom"
 
 class EditProfileComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-    let imageStates = {};
-    this.images().forEach( (image) => { imageStates[image] = (props.image == image)});
-    this.state = {images: imageStates};
-  }
-
   images(){
     return [
       "bettyboop.png",
@@ -29,49 +22,43 @@ class EditProfileComponent extends React.Component {
     ]
   }
 
-  selectedImageClass(selected) {
-    return selected ? "selected" : "";
-  }
-
-  selectImage(e) {
-    let images = {};
-    for(let key of Object.keys(this.state.images)) {
-      images[key] = false;
-    }
-    let image = e.currentTarget.value;
-    images[image] = true;
-    this.setState(Object.assign({}, this.state, {images: images}));
-  }
-
-  renderProfileImages(){
-    let images = [];
-    for (let image of Object.keys(this.state.images)) {
-      images.push(
-        <label key={image} className={this.selectedImageClass(this.state.images[image])}>
-          <input type="radio" name="profile[image]" value={image} onChange={this.selectImage.bind(this)}/>
-          <img src={"/images/profile-images/" + image} />
-        </label>
-      )
-    };
-    return images;
+  logoutClicked() {
+    App.services.logout_service.call();
   }
 
   render() {
     return (
-      <div id="form-holder">
-        <input type="hidden" name="_csrf_token" value={App.settings.csrf_token}/>
-        <input type="hidden" name="_method" value="put"/>
-        <h2>{this.props.username }</h2>
-        <div className="form-group">
-          <label>Bio</label>
-          <textarea name="profile[blurb]" className="form-control" placeholder="Your Bio" defaultValue={this.props.blurb}></textarea>
+      <div id="edit-profile">
+        <div id="user-details">
+          <div id="user-details-flex">
+            <div className="profile-text">
+              <span className="icon icon-profile"></span>
+              <span className="text-username">{this.props.username}</span>
+            </div>
+            <div className="profile-text">
+              <span className="icon icon-email"></span>
+              <span className="text-email">{this.props.email}</span>
+            </div>
+          </div>
+          <div id="profile-image">
+            <img src={"/images/profile-images/" + this.props.image} alt="Profile Image"/>
+            <div id="edit-image" className="edit-icon"></div>
+          </div>
         </div>
-        <div className="form-group profile-image">
-          { this.renderProfileImages() }
+        <div id="profile-buttons">
+          <button id="profile-password" className="btn btn-large btn-password">Change Password</button>
+          <button id="profile-friends" className=" btn btn-large btn-friends">Friends</button>
+          <button id="profile-settings" className="btn btn-large btn-settings">Settings</button>
         </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">Update Profile</button>
+        <div id="profile-bio">
+          <p>{this.props.blurb}</p>
+          <div id="profile-bio-edit" style={{display: "none"}}>
+            <label>Bio</label>
+            <textarea name="blurb" defaultValue={this.props.blurb}></textarea>
+          </div>
+          <div id="edit-blurb" className="edit-icon"></div>
         </div>
+        <button id="profile-logout" className="btn btn-large btn-danger" onClick={this.logoutClicked}>Logout</button>
       </div>
     )
   }

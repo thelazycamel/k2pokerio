@@ -1,0 +1,21 @@
+@import "../../variables";
+
+@media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
+
+  body.profile {
+
+    &.edit {
+      main {
+        #edit-profile {
+          width: 460px;
+
+        }
+
+        #profile-badges {
+          left: 480px;
+          width: 450px;
+        }
+      }
+    }
+  }
+}
