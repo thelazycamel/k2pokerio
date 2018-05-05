@@ -6,7 +6,7 @@ defmodule K2pokerIo.Decorators.BotProfileDecorator do
       username: "RandomBot",
       opponent: :bot,
       blurb: "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.",
-      image: "bender.png",
+      image: "/images/profile-images/bender.png",
       friend: :na
     }
   end

@@ -30,7 +30,7 @@ defmodule K2pokerIo.AnonUserProfileDecoratorTest do
   end
 
   test "should have an image", context do
-    assert(context.decorator.image == "fish.png")
+    assert(context.decorator.image == "/images/profile-images/fish.png")
   end
 
   test "should have a friend status", context do

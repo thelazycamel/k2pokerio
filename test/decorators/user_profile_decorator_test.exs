@@ -11,7 +11,7 @@ defmodule K2pokerIo.UserProfileDecoratorTest do
 
   setup do
     setup = Helpers.advanced_set_up(["stu", "bob"])
-    changeset = User.profile_changeset(setup.player2, %{blurb: "Hello from your opponent", image: "bob.png"})
+    changeset = User.profile_changeset(setup.player2, %{blurb: "Hello from your opponent", image: "/images/profile-images/bob.png"})
     Repo.update(changeset)
     decorator = UserProfileDecorator.decorate(User.player_id(setup.player1), setup.player2.id)
     %{player1: setup.player1, player2: setup.player2, decorator: decorator}
@@ -34,7 +34,7 @@ defmodule K2pokerIo.UserProfileDecoratorTest do
   end
 
   test "should have an image", context do
-    assert(context.decorator.image == "bob.png")
+    assert(context.decorator.image == "/images/profile-images/bob.png")
   end
 
   test "should have a friend status", context do

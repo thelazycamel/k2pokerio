@@ -41,6 +41,7 @@ import destroyTournamentService from      "./services/destroy_tournament_service
 import JoinGameService from               "./services/join_game_service"
 import LogoutService from                 "./services/logout_service"
 import ProfileImageService from           "./services/profile_image_service"
+import UpdateBlurbService from           "./services/update_blurb_service"
 
 /* pages */
 
@@ -88,6 +89,7 @@ window.App = {
     this.services.get_scores         = new scoresService();
     this.services.logout_service     = new LogoutService();
     this.services.profile_image_service = new ProfileImageService();
+    this.services.update_blurb_service = new UpdateBlurbService();
     this.services.request_friend     = new requestFriendService();
     this.services.confirm_friend     = new confirmFriendService();
     this.services.search_friends     = new searchFriendsService();

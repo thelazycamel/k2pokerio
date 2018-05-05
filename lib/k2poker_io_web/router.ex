@@ -42,6 +42,7 @@ defmodule K2pokerIoWeb.Router do
 
     get "/profile", ProfileController, :edit
     post "/profile/image", ProfileController, :image
+    post "/profile/blurb", ProfileController, :blurb
 
     resources "/profiles", ProfileController, only: [:update]
 

@@ -27,7 +27,7 @@ defmodule K2pokerIo.BotProfileDecoratorTest do
   end
 
   test "should have an image", context do
-    assert(context.decorator.image == "bender.png")
+    assert(context.decorator.image == "/images/profile-images/bender.png")
   end
 
   test "should have a friend status", context do

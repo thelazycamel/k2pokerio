@@ -9,7 +9,7 @@ class ProfileComponent extends React.Component {
     if(this.props.opponent_profile.image) {
       return(
         <div id="profile-image">
-          <img src= {"/images/profile-images/" +this.props.opponent_profile.image} alt={this.props.opponent_profile.username}/>
+          <img src= {this.props.opponent_profile.image} alt={this.props.opponent_profile.username}/>
         </div>
       )
     }

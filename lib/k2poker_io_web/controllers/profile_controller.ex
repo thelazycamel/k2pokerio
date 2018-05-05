@@ -16,6 +16,14 @@ defmodule K2pokerIoWeb.ProfileController do
     end
   end
 
+  def blurb(conn, %{"blurb" => blurb} ) do
+    changeset = User.profile_changeset(current_user(conn), %{blurb: blurb})
+    case Repo.update(changeset) do
+      {:ok, _} -> json conn, %{status: :ok, blurb: blurb}
+      {:error, _} -> json conn, %{status: :error}
+    end
+  end
+
   def settings(conn) do
     # link to here from profile for further settings
     # such as mail settings and crypto keys

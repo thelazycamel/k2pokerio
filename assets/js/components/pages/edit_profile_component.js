@@ -5,23 +5,30 @@ class EditProfileComponent extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { profileImage: {
-      image: this.props.image,
-      selectDisplay: false
-    } } ;
+    this.state = {
+      profileImage: this.props.image,
+      imageSelector: false,
+      blurb: this.props.blurb
+    };
   }
 
-  editProfileImage(){
-    this.setState(previousState => {
-        return { profileImage: { image: this.state.profileImage.image, selectDisplay: !this.state.profileImage.selectDisplay } };
-     });
+  updateBlurb(event){
+    App.services.update_blurb_service.call(event.target.value).then(data => {
+      this.setState(...this.state, { blurb: data.blurb });
+    });
+  }
+
+  editProfileImageClicked(){
+    this.setState(...this.state, {imageSelector: !this.state.imageSelector});
+  }
+
+  editBlurbClicked(){
+    this.setState(...this.state, {blurbEditor: !this.state.blurbEditor});
   }
 
   selectImage(image){
     App.services.profile_image_service.call(image).then(data => {
-      this.setState(previousState => {
-        return { profileImage: { selectDisplay: false, image: image }};
-      });
+      this.setState(...this.state, { imageSelector: false, profileImage: image });
     });
   }
 
@@ -32,7 +39,7 @@ class EditProfileComponent extends React.Component {
   }
 
   profileImageSelect(){
-    let display = this.state.profileImage.selectDisplay ? "block" : "none";
+    let display = this.state.imageSelector ? "block" : "none";
     return(
       <div id="profile-image-select" name="profile-image" style={{display: display}}>
         { this.images().map((image, index) => { return this.profileImageOption(image, index) } )}
@@ -78,8 +85,8 @@ class EditProfileComponent extends React.Component {
             </div>
           </div>
           <div id="profile-image">
-            <img src={this.state.profileImage.image} alt="Profile Image"/>
-            <div id="edit-image" className="edit-icon" onClick={ this.editProfileImage.bind(this) }></div>
+            <img src={this.state.profileImage} alt="Profile Image"/>
+            <div id="edit-image" className="edit-icon" onClick={ this.editProfileImageClicked.bind(this) }></div>
            { this.profileImageSelect() }
           </div>
         </div>
@@ -89,12 +96,7 @@ class EditProfileComponent extends React.Component {
           <button id="profile-settings" className="btn btn-large btn-settings">Settings</button>
         </div>
         <div id="profile-bio">
-          <p>{this.props.blurb}</p>
-          <div id="profile-bio-edit" style={{display: "none"}}>
-            <label>Bio</label>
-            <textarea name="blurb" defaultValue={this.props.blurb}></textarea>
-          </div>
-          <div id="edit-blurb" className="edit-icon"></div>
+          <textarea placeholder="Bio" className="profile-bio-inner" defaultValue={this.state.blurb} onBlur={ this.updateBlurb.bind(this) }></textarea>
         </div>
         <button id="profile-logout" className="btn btn-large btn-danger" onClick={this.logoutClicked}>Logout</button>
       </div>

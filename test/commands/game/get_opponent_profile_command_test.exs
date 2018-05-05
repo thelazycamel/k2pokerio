@@ -11,7 +11,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
 
   test "gets the opponents users profile given the current user" do
     setup = Helpers.advanced_set_up(["stu", "bob"])
-    changeset = User.profile_changeset(setup.player2, %{blurb: "Hello from your opponent", image: "bob.png"})
+    changeset = User.profile_changeset(setup.player2, %{blurb: "Hello from your opponent", image: "/images/profile-images/bob.png"})
     Repo.update(changeset)
 
     opponent = GetOpponentProfileCommand.execute(setup.game, setup.p1_utd.player_id)
@@ -19,7 +19,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     assert(opponent.username == "bob")
     assert(opponent.opponent == :user)
     assert(opponent.blurb == "Hello from your opponent")
-    assert(opponent.image == "bob.png")
+    assert(opponent.image == "/images/profile-images/bob.png")
     assert(opponent.friend == :not_friends)
   end
 
@@ -30,7 +30,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     assert(opponent.username == "bob")
     assert(opponent.opponent == :anon)
     assert(opponent.blurb == "Meh, just an anonymous fish")
-    assert(opponent.image == "fish.png")
+    assert(opponent.image == "/images/profile-images/fish.png")
     assert(opponent.friend == :na)
   end
 
@@ -46,7 +46,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     assert(opponent.username == "RandomBot")
     assert(opponent.opponent == :bot)
     assert(opponent.blurb == "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.")
-    assert(opponent.image == "bender.png")
+    assert(opponent.image == "/images/profile-images/bender.png")
     assert(opponent.friend == :na)
   end
 

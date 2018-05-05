@@ -11,8 +11,8 @@ body.profile {
           position: absolute;
           display: block;
           cursor: pointer;
-          bottom: -2px;
-          right: -2px;
+          bottom: 0px;
+          right: 0px;
           width: 30px;
           height:30px;
           background-image: url("/images/icon-sprite.svg");
@@ -33,7 +33,6 @@ body.profile {
             flex-direction: column;
             .profile-text {
               flex-basis: 50%;
-              justify-content: center;
               display: flex;
               align-items: center;
               padding: 5px 0px;
@@ -126,12 +125,19 @@ body.profile {
 
         #profile-bio {
           position: relative;
-          border: 1px solid #8393a7;
-          background-color: #09102d;
-          border-radius: 10px;
-          width: 100%;
-          height: 200px;
           margin: 10px 0px;
+          overflow: hidden;
+          height: 200px;
+          .profile-bio-inner {
+            position: relative;
+            margin: 0px;
+            padding: 15px;
+            border: 1px solid #8393a7;
+            background-color: #09102d;
+            border-radius: 10px;
+            width: 100%;
+            height: 200px;
+          }
         }
 
         #profile-logout {
