@@ -41,6 +41,8 @@ defmodule K2pokerIoWeb.Router do
     resources "/registrations", RegistrationController, only: [:new, :create]
 
     get "/profile", ProfileController, :edit
+    post "/profile/image", ProfileController, :image
+
     resources "/profiles", ProfileController, only: [:update]
 
     get    "/login",  SessionController, :new

@@ -3,22 +3,59 @@ import ReactDOM from "react-dom"
 
 class EditProfileComponent extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = { profileImage: {
+      image: this.props.image,
+      selectDisplay: false
+    } } ;
+  }
+
+  editProfileImage(){
+    this.setState(previousState => {
+        return { profileImage: { image: this.state.profileImage.image, selectDisplay: !this.state.profileImage.selectDisplay } };
+     });
+  }
+
+  selectImage(image){
+    App.services.profile_image_service.call(image).then(data => {
+      this.setState(previousState => {
+        return { profileImage: { selectDisplay: false, image: image }};
+      });
+    });
+  }
+
+  profileImageOption(image, index){
+    return(
+      <div className="profile-image-option" value={image} style={ {backgroundImage: `url('${image}')`} } key={index} onClick={ this.selectImage.bind(this, image) }></div>
+    )
+  }
+
+  profileImageSelect(){
+    let display = this.state.profileImage.selectDisplay ? "block" : "none";
+    return(
+      <div id="profile-image-select" name="profile-image" style={{display: display}}>
+        { this.images().map((image, index) => { return this.profileImageOption(image, index) } )}
+      </div>
+    )
+  }
+
   images(){
     return [
-      "bettyboop.png",
-      "bond.png",
-      "clint.png",
-      "damon.png",
-      "delboy.png",
-      "female.png",
-      "lockstock.png",
-      "mcqueen.png",
-      "norton.png",
-      "penelope.png",
-      "rango.png",
-      "rousso.png",
-      "shannon.png",
-      "yosemitesam.png"
+      "/images/profile-images/bond.png",
+      "/images/profile-images/clint.png",
+      "/images/profile-images/damon.png",
+      "/images/profile-images/delboy.png",
+      "/images/profile-images/female.png",
+      "/images/profile-images/lockstock.png",
+      "/images/profile-images/mcqueen.png",
+      "/images/profile-images/norton.png",
+      "/images/profile-images/penelope.png",
+      "/images/profile-images/rango.png",
+      "/images/profile-images/bettyboop.png",
+      "/images/profile-images/yosemitesam.png",
+      "/images/profile-images/rousso.png",
+      "/images/profile-images/shannon.png"
     ]
   }
 
@@ -41,8 +78,9 @@ class EditProfileComponent extends React.Component {
             </div>
           </div>
           <div id="profile-image">
-            <img src={"/images/profile-images/" + this.props.image} alt="Profile Image"/>
-            <div id="edit-image" className="edit-icon"></div>
+            <img src={this.state.profileImage.image} alt="Profile Image"/>
+            <div id="edit-image" className="edit-icon" onClick={ this.editProfileImage.bind(this) }></div>
+           { this.profileImageSelect() }
           </div>
         </div>
         <div id="profile-buttons">

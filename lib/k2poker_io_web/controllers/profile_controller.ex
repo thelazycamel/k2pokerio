@@ -8,6 +8,14 @@ defmodule K2pokerIoWeb.ProfileController do
     render(conn, "edit.html", profile: current_user(conn))
   end
 
+  def image(conn, %{"image" => image} ) do
+    changeset = User.profile_changeset(current_user(conn), %{image: image})
+    case Repo.update(changeset) do
+      {:ok, _} -> json conn, %{status: :ok, image: image}
+      {:error, _} -> json conn, %{status: :error}
+    end
+  end
+
   def settings(conn) do
     # link to here from profile for further settings
     # such as mail settings and crypto keys

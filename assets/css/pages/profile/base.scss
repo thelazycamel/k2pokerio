@@ -17,7 +17,7 @@ body.profile {
           height:30px;
           background-image: url("/images/icon-sprite.svg");
           background-size: 300px 63px;
-          background-position: -264px 32px;
+          background-position: -264px 33px;
           &:hover {
             background-position: -264px 0px;
           }
@@ -61,8 +61,31 @@ body.profile {
               height: 100px;
               border-radius: 10px;
             }
-            #edit-image {
+            #profile-image-select {
+              position: absolute;
+              right: 30px;
+              top: 30px;
+              width: 122px;
+              border: 1px solid #ffffff;
+              z-index: 10;
+              border: 1px solid #8393a7;
+              background-color: #09102d;
+              border-radius: 10px;
+              box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+              .profile-image-option {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background-size: cover;
+                border-radius: 5px;
+                cursor: pointer;
+                opacity: 0.75;
+                &:hover {
+                  opacity: 1;
+                }
+              }
             }
+
           }
 
         }
