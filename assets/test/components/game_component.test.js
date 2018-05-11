@@ -36,7 +36,7 @@ const initialState = {
     blurb: "I am a test user",
     friend: "na",
     id: null,
-    image: "bender.png",
+    image: "/images/profile-images/bender.png",
     opponent: "bot",
     username: "TestingBot"
   }

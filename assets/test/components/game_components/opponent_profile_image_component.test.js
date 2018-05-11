@@ -12,7 +12,7 @@ describe("Opponent Profile Image", () => {
 
   beforeEach( () => {
     window.App = MockApp;
-    let opponentProfile = {image: "test.png", username: "Test User"};
+    let opponentProfile = {image: "/images/profile-images/test.png", username: "Test User"};
     opponentProfileImageComponent = mount(<OpponentProfileImageComponent opponent_profile={opponentProfile}/>);
   });
 

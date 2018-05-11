@@ -39,7 +39,7 @@ class EditProfileComponent extends React.Component {
   }
 
   profileImageSelect(){
-    let display = this.state.imageSelector ? "block" : "none";
+    let display = this.state.imageSelector ? "flex" : "none";
     return(
       <div id="profile-image-select" name="profile-image" style={{display: display}}>
         { this.images().map((image, index) => { return this.profileImageOption(image, index) } )}
