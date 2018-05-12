@@ -127,6 +127,67 @@ body.profile {
 
         }
 
+        #change-password-wrapper {
+          position: relative;
+          margin-bottom: 10px;
+          padding: 15px;
+          border: 1px solid #8393a7;
+          background-color: #09102d;
+          border-radius: 10px;
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          input[type=password] {
+            margin-bottom: 5px;
+          }
+          #password-update-wrapper {
+            display: flex;
+
+            #button-wrapper {
+              flex-grow: 0; 
+              margin-right: 10px;
+            } 
+            p.error {
+              flex-grow: 2;
+              text-align: right;
+              color: #d9534f;
+            }
+            p.success {
+              flex-grow: 2;
+              text-align: right;
+              color: #03a750;
+            }
+          }
+        }
+
+        #profile-settings-wrapper {
+          position: relative;
+          margin-bottom: 10px;
+          padding: 15px;
+          border: 1px solid #8393a7;
+          background-color: #09102d;
+          border-radius: 10px;
+          width: 100%;
+          height: 400px;
+          overflow: hidden;
+          input[type=password] {
+            margin-bottom: 5px;
+          }
+          h2 {
+            .icon {
+              margin-right: 10px;
+              vertical-align: middle;
+            }
+            padding-left: 0px;
+            background-color: transparent;
+          }
+
+          .checkbox-input-text {
+            padding-left: 10px;
+            cursor: pointer;
+          }
+        }
+
         #profile-bio {
           position: relative;
           margin: 10px 0px;

@@ -1,14 +1,14 @@
-export default class UpdateBlurbService {
+export default class UpdatePasswordService {
 
   constructor(){
-    this.url = "/profile/update_blurb";
+    this.url = "/profile/update_password";
   }
 
   /* slightly different setup, this returns the whole request and response */
-  call(blurb) {
+  call(passwords) {
     return fetch(this.url,
       { method: 'post',
-        body: JSON.stringify({blurb: blurb}),
+        body: JSON.stringify({passwords: passwords}),
         headers: {
           'x-csrf-token': App.settings.csrf_token,
           'content-type': 'application/json'
@@ -16,6 +16,5 @@ export default class UpdateBlurbService {
         credentials: 'same-origin'}
    ).then(response => { return response.json() });
   }
-
 
 }

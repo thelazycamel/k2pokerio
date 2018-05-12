@@ -1,0 +1,15 @@
+.icon {
+
+  display: inline-block;
+
+  &.icon-small {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+  }
+
+  &.icon-monero {
+    background-image: url("/images/cryptos/monero.svg");
+  }
+
+}

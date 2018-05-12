@@ -1,7 +1,7 @@
 export default class ProfileImageService {
 
   constructor(){
-    this.url = "/profile/image";
+    this.url = "/profile/update_image";
   }
 
   /* slightly different setup, this returns the whole request and response */

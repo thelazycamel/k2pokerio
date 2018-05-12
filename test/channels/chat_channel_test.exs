@@ -30,9 +30,9 @@ defmodule K2pokerIo.ChatChannelTest do
   end
 
   test "chat:create_comment -> broadcasts the message with profile image", context do
-    user = Repo.update!(User.profile_changeset(context.user, %{image: "bond.png"}))
+    user = Repo.update!(User.profile_changeset(context.user, %{image: "/images/profile-images/bond.png"}))
     player_id = User.player_id(user)
-    profile_image = "/images/profile-images/#{user.image}"
+    profile_image = user.image
     tournament_id = "#{context.tournament.id}"
     {:ok, _, socket} = socket("", %{player_id: player_id, current_user: user})
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")

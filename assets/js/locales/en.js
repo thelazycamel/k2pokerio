@@ -22,7 +22,11 @@ class LocaleEn {
       "searching": "Searching...",
       "waiting": "Waiting...",
       "play": "Play",
-      "bot_request": "Play Bot?"
+      "bot_request": "Play Bot?",
+      "error_password_length": "Password too short",
+      "error_password_mismatch": "Passwords do not match",
+      "error_invalid_password": "Current password invalid",
+      "password_updated": "Password has been updated"
     });
   }
 
