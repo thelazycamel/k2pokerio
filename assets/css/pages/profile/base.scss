@@ -101,13 +101,14 @@ body.profile {
             flex-grow: 1;
             flex-basis: 33%;
           }
-          .btn-password {
-            background-color: #157efa;
+
+          .btn-settings {
+            background-color: #ff9947;
+            margin-right: 5px;
             &:hover {
-              background-color: #1164c7;
+              background-color: #cc7a39;
               color: #dddddd;
             }
-            margin-right: 5px;
           }
           .btn-friends {
             background-color: #03a750;
@@ -116,15 +117,14 @@ body.profile {
               color: #dddddd;
             }
           }
-          .btn-settings {
-            background-color: #ff9947;
-            margin-left: 5px;
+          .btn-password {
+            background-color: #157efa;
             &:hover {
-              background-color: #cc7a39;
+              background-color: #1164c7;
               color: #dddddd;
             }
+            margin-left: 5px;
           }
-
         }
 
         #change-password-wrapper {

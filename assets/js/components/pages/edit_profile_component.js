@@ -191,9 +191,9 @@ class EditProfileComponent extends React.Component {
           </div>
         </div>
         <div id="profile-buttons">
-          <button id="profile-password" className="btn btn-large btn-password" onClick={this.passwordButtonClicked.bind(this)}>Change Password</button>
-          <button id="profile-friends" className=" btn btn-large btn-friends" onClick={this.friendsButtonClicked.bind(this)}>Friends</button>
           <button id="profile-settings" className="btn btn-large btn-settings" onClick={this.settingsButtonClicked.bind(this)}>Settings</button>
+          <button id="profile-friends" className=" btn btn-large btn-friends" onClick={this.friendsButtonClicked.bind(this)}>Friends</button>
+          <button id="profile-password" className="btn btn-large btn-password" onClick={this.passwordButtonClicked.bind(this)}>Change Password</button>
         </div>
 
         { this.renderChangePassword() }
