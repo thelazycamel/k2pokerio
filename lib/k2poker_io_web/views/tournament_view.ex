@@ -8,7 +8,7 @@ defmodule K2pokerIoWeb.TournamentView do
   end
 
   def profile_image_url(image) do
-    if image, do: "/images/profile-images/#{image}", else: "/images/profile-images/fish.png"
+    if image, do: image, else: "/images/profile-images/fish.png"
   end
 
 end
