@@ -1,5 +1,8 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ProfileSettings from '../presentational/profile_settings.js';
+import ChangePassword from '../presentational/change_password.js';
+import FriendsList from '../presentational/friends_list.js';
 
 class EditProfileComponent extends React.Component {
 
@@ -11,10 +14,8 @@ class EditProfileComponent extends React.Component {
       blurb: this.props.blurb,
       showChangePassword: false,
       showSettings: false,
+      showFriends: false,
       showBlurb: true,
-      passwordError: false,
-      passwordErrorMessage: "",
-      passwordUpdated: false
     };
   }
 
@@ -78,61 +79,31 @@ class EditProfileComponent extends React.Component {
 
   passwordButtonClicked(){
     let showBlurb = this.state.showChangePassword;
-    this.setState(...this.state, { showChangePassword: !this.state.showChangePassword, showSettings: false, showBlurb: showBlurb });
+    this.setState(...this.state, { showChangePassword: !this.state.showChangePassword, showSettings: false, showFriends: false, showBlurb: showBlurb });
   }
 
   friendsButtonClicked(){
-    console.log("TODO: friends page");
+    let showBlurb = this.state.showFriends;
+    this.setState(...this.state, { showFriends: !this.state.showFriends, showChangePassword: false, showSettings: false, showBlurb: showBlurb });
   }
 
   settingsButtonClicked(){
     let showBlurb = this.state.showSettings;
-    this.setState(...this.state, { showSettings: !this.state.showSettings, showChangePassword: false, showBlurb: showBlurb });
-  }
-
-  submitNewPassword(event){
-    event.preventDefault();
-    App.services.update_password_service.call({
-      "current-password": event.target["current-password"].value,
-      "new-password": event.target["new-password"].value,
-      "confirm-password": event.target["confirm-password"].value
-    }).then(response => {
-      if(response.status == "error") {
-        this.setPasswordResponseError(response.message);
-      } else {
-        this.setState(...this.state, {passwordUpdated: true, passwordError: false});
-      }
-    });
-  }
-
-  setPasswordResponseError(message) {
-    message = App.t(message)
-    this.setState(...this.state, {passwordError: true, passwordErrorMessage: message, passwordUpdated: false});
-  }
-
-  submitSettings(event){
-    console.log("submit settings clicked")
+    this.setState(...this.state, { showSettings: !this.state.showSettings, showChangePassword: false, showFriends: false, showBlurb: showBlurb });
   }
 
   renderChangePassword() {
     if(this.state.showChangePassword) {
       return(
-        <div id="change-password-wrapper">
-          <form id="change-password-form" onSubmit={this.submitNewPassword.bind(this)}>
-            <div className="form-group">
-              <input type="password" name="current-password" className="form-control" placeholder="Current Password"/>
-              <input type="password" name="new-password" className="form-control" placeholder="New Password"/>
-              <input type="password" name="confirm-password" className="form-control" placeholder="Confirm New Password"/>
-            </div>
-            <div id="password-update-wrapper">
-              <div id="button-wrapper">
-                <button type="submit" className="btn btn-large btn-default">Update</button>
-              </div>
-              <p className="error" style={{display: this.state.passwordError ? "block" : "none"}}>{this.state.passwordErrorMessage}</p>
-              <p className="success" style={{display: this.state.passwordUpdated ? "block" : "none"}}>{ App.t("password_updated") }</p>
-            </div>
-          </form>
-        </div>
+        <ChangePassword />
+      )
+    }
+  }
+
+  renderFriends() {
+    if(this.state.showFriends) {
+      return(
+        <FriendsList />
       )
     }
   }
@@ -140,22 +111,7 @@ class EditProfileComponent extends React.Component {
   renderSettings() {
     if(this.state.showSettings) {
       return(
-        <div id="profile-settings-wrapper">
-          <h2>General Settings</h2>
-          <div className="form-check">
-            <label className="form-check-label">
-              <input type="checkbox" name="email-opt-in" className="form-check-input" value=""/>
-              <span className="checkbox-input-text">I would like to receive weekly news/marketing emails from K2Poker</span>
-            </label>
-          </div>
-          <h2><span className="icon icon-small icon-monero"></span>Monero Settings</h2>
-          <div className="form-group">
-            <p>In order to play in the Monero Tournament, you will need to add your Monero public address (so we can pay you)
-            and accept that you will be mining monero in the browser throughout the duration of the Monero Tournament</p>
-            <input type="text" name="monero-address" className="form-control" placeholder="Monero Public Address"/>
-          </div>
-          <button className="btn btn-large btn-default" onClick={this.submitSettings.bind(this)}>Update Settings</button>
-        </div>
+        <ProfileSettings />
       )
     }
   }
@@ -197,6 +153,7 @@ class EditProfileComponent extends React.Component {
         </div>
 
         { this.renderChangePassword() }
+        { this.renderFriends() }
         { this.renderSettings() }
         { this.renderBlurb() }
 

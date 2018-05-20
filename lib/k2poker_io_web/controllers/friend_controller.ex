@@ -3,13 +3,19 @@ defmodule K2pokerIoWeb.FriendController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
+  alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Queries.Friends.SearchFriendsQuery
 
-  def index(conn) do
-    # link to here from profile to show list of friends and
-    # friends management abilities
+  def index(conn, _) do
+    if current_user(conn) do
+      friends =  FriendsQuery.all_and_pending(current_user(conn).id)
+      json conn, %{friends: friends}
+    else
+      json conn, %{status: 401}
+    end
   end
 
-  def request(conn, %{"id" => friend_id}) do
+  def create(conn, %{"id" => friend_id}) do
     if current_user(conn) do
       {friend_id, _} = Integer.parse(friend_id)
       status = RequestFriendCommand.execute(current_user(conn).id, friend_id)
@@ -29,14 +35,14 @@ defmodule K2pokerIoWeb.FriendController do
     end
   end
 
-  #def search(conn, %{"query" => query}) do
-  #  if current_user(conn) do
-  #    friends = SearchFriendsQuery.search(current_user(conn).id, query)
-  #    json conn, %{friends: friends}
-  #  else
-  #    json conn, %{error: true, status: 401}
-  #  end
-  #end
+  def search(conn, %{"query" => query}) do
+    if current_user(conn) do
+      friends = SearchFriendsQuery.search(current_user(conn).id, query)
+      json conn, %{friends: friends}
+    else
+      json conn, %{error: true, status: 401}
+    end
+  end
 
   def destroy do
 

@@ -234,6 +234,45 @@ body.profile {
 
       }
     }
+    #friends-list {
+
+      .k2-table {
+        width: 100%;
+
+        img.friend-image {
+          width: 40px;
+          height: 40px;
+        }
+
+        td {
+          padding: 1px;
+
+          &.show-friend {
+            cursor: pointer;
+          }
+
+          &.friend-status {
+            text-align: center;
+
+            &.pending_them {
+              color: #d9534f;
+            }
+          }
+        }
+
+        td.actions, th.actions {
+          text-align: center;
+
+          .deleteFriend {
+            display: inline-block;
+            color: #d9534f;
+            cursor: pointer;
+          }
+        }
+
+      }
+
+    }
   }
 }
 

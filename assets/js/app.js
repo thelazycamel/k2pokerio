@@ -30,14 +30,15 @@ import Translate from "./utils/translate";
 
 /* Services (ajax services, not channels) */
 
-import opponentProfileService from        "./services/opponent_profile_service"
-import scoresService from                 "./services/scores_service"
-import requestFriendService from          "./services/request_friend_service"
-import confirmFriendService from          "./services/confirm_friend_service"
-import searchFriendsService from          "./services/search_friends_service"
-import getTournamentsForUserService from  "./services/get_tournaments_for_user_service"
-import destroyInviteService from          "./services/destroy_invite_service"
-import destroyTournamentService from      "./services/destroy_tournament_service"
+import OpponentProfileService from        "./services/opponent_profile_service"
+import ScoresService from                 "./services/scores_service"
+import RequestFriendService from          "./services/request_friend_service"
+import ConfirmFriendService from          "./services/confirm_friend_service"
+import GetFriendsService from             "./services/get_friends_service"
+import SearchFriendsService from          "./services/search_friends_service"
+import GetTournamentsForUserService from  "./services/get_tournaments_for_user_service"
+import DestroyInviteService from          "./services/destroy_invite_service"
+import DestroyTournamentService from      "./services/destroy_tournament_service"
 import JoinGameService from               "./services/join_game_service"
 import LogoutService from                 "./services/logout_service"
 import ProfileImageService from           "./services/profile_image_service"
@@ -84,19 +85,20 @@ window.App = {
 
   initializeServices: function() {
     this.services = {};
-    this.services.destroy_invite     = new destroyInviteService();
-    this.services.destroy_tournament = new destroyTournamentService();
-    this.services.opponent_profile   = new opponentProfileService();
-    this.services.get_scores         = new scoresService();
+    this.services.destroy_invite     = new DestroyInviteService();
+    this.services.destroy_tournament = new DestroyTournamentService();
+    this.services.opponent_profile   = new OpponentProfileService();
+    this.services.get_scores         = new ScoresService();
     this.services.logout_service     = new LogoutService();
     this.services.profile_image_service = new ProfileImageService();
     this.services.update_blurb_service = new UpdateBlurbService();
     this.services.update_password_service = new UpdatePasswordService();
-    this.services.request_friend     = new requestFriendService();
-    this.services.confirm_friend     = new confirmFriendService();
-    this.services.search_friends     = new searchFriendsService();
+    this.services.request_friend     = new RequestFriendService();
+    this.services.confirm_friend     = new ConfirmFriendService();
+    this.services.get_friends        = new GetFriendsService();
+    this.services.search_friends     = new SearchFriendsService();
     this.services.join_game_service  = new JoinGameService();
-    this.services.get_tournaments_for_user_service = new getTournamentsForUserService();
+    this.services.get_tournaments_for_user_service = new GetTournamentsForUserService();
   },
 
   createReduxStore: function() {

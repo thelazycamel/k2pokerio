@@ -1,7 +1,7 @@
 class SearchFriendsService {
 
   constructor(){
-    this.url = "/friend/search";
+    this.url = "/friends/search";
   }
 
   call(payload, callback) {

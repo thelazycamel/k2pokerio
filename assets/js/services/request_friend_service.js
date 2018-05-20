@@ -1,7 +1,7 @@
 class FriendRequestService {
 
   constructor(){
-    this.url = "/friend/request";
+    this.url = "/friends";
   }
 
   call(id) {

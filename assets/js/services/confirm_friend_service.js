@@ -1,7 +1,7 @@
 class FriendConfirmService {
 
   constructor(){
-    this.url = "/friend/confirm";
+    this.url = "/friends/confirm";
   }
 
   call(id) {

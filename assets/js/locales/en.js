@@ -26,7 +26,9 @@ class LocaleEn {
       "error_password_length": "Password too short",
       "error_password_mismatch": "Passwords do not match",
       "error_invalid_password": "Current password invalid",
-      "password_updated": "Password has been updated"
+      "password_updated": "Password has been updated",
+      "friend": "Friend",
+      "pending_them": "Pending Confirmation"
     });
   }
 

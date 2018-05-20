@@ -43,4 +43,17 @@ defmodule K2pokerIo.FriendsQueryTest do
     refute Enum.member?(query,context.player5.id)
   end
 
+  test "#all_and_pending should return all friends and pending friend requests", context do
+    pending_them = Helpers.create_user("pip")
+    Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: pending_them.id, status: false}))
+    query = FriendsQuery.all_and_pending(context.player1.id)
+    pending_me = Enum.find(query, fn (e) -> e.username == "StevePending" end)
+    pending_them = Enum.find(query, fn (e) -> e.username == "pip" end)
+    friend = Enum.find(query, fn (e) -> e.username == "stu" end)
+    assert Enum.count(query) == 4
+    assert pending_me.status == "pending_me"
+    assert pending_them.status == "pending_them"
+    assert friend.status == "friend"
+  end
+
 end
