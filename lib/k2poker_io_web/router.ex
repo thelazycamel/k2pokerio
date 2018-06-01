@@ -13,10 +13,18 @@ defmodule K2pokerIoWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
+    # TODO: Put the ajax calls in here and move
+    # their controllers to the /controllers/api/
+    # directory, routes need tidying up
+
   end
 
   scope "/", K2pokerIoWeb do
+
     pipe_through :browser # Use the default browser stack
+
+    # There are only very few actual pages, so most of these
+    # routes should be moved to the api scope.
 
     post "/anon-user", PageController, :anon_user_create
 
@@ -53,8 +61,4 @@ defmodule K2pokerIoWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", K2pokerIo do
-  #   pipe_through :api
-  # end
 end

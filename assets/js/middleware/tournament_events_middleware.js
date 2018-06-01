@@ -13,7 +13,7 @@ const tournamentEventsMiddleware = store => next => action => {
       App.page.showTournamentWinnerPopup(action);
       break;
     case "TOURNAMENT:DESTROY_TOURNAMENT":
-      App.services.destroy_tournament.call(action.tournament_id);
+      App.services.tournaments.destroy(action.tournament_id);
       break;
   }
   next(action);

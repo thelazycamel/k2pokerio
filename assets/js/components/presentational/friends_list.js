@@ -12,7 +12,7 @@ class FriendsList extends React.Component {
   }
 
   componentDidMount(){
-    App.services.get_friends.call().then(response => {
+    App.services.friends.index().then(response => {
       this.setState(...this.state, {friends: response.friends});
     });
   }

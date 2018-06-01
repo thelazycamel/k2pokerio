@@ -16,11 +16,11 @@ class ProfileComponent extends React.Component {
   }
 
   friendRequest() {
-    App.services.request_friend.call(this.props.opponent_profile.id);
+    App.services.friends.create(this.props.opponent_profile.id);
   }
 
   friendConfirm() {
-    App.services.confirm_friend.call(this.props.opponent_profile.id);
+    App.services.friends.confirm(this.props.opponent_profile.id);
   }
 
   renderFriendLink() {

@@ -21,7 +21,7 @@ class TournamentIndexPage extends page {
   }
 
   getTournaments() {
-    App.services.get_tournaments_for_user_service.call();
+    App.services.tournaments.for_user();
   }
 
   initializeTournamentIndexComponent() {

@@ -28,20 +28,12 @@ import mainStore from "./reducers/main_store";
 /* Utils */
 import Translate from "./utils/translate";
 
-/* Services (ajax services, not channels) */
-
-/* TODO tidy up these services each one should be restful, matching one per controller
- * i.e. friends_controller, tournaments_controller.
+/* API Services */
 
 import OpponentProfileService from        "./services/opponent_profile_service"
-import ScoresService from                 "./services/scores_service"
-import RequestFriendService from          "./services/request_friend_service"
-import ConfirmFriendService from          "./services/confirm_friend_service"
-import GetFriendsService from             "./services/get_friends_service"
-import SearchFriendsService from          "./services/search_friends_service"
-import GetTournamentsForUserService from  "./services/get_tournaments_for_user_service"
+import FriendsController from             "./services/friends_controller"
+import TournamentsController from         "./services/tournaments_controller"
 import DestroyInviteService from          "./services/destroy_invite_service"
-import DestroyTournamentService from      "./services/destroy_tournament_service"
 import JoinGameService from               "./services/join_game_service"
 import LogoutService from                 "./services/logout_service"
 import ProfileImageService from           "./services/profile_image_service"
@@ -88,20 +80,15 @@ window.App = {
 
   initializeServices: function() {
     this.services = {};
+    this.services.friends            = new FriendsController();
+    this.services.tournaments        = new TournamentsController();
     this.services.destroy_invite     = new DestroyInviteService();
-    this.services.destroy_tournament = new DestroyTournamentService();
+    this.services.join_game_service  = new JoinGameService();
     this.services.opponent_profile   = new OpponentProfileService();
-    this.services.get_scores         = new ScoresService();
-    this.services.logout_service     = new LogoutService();
     this.services.profile_image_service = new ProfileImageService();
+    this.services.logout_service     = new LogoutService();
     this.services.update_blurb_service = new UpdateBlurbService();
     this.services.update_password_service = new UpdatePasswordService();
-    this.services.request_friend     = new RequestFriendService();
-    this.services.confirm_friend     = new ConfirmFriendService();
-    this.services.get_friends        = new GetFriendsService();
-    this.services.search_friends     = new SearchFriendsService();
-    this.services.join_game_service  = new JoinGameService();
-    this.services.get_tournaments_for_user_service = new GetTournamentsForUserService();
   },
 
   createReduxStore: function() {
