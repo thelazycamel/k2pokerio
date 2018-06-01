@@ -30,6 +30,9 @@ import Translate from "./utils/translate";
 
 /* Services (ajax services, not channels) */
 
+/* TODO tidy up these services each one should be restful, matching one per controller
+ * i.e. friends_controller, tournaments_controller.
+
 import OpponentProfileService from        "./services/opponent_profile_service"
 import ScoresService from                 "./services/scores_service"
 import RequestFriendService from          "./services/request_friend_service"

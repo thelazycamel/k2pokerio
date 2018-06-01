@@ -42,7 +42,7 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     query = from f in Friendship,
       join: u in assoc(f, :friend),
       where: (f.user_id == ^current_user_id),
-      select: %{id: u.id, username: u.username, image: u.image, status: f.status}
+      select: %{id: u.id, username: u.username, image: u.image, blurb: u.blurb, status: f.status}
     Repo.all(query)
   end
 
@@ -50,7 +50,7 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     query = from f in Friendship,
       join: u in assoc(f, :user),
       where: (f.friend_id == ^current_user_id),
-      select: %{id: u.id, username: u.username, image: u.image, status: f.status}
+      select: %{id: u.id, username: u.username, image: u.image, blurb: u.blurb, status: f.status}
     Repo.all(query)
   end
 

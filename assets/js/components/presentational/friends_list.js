@@ -7,7 +7,7 @@ class FriendsList extends React.Component {
     super(props);
     this.state = {
       page: 1,
-      friends: []
+      friends: [],
     }
   }
 
@@ -21,10 +21,6 @@ class FriendsList extends React.Component {
     console.log(friend.id)
   }
 
-  showFriend(friend) {
-    console.log(friend.username);
-  }
-
   friendStatus(friend) {
     if(friend.status == "pending_me") {
       return <button className="btn btn-friends">Accept</button>
@@ -36,10 +32,10 @@ class FriendsList extends React.Component {
   renderFriend(friend) {
     return(
       <tr key={friend.id}>
-        <td className="show-friend" onClick={this.showFriend.bind(this, friend)}>
+        <td className="show-friend">
           <img src={ friend.image } alt={ friend.username } className="friend-image" />
         </td>
-        <td className="show-friend" onClick={this.showFriend.bind(this, friend)}>
+        <td className="show-friend">
           { friend.username }
         </td>
         <td className= { "friend-status " + friend.status}>
@@ -66,8 +62,7 @@ class FriendsList extends React.Component {
         <table className="k2-table">
           <thead>
             <tr>
-              <th>Search</th>
-              <th><input type="text" className="form-control"/></th>
+              <th colSpan="2" ><input type="search" className="form-control" placeholder="Search"/></th>
               <th className="actions"><button className="btn btn-small btn-success">Search</button></th>
             </tr>
 
@@ -79,7 +74,6 @@ class FriendsList extends React.Component {
       </div>
     )
   }
-
 
 }
 

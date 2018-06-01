@@ -30,7 +30,7 @@ defmodule K2pokerIoWeb.Router do
     post "/games/player_score", GameController, :player_score
     post "/games/join", GameController, :join
 
-    resources "/friends", FriendController, only: [:index, :create, :delete]
+    resources "/friends", FriendController, only: [:index, :show, :create, :delete]
     post "/friends/confirm", FriendController, :confirm
     post "/friends/search", FriendController, :search
 
