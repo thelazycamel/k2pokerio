@@ -42,7 +42,7 @@ defmodule K2pokerIo.InvitationControllerTest do
   test "#destroy should destroy the invite and return the id", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> post(invitation_path(conn, :destroy, %{"id" => context.invitation.id}))
+      |> delete(invitation_path(conn, :delete, context.invitation.id))
       |> json_response(200)
     expected = %{"invite_id" => context.invitation.id}
     assert(response == expected)

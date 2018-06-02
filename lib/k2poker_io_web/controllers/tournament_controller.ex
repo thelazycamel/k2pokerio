@@ -83,6 +83,7 @@ defmodule K2pokerIoWeb.TournamentController do
   end
 
   def delete(conn, %{"id" => id}) do
+    IO.puts id
     id = String.to_integer(id)
     DestroyTournamentCommand.execute(current_user(conn), id)
     json conn, %{tournament_id: id}

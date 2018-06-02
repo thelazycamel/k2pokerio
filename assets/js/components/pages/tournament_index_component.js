@@ -71,7 +71,7 @@ class TournamentIndexComponent extends React.Component {
             <td className="title">{invite.name} from {invite.username }</td>
             <td className="score">&nbsp;</td>
             <td className="action">
-              <a className="btn btn-success" href={"/invitation/accept/"+invite.id}>Accept</a>
+              <a className="btn btn-success" href={"/invitations/accept/"+invite.id}>Accept</a>
             </td>
             <td className="action">
               <a className="btn btn-info" onClick={this.tournamentInfoInviteClicked.bind(this, invite.id)}>Info</a>

@@ -14,47 +14,53 @@ export default class FriendsController {
   }
 
   create(id) {
-    let _this = this;
-    $.ajax({
-      url: this.baseUrl,
-      method: "POST",
-      dataType: "json",
-      data: {id: id},
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-      App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: resp});
-    }).fail(function(resp){
-      App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: {friend: "na"}});
-    });
+    fetch(this.baseUrl, {
+      headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+      credentials: 'same-origin',
+      method: 'post',
+      body: {id: id}
+    }).done(response => {
+      if(response.ok){
+        response.json().then(data => {
+          App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: data});
+        })
+      } else {
+        App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: {friend: "na"}});
+      }
+    })
   }
 
   confirm(id) {
-    let _this = this;
-    $.ajax({
-      url: `${this.baseUrl}/confirm`,
-      method: "POST",
-      dataType: "json",
-      data: {id: id},
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-      App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: resp});
-    }).fail(function(resp){
-      App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: {friend: "na"}});
+    fetch(`${this.baseUrl}/confirm`, {
+      headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+      credentials: 'same-origin',
+      method: 'post',
+      body: {id: id}
+    }).done(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: response});
+        })
+      } else {
+        App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: {friend: "na"}});
+      }
     });
   }
 
   search(query) {
-    let _this = this;
-    $.ajax({
-      url: `${this.baseUrl}/search`,
-      method: "GET",
-      dataType: "json",
-      data: {search: search},
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-
-    }).fail(function(resp){
-
+    fetch(`${this.baseUrl}/search`, {
+      headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+      credentials: 'same-origin',
+      method: 'get',
+      body: {query: query}
+    }).done(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          //do something with the search
+        })
+      } else {
+        //do nothing with the search
+      }
     });
   }
 

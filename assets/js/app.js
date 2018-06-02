@@ -18,8 +18,7 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-//libs
-var $ = require("jquery")
+// libs
 
 /* local */
 import { createStore, applyMiddleware } from "redux";
@@ -105,7 +104,9 @@ window.App = {
   },
 
   setUpCurrentPage: function(){
-    let currentPage = this.pages[$("body").data("page")] || defaultPage;
+    let bodyElement = document.getElementsByTagName("body")[0];
+    let pageName = bodyElement.dataset.page;
+    let currentPage = this.pages[pageName] || defaultPage;
     this.page = new currentPage;
   }
 

@@ -14,12 +14,6 @@ defmodule K2pokerIoWeb.Router do
 
     plug :accepts, ["json"]
 
-    scope "/api/v1/", K2pokerIoWeb.Api.V1 do
-      #not currently working as needs to get session
-      post "games/join", GameController, :join
-      post "games/opponent_profile", GameController, :opponent_profile
-    end
-
   end
 
   scope "/", K2pokerIoWeb do
@@ -37,16 +31,16 @@ defmodule K2pokerIoWeb.Router do
     post "/tournaments/get_scores", TournamentController, :get_scores
 
     get "/games/play", GameController, :play
-    post "games/join", GameController, :join
-    post "games/opponent_profile", GameController, :opponent_profile
+    post "/games/join", GameController, :join
+    post "/games/opponent_profile", GameController, :opponent_profile
     post "/games/player_score", GameController, :player_score
 
     resources "/friends", FriendController, only: [:index, :show, :create, :delete]
     post "/friends/confirm", FriendController, :confirm
     post "/friends/search", FriendController, :search
 
-    get "/invitation/accept/:id", InvitationController, :accept
-    post "/invitation/destroy", InvitationController, :destroy
+    resources "/invitations", InvitationController, only: [:delete]
+    get "/invitations/accept/:id", InvitationController, :accept
 
     resources "/registrations", RegistrationController, only: [:new, :create]
 
@@ -54,8 +48,6 @@ defmodule K2pokerIoWeb.Router do
     post "/profile/update_image", ProfileController, :update_image
     post "/profile/update_blurb", ProfileController, :update_blurb
     post "/profile/update_password", ProfileController, :update_password
-
-    resources "/profiles", ProfileController, only: [:update]
 
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create

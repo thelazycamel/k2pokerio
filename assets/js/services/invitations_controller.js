@@ -5,17 +5,18 @@ export default class InvitationsController {
   }
 
   destroy(id) {
-    let _this = this;
-    $.ajax({
-      url: `${this.baseUrl}/destroy`,
-      method: "POST",
-      dataType: "json",
-      data: {id: id},
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-      App.store.dispatch({type: "TOURNAMENT:INVITE_DESTROYED", data: resp});
-    }).fail(function(resp){
-      console.log("delete invite failed");
+    fetch(`${this.baseUrl}/${id}`, {
+      headers: {'x-csrf-token': App.settings.csrf_token},
+      credentials: 'same-origin',
+      method: "delete"
+    }).then(response => {
+      if(response.ok) {
+        json().then(data => {
+          App.store.dispatch({type: "TOURNAMENT:INVITE_DESTROYED", data: resp});
+        })
+      } else {
+        console.log("delete invite failed");
+      }
     });
   }
 

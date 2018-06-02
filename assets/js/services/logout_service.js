@@ -1,17 +1,15 @@
 export default class LogoutService {
 
   constructor(){
-    this.url = "/logout";
+    this.baseUrl = "/logout";
   }
 
   call() {
-    fetch(this.url,
-          { method: 'delete',
-            headers: {'x-csrf-token': App.settings.csrf_token},
-            credentials: 'same-origin'}
-         ).then(function(){
-           window.location = "/";
-         });
+    fetch(this.baseUrl, { 
+      method: 'delete',
+      headers: {'x-csrf-token': App.settings.csrf_token},
+      credentials: 'same-origin'
+    }).then(()=> { window.location = "/";});
   }
 
 }

@@ -34,7 +34,7 @@ class EditProfileComponent extends React.Component {
   }
 
   selectImage(image){
-    App.services.profile.image_service(image).then(data => {
+    App.services.profile.update_image(image).then(data => {
       this.setState(...this.state, { imageSelector: false, profileImage: image });
     });
   }
