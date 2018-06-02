@@ -5,31 +5,39 @@ export default class GameController {
   }
 
   join() {
-    let _this = this;
-    $.ajax({
-      url: `${this.baseUrl}/join`,
-      method: "POST",
-      dataType: "json",
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-      App.store.dispatch({type: "GAME:JOINED", game_id: resp.game_id});
-    }).fail(function(resp){
-      App.store.dispatch({type: "GAME:JOIN_FAILED", resp: {friend: "na"}});
-    });
+    fetch(`${this.baseUrl}/join`,
+      {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        method: 'POST',
+        credentials: 'same-origin'
+      }
+    ).then(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          App.store.dispatch({type: "GAME:JOINED", game_id: data.game_id});
+        })
+      } else {
+        App.store.dispatch({type: "GAME:JOIN_FAILED", resp: {friend: "na"}});
+      }
+    })
   }
 
   opponent_profile() {
-    let _this = this;
-    $.ajax({
-      url: `${this.baseUrl}/opponent_profile`,
-      method: "POST",
-      dataType: "json",
-      beforeSend: function(xhr) { xhr.setRequestHeader('x-csrf-token', App.settings.csrf_token)}
-    }).done(function(resp){
-      App.store.dispatch({type: "OPPONENT_PROFILE:NEW", profile: resp});
-    }).fail(function(){
-      console.log("unable to retrieve opponent profile data");
-    });
+    fetch(`${this.baseUrl}/opponent_profile`,
+      {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        method: 'POST',
+        credentials: 'same-origin'
+      }
+    ).then(response => {
+      if(response.ok) {
+        response.json().then(data => {
+          App.store.dispatch({type: "OPPONENT_PROFILE:NEW", profile: data});
+        })
+      } else {
+        console.log("unable to retrieve opponent profile data");
+      }
+    })
   }
 
 }

@@ -1,6 +1,7 @@
-class GameChannel {
+export default class GameChannel {
 
   constructor(game_id){
+    console.log("game channel: ", game_id);
     this.joinGameChannel(game_id);
   }
 
@@ -24,7 +25,5 @@ class GameChannel {
     }
   }
 
-
 }
 
-export default GameChannel;

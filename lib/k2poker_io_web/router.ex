@@ -11,11 +11,12 @@ defmodule K2pokerIoWeb.Router do
   end
 
   pipeline :api do
+
     plug :accepts, ["json"]
 
-    # TODO: Put the ajax calls in here and move
-    # their controllers to the /controllers/api/
-    # directory, routes need tidying up
+    scope "/api/v1/", K2pokerIoWeb.Api.V1 do
+    end
+
 
   end
 
@@ -34,9 +35,9 @@ defmodule K2pokerIoWeb.Router do
     post "/tournaments/get_scores", TournamentController, :get_scores
 
     get "/games/play", GameController, :play
-    post "/games/opponent_profile", GameController, :opponent_profile
+    post "games/join", GameController, :join
+    post "games/opponent_profile", GameController, :opponent_profile
     post "/games/player_score", GameController, :player_score
-    post "/games/join", GameController, :join
 
     resources "/friends", FriendController, only: [:index, :show, :create, :delete]
     post "/friends/confirm", FriendController, :confirm
