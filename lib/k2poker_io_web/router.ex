@@ -15,8 +15,10 @@ defmodule K2pokerIoWeb.Router do
     plug :accepts, ["json"]
 
     scope "/api/v1/", K2pokerIoWeb.Api.V1 do
+      #not currently working as needs to get session
+      post "games/join", GameController, :join
+      post "games/opponent_profile", GameController, :opponent_profile
     end
-
 
   end
 
