@@ -20,7 +20,7 @@ class EditProfileComponent extends React.Component {
   }
 
   updateBlurb(event){
-    App.services.update_blurb_service.call(event.target.value).then(data => {
+    App.services.profile.update_blurb(event.target.value).then(data => {
       this.setState(...this.state, { blurb: data.blurb });
     });
   }
@@ -34,7 +34,7 @@ class EditProfileComponent extends React.Component {
   }
 
   selectImage(image){
-    App.services.profile_image_service.call(image).then(data => {
+    App.services.profile.image_service(image).then(data => {
       this.setState(...this.state, { imageSelector: false, profileImage: image });
     });
   }

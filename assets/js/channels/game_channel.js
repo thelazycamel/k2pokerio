@@ -9,7 +9,7 @@ class GameChannel {
       App.gameChannel = App.socket.channel("game:" + game_id);
       App.gameChannel.join().receive("ok", function(resp) {
         App.gameChannel.push("game:refresh_data");
-        App.services.opponent_profile.call();
+        App.services.games.opponent_profile();
         App.settings["game_id"] = game_id;
         App.services.tournaments.get_scores();
       }).receive("error", reason =>

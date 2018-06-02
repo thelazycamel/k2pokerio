@@ -1,13 +1,13 @@
-class DestroyInviteService {
+export default class InvitationsController {
 
   constructor(){
-    this.url = "/invitation/destroy";
+    this.baseUrl = "/invitation";
   }
 
-  call(id) {
+  destroy(id) {
     let _this = this;
     $.ajax({
-      url: this.url,
+      url: `${this.baseUrl}/destroy`,
       method: "POST",
       dataType: "json",
       data: {id: id},
@@ -21,4 +21,3 @@ class DestroyInviteService {
 
 }
 
-export default DestroyInviteService;

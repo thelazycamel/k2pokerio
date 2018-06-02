@@ -70,7 +70,7 @@ class GamePlayPage extends page {
   }
 
   loadNewGame() {
-    App.services.join_game_service.call();
+    App.services.games.join();
   }
 
   showTournamentLoserPopup(action) {

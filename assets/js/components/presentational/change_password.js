@@ -20,7 +20,7 @@ class ChangePassword extends React.Component {
 
   submitNewPassword(event){
     event.preventDefault();
-    App.services.update_password_service.call({
+    App.services.profile.update_password.call({
       "current-password": event.target["current-password"].value,
       "new-password": event.target["new-password"].value,
       "confirm-password": event.target["confirm-password"].value

@@ -30,15 +30,12 @@ import Translate from "./utils/translate";
 
 /* API Services */
 
-import OpponentProfileService from        "./services/opponent_profile_service"
 import FriendsController from             "./services/friends_controller"
-import TournamentsController from         "./services/tournaments_controller"
-import DestroyInviteService from          "./services/destroy_invite_service"
-import JoinGameService from               "./services/join_game_service"
+import GamesController from               "./services/games_controller"
+import InvitationsController from         "./services/invitations_controller"
 import LogoutService from                 "./services/logout_service"
-import ProfileImageService from           "./services/profile_image_service"
-import UpdateBlurbService from            "./services/update_blurb_service"
-import UpdatePasswordService from         "./services/update_password_service"
+import ProfileController from             "./services/profile_controller"
+import TournamentsController from         "./services/tournaments_controller"
 
 /* pages */
 
@@ -81,14 +78,11 @@ window.App = {
   initializeServices: function() {
     this.services = {};
     this.services.friends            = new FriendsController();
+    this.services.games              = new GamesController();
+    this.services.invitations        = new InvitationsController();
     this.services.tournaments        = new TournamentsController();
-    this.services.destroy_invite     = new DestroyInviteService();
-    this.services.join_game_service  = new JoinGameService();
-    this.services.opponent_profile   = new OpponentProfileService();
-    this.services.profile_image_service = new ProfileImageService();
+    this.services.profile            = new ProfileController();
     this.services.logout_service     = new LogoutService();
-    this.services.update_blurb_service = new UpdateBlurbService();
-    this.services.update_password_service = new UpdatePasswordService();
   },
 
   createReduxStore: function() {

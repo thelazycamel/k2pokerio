@@ -43,7 +43,7 @@ const gameEventsMiddleware = store => next => action => {
           App.services.tournaments.get_scores();
           break;
         case "deal":
-          App.services.opponent_profile.call();
+          App.services.games.opponent_profile();
           App.store.dispatch({type: "PAGE:CLEAR_BOT_TIMER"});
           App.store.dispatch({type: "GAME:REMOVE_BOT_BUTTON"});
           break;
