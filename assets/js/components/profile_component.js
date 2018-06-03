@@ -16,7 +16,9 @@ class ProfileComponent extends React.Component {
   }
 
   friendRequest() {
-    App.services.friends.create(this.props.opponent_profile.id);
+    App.services.friends.create(this.props.opponent_profile.id).then(data => {
+      App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: data});
+    })
   }
 
   friendConfirm() {

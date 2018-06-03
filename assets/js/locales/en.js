@@ -28,7 +28,8 @@ class LocaleEn {
       "error_invalid_password": "Current password invalid",
       "password_updated": "Password has been updated",
       "friend": "Friend",
-      "pending_them": "Pending"
+      "pending_them": "Pending",
+      "not_friends": "Not Friends"
     });
   }
 

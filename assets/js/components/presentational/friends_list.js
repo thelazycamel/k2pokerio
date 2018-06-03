@@ -17,8 +17,18 @@ class FriendsList extends React.Component {
     });
   }
 
+  addFriend(friend) {
+    App.services.friends.create(friend.id).then(data => {
+      let friends = this.state.friends.map(f => {
+        if(f.id == friend.id) {f.status = data.friend}
+        return f;
+      });
+      this.setState(...this.state, {friends: friends});
+    })
+  }
+
   deleteFriend(friend) {
-    App.services.friends.destroy(friend.id).then(response => {
+    App.services.friends.destroy(friend.id).then(data => {
       let friends = this.state.friends.map(f => {
         if(f.id == friend.id) { f.status = data.friend }
         return f
@@ -45,20 +55,32 @@ class FriendsList extends React.Component {
     }
   }
 
+  renderActions(friend) {
+    if(friend.status == "not_friends") {
+      return(
+        <span className="add-friend" onClick={this.addFriend.bind(this, friend)}>Add</span>
+      )
+    } else {
+      return(
+        <span className="delete-friend" onClick={this.deleteFriend.bind(this, friend)}>x</span>
+      )
+    }
+  }
+
   renderFriend(friend) {
     return(
       <tr key={friend.id}>
-        <td className="show-friend">
+        <td className="show-friend profile-image">
           <img src={ friend.image } alt={ friend.username } className="friend-image" />
         </td>
-        <td className="show-friend">
+        <td className="show-friend user-name">
           { friend.username }
         </td>
         <td className= { "friend-status " + friend.status}>
           { this.friendStatus(friend) }
         </td>
         <td className="actions">
-          <span className="deleteFriend" onClick={this.deleteFriend.bind(this, friend)}>x</span>
+          {this.renderActions(friend) }
         </td>
       </tr>
     )
@@ -78,7 +100,7 @@ class FriendsList extends React.Component {
         <table className="k2-table">
           <thead>
             <tr>
-              <th colSpan="2" ><input type="search" className="form-control" placeholder="Search"/></th>
+              <th colSpan="3" ><input type="search" className="form-control" placeholder="Search"/></th>
               <th className="actions"><button className="btn btn-small btn-default">Search</button></th>
             </tr>
 

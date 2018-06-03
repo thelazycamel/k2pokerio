@@ -3,6 +3,7 @@ defmodule K2pokerIoWeb.FriendController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
+  alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Friends.SearchFriendsQuery
 
@@ -44,12 +45,12 @@ defmodule K2pokerIoWeb.FriendController do
     end
   end
 
-  def destroy do
-
+  def delete(conn, %{"id" => id}) do
+    id = convert_to_integer(id)
+    status = DestroyFriendshipCommand.execute(current_user(conn).id, id)
+    json conn, %{friend: status}
   end
 
-  #NOTE this is mainly for the tests, the json is posted and extracted
-  # as an integer nomally, however when posted in test it receives a string
   defp convert_to_integer(friend_id) do
     if is_integer(friend_id), do: friend_id, else: String.to_integer(friend_id)
   end

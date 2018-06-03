@@ -17,6 +17,13 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     |> Enum.map(fn [id, _] -> id end)
   end
 
+  def find(current_user_id, friend_id) do
+    query = from f in Friendship,
+      where: [user_id: ^current_user_id, friend_id: ^friend_id],
+      or_where: [user_id: ^friend_id, friend_id: ^current_user_id]
+    Repo.all(query)
+  end
+
   # TODO order by pending_me, friends, pending_them
   # TODO paginate this method, pagination will be difficult as i am joining two queries and sorting them
   def all_and_pending(current_user_id) do
