@@ -244,11 +244,18 @@ body.profile {
           height: 40px;
         }
 
+        tbody:before {
+          content: "-";
+          display: block;
+          line-height: 1em;
+          color: transparent;
+        }
+
         td {
-          padding: 1px;
+          padding: 2px;
 
           &.profile-image {
-            width: 40px;
+            width: 44px;
           }
 
           &.user-name {
