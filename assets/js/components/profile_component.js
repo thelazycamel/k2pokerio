@@ -20,7 +20,9 @@ class ProfileComponent extends React.Component {
   }
 
   friendConfirm() {
-    App.services.friends.confirm(this.props.opponent_profile.id);
+    App.services.friends.confirm(this.props.opponent_profile.id).then(data => {
+      App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: data});
+    });
   }
 
   renderFriendLink() {

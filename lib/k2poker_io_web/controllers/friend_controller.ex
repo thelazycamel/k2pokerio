@@ -16,8 +16,8 @@ defmodule K2pokerIoWeb.FriendController do
   end
 
   def create(conn, %{"id" => friend_id}) do
+    friend_id = convert_to_integer(friend_id)
     if current_user(conn) do
-      {friend_id, _} = Integer.parse(friend_id)
       status = RequestFriendCommand.execute(current_user(conn).id, friend_id)
       json conn, %{friend: status}
     else
@@ -26,8 +26,8 @@ defmodule K2pokerIoWeb.FriendController do
   end
 
   def confirm(conn, %{"id" => friend_id}) do
+    friend_id = convert_to_integer(friend_id)
     if current_user(conn) do
-      {friend_id, _} = Integer.parse(friend_id)
       status = RequestFriendCommand.execute(current_user(conn).id, friend_id)
       json conn, %{friend: status}
     else
@@ -46,6 +46,12 @@ defmodule K2pokerIoWeb.FriendController do
 
   def destroy do
 
+  end
+
+  #NOTE this is mainly for the tests, the json is posted and extracted
+  # as an integer nomally, however when posted in test it receives a string
+  defp convert_to_integer(friend_id) do
+    if is_integer(friend_id), do: friend_id, else: String.to_integer(friend_id)
   end
 
 end

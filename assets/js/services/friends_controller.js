@@ -18,8 +18,8 @@ export default class FriendsController {
       headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
       credentials: 'same-origin',
       method: 'post',
-      body: {id: id}
-    }).done(response => {
+      body: JSON.stringify({id: id})
+    }).then(response => {
       if(response.ok){
         response.json().then(data => {
           App.store.dispatch({type: "OPPONENT_PROFILE:REQUESTED", resp: data});
@@ -31,20 +31,24 @@ export default class FriendsController {
   }
 
   confirm(id) {
-    fetch(`${this.baseUrl}/confirm`, {
-      headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
-      credentials: 'same-origin',
-      method: 'post',
-      body: {id: id}
-    }).done(response => {
-      if(response.ok) {
-        response.json().then(data => {
-          App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: response});
-        })
-      } else {
-        App.store.dispatch({type: "OPPONENT_PROFILE:CONFIRMED", resp: {friend: "na"}});
-      }
-    });
+    return (
+      fetch(`${this.baseUrl}/confirm`, {
+        headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+        credentials: 'same-origin',
+        method: 'post',
+        body: JSON.stringify({id: id})
+      }).then(response => { return response.json() })
+    )
+  }
+
+  destroy(id) {
+    return (
+      fetch(`${this.baseUrl}/${id}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        credentials: 'same-origin',
+        method: "delete"
+      }).then(response => { response.json() })
+    )
   }
 
   search(query) {

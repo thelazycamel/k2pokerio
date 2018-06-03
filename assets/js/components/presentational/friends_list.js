@@ -18,12 +18,28 @@ class FriendsList extends React.Component {
   }
 
   deleteFriend(friend) {
-    console.log(friend.id)
+    App.services.friends.destroy(friend.id).then(response => {
+      let friends = this.state.friends.map(f => {
+        if(f.id == friend.id) { f.status = data.friend }
+        return f
+      });
+      this.setState(...this.state, {friends: friends});
+    })
+  }
+
+  confirmFriend(friend) {
+    App.services.friends.confirm(friend.id).then(data => {
+      let friends = this.state.friends.map(f => {
+        if(f.id == friend.id) { f.status = data.friend }
+        return f
+      });
+      this.setState(...this.state, {friends: friends});
+    });
   }
 
   friendStatus(friend) {
     if(friend.status == "pending_me") {
-      return <button className="btn btn-friends">Accept</button>
+      return <button className="btn btn-success" onClick={this.confirmFriend.bind(this, friend)}>Confirm</button>
     } else {
       return App.t(friend.status);
     }
@@ -63,7 +79,7 @@ class FriendsList extends React.Component {
           <thead>
             <tr>
               <th colSpan="2" ><input type="search" className="form-control" placeholder="Search"/></th>
-              <th className="actions"><button className="btn btn-small btn-success">Search</button></th>
+              <th className="actions"><button className="btn btn-small btn-default">Search</button></th>
             </tr>
 
           </thead>
