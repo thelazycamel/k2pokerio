@@ -133,7 +133,10 @@ class EditProfileComponent extends React.Component {
           <div id="user-details-flex">
             <div className="profile-text">
               <span className="icon icon-profile"></span>
-              <span className="text-username">{this.props.username}</span>
+              <span className="text-username">
+                {this.props.username}
+                <a id="profile-logout" href="#" onClick={this.logoutClicked}>(Logout)</a>
+              </span>
             </div>
             <div className="profile-text">
               <span className="icon icon-email"></span>
@@ -157,7 +160,6 @@ class EditProfileComponent extends React.Component {
         { this.renderSettings() }
         { this.renderBlurb() }
 
-        <button id="profile-logout" className="btn btn-large btn-danger" onClick={this.logoutClicked}>Logout</button>
       </div>
     )
   }
