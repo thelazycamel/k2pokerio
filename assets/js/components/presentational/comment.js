@@ -23,12 +23,20 @@ class Comment extends React.Component {
     return classes.join(" ");
   }
 
+  showFriendMe() {
+    // TODO - show friend me pop up, however i think
+    // we should get the friend status first then return
+    // the relevent command "friend me", "confirm", "already friends" etc
+    console.log(this.props.comment)
+  }
+
   chat_image() {
     if(!this.props.comment.admin && !this.props.comment.owner) {
       return(
         <div className="chat-user"
           title={this.props.comment.username}
-          style={ {backgroundImage: "url('" + this.props.comment.image + "')"} }>
+          style={ {backgroundImage: "url('" + this.props.comment.image + "')"} }
+          onClick={ this.showFriendMe.bind(this) }>
         </div>
        )
     }

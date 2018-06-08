@@ -11,6 +11,10 @@ defmodule K2pokerIo.Decorators.FriendDecorator do
     }
   end
 
+  def image(image) do
+    if image, do: image, else: "/images/profile-images/fish.png"
+  end
+
   def status(friendship, current_user_id) do
     if friendship do
       case friendship.status do

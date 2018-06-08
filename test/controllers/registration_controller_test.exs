@@ -35,5 +35,7 @@ defmodule K2pokerIo.RegistrationControllerTest do
     user = Repo.one(from u in User, where: [email: "bob@test.com"])
     assert(response =~ expected)
     assert(user)
+    assert(user.image == "/images/profile-images/fish.png")
+    assert(user.crypted_password)
   end
 end

@@ -10,7 +10,7 @@ defmodule K2pokerIoWeb.RegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    changeset = User.changeset(%User{}, Map.merge(user_params, %{"image" => "/images/profile-images/fish.png"}))
 
     case RegisterCommand.execute(changeset) do
       {:ok, changeset} ->

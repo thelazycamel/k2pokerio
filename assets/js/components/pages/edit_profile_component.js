@@ -69,7 +69,8 @@ class EditProfileComponent extends React.Component {
       "/images/profile-images/bettyboop.png",
       "/images/profile-images/yosemitesam.png",
       "/images/profile-images/rousso.png",
-      "/images/profile-images/shannon.png"
+      "/images/profile-images/shannon.png",
+      "/images/profile-images/fish.png"
     ]
   }
 
