@@ -53,15 +53,7 @@ defmodule K2pokerIo.DestroyFriendshipCommandTest do
   test "it should not fail if users are not friends", context do
     user2_id = context.user2.id
     user3_id = context.user3.id
-    query = from f in Friendship,
-      where: [user_id: ^user2_id, friend_id: ^user3_id],
-      or_where: [user_id: ^user3_id, friend_id: ^user2_id],
-      limit: 1
-    friendship = Repo.all(query)
-    assert(Enum.count(friendship) == 0)
     status = DestroyFriendshipCommand.execute(user2_id, user3_id)
-    heartbreak = Repo.all(query)
-    assert(Enum.count(heartbreak) == 0)
     assert(status == :not_friends)
   end
 

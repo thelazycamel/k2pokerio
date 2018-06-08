@@ -54,5 +54,4 @@ defmodule K2pokerIo.Queries.Tournaments.GetPlayersQuery do
       |> Enum.map(fn(x) -> elem(x,1) end)
   end
 
-
 end

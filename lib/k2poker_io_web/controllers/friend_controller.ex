@@ -9,7 +9,8 @@ defmodule K2pokerIoWeb.FriendController do
 
   def index(conn, _) do
     if current_user(conn) do
-      friends =  FriendsQuery.all_and_pending(current_user(conn).id)
+      friends = FriendsQuery.all(current_user(conn).id)
+      |> FriendsQuery.decorate_users(current_user(conn).id)
       json conn, %{friends: friends}
     else
       json conn, %{status: 401}

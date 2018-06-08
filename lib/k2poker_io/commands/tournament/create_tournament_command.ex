@@ -9,6 +9,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
 
   #TODO now added column "type" which will be "tournament" or "duel"
   # so you should be able to tidy this up a bit to include the type
+  # possibly add things like :monero etc
   # being passed in
 
   def execute(current_user, params) do

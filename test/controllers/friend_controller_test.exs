@@ -6,21 +6,20 @@ defmodule K2pokerIo.FriendControllerTest do
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
+  alias K2pokerIo.Friendship
 
   doctest K2pokerIoWeb.FriendController
 
   setup do
     player1 = Helpers.create_user("stu")
     player2 = Helpers.create_user("bob")
-    %{player1: player1, player2: player2}
+    player3 = Helpers.create_user("pip")
+    %{player1: player1, player2: player2, player3: player3}
   end
 
   test "#index - should return a JSON representation of users friends", context do
-    player3 = Helpers.create_user("pip")
-    RequestFriendCommand.execute(context.player1.id, context.player2.id)
-    RequestFriendCommand.execute(context.player1.id, player3.id)
-    RequestFriendCommand.execute(context.player2.id, context.player1.id)
-    RequestFriendCommand.execute(player3.id, context.player1.id)
+    Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: context.player2.id, status: true}))
+    Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: context.player3.id, status: true}))
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
       |> get(friend_path(conn, :index))
