@@ -5,6 +5,7 @@ defmodule K2pokerIo.Decorators.CommentDecorator do
   def decorate(comment, player_id) do
     %{
       id: comment.id,
+      user_id: comment.user_id,
       username: comment.user.username,
       image: image(comment),
       comment: comment.comment,

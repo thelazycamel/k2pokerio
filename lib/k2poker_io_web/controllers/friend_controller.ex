@@ -6,6 +6,7 @@ defmodule K2pokerIoWeb.FriendController do
   alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Friends.SearchFriendsQuery
+  alias K2pokerIo.Decorators.FriendDecorator
 
   def index(conn, _) do
     if current_user(conn) do
@@ -35,6 +36,12 @@ defmodule K2pokerIoWeb.FriendController do
     else
       json conn, %{friend: :na}
     end
+  end
+
+  def status(conn, %{"user_id" => user_id}) do
+    status = FriendsQuery.find(current_user(conn).id, user_id)
+      |> FriendDecorator.status(current_user(conn).id)
+    json conn, %{status: status}
   end
 
   def search(conn, %{"query" => query}) do

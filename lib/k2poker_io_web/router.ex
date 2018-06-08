@@ -37,6 +37,8 @@ defmodule K2pokerIoWeb.Router do
 
     resources "/friends", FriendController, only: [:index, :show, :create, :delete]
     post "/friends/confirm", FriendController, :confirm
+    get "/friends/status/:user_id", FriendController, :status
+    post "/friends/search", FriendController, :search
     post "/friends/search", FriendController, :search
 
     resources "/invitations", InvitationController, only: [:delete]

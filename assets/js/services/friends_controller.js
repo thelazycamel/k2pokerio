@@ -35,6 +35,15 @@ export default class FriendsController {
     )
   }
 
+  status(id) {
+    return (
+      fetch(`${this.baseUrl}/status/${id}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        credentials: 'same-origin'
+      }).then(response => { return response.json() })
+    )
+  }
+
   destroy(id) {
     return (
       fetch(`${this.baseUrl}/${id}`, {

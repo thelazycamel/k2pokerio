@@ -24,10 +24,12 @@ class Comment extends React.Component {
   }
 
   showFriendMe() {
-    // TODO - show friend me pop up, however i think
-    // we should get the friend status first then return
-    // the relevent command "friend me", "confirm", "already friends" etc
-    console.log(this.props.comment)
+    // TODO: replace the current comment with friend status / friend me link,
+    // or onclick again show comment
+    // this should be passed to redux and held properly, not in state
+    App.services.friends.status(this.props.comment.user_id).then(response => {
+      console.log(response.status);
+    })
   }
 
   chat_image() {
