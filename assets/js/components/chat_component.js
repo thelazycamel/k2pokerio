@@ -16,7 +16,7 @@ class ChatComponent extends React.Component {
   renderComments() {
     if(this.props.chat.comments) {
       return this.props.chat.comments.map( (comment) =>
-        <Comment comment={comment} key={comment.id} />
+        <Comment comment={comment} key={comment.chat_id} />
       )
     }
   }

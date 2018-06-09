@@ -41,7 +41,7 @@ defmodule K2pokerIoWeb.FriendController do
   def status(conn, %{"user_id" => user_id}) do
     status = FriendsQuery.find(current_user(conn).id, user_id)
       |> FriendDecorator.status(current_user(conn).id)
-    json conn, %{status: status}
+    json conn, %{show: status}
   end
 
   def search(conn, %{"query" => query}) do

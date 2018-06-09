@@ -24,12 +24,14 @@ class Comment extends React.Component {
   }
 
   showFriendMe() {
-    // TODO: replace the current comment with friend status / friend me link,
-    // or onclick again show comment
-    // this should be passed to redux and held properly, not in state
-    App.services.friends.status(this.props.comment.user_id).then(response => {
-      console.log(response.status);
-    })
+    let { comment } = this.props;
+    if(this.props.comment.show == "comment") {
+      App.services.friends.status(this.props.comment.user_id).then(data => {
+        App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, data) })
+      });
+    } else {
+      App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: "comment"} ) });
+    }
   }
 
   chat_image() {
@@ -44,13 +46,41 @@ class Comment extends React.Component {
     }
   }
 
+  sendFriendRequest(){
+    let { comment } = this.props;
+    App.services.friends.create(comment.user_id).then(response => {
+      let show = response.friend;
+      App.store.dispatch({type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: show})});
+    })
+  }
+
+  renderCommentOrStatus() {
+    switch(this.props.comment.show){
+        case "friend":
+          return App.t("friend");
+          break;
+        case "pending_me":
+          return <a className="friend-request" onClick={this.sendFriendRequest.bind(this)}>{ App.t("confirm_friend") }</a>
+          break;
+        case "pending_them":
+          return App.t("pending_them");
+          break;
+        case "not_friends":
+          return <a className="friend-request" onClick={this.sendFriendRequest.bind(this)}>{ App.t("add_friend") }</a>
+          break;
+        default:
+          return this.props.comment.comment;
+          break;
+    }
+  }
+
   render() {
     return (
-      <div className={this.comment_classes()} id={"comment-"+this.props.comment.id}>
+      <div className={this.comment_classes()} id={"comment-"+this.props.comment.chat_id}>
         { this.chat_image() }
         <div className="chat-text">
           <div className="username">{this.props.comment.username}</div>
-          {this.props.comment.comment}
+          { this.renderCommentOrStatus() }
           <span className="quote"></span>
         </div>
       </div>

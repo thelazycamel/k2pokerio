@@ -25,7 +25,7 @@ defmodule K2pokerIo.ChatChannelTest do
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     push(socket, "chat:create_comment", %{"comment" => "Hello World", "tournament_id" => tournament_id})
     assert_broadcast "chat:new_comment", %{}
-    assert_receive %Phoenix.Socket.Message{payload: %{id: _, username: "stu", image: "/images/profile-images/fish.png", comment: "Hello World", admin: false, owner: true}}
+    assert_receive %Phoenix.Socket.Message{payload: %{chat_id: _, username: "stu", image: "/images/profile-images/fish.png", comment: "Hello World", admin: false, owner: true}}
     leave(socket)
   end
 
@@ -38,7 +38,7 @@ defmodule K2pokerIo.ChatChannelTest do
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     push(socket, "chat:create_comment", %{"comment" => "Hello World", "tournament_id" => tournament_id})
     assert_broadcast "chat:new_comment", %{}
-    assert_receive %Phoenix.Socket.Message{payload: %{id: _, username: "stu", image: ^profile_image, comment: "Hello World", admin: false, owner: true}}
+    assert_receive %Phoenix.Socket.Message{payload: %{chat_id: _, username: "stu", image: ^profile_image, comment: "Hello World", admin: false, owner: true}}
     leave(socket)
   end
 

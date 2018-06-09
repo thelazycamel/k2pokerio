@@ -12,6 +12,9 @@ var chatReducer = function(state = {comments:[]}, action) {
     case "CHAT:NEW_LIST_RECEIVED":
       return { comments: action.comments }
       break;
+    case "CHAT:UPDATE_SHOW_STATUS":
+      return { comments: state.comments.map(comment => (comment.chat_id === action.comment.chat_id) ? action.comment : comment) }
+      break;
     default:
       return state;
   }

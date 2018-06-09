@@ -29,7 +29,9 @@ class LocaleEn {
       "password_updated": "Password has been updated",
       "friend": "Friend",
       "pending_them": "Pending",
-      "not_friends": "Not Friends"
+      "not_friends": "Not Friends",
+      "add_friend": "Add Friend",
+      "confirm_friend": "Confirm Friendship"
     });
   }
 

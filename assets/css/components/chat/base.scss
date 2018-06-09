@@ -70,6 +70,10 @@
               background-image: url("/images/chat/comment.svg");
               background-size: cover;
             }
+            a.friend-request {
+              cursor: pointer;
+              color: #4398c9;
+            }
           }
           &.owner {
             flex-direction: row-reverse;

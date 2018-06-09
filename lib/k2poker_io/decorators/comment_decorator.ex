@@ -4,13 +4,14 @@ defmodule K2pokerIo.Decorators.CommentDecorator do
 
   def decorate(comment, player_id) do
     %{
-      id: comment.id,
+      chat_id: comment.id,
       user_id: comment.user_id,
       username: comment.user.username,
       image: image(comment),
       comment: comment.comment,
       admin: comment.admin,
-      owner: owner(comment, player_id)
+      owner: owner(comment, player_id),
+      show: "comment"
      }
   end
 
