@@ -15,7 +15,7 @@ beforeEach(() => {
   let initialState = {
     page: {tabs: {}, links: {}},
     chat: {comments: [
-      {id: 1, username: "bob", image: "/profile-images/test.png", comment: "Hello World"}
+      {user_id: 1, chat_id: 1, username: "bob", image: "/profile-images/test.png", comment: "Hello World"}
    ]},
     tournament: {}
   };
@@ -44,7 +44,7 @@ describe("ChatComponent", () => {
     window.App.settings.logged_in = "true";
     let initialState = {
       page: {tabs: {}, links: {}},
-      chat: {comments: [{id: 1, username: "bob", comment: "Hello World"}]},
+      chat: {comments: [{user_id: 1, chat_id: 1, username: "bob", comment: "Hello World"}]},
       tournament: {}
     };
     store = mockStore(initialState)
