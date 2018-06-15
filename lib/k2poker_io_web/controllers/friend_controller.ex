@@ -5,14 +5,16 @@ defmodule K2pokerIoWeb.FriendController do
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
-  alias K2pokerIo.Queries.Friends.SearchFriendsQuery
-  alias K2pokerIo.Decorators.FriendDecorator
 
-  def index(conn, _) do
+  def index(conn, params) do
     if current_user(conn) do
-      friends = FriendsQuery.all(current_user(conn).id)
-      |> FriendsQuery.decorate_users(current_user(conn).id)
-      json conn, %{friends: friends}
+      {query, pagination} = case params["area"] do
+        "pending_me" -> FriendsQuery.pending_me(current_user(conn).id, params)
+        "pending_them" -> FriendsQuery.pending_them(current_user(conn).id, params)
+        _ -> FriendsQuery.friends_only(current_user(conn).id, params)
+      end
+      friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
+      json(conn, %{friends: friends, pagination: pagination})
     else
       json conn, %{status: 401}
     end
@@ -44,10 +46,17 @@ defmodule K2pokerIoWeb.FriendController do
     json conn, %{show: status}
   end
 
-  def search(conn, %{"query" => query}) do
+  def count(conn, %{"action" => action}) do
+    count = FriendsQuery.count(current_user(conn).id, action)
+    json conn, %{action => count}
+  end
+
+  def search(conn, params) do
+    %{"query" => query} = params
     if current_user(conn) do
-      friends = SearchFriendsQuery.search(current_user(conn).id, query)
-      json conn, %{friends: friends}
+      {users, pagination} = FriendsQuery.search_users(current_user(conn).id, query, params)
+      friends = FriendsQuery.decorate_users(users, current_user(conn).id)
+      json conn, %{friends: friends, pagination: pagination}
     else
       json conn, %{error: true, status: 401}
     end

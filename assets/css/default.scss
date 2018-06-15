@@ -20,6 +20,54 @@ h1, h2 {
   }
 }
 
+.btn-empty {
+  background-color: transparent;
+  color: #cccccc;
+  border: 1px solid #8393a7;
+  &:hover, &:focus {
+    color: #dddddd;
+  }
+}
+
+.btn-pending {
+  background-color: #940000;
+  color: #cccccc;
+  &:hover, &:focus {
+    background-color: #d9534f;
+    color: #eeeeee;
+  }
+}
+
+
+.btn-friends {
+  background-color: #ff9947;
+  color: #ffffff;
+  &:hover, &:focus {
+    background-color: #transparent;
+    color: #eeeeee;
+  }
+}
+.btn-pagination {
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #9dbf16;
+  border: 1px solid #9dbf16;
+  &:hover, &:focus {
+    color: #d2ff1d;
+    border: 1px solid #d2ff1d;
+  }
+}
+
+.btn-invisible {
+  cursor: auto;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  &:hover, &:focus {
+    color: transparent;
+  }
+}
+
 .highlighted {
   color: #ffcc00;
 }

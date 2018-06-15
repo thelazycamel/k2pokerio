@@ -247,11 +247,26 @@ body.profile {
           height: 40px;
         }
 
+        thead {
+          th {
+            .area-buttons {
+              padding: 10px;
+              display: flex;
+              justify-content: space-around;
+            }
+          }
+
+        }
+
         tbody:before {
           content: "-";
           display: block;
           line-height: 1em;
           color: transparent;
+        }
+
+        tr.padded-row {
+          height: 44px;
         }
 
         td {
@@ -294,6 +309,20 @@ body.profile {
               color: #03a750;
             }
           }
+        }
+
+        tfoot {
+          td {
+            .pagination {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              button {
+                margin: 0px 10px;
+              }
+            }
+          }
+
         }
 
       }

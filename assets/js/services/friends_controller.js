@@ -4,11 +4,22 @@ export default class FriendsController {
     this.baseUrl = "/friends";
   }
 
-  index() {
+  //TODO: move this to a master class and subclass all controllers
+  //
+  parameterize(params){
+    let esc = encodeURIComponent;
+    return Object.keys(params).map(key => {
+      return esc(key) + '=' + esc(params[key])
+    }).join('&');
+  }
+
+  index(params) {
     return (
-      fetch(this.baseUrl,
-        { headers: {'x-csrf-token': App.settings.csrf_token},
-          credentials: 'same-origin'}
+      fetch(this.baseUrl + "?" + this.parameterize(params),
+        {
+          headers: {'x-csrf-token': App.settings.csrf_token},
+          credentials: 'same-origin'
+        }
       ).then(response => { return response.json() })
     )
   }
@@ -54,21 +65,23 @@ export default class FriendsController {
     )
   }
 
+  count(action) {
+    return (
+      fetch(`${this.baseUrl}/count/${action}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        credentials: 'same-origin'
+      }).then(response => { return response.json() })
+    )
+  }
+
   search(query) {
-    fetch(`${this.baseUrl}/search`, {
-      headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
-      credentials: 'same-origin',
-      method: 'get',
-      body: {query: query}
-    }).done(response => {
-      if(response.ok) {
-        response.json().then(data => {
-          //do something with the search
-        })
-      } else {
-        //do nothing with the search
-      }
-    });
+    return (
+      fetch(`${this.baseUrl}/search?${this.parameterize(query)}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+        credentials: 'same-origin',
+        method: 'get'
+      }).then(response => { return response.json() })
+    )
   }
 
 }

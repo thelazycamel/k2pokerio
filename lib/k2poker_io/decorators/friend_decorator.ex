@@ -11,6 +11,17 @@ defmodule K2pokerIo.Decorators.FriendDecorator do
     }
   end
 
+  # used for passing in a user with friendship status instead of friendship
+  def user_decorator(user, current_user_id) do
+    %{
+      id: user.id,
+      username: user.username,
+      image: user.image,
+      blurb: user.blurb,
+      status: status(user, current_user_id)
+    }
+  end
+
   def image(image) do
     if image, do: image, else: "/images/profile-images/fish.png"
   end
@@ -19,7 +30,8 @@ defmodule K2pokerIo.Decorators.FriendDecorator do
     if friendship do
       case friendship.status do
         true -> :friend
-        _ -> pending_me_or_them(current_user_id, friendship.user_id)
+        false -> pending_me_or_them(current_user_id, friendship.user_id)
+        nil -> :not_friends
       end
     else
       :not_friends

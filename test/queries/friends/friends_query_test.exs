@@ -47,12 +47,13 @@ defmodule K2pokerIo.FriendsQueryTest do
   end
 
   test "#all should return all friends and pending friend requests", context do
-    all_friends = FriendsQuery.all(context.player1.id)
+    {all_friends, _} = FriendsQuery.all(context.player1.id, %{})
     assert Enum.count(all_friends) == 2
   end
 
   test "#all decorated should return a list of decorated users", context do
-    decorated = FriendsQuery.all(context.player1.id) |> FriendsQuery.decorate_users(context.player1.id)
+    {friends, _} = FriendsQuery.all(context.player1.id, %{})
+    decorated = FriendsQuery.decorate_friendships(friends, context.player1.id)
     friend1 = List.first(decorated)
     friend2 = List.last(decorated)
     assert(Enum.count(decorated) == 2)
@@ -61,39 +62,42 @@ defmodule K2pokerIo.FriendsQueryTest do
   end
 
   test "#friends_only should return all the users confirmed friends", context do
-    friends_only = FriendsQuery.friends_only(context.player1.id)
+    {friends_only, _} = FriendsQuery.friends_only(context.player1.id, %{})
     assert(Enum.count(friends_only) == 1)
     assert(List.first(friends_only).friend_id == context.player2.id)
   end
 
   test "#friends_only decorated should return a list of decorated users", context do
-    decorated = FriendsQuery.friends_only(context.player1.id) |> FriendsQuery.decorate_users(context.player1.id)
+    {friends, _} = FriendsQuery.friends_only(context.player1.id, %{})
+    decorated = FriendsQuery.decorate_friendships(friends, context.player1.id)
     friend = List.first(decorated)
     assert(Enum.count(decorated) == 1)
     assert(friend.status == :friend)
   end
 
   test "#pending_me should return all the users I need to confirm friendships with", context do
-    pending_friends = FriendsQuery.pending_me(context.player3.id)
+    {pending_friends, _} = FriendsQuery.pending_me(context.player3.id, %{})
     assert(Enum.count(pending_friends) == 1)
     assert(List.first(pending_friends).user_id == context.player1.id)
   end
 
   test "#pending_me decorated should return a list of decorated users", context do
-    decorated = FriendsQuery.pending_me(context.player3.id) |> FriendsQuery.decorate_users(context.player3.id)
+    {friends, _} = FriendsQuery.pending_me(context.player3.id, %{})
+    decorated = FriendsQuery.decorate_friendships(friends, context.player3.id)
     friend = List.first(decorated)
     assert(Enum.count(decorated) == 1)
     assert(friend.status == :pending_me)
   end
 
   test "#pending_them should return all the users that need to confirm my friendship requests", context do
-    pending_friends = FriendsQuery.pending_them(context.player1.id)
+    {pending_friends, _} = FriendsQuery.pending_them(context.player1.id, %{})
     assert(Enum.count(pending_friends) == 1)
     assert(List.first(pending_friends).friend_id == context.player3.id)
   end
 
   test "#pending_them decorated should return a list of decorated users", context do
-    decorated = FriendsQuery.pending_them(context.player1.id) |> FriendsQuery.decorate_users(context.player1.id)
+    {friends, _} = FriendsQuery.pending_them(context.player1.id, %{})
+    decorated = FriendsQuery.decorate_friendships(friends, context.player1.id)
     friend = List.first(decorated)
     assert(Enum.count(decorated) == 1)
     assert(friend.status == :pending_them)
@@ -104,6 +108,45 @@ defmodule K2pokerIo.FriendsQueryTest do
     assert Enum.count(friend_ids) == 1
     assert Enum.member?(friend_ids,context.player2.id)
     refute Enum.member?(friend_ids,context.player3.id)
+  end
+
+  test "#count should return number of pending_me when passed", context do
+    count = FriendsQuery.count(context.player3.id, "pending_me")
+    assert(count == 1)
+  end
+
+  test "#count should return number of friends when passed", context do
+    count = FriendsQuery.count(context.player1.id, "friends")
+    assert(count == 1)
+  end
+
+  test "#count should return number of pending_them when passed", context do
+    count = FriendsQuery.count(context.player1.id, "friends")
+    assert(count == 1)
+  end
+
+  test "#search_users should return a list of users and friends status with given user/query", context do
+    {query, pagination} = FriendsQuery.search_users(context.player1.id, "friend", %{})
+    friends = FriendsQuery.decorate_users(query, context.player1.id)
+    friend1 = List.first(friends)
+    friend2 = List.last(friends)
+    assert(pagination.total_count== 2)
+    assert(friend1.username == "MyFriend")
+    assert(friend2.username == "NotFriends")
+    assert(friend2.status == :not_friends)
+  end
+
+  test "kerosene pagination with no params", context do
+    {friends, kerosene} = FriendsQuery.all(context.player1.id, %{})
+    assert(kerosene.page == 1)
+    assert(kerosene.per_page == 7)
+    assert(kerosene.total_count == 2)
+    assert(kerosene.total_pages == 1)
+  end
+
+  test "kerosene pagination with page and per page sent", context do
+    {friends, kerosene} = FriendsQuery.all(context.player1.id, %{"page" => 2})
+    assert(kerosene.page == 2)
   end
 
 end

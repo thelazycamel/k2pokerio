@@ -8,13 +8,22 @@ class FriendsList extends React.Component {
     this.state = {
       page: 1,
       friends: [],
+      area: "",
+      pagination: {},
+      search: ""
     }
   }
 
   componentDidMount(){
-    App.services.friends.index().then(response => {
-      this.setState(...this.state, {friends: response.friends});
-    });
+    App.services.friends.count("pending_me").then(data => {
+      if(data.pending_me == 0) {
+        this.setState(...this.state, {area: "friends"});
+        this.loadPage(1, "friends");
+      } else {
+        this.setState(...this.state, {area: "pending_me"});
+        this.loadPage(1, "pending_me");
+      }
+    })
   }
 
   addFriend(friend) {
@@ -94,20 +103,129 @@ class FriendsList extends React.Component {
     )
   }
 
+  changeArea(area){
+    this.setState(...this.state, {area: area, search: ""});
+    this.loadPage(1, area);
+  }
+
+  loadPage(pageNo, area){
+    if(area == "search") {
+      this.loadSearch(pageNo);
+    } else {
+      App.services.friends.index({page: pageNo, per_page: 7, area: area, max_page: 100}).then(response => {
+        this.setState(...this.state, {friends: response.friends, pagination: response.pagination});
+      });
+    }
+  }
+
+  renderPagination() {
+    let { pagination } = this.state;
+    let textArray = [];
+    if(pagination.page != 1 && pagination.total_pages > 1) {
+      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page -1, this.state.area) }>{ App.t("back") }</button>);
+    } else {
+      textArray.push(<div key="1" className="btn btn-sm btn-invisible">{ App.t("back") }</div>);
+    }
+    textArray.push(<span key="2">Page {pagination.page} of {pagination.total_pages}</span>)
+    if(pagination.total_pages > 1 && pagination.page != pagination.total_pages) {
+      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page +1, this.state.area) }>{ App.t("next") }</button>);
+    } else {
+      textArray.push(<div key="3" className="btn btn-sm btn-invisible">{ App.t("next") }</div>);
+    }
+    return textArray;
+  }
+
+  renderPendingMeButton(){
+    if(this.state.area == "pending_me"){
+      return <button className="btn btn-sm btn-empty">{App.t("pending_me")}</button>
+    } else {
+      return <button className="btn btn-sm btn-success" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</button>
+    }
+  }
+
+  renderFriendsButton(){
+    if(this.state.area == "friends") {
+      return <button className="btn btn-sm btn-empty">{App.t("friends")}</button>
+    } else {
+      return <button className="btn btn-sm btn-friends" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</button>
+    }
+  }
+
+  renderPendingThemButton() {
+    if(this.state.area == "pending_them"){
+      return <button className="btn btn-sm btn-empty">{App.t("pending_them")}</button>
+    } else {
+      return <button className="btn btn-sm btn-pending" onClick={this.changeArea.bind(this, "pending_them")}>{App.t("pending_them")}</button>
+    }
+  }
+
+  renderTablePadding(){
+    let { friends } = this.state;
+    let html = [];
+    if(friends.length < 7) {
+      let rows = 7 - friends.length;
+      for(rows; rows > 0; rows --) {
+        html.push(<tr className="padded-row" key={"padding-" +rows}><td colSpan="4">&nbsp;</td></tr>)
+      }
+    }
+    return html;
+  }
+
+  updateSearchValue(e){
+    this.setState(...this.state, {search: e.target.value})
+    if(e.target.value.length >= 3) {
+      this.loadSearch(1);
+    }
+  }
+
+  searchClicked() {
+    if(this.state.search.length >= 3) {
+      this.loadSearch(1);
+    } else {
+      console.log("not enough chars");
+    }
+  }
+
+  loadSearch(page) {
+    App.services.friends.search({query: this.state.search, page: page, per_page: 7, max_page: 100}).then(response => {
+      this.setState(...this.state, {friends: response.friends, pagination: response.pagination, area: "search"});
+    })
+  }
+
   render(){
     return (
       <div id="friends-list">
         <table className="k2-table">
           <thead>
             <tr>
-              <th colSpan="3" ><input type="search" className="form-control" placeholder="Search"/></th>
-              <th className="actions"><button className="btn btn-small btn-default">Search</button></th>
+              <th colSpan="3" >
+                <input type="search" className="form-control" placeholder="Search" value={this.state.search} onChange={this.updateSearchValue.bind(this)}/>
+              </th>
+              <th className="actions"><button className="btn btn-small btn-default" onClick={this.searchClicked.bind(this)}>Search</button></th>
             </tr>
-
+            <tr>
+              <th colSpan="4">
+                <div className="area-buttons">
+                  { this.renderPendingMeButton() }
+                  { this.renderFriendsButton() }
+                  { this.renderPendingThemButton() }
+                </div>
+              </th>
+            </tr>
           </thead>
           <tbody>
             { this.renderFriends() }
+            { this.renderTablePadding() }
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="4">
+                <div className="pagination">
+                  { this.renderPagination() }
+                </div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     )
