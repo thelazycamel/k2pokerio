@@ -59,7 +59,9 @@ class FriendsList extends React.Component {
   friendStatus(friend) {
     if(friend.status == "pending_me") {
       return <button className="btn btn-success" onClick={this.confirmFriend.bind(this, friend)}>Confirm</button>
-    } else {
+    } else if (friend.status == "friend" && this.state.area != "friends") {
+      return <span className="icon icon-sm icon-friend"></span>
+    } else if (friend.status == "pending_them") {
       return App.t(friend.status);
     }
   }
@@ -67,11 +69,11 @@ class FriendsList extends React.Component {
   renderActions(friend) {
     if(friend.status == "not_friends") {
       return(
-        <span className="add-friend" onClick={this.addFriend.bind(this, friend)}>Add</span>
+        <span className="icon icon-sm icon-add" onClick={this.addFriend.bind(this, friend)}></span>
       )
     } else {
       return(
-        <span className="delete-friend" onClick={this.deleteFriend.bind(this, friend)}>x</span>
+        <span className="icon icon-sm icon-delete" onClick={this.deleteFriend.bind(this, friend)}></span>
       )
     }
   }
@@ -137,25 +139,26 @@ class FriendsList extends React.Component {
 
   renderPendingMeButton(){
     if(this.state.area == "pending_me"){
-      return <button className="btn btn-sm btn-empty">{App.t("pending_me")}</button>
+      return <div className="friends-tab active">{App.t("pending_me")}</div>
     } else {
-      return <button className="btn btn-sm btn-success" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</button>
+      return <div className="friends-tab link" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</div>
     }
   }
 
   renderFriendsButton(){
     if(this.state.area == "friends") {
-      return <button className="btn btn-sm btn-empty">{App.t("friends")}</button>
+      return <div className="friends-tab active">{App.t("friends")}</div>
     } else {
-      return <button className="btn btn-sm btn-friends" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</button>
+      return <div className="friends-tab link" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</div>
     }
   }
 
   renderPendingThemButton() {
+    // I have removed this as think it unnecessary to have 
     if(this.state.area == "pending_them"){
-      return <button className="btn btn-sm btn-empty">{App.t("pending_them")}</button>
+      return <div className="friends-tab active">{App.t("pending_them")}</div>
     } else {
-      return <button className="btn btn-sm btn-pending" onClick={this.changeArea.bind(this, "pending_them")}>{App.t("pending_them")}</button>
+      return <div className="friends-tab link" onClick={this.changeArea.bind(this, "pending_them")}>{App.t("pending_them")}</div>
     }
   }
 
@@ -199,16 +202,15 @@ class FriendsList extends React.Component {
           <thead>
             <tr>
               <th colSpan="3" >
-                <input type="search" className="form-control" placeholder="Search" value={this.state.search} onChange={this.updateSearchValue.bind(this)}/>
+                <input type="search" className="form-control search-users" placeholder="Search Players" value={this.state.search} onChange={this.updateSearchValue.bind(this)}/>
               </th>
-              <th className="actions"><button className="btn btn-small btn-default" onClick={this.searchClicked.bind(this)}>Search</button></th>
+              <th className="actions"><button className="btn btn-small btn-search" onClick={this.searchClicked.bind(this)}>Search</button></th>
             </tr>
             <tr>
               <th colSpan="4">
-                <div className="area-buttons">
+                <div className={"area-buttons " + this.state.area}>
                   { this.renderPendingMeButton() }
                   { this.renderFriendsButton() }
-                  { this.renderPendingThemButton() }
                 </div>
               </th>
             </tr>

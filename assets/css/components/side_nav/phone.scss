@@ -17,11 +17,6 @@
         background: none;
         border: none;
         border-radius: 0px;
-        .icon {
-          width: 40px;
-          height: 40px;
-          background-size: 400px 84px;
-        }
         .link-title {
           display: none;
         }
@@ -34,12 +29,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: 0px 0px;
-          }
-          &:hover, &.active {
-            .icon {
-              background-position: 0px -42px;
-            }
           }
         }
         &#nav-ladder {
@@ -48,13 +37,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: -44px 0px;
-          }
-          &:hover, &.active {
-            background-color: transparent;
-            .icon {
-              background-position: -44px -42px;
-            }
           }
         }
         &#nav-chips {
@@ -63,13 +45,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: -88px 0px;
-          }
-          &:hover, &.active {
-            background-color: transparent;
-            .icon {
-              background-position: -88px -42px;
-            }
           }
         }
         &#nav-chat {
@@ -78,13 +53,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: -132px 0px;
-          }
-          &:hover, &.active {
-            background-color: transparent;
-            .icon {
-              background-position: -132px -42px;
-            }
           }
         }
         &#nav-rules {
@@ -93,13 +61,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: -176px 0px;
-          }
-          &:hover, &.active {
-            background-color: transparent;
-            .icon {
-              background-position: -176px -42px;
-            }
           }
         }
         &#nav-profile {
@@ -108,13 +69,6 @@
           .icon {
             top: 0px;
             left: 0px;
-            background-position: -220px 0px;
-          }
-          &:hover, &.active {
-            background-color: transparent;
-            .icon {
-              background-position: -220px -42px;
-            }
           }
         }
       }

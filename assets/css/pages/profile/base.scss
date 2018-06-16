@@ -7,20 +7,12 @@ body.profile {
       #edit-profile {
         width: 550px;
 
-        .edit-icon {
+        .icon-edit {
           position: absolute;
           display: block;
           cursor: pointer;
           bottom: 0px;
           right: 0px;
-          width: 30px;
-          height:30px;
-          background-image: url("/images/icon-sprite.svg");
-          background-size: 300px 63px;
-          background-position: -264px 33px;
-          &:hover {
-            background-position: -264px 0px;
-          }
         }
 
         #user-details {
@@ -44,18 +36,7 @@ body.profile {
               }
               .icon {
                 flex-grow: 0;
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                background-image: url("/images/icon-sprite.svg");
-                background-size: 300px 63px;
                 margin-right: 15px;
-                &.icon-profile {
-                  background-position: -165px 0px;
-                }
-                &.icon-email {
-                  background-position: -231px 0px;
-                }
               }
             }
           }
@@ -111,7 +92,7 @@ body.profile {
 
           .btn-settings {
             background-color: #ff9947;
-            margin-right: 5px;
+            margin-right: 10px;
             &:hover {
               background-color: #cc7a39;
               color: #dddddd;
@@ -130,7 +111,7 @@ body.profile {
               background-color: #1164c7;
               color: #dddddd;
             }
-            margin-left: 5px;
+            margin-left: 10px;
           }
         }
 
@@ -250,9 +231,35 @@ body.profile {
         thead {
           th {
             .area-buttons {
-              padding: 10px;
+              margin-top: 10px;
               display: flex;
               justify-content: space-around;
+              .friends-tab {
+                text-align: center;
+                line-height: 3.2em;
+                color: #bcbcbc;
+                width: 50%;
+                height: 50px;
+                background: linear-gradient(to bottom, #010116 50%,#374355 100%);
+                border-radius: 20px;
+                &.active {
+                  background: linear-gradient(to bottom, #374355 0%,#010116 50%);
+                }
+                &.link:hover {
+                  cursor: pointer;
+                  color: #ffffff;
+                  background: linear-gradient(to bottom, #010116 33%,#374355 100%);
+                }
+              }
+              &.search {
+                .friends-tab {
+                  background: linear-gradient(to bottom, #010116 0%,#010116 100%);
+
+                  &.link:hover {
+                    background: linear-gradient(to bottom, #374355 0%, #010116 33%);
+                  }
+                }
+              }
             }
           }
 
@@ -294,21 +301,10 @@ body.profile {
           width: 50px;
           text-align: center;
 
-          .delete-friend {
-            display: inline-block;
-            color: #d9534f;
+          .icon {
             cursor: pointer;
           }
 
-          .add-friend {
-            display: inline-block;
-            color: #ffffff;
-            cursor: pointer;
-            text-decoration: underline;
-            &:hover {
-              color: #03a750;
-            }
-          }
         }
 
         tfoot {
@@ -317,6 +313,7 @@ body.profile {
               display: flex;
               justify-content: space-around;
               align-items: center;
+              margin: 10px 0px;
               button {
                 margin: 0px 10px;
               }
@@ -325,6 +322,22 @@ body.profile {
 
         }
 
+      }
+
+      input.search-users {
+        background-image: url("/images/icon-search.svg");
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: 7px 7px;
+        background-color: #374355;
+        padding-left: 32px;
+        border: none;
+        color: #eeeeee;
+        font-weight: normal;
+      }
+
+      .btn-search {
+        margin-left: 10px;
       }
 
     }

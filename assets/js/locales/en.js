@@ -32,7 +32,7 @@ class LocaleEn {
       "friends": "Friends",
       "not_friends": "Not Friends",
       "add_friend": "Add Friend",
-      "pending_me": "Pending Me",
+      "pending_me": "Requests",
       "confirm_friend": "Confirm Friendship",
       "back": "back",
       "next": "next"

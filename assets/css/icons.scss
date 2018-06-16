@@ -1,15 +1,156 @@
 .icon {
 
+  background-image: url("/images/icon-sprite.svg");
   display: inline-block;
+  overflow: hidden;
 
-  &.icon-small {
+  &.icon-sm {
+    background-size: 500px 500px;
+    width: 20px;
+    height: 20px;
+
+    &.icon-add {
+      background-position: 0px -50px;
+    }
+
+    &.icon-delete {
+      background-position: -25px -50px;
+    }
+
+    &.icon-friend {
+      background-position: -50px -50px;
+    }
+
+    &.icon-monero {
+      background-position: 0px -75px;
+    }
+
+    &.icon-game {
+      background-position: 0px 0px;
+      &:hover, &.active {
+        background-position: 0px -25px;
+      }
+    }
+
+    &.icon-ladder {
+      background-position: -25px 0px;
+      &:hover, &.active {
+        background-position: -25px -25px;
+      }
+    }
+
+    &.icon-chips {
+      background-position: -50px 0px;
+      &:hover, &.active {
+        background-position: -50px -25px;
+      }
+    }
+
+    &.icon-chat {
+      background-position: -75px 0px;
+      &:hover, &.active {
+        background-position: -75px -25px;
+      }
+    }
+
+    &.icon-rules {
+      background-position: -100px 0px;
+      &:hover, &.active {
+        background-position: -100px -25px;
+      }
+    }
+
+    &.icon-profile {
+      background-position: -125px 0px;
+      &:hover, &.active {
+        background-position: -125px -25px;
+      }
+    }
+
+  }
+
+  &.icon-med {
+    background-size: 750px 750px;
     width: 30px;
     height: 30px;
-    background-size: cover;
+
+    &.icon-profile {
+      background-position: -188px 0px;
+      &.icon-link:hover {
+        background-position: -188px -38px;
+      }
+    }
+
+    &.icon-email {
+      background-position: -263px 0px;
+    }
+
+    &.icon-edit {
+      background-position: -300px -37px;
+      &:hover {
+        background-position: -300px -0px;
+      }
+    }
+
+    &.icon-tournament {
+      background-position: -225px 0px;
+      &.icon-link:hover {
+        background-position: -225px -37px;
+      }
+
+    }
+
   }
 
-  &.icon-monero {
-    background-image: url("/images/cryptos/monero.svg");
+  &.icon-lg {
+    background-size: 1000px 1000px;
+    width: 40px;
+    height: 40px;
+
+    &.icon-game {
+      background-position: 0px 0px;
+      &:hover, &.active {
+        background-position: 0px -42px;
+      }
+    }
+
+    &.icon-ladder {
+      background-position: -50px 0px;
+      &:hover, &.active {
+        background-position: -50px -42px;
+      }
+    }
+
+    &.icon-chips {
+      background-position: -100px 0px;
+      &:hover, &.active {
+        background-position: -100px -42px;
+      }
+    }
+
+    &.icon-chat {
+      background-position: -150px 0px;
+      &:hover, &.active {
+        background-position: -150px -42px;
+      }
+    }
+
+    &.icon-rules {
+      background-position: -200px 0px;
+      &:hover, &.active {
+        background-position: -200px -42px;
+      }
+    }
+
+    &.icon-profile {
+      background-position: -250px 0px;
+      &:hover, &.active {
+        background-position: -250px -42px;
+      }
+    }
+    
   }
+
+
 
 }

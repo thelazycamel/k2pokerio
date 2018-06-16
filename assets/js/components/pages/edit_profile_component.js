@@ -133,20 +133,20 @@ class EditProfileComponent extends React.Component {
         <div id="user-details">
           <div id="user-details-flex">
             <div className="profile-text">
-              <span className="icon icon-profile"></span>
+              <span className="icon icon-med icon-profile"></span>
               <span className="text-username">
                 {this.props.username}
                 <a id="profile-logout" href="#" onClick={this.logoutClicked}>(Logout)</a>
               </span>
             </div>
             <div className="profile-text">
-              <span className="icon icon-email"></span>
+              <span className="icon icon-med icon-email"></span>
               <span className="text-email">{this.props.email}</span>
             </div>
           </div>
           <div id="profile-image">
             <img src={ this.state.profileImage } alt="Profile Image"/>
-            <div id="edit-image" className="edit-icon" onClick={ this.editProfileImageClicked.bind(this) }></div>
+            <div id="edit-image" className="icon icon-med icon-edit" onClick={ this.editProfileImageClicked.bind(this) }></div>
            { this.profileImageSelect() }
           </div>
         </div>

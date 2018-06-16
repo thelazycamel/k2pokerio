@@ -20,11 +20,6 @@
         position: absolute;
         top: 21px;
         left: 6px;
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-image: url("/images/icon-sprite.svg");
-        background-size: 200px 42px;
       }
     }
 
@@ -35,107 +30,55 @@
     #nav-game {
       top: 50px;
       z-index: 9;
-      .icon {
-        background-position: 0px 0px;
-      }
       &.active {
         z-index: 10;
       }
 
-      &:hover, &.active {
-        .icon {
-          background-position: 0px -21px;
-        }
-      }
     }
 
     #nav-ladder {
       top: 70px;
       z-index: 8;
-      .icon {
-        background-position: -22px 0px;
-      }
       &.active {
         z-index: 10;
       }
-
-      &:hover, &.active {
-        .icon {
-          background-position: -22px -21px;
-        }
-      }
     }
-
 
     #nav-chips {
       top: 130px;
       z-index: 7;
-      .icon {
-        background-position: -44px 0px;
-      }
       &.active {
         z-index: 10;
-      }
-
-      &:hover, &.active {
-        .icon {
-          background-position: -44px -21px;
-        }
       }
     }
 
     #nav-chat {
       top: 380px;
       z-index: 6;
-      .icon {
-        background-position: -66px 0px;
-      }
 
       &.active {
         z-index: 10;
       }
 
-      &:hover, &.active {
-        .icon {
-          background-position: -66px -21px;
-        }
-      }
     }
 
     #nav-rules {
       top: 440px;
       z-index: 5;
-      .icon {
-        background-position: -88px 0px;
-      }
 
       &.active {
         z-index: 10;
       }
-      &:hover, &.active {
-        .icon {
-          background-position: -88px -21px;
-        }
-      }
     }
-
 
     #nav-profile {
       top: 500px;
       z-index: 4;
-      .icon {
-        background-position: -110px 0px;
-      }
 
       &.active {
         z-index: 10;
       }
 
-      &:hover, &.active {
-        .icon {
-          background-position: -110px -21px;
-        }
-      }
     }
   }
 

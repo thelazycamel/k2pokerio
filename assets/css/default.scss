@@ -58,6 +58,16 @@ h1, h2 {
   }
 }
 
+.btn-search {
+  background-color: transparent;
+  color: #cdcdcd;
+  border: 1px solid #374355;
+  &:hover, &:focus {
+    color: #cdcdcd;
+    border: 1px solid #374355;
+  }
+}
+
 .btn-invisible {
   cursor: auto;
   background-color: transparent;

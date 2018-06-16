@@ -15,6 +15,7 @@ class SideNavComponent extends React.Component {
     if(linkName) {
       let linkAttrs = this.props.page.links[linkName];
       let active = linkAttrs.active ? "active" : "";
+      let iconSize = this.props.page.screen_size == "phone" ? "lg" : "sm";
       return (
         <a href="#"
           data-name={linkName}
@@ -24,7 +25,7 @@ class SideNavComponent extends React.Component {
           key={linkName}
           className={"side-nav-item " + active}
           onClick={this.linkClicked.bind(this)}>
-            <span className="icon"></span>
+            <span className={`icon icon-${iconSize} icon-${linkName} ${active}`}></span>
             <span className="link-title">{linkAttrs.title}</span>
         </a> )
     }
