@@ -3,32 +3,6 @@ body.tournament {
   main {
     height: 619px;
     background: linear-gradient(to bottom, #1c45a1 0%,#091122 50%);
-
-    #tournament-lobby {
-      background-image: url("/images/k2-ascent-bg.png");
-      background-repeat: no-repeat;
-      background-position: top center;
-      overflow: hidden;
-      padding: 5px;
-
-      p {
-        text-align: center;
-        font-size: 1.3em;
-        line-height: 1em;
-
-        &.top-row {
-          margin-top: 1.3em;
-        }
-      }
-
-      .btn-k2poker {
-        font-size: 1.5em;
-      }
-
-      #bigred {
-        margin: 30px auto;
-      }
-    }
   }
 }
 
@@ -46,5 +20,50 @@ body.tournament.new {
 body.tournament.index, body.tournament.show {
   main {
     background: none;
+
+    #tournament-header {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      #user-details {
+        display: flex;
+        align-items: center;
+
+        img.main-profile-image {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .tournament-menu {
+      margin: 20px 0px;
+      display: flex;
+      justify-content: space-around;
+
+      .tournament-tab {
+        text-align: center;
+        line-height: 2.8em;
+        color: #bcbcbc;
+        width: 50%;
+        height: 40px;
+        background: linear-gradient(to bottom, #010116 50%,#374355 100%);
+        border-radius: 20px;
+        &.active {
+          background: linear-gradient(to bottom, #374355 0%,#010116 50%);
+        }
+        &.link:hover {
+          cursor: pointer;
+          color: #ffffff;
+          background: linear-gradient(to bottom, #010116 33%,#374355 100%);
+        }
+      }
+    }
+
   }
+
 }

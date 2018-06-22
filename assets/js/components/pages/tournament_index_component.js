@@ -10,13 +10,13 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.public.map((tournament, index) => {
         return (
           <tr key={"tournament-" + tournament.id}>
-            <td className="title">{tournament.name}</td>
+            <td className="tournament-icon">{tournament.icon}</td>
+            <td className="title">
+              <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
+            </td>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
               <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
-            </td>
-            <td className="action">
-              <a className="btn btn-info" href={"/tournaments/"+tournament.id}>Info</a>
             </td>
             <td className="action">&nbsp;</td>
           </tr>
@@ -31,6 +31,7 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.current.map((tournament, index) => {
         return (
           <tr key={"tournament-" + tournament.id}>
+            <td className="tournament-icon">{tournament.icon}</td>
             <td className="title">{tournament.name}</td>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
@@ -68,13 +69,17 @@ class TournamentIndexComponent extends React.Component {
       let tournaments = this.props.tournament.invites.map((invite, index) => {
         return (
           <tr key={"invite-" + invite.id} className="invitation">
-            <td className="title">{invite.name} from {invite.username }</td>
+            <td className="tournament-icon">
+              <span className="icon icon-med icon-invite active"></span>
+            </td>
+            <td className="title">
+              <a href="#" onClick={this.tournamentInfoInviteClicked.bind(this, invite.id)}>
+                {invite.name} from {invite.username }
+              </a>
+            </td>
             <td className="score">&nbsp;</td>
             <td className="action">
               <a className="btn btn-success" href={"/invitations/accept/"+invite.id}>Accept</a>
-            </td>
-            <td className="action">
-              <a className="btn btn-info" onClick={this.tournamentInfoInviteClicked.bind(this, invite.id)}>Info</a>
             </td>
             <td className="action">
               <a className="btn btn-danger" onClick={this.destroyInvite.bind(this, invite.id)}>Delete</a>
@@ -90,12 +95,19 @@ class TournamentIndexComponent extends React.Component {
     return (
       <Provider store={this.props.store}>
         <div id="tournament-index-root">
-          <h1>Available Tournaments</h1>
-          <h2>Public</h2>
+          <div id="tournament-header">
+            <div id="user-details">
+              <img src={this.props.profile_image} className="main-profile-image"/>
+              <h4>{this.props.username}</h4>
+            </div>
+            <a className="btn btn-warning" href="/tournaments/new">Create a Private Tournament</a>
+          </div>
+          <div className="tournament-menu">
+             <div className="tournament-tab active">Public Tournaments</div>
+             <div className="tournament-tab link">Private Tournaments</div>
+          </div>
             {this.renderPublicTournaments() }
-          <h2>Private</h2>
             {this.renderCurrentTournaments() }
-          <h2>Invitations</h2>
             {this.renderInvites() }
         </div>
       </Provider>

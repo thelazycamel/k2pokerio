@@ -24,8 +24,17 @@ class TournamentIndexPage extends page {
     App.services.tournaments.for_user();
   }
 
+  getData(name){
+    let element = this.wrapperElement();
+    return element.dataset[name];
+  }
+
+  wrapperElement(){
+    return document.getElementById("tournament-index-wrapper")
+  }
+
   initializeTournamentIndexComponent() {
-    ReactDOM.render(<TournamentIndexComponent store={App.store} />, document.getElementById("tournament-index-wrapper"));
+    ReactDOM.render(<TournamentIndexComponent store={App.store} username={this.getData("username")} profile_image={this.getData("profileImage")} />, this.wrapperElement());
   }
 
   initializeChatComponent() {

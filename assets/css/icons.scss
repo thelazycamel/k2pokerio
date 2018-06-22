@@ -85,6 +85,13 @@
       background-position: -263px 0px;
     }
 
+    &.icon-invite {
+      background-position: -338px 0px;
+      &:hover, &.active {
+        background-position: -338px -38px;
+      }
+    }
+
     &.icon-edit {
       background-position: -300px -37px;
       &:hover {
@@ -148,6 +155,14 @@
         background-position: -250px -50px;
       }
     }
+
+    &.icon-invite {
+      background-position: -450px 0px;
+      &:hover, &.active {
+        background-position: -450px -50px;
+      }
+    }
+
 
   }
 
