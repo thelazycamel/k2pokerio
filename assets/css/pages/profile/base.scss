@@ -236,10 +236,10 @@ body.profile {
               justify-content: space-around;
               .friends-tab {
                 text-align: center;
-                line-height: 3.2em;
+                line-height: 2.8em;
                 color: #bcbcbc;
                 width: 50%;
-                height: 50px;
+                height: 40px;
                 background: linear-gradient(to bottom, #010116 50%,#374355 100%);
                 border-radius: 20px;
                 &.active {
@@ -302,6 +302,7 @@ body.profile {
           text-align: center;
 
           .icon {
+            margin-top: 5px;
             cursor: pointer;
           }
 
@@ -313,7 +314,6 @@ body.profile {
               display: flex;
               justify-content: space-around;
               align-items: center;
-              margin: 10px 0px;
               button {
                 margin: 0px 10px;
               }

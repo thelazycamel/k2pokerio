@@ -59,7 +59,7 @@ class FriendsList extends React.Component {
   friendStatus(friend) {
     if(friend.status == "pending_me") {
       return <button className="btn btn-success" onClick={this.confirmFriend.bind(this, friend)}>Confirm</button>
-    } else if (friend.status == "friend" && this.state.area != "friends") {
+    } else if (friend.status == "friend" && this.state.area == "search") {
       return <span className="icon icon-sm icon-friend"></span>
     } else if (friend.status == "pending_them") {
       return App.t(friend.status);

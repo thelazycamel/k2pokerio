@@ -5,6 +5,7 @@ defmodule K2pokerIoWeb.FriendController do
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
+  alias K2pokerIo.Decorators.FriendDecorator
 
   def index(conn, params) do
     if current_user(conn) do
