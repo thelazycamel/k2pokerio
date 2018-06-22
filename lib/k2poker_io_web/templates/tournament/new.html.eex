@@ -2,8 +2,9 @@
 <form action="<%=tournament_path(@conn, :create) %>" method="POST" name="tournament" id="new-tournament">
 </form>
 <script>
+
 PageData = {friends:[]};
-<%= for {user_id, username} <- @conn.assigns[:friends] do %>
- PageData.friends.push( {user_id: <%= user_id %>, username: "<%= username %>", selected: false });
+<%= for friend <- @conn.assigns[:friends] do %>
+  PageData.friends.push( {user_id: <%= friend.id %>, username: "<%= friend.username %>", selected: false });
 <% end %>
 </script>
