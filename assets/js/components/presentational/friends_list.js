@@ -209,8 +209,8 @@ class FriendsList extends React.Component {
             <tr>
               <th colSpan="4">
                 <div className={"area-buttons " + this.state.area}>
-                  { this.renderPendingMeButton() }
                   { this.renderFriendsButton() }
+                  { this.renderPendingMeButton() }
                 </div>
               </th>
             </tr>

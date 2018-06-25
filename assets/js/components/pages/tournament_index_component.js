@@ -32,13 +32,12 @@ class TournamentIndexComponent extends React.Component {
         return (
           <tr key={"tournament-" + tournament.id}>
             <td className="tournament-icon">{tournament.icon}</td>
-            <td className="title">{tournament.name}</td>
+            <td className="title">
+              <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
+            </td>
             <td className="score">{tournament.current_score}</td>
             <td className="action">
               <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
-            </td>
-            <td className="action">
-              <a className="btn btn-info" href={"/tournaments/"+tournament.id}>Info</a>
             </td>
             <td className="action">
               <a className="btn btn-danger" onClick={this.destroyTournament.bind(this, tournament.id)}>Delete</a>
@@ -103,8 +102,8 @@ class TournamentIndexComponent extends React.Component {
             <a className="btn btn-warning" href="/tournaments/new">Create a Private Tournament</a>
           </div>
           <div className="tournament-menu">
-             <div className="tournament-tab active">Public Tournaments</div>
-             <div className="tournament-tab link">Private Tournaments</div>
+             <div className="tournament-tab active">Tournaments</div>
+             <div className="tournament-tab link">Invitations</div>
           </div>
             {this.renderPublicTournaments() }
             {this.renderCurrentTournaments() }
