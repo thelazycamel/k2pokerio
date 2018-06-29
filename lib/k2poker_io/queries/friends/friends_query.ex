@@ -74,7 +74,7 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
 
   def search_users(current_user_id, text, params) do
     query = from u in User,
-      where: ilike(u.username, ^"%#{text}%"),
+      where: ilike(u.username, ^"%#{text}%") and (u.id != ^current_user_id),
       left_join: f in Friendship,
         on: (f.user_id == u.id and f.friend_id == ^current_user_id) or (f.user_id == ^current_user_id and f.friend_id == u.id),
       select: %{id: u.id, username: u.username, image: u.image, blurb: u.blurb, user_id: f.user_id, friend_id: f.friend_id, status: f.status},
