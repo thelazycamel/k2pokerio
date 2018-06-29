@@ -68,42 +68,6 @@ defmodule K2pokerIo.TournamentControllerTest do
     assert(response =~ expected)
   end
 
-  test "#for_user should return the available tournaments for the user", context do
-    tournament = Helpers.create_private_tournament(context.player1, "Stus tourney")
-    tournament2 = Helpers.create_private_tournament(context.player2, "Bobs tourney")
-    Repo.insert!(Invitation.changeset(%Invitation{}, %{ user_id: context.player1.id, tournament_id: tournament.id, accepted: true}))
-    invite = Repo.insert!(Invitation.changeset(%Invitation{}, %{ user_id: context.player1.id, tournament_id: tournament2.id, accepted: false}))
-    conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
-    response = conn
-      |> post(tournament_path(conn, :for_user))
-      |> json_response(200)
-    expected = %{
-      "current" => [
-        %{
-          "current_score" => 1,
-          "id" => tournament.id,
-          "name" => tournament.name
-        }
-      ],
-      "invites" => [
-        %{
-          "id" => invite.id,
-          "name" => tournament2.name,
-          "tournament_id" => tournament2.id,
-          "username" => context.player2.username
-        }
-      ],
-      "public" => [
-        %{
-          "current_score" => 1,
-          "id" => context.tournament.id,
-          "name" => context.tournament.name
-        }
-      ]
-    }
-    assert(response == expected)
-  end
-
   test "#join should join the tournament and redirect user to the game play", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn

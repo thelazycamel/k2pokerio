@@ -4,7 +4,7 @@ defmodule K2pokerIoWeb.TournamentController do
 
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Tournaments.GetPlayersQuery
-  alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
+  alias K2pokerIo.Queries.Tournaments.UserTournamentsQuery
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
   alias K2pokerIo.Commands.Tournament.JoinTournamentCommand
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
@@ -37,12 +37,12 @@ defmodule K2pokerIoWeb.TournamentController do
 
   end
 
-  def for_user(conn, _) do
+  def for_user(conn, params) do
     if logged_in?(conn) do
-      tournaments = GetTournamentsForUserQuery.for_user(current_user(conn))
-      json conn, tournaments
+      {tournaments, pagination} = UserTournamentsQuery.all(current_user(conn), params)
+      json conn, %{ tournaments: tournaments, pagination: pagination }
     else
-      json conn, %{error: true}
+      json conn, %{ tournaments: [] }
     end
   end
 

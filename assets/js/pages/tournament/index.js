@@ -17,11 +17,6 @@ class TournamentIndexPage extends page {
     new chatChannel();
     this.initializeTournamentIndexComponent();
     this.initializeChatComponent();
-    this.getTournaments();
-  }
-
-  getTournaments() {
-    App.services.tournaments.for_user();
   }
 
   getData(name){

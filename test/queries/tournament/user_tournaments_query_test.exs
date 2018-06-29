@@ -1,13 +1,13 @@
-defmodule K2pokerIo.GetTournamentsForUserQueryTest do
+defmodule K2pokerIo.UserTournamentsTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Invitation
   alias K2pokerIo.Commands.User.RequestFriendCommand
-  alias K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
+  alias K2pokerIo.Queries.Tournaments.UserTournamentsQuery
 
   use K2pokerIo.ModelCase
 
-  doctest K2pokerIo.Queries.Tournaments.GetTournamentsForUserQuery
+  doctest K2pokerIo.Queries.Tournaments.UserTournamentsQuery
 
   setup do
     default_tournament = Helpers.create_tournament()
@@ -28,33 +28,15 @@ defmodule K2pokerIo.GetTournamentsForUserQueryTest do
     }
   end
 
-  test "it should return an array of tournaments", context do
-    query = GetTournamentsForUserQuery.for_user(context.player1)
-    expected = %{
-      current: [
-        %{
-          current_score: 1,
-          id: context.accepted_tournament.id,
-          name: context.accepted_tournament.name
-        }
-      ],
-      invites: [
-        %{
-          id: context.invite.id,
-          name: context.invited_tournament.name,
-          tournament_id: context.invited_tournament.id,
-          username: context.player2.username
-        }
-      ],
-      public: [
-        %{
-          current_score: 1,
-          id: context.default_tournament.id,
-          name: context.default_tournament.name
-        }
-      ]
-    }
-    assert(query == expected)
+  test "it should all available tournaments", context do
+    {query, _} = UserTournamentsQuery.all(context.player1, %{page: 1, per_page: 7, max_pages: 100})
+    default_tourney = List.first(query)
+    accepted_tourney = List.last(query)
+    assert(Enum.count(query) == 2)
+    assert(default_tourney.current_score == nil)
+    assert(default_tourney.starting_chips == 1)
+    assert(default_tourney.name == context.default_tournament.name)
+    assert(accepted_tourney.name == context.accepted_tournament.name)
   end
 
 end

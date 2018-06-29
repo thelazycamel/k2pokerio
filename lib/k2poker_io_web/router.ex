@@ -25,10 +25,10 @@ defmodule K2pokerIoWeb.Router do
 
     post "/anon-user", PageController, :anon_user_create
 
-    resources "/tournaments", TournamentController
+    get "/tournaments/for_user", TournamentController, :for_user
     get "/tournaments/join/:id", TournamentController, :join
-    post "/tournaments/for_user", TournamentController, :for_user
     post "/tournaments/get_scores", TournamentController, :get_scores
+    resources "/tournaments", TournamentController
 
     get "/games/play", GameController, :play
     post "/games/join", GameController, :join
@@ -41,8 +41,9 @@ defmodule K2pokerIoWeb.Router do
     get "/friends/count/:action", FriendController, :count
     get "/friends/search", FriendController, :search
 
-    resources "/invitations", InvitationController, only: [:delete]
+    resources "/invitations", InvitationController, only: [:index, :delete]
     get "/invitations/accept/:id", InvitationController, :accept
+    get "/invitations/count", InvitationController, :count
 
     resources "/registrations", RegistrationController, only: [:new, :create]
 

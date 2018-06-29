@@ -4,6 +4,26 @@ defmodule K2pokerIoWeb.InvitationController do
 
   alias K2pokerIo.Commands.Invitation.AcceptInvitationCommand
   alias K2pokerIo.Commands.Invitation.DestroyInvitationCommand
+  alias K2pokerIo.Queries.Invitations.InvitationsQuery
+  alias K2pokerIo.Decorators.TournamentDecorator
+
+  def index(conn, params) do
+    if current_user(conn) do
+      {invitations, pagination} = InvitationsQuery.all(current_user(conn).id, params)
+      json conn, %{invitations: invitations, pagination: pagination}
+    else
+      json conn, %{invitations: [], pagination: {}}
+    end
+  end
+
+  def count(conn, _) do
+    if current_user(conn) do
+      count = InvitationsQuery.count(current_user(conn).id)
+      json conn, %{count: count}
+    else
+      json conn, %{count: 0}
+    end
+  end
 
   def accept(conn, %{"id" => invite_id}) do
     case AcceptInvitationCommand.execute(current_user(conn), invite_id) do

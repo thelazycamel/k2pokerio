@@ -35,7 +35,9 @@ class LocaleEn {
       "pending_me": "Requests",
       "confirm_friend": "Confirm Friendship",
       "back": "back",
-      "next": "next"
+      "next": "next",
+      "tournaments": "Tournaments",
+      "invitations": "Invitations"
     });
   }
 

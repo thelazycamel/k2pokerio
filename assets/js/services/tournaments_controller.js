@@ -4,6 +4,13 @@ export default class TournamentsController {
     this.baseUrl = "/tournaments";
   }
 
+  parameterize(params){
+    let esc = encodeURIComponent;
+    return Object.keys(params).map(key => {
+      return esc(key) + '=' + esc(params[key])
+    }).join('&');
+  }
+
   destroy(id) {
     fetch(`${this.baseUrl}/${id}`, {
       headers: {'x-csrf-token': App.settings.csrf_token},
@@ -20,20 +27,14 @@ export default class TournamentsController {
     });
   }
 
-  for_user() {
-    fetch(`${this.baseUrl}/for_user`, {
-      headers: {'x-csrf-token': App.settings.csrf_token},
-      credentials: 'same-origin',
-      method: "post",
-    }).then(response => {
-      if(response.ok){
-        response.json().then(data => {
-          App.store.dispatch({type: "TOURNAMENT:RECEIVED_USER_TOURNAMENTS", data: data});
-        })
-      } else {
-        console.log("failed getting user tournaments");
-      }
-    });
+  all(params) {
+    return (
+      fetch(this.baseUrl + "/for_user?" + this.parameterize(params), {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        credentials: 'same-origin',
+        method: "get",
+      }).then(response => { return response.json() })
+    )
   }
 
   get_scores() {
