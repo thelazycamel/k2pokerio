@@ -78,6 +78,26 @@ h1, h2 {
   }
 }
 
+.btn-play-button {
+  &.btn-sm {
+    width: 100px;
+    height: 32px;
+  }
+  cursor: pointer;
+  background-image: url("/images/play-button.svg");
+  background-size: cover;
+  text-align: center;
+  color: #c3c3c3;
+  transition: opacity .5s;
+
+  &:hover {
+    text-decoration: none;
+    color: #f3f3f3;
+    background-image: url("/images/play-button-hover.svg");
+  }
+
+}
+
 .highlighted {
   color: #ffcc00;
 }
@@ -106,3 +126,4 @@ h1, h2 {
     margin-left: -150px;
   }
 }
+

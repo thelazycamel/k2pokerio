@@ -37,7 +37,8 @@ class LocaleEn {
       "back": "back",
       "next": "next",
       "tournaments": "Tournaments",
-      "invitations": "Invitations"
+      "invitations": "Invitations",
+      "create_a_game": "Create a Game"
     });
   }
 

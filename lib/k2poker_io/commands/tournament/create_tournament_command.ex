@@ -53,6 +53,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
       private: true,
       user_id: current_user.id,
       type: "tournament",
+      image: "/images/tournament/private.svg",
       lose_type: "all",
       starting_chips: 1,
       max_score: 1048576,
@@ -71,6 +72,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
       type: "duel",
       user_id: current_user.id,
       lose_type: "half",
+      image: "/images/tournament/duel.svg",
       starting_chips: 1024,
       max_score: 1048576,
       bots: false

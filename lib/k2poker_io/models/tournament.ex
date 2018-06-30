@@ -17,6 +17,7 @@ defmodule K2pokerIo.Tournament do
     field :lose_type, :string  #one of "all" or "half"
     field :type, :string #currently tournament or duel
     field :starting_chips, :integer
+    field :image, :string
     field :max_score, :integer
     field :bots, :boolean
     timestamps()

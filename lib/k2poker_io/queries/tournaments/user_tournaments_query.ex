@@ -16,7 +16,7 @@ defmodule K2pokerIo.Queries.Tournaments.UserTournamentsQuery do
       left_join: utd in assoc(t, :user_tournament_details), on: [tournament_id: t.id, player_id: ^player_id],
       where: (t.private == false and t.finished == false),
       or_where: (i.user_id == ^current_user_id and i.accepted == true and t.finished == false),
-      select: %{id: t.id, name: t.name, current_score: utd.current_score, starting_chips: t.starting_chips}
+      select: %{id: t.id, name: t.name, current_score: utd.current_score, starting_chips: t.starting_chips, private: t.private, image: t.image}
     Repo.paginate(query)
   end
 

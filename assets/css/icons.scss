@@ -10,10 +10,12 @@
     height: 20px;
 
     &.icon-add {
+      cursor: pointer;
       background-position: 0px -50px;
     }
 
     &.icon-delete {
+      cursor: pointer;
       background-position: -25px -50px;
     }
 

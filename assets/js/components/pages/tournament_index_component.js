@@ -39,27 +39,6 @@ class TournamentIndexComponent extends React.Component {
     });
   }
 
-  renderTournaments() {
-    let tournaments = this.state.tournaments.map((tournament, index) => {
-      return (
-        <tr key={"tournament-" + tournament.id}>
-          <td className="tournament-icon">{tournament.icon}</td>
-          <td className="title">
-            <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
-          </td>
-          <td className="score">{tournament.current_score || tournament.starting_chips}</td>
-          <td className="action">
-            <a className="btn btn-success" href={"/tournaments/join/"+tournament.id}>Play</a>
-          </td>
-          <td className="action">
-            <a className="btn btn-danger" onClick={this.destroyTournament.bind(this, tournament.id)}>Delete</a>
-          </td>
-        </tr>
-      )
-    });
-    return ( <table id="current" className="tournament-table"><tbody>{tournaments}</tbody></table>)
-  }
-
   destroyInvite(invite_id) {
     App.store.dispatch({type: "TOURNAMENT:DESTROY_INVITE", invite_id: invite_id});
     return false;
@@ -74,23 +53,57 @@ class TournamentIndexComponent extends React.Component {
     App.store.dispatch({type: "TOURNAMENT:INFO_WITH_INVITE", invite_id: invite_id})
   }
 
+  renderDeleteButton(tournament) {
+    if(tournament.private) {
+      return <span className="icon icon-sm icon-delete" onClick={this.destroyTournament.bind(this, tournament.id)}></span>
+    }
+  }
+
+  renderPlayButton(tournament) {
+    return <a className="btn btn-sm btn-play-button" href={"/tournaments/join/"+tournament.id}>Play</a>
+  }
+
+  renderTournaments() {
+    let tournaments = this.state.tournaments.map((tournament, index) => {
+      return (
+        <tr key={"tournament-" + tournament.id}>
+          <td className="tournament-icon"><img src={tournament.image} className="tourament-icon"/></td>
+          <td className="title">
+            <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
+          </td>
+          <td className="score">{tournament.current_score || tournament.starting_chips}</td>
+          <td className="action">
+            { this.renderPlayButton(tournament) }
+          </td>
+          <td className="action">
+            { this.renderDeleteButton(tournament) }
+          </td>
+        </tr>
+      )
+    });
+    return ( <table id="current" className="tournament-table"><tbody>{tournaments}</tbody></table>)
+  }
+
+
   renderInvite(invite, index) {
     return (
       <tr key={"invite-" + invite.id} className="invitation">
         <td className="tournament-icon">
-          <span className="icon icon-med icon-invite active"></span>
+          <img src={invite.image} className="bob"/>
         </td>
         <td className="title">
           <a href="#" onClick={this.tournamentInfoInviteClicked.bind(this, invite.id)}>
             {invite.name} from {invite.username }
           </a>
         </td>
-        <td className="score">&nbsp;</td>
-        <td className="action">
-          <a className="btn btn-success" href={"/invitations/accept/"+invite.id}>Accept</a>
+        <td className="score">
+          <span className="icon icon-med icon-invite active"></span>
         </td>
         <td className="action">
-          <a className="btn btn-danger" onClick={this.destroyInvite.bind(this, invite.id)}>Delete</a>
+          <a className="btn btn-sm btn-play-button" href={"/invitations/accept/"+invite.id}>Accept</a>
+        </td>
+        <td className="action">
+          <span className="icon icon-sm icon-delete" onClick={this.destroyInvite.bind(this, invite.id)}></span>
         </td>
       </tr>
     )
@@ -116,7 +129,6 @@ class TournamentIndexComponent extends React.Component {
 
   renderTabs() {
     let {area, invitation_count} = this.state;
-    console.log(area)
     return (
       <div className="tournament-menu">
         { ["tournaments", "invitations"].map((tab) => {
@@ -147,7 +159,7 @@ class TournamentIndexComponent extends React.Component {
               <img src={this.props.profile_image} className="main-profile-image"/>
               <h4>{this.props.username}</h4>
             </div>
-            <a className="btn btn-warning" href="/tournaments/new">Create a Private Tournament</a>
+            <a className="btn btn-k2poker" href="/tournaments/new">{App.t("create_a_game")}</a>
           </div>
             {this.renderTabs()}
             {this.renderTable()}

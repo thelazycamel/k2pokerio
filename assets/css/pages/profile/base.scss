@@ -334,6 +334,9 @@ body.profile {
         border: none;
         color: #eeeeee;
         font-weight: normal;
+        &::placeholder {
+          color: #8393a7;
+        }
       }
 
       .btn-search {
