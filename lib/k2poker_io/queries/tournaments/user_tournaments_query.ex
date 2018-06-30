@@ -17,7 +17,7 @@ defmodule K2pokerIo.Queries.Tournaments.UserTournamentsQuery do
       where: (t.private == false and t.finished == false),
       or_where: (i.user_id == ^current_user_id and i.accepted == true and t.finished == false),
       select: %{id: t.id, name: t.name, current_score: utd.current_score, starting_chips: t.starting_chips, private: t.private, image: t.image}
-    Repo.paginate(query)
+    Repo.paginate(query, params)
   end
 
 end

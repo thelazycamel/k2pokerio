@@ -8,37 +8,40 @@ class TournamentIndexComponent extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      invitation_count: 0,
       area: "invitations",
       tournaments: [],
       invitations: [],
-      pagination: {page: 1, per_page: 7, max_page: 100}
+      pagination: {page_no: 1, per_page: 8, max_page: 100}
     }
   }
 
   componentDidMount() {
     App.services.invitations.count().then(data => {
       if(data.count > 0){
-        this.setState(...this.state, {invitation_count: data.count});
-        this.getInvitations();
+        this.loadPage(1, "invitations");
       } else {
-        this.getTournaments();
+        this.loadPage(1, "tournaments");
       }
     })
   }
 
-  getInvitations() {
-    App.services.invitations.index(this.state.pagination).then(data => {
-      this.setState(...this.state, {invitations: data.invitations, area: "invitations"});
-    });
-  }
-
-  getTournaments() {
-    App.services.tournaments.all(this.state.pagination).then(data => {
-      this.setState(...this.state,
-        {tournaments: data.tournaments, area: "tournaments"}
-      )
-    });
+  loadPage(page, area){
+    let pagination = Object.assign(this.state.pagination, {page_no: page, page: page})
+    if(area == "tournaments"){
+      App.services.tournaments.all(pagination).then(data => {
+        let pageNo = parseInt(data.pagination.params.page_no, 10);
+        pagination = Object.assign(data.pagination, {page_no: pageNo, page: pageNo});
+        this.setState(...this.state,
+          {tournaments: data.tournaments, area: "tournaments", pagination: pagination}
+        )
+      });
+    } else {
+      App.services.invitations.index(pagination).then(data => {
+        let pageNo = parseInt(data.pagination.params.page_no, 10);
+        pagination = Object.assign(data.pagination, {page_no: pageNo, page: pageNo});
+        this.setState(...this.state, {invitations: data.invitations, area: "invitations", pagination: pagination});
+      });
+    }
   }
 
   destroyInvite(invite_id) {
@@ -71,25 +74,41 @@ class TournamentIndexComponent extends React.Component {
     return <a className="btn btn-sm btn-play-button" href={"/tournaments/join/"+tournament.id}>Play</a>
   }
 
+  renderTournament(tournament) {
+    return (
+      <tr key={"tournament-" + tournament.id}>
+        <td className="tournament-icon"><img src={tournament.image} className="tourament-icon"/></td>
+        <td className="title">
+          <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
+        </td>
+        <td className="score">{tournament.current_score || tournament.starting_chips}</td>
+        <td className="action">
+          { this.renderPlayButton(tournament) }
+        </td>
+        <td className="action">
+          { this.renderDeleteButton(tournament) }
+        </td>
+      </tr>
+    )
+  }
+
   renderTournaments() {
-    let tournaments = this.state.tournaments.map((tournament, index) => {
-      return (
-        <tr key={"tournament-" + tournament.id}>
-          <td className="tournament-icon"><img src={tournament.image} className="tourament-icon"/></td>
-          <td className="title">
-            <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
-          </td>
-          <td className="score">{tournament.current_score || tournament.starting_chips}</td>
-          <td className="action">
-            { this.renderPlayButton(tournament) }
-          </td>
-          <td className="action">
-            { this.renderDeleteButton(tournament) }
-          </td>
-        </tr>
-      )
-    });
-    return ( <table id="current" className="tournament-table"><tbody>{tournaments}</tbody></table>)
+    return (
+      <table id="current" className="tournament-table">
+        <tbody>
+          { this.state.tournaments.map((tournament) => { return this.renderTournament(tournament)}) }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="5">
+              <div className="pagination">
+                { this.renderPagination() }
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    )
   }
 
   renderInvite(invite, index) {
@@ -122,16 +141,21 @@ class TournamentIndexComponent extends React.Component {
         <tbody>
           { this.state.invitations.map((invite, index) => { return this.renderInvite(invite, index)}) }
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="5">
+              <div className="pagination">
+                { this.renderPagination() }
+              </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     )
   }
 
   tabClicked(tab){
-    if(tab == "tournaments") {
-      this.getTournaments();
-    } else {
-      this.getInvitations();
-    }
+    this.loadPage(1, tab);
   }
 
   renderTabs() {
@@ -150,11 +174,29 @@ class TournamentIndexComponent extends React.Component {
   }
 
   renderTable() {
-   if(this.state.area == "tournaments") {
-     return this.renderTournaments()
-   } else {
-     return this.renderInvites()
-   }
+    if(this.state.area == "tournaments") {
+      return this.renderTournaments()
+    } else {
+      return this.renderInvites()
+    }
+  }
+
+
+  renderPagination() {
+    let { pagination } = this.state;
+    let textArray = [];
+    if(pagination.page_no != 1 && pagination.total_pages > 1) {
+      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_no -1, this.state.area) }>{ App.t("back") }</button>);
+    } else {
+      textArray.push(<div key="1" className="btn btn-sm btn-invisible">{ App.t("back") }</div>);
+    }
+    textArray.push(<span key="2">Page {pagination.page} of {pagination.total_pages}</span>)
+    if(pagination.total_pages > 1 && pagination.page_no != pagination.total_pages) {
+      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_no +1, this.state.area) }>{ App.t("next") }</button>);
+    } else {
+      textArray.push(<div key="3" className="btn btn-sm btn-invisible">{ App.t("next") }</div>);
+    }
+    return textArray;
   }
 
   render() {
