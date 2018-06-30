@@ -35,22 +35,30 @@ class TournamentIndexComponent extends React.Component {
 
   getTournaments() {
     App.services.tournaments.all(this.state.pagination).then(data => {
-      this.setState(...this.state, {tournaments: data.tournaments, area: "tournaments"});
+      this.setState(...this.state,
+        {tournaments: data.tournaments, area: "tournaments"}
+      )
     });
   }
 
   destroyInvite(invite_id) {
-    App.store.dispatch({type: "TOURNAMENT:DESTROY_INVITE", invite_id: invite_id});
-    return false;
+    App.services.invitations.destroy(invite_id).then(data => {
+      this.setState(...this.state,
+        { invitations: this.state.invitations.filter(el => { return el.id != invite_id }) }
+      )
+    });
   }
 
   destroyTournament(tournament_id) {
-    App.store.dispatch({type: "TOURNAMENT:DESTROY_TOURNAMENT", tournament_id: tournament_id});
-    return false;
+    App.services.tournaments.destroy(tournament_id).then(data => {
+      this.setState(...this.state,
+        { tournaments: this.state.tournaments.filter(el => { return el.id != tournament_id }) }
+      )
+    })
   }
 
   tournamentInfoInviteClicked() {
-    App.store.dispatch({type: "TOURNAMENT:INFO_WITH_INVITE", invite_id: invite_id})
+    //TODO
   }
 
   renderDeleteButton(tournament) {
@@ -83,7 +91,6 @@ class TournamentIndexComponent extends React.Component {
     });
     return ( <table id="current" className="tournament-table"><tbody>{tournaments}</tbody></table>)
   }
-
 
   renderInvite(invite, index) {
     return (

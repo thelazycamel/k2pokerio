@@ -12,19 +12,13 @@ export default class TournamentsController {
   }
 
   destroy(id) {
-    fetch(`${this.baseUrl}/${id}`, {
-      headers: {'x-csrf-token': App.settings.csrf_token},
-      credentials: 'same-origin',
-      method: "delete"
-    }).then(response => {
-      if(response.ok){
-        response.json().then(data => {
-          App.store.dispatch({type: "TOURNAMENT:DESTROYED", data: data});
-        })
-      } else {
-        console.log("delete tournament failed");
-      }
-    });
+    return (
+      fetch(`${this.baseUrl}/${id}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token},
+        credentials: 'same-origin',
+        method: "delete"
+      }).then(response => { return response.json() })
+    )
   }
 
   all(params) {
