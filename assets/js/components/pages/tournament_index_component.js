@@ -28,7 +28,7 @@ class TournamentIndexComponent extends React.Component {
   }
 
   getInvitations() {
-    App.services.invitations.all(this.state.pagination).then(data => {
+    App.services.invitations.index(this.state.pagination).then(data => {
       this.setState(...this.state, {invitations: data.invitations, area: "invitations"});
     });
   }

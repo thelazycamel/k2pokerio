@@ -1,14 +1,10 @@
-export default class InvitationsController {
+import BaseController from './base_controller'
+
+export default class InvitationsController extends BaseController {
 
   constructor(){
+    super();
     this.baseUrl = "/invitations";
-  }
-
-  parameterize(params){
-    let esc = encodeURIComponent;
-    return Object.keys(params).map(key => {
-      return esc(key) + '=' + esc(params[key])
-    }).join('&');
   }
 
   count(){
@@ -17,26 +13,6 @@ export default class InvitationsController {
         headers: {'x-csrf-token': App.settings.csrf_token},
         credentials: 'same-origin',
         method: 'get'
-      }).then(response => { return response.json() })
-    )
-  }
-
-  all(params) {
-    return (
-      fetch(this.baseUrl + "?" + this.parameterize(params), {
-        headers: {'x-csrf-token': App.settings.csrf_token},
-        credentials: 'same-origin',
-        method: 'get'
-      }).then(response => { return response.json() })
-    )
-  }
-
-  destroy(id) {
-    return (
-      fetch(`${this.baseUrl}/${id}`, {
-        headers: {'x-csrf-token': App.settings.csrf_token},
-        credentials: 'same-origin',
-        method: "delete"
       }).then(response => { return response.json() })
     )
   }

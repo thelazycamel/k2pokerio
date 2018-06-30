@@ -1,6 +1,9 @@
-export default class GameController {
+import BaseController from './base_controller'
+
+export default class GameController extends BaseController {
 
   constructor(){
+    super();
     this.baseUrl = "/games";
   }
 

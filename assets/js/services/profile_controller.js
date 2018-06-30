@@ -1,10 +1,12 @@
-export default class ProfileController {
+import BaseController from './base_controller'
+
+export default class ProfileController extends BaseController {
 
   constructor(){
+    super();
     this.baseUrl = "/profile";
   }
 
-  /* slightly different setup, this returns the whole request and response */
   update_image(image) {
     return fetch(`${this.baseUrl}/update_image`,
       { method: 'post',
