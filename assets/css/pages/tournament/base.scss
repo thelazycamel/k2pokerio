@@ -2,7 +2,6 @@ body.tournament {
 
   main {
     height: 619px;
-    background: linear-gradient(to bottom, #1c45a1 0%,#091122 50%);
   }
 }
 
@@ -17,7 +16,7 @@ body.tournament.new {
   }
 }
 
-body.tournament.index, body.tournament.show {
+body.tournament {
   main {
     background: none;
 
@@ -40,7 +39,7 @@ body.tournament.index, body.tournament.show {
       }
     }
 
-    .tournament-menu {
+    .tournament-menu, .game-menu {
       margin: 20px 0px;
       display: flex;
       justify-content: space-around;
@@ -54,6 +53,10 @@ body.tournament.index, body.tournament.show {
         height: 40px;
         background: linear-gradient(to bottom, #010116 50%,#374355 100%);
         border-radius: 20px;
+        span.icon {
+          vertical-align: top;
+          margin-right: 10px;
+        }
         &.active {
           background: linear-gradient(to bottom, #374355 0%,#010116 50%);
         }
@@ -61,6 +64,14 @@ body.tournament.index, body.tournament.show {
           cursor: pointer;
           color: #ffffff;
           background: linear-gradient(to bottom, #010116 33%,#374355 100%);
+
+          .icon-private {
+            background-position: -413px -37px;
+          }
+
+          .icon-duel {
+            background-position: -375px -37px;
+          }
         }
       }
     }

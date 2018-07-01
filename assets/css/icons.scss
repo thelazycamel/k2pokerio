@@ -109,6 +109,21 @@
 
     }
 
+    &.icon-private {
+      background-position: -413px 0px;
+      &:hover, &.active {
+        background-position: -413px -37px;
+      }
+    }
+
+    &.icon-duel {
+      background-position: -375px 0px;
+      &:hover, &.active {
+        background-position: -375px -37px;
+      }
+    }
+
+
   }
 
   &.icon-lg {

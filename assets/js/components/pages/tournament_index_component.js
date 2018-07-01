@@ -159,7 +159,7 @@ class TournamentIndexComponent extends React.Component {
   }
 
   renderTabs() {
-    let {area, invitation_count} = this.state;
+    let {area} = this.state;
     return (
       <div className="tournament-menu">
         { ["tournaments", "invitations"].map((tab) => {

@@ -63,15 +63,24 @@ class NewTournamentComponent extends React.Component {
     return type == this.state.game;
   }
 
-  renderGameTypeRadioButton(type) {
-   return (
-    <div className="radio">
-      <label htmlFor={"game_type_" + type}>
-        <input type="radio" name="tournament[game_type]" id={"game_type_"+type} value={type} onChange={this.changeGameType.bind(this)} defaultChecked={this.gameTypeChecked(type)} />
-        {type}
-      </label>
-    </div>
-   )
+  tabClicked() {
+    //TODO
+  }
+
+  renderTabs() {
+    let { game } = this.state;
+    return (
+      <div className="game-menu">
+        { ["tournament", "duel"].map((tab) => {
+          return(
+            <div key={tab} className={ "tournament-tab " + (game == tab ? "active" : "link")} onClick={ this.tabClicked.bind(this, tab) }>
+              <span className={"icon icon-med icon-" + (tab == "tournament" ? "private" : "duel") + " " + (game == tab ? "active" : "")}></span>
+              { App.t("private_" + tab) }
+            </div>
+          )
+        }) }
+      </div>
+    )
   }
 
   prepareForSubmit(){
@@ -85,12 +94,11 @@ class NewTournamentComponent extends React.Component {
   render() {
     return (
       <div id="form-holder">
+        { this.renderTabs() }
         <input type="hidden" name="tournament[friend_ids]" id="friend-ids" value=""/>
         <input type="hidden" name="_csrf_token" value={App.settings.csrf_token}/>
         <label htmlFor="tournament[name]" className="col-5 col-form-label">Tournament Name</label>
         <input type="text" name="tournament[name]" className="form-control"/>
-        { this.renderGameTypeRadioButton("tournament") }
-        { this.renderGameTypeRadioButton("duel") }
         { this.renderFriends() }
         <div className="form-group">
           <button className="btn btn-primary" onClick={this.prepareForSubmit.bind(this)}>Create</button>
