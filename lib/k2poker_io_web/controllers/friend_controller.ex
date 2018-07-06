@@ -63,6 +63,16 @@ defmodule K2pokerIoWeb.FriendController do
     end
   end
 
+  def friends_only(conn, params) do
+    if current_user(conn) do
+      {query, pagination} = FriendsQuery.friends_only(current_user(conn).id, params)
+      friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
+      json conn, %{friends: friends, pagination: pagination}
+    else
+      json conn, %{error: true, status: 401}
+    end
+  end
+
   def delete(conn, %{"id" => id}) do
     id = convert_to_integer(id)
     status = DestroyFriendshipCommand.execute(current_user(conn).id, id)

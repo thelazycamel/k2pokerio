@@ -136,6 +136,20 @@ defmodule K2pokerIo.FriendsQueryTest do
     assert(friend2.status == :not_friends)
   end
 
+  test "#decorate_users should return a list of users sorted by username do", context do
+    friend3 = Helpers.create_user("aFriend")
+    friend4 = Helpers.create_user("zFriend")
+    Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: friend3.id, status: true}))
+    Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: friend4.id, status: true}))
+    {query, pagination} = FriendsQuery.all(context.player1.id, %{})
+    friends = FriendsQuery.decorate_friendships(query, context.player1.id)
+    assert Enum.count(friends) == 4
+    assert Enum.at(friends, 0).username == "aFriend"
+    assert Enum.at(friends, 1).username == "MyFriend"
+    assert Enum.at(friends, 2).username == "PendingThem"
+    assert Enum.at(friends, 3).username == "zFriend"
+  end
+
   test "kerosene pagination with no params", context do
     {friends, kerosene} = FriendsQuery.all(context.player1.id, %{})
     assert(kerosene.page == 1)

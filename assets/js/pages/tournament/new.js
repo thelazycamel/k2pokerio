@@ -1,9 +1,9 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import NewTournamentComponent from "../../components/pages/new_tournament_component"
+import TournamentNewComponent from "../../components/pages/tournament_new_component"
 
-class TournamentIndexPage extends page {
+class TournamentNewPage extends page {
 
   constructor(opts={}) {
     super(opts);
@@ -13,18 +13,19 @@ class TournamentIndexPage extends page {
     this.initializeNewTournamentComponent();
   }
 
-  element() {
-    return document.getElementById("new-tournament");
+  getData(name){
+    let element = this.wrapperElement();
+    return element.dataset[name];
   }
 
-  friends() {
-    return window.PageData.friends;
+  wrapperElement(){
+    return document.getElementById("tournament-new-wrapper")
   }
 
   initializeNewTournamentComponent() {
-    ReactDOM.render(<NewTournamentComponent friends={this.friends()}/>, this.element());
+    ReactDOM.render(<TournamentNewComponent username={this.getData("username")} profile_image={this.getData("profileImage")} />, this.wrapperElement());
   }
 
 }
 
-export default TournamentIndexPage;
+export default TournamentNewPage;

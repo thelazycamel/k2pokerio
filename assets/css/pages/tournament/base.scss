@@ -2,23 +2,63 @@ body.tournament {
 
   main {
     height: 619px;
-  }
-}
-
-body.tournament.new {
-  .friend-select {
-    input {
-      display: none;
-    }
-    .btn {
-      width: 200px;
-    }
-  }
-}
-
-body.tournament {
-  main {
     background: none;
+
+    .tournament-area {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      padding: 2px;
+      height: 569px;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+
+    .tournament-menu, .game-menu {
+      margin: 20px 0px;
+      display: flex;
+      justify-content: space-around;
+      font-weight: bold;
+
+      .tournament-tab {
+        text-align: center;
+        line-height: 2.8em;
+        color: #8393a7;
+        width: 50%;
+        height: 40px;
+        background: linear-gradient(to bottom, #010116 50%,#374355 100%);
+        border-radius: 20px;
+        span.icon {
+          vertical-align: top;
+          margin-right: 10px;
+        }
+        &.active {
+          color: #ffffff;
+          background: linear-gradient(to bottom, #374355 0%,#010116 50%);
+        }
+        &.link:hover {
+          cursor: pointer;
+          color: #ffffff;
+          background: linear-gradient(to bottom, #010116 33%,#374355 100%);
+
+          .icon-private {
+            background-position: -413px -37px;
+          }
+
+          .icon-duel {
+            background-position: -375px -37px;
+          }
+        }
+      }
+    }
+
+    .tournament-bottom-actions {
+      height: 40px;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      text-align: center;
+    }
 
     #tournament-header {
       margin-top: 10px;
@@ -38,44 +78,5 @@ body.tournament {
         }
       }
     }
-
-    .tournament-menu, .game-menu {
-      margin: 20px 0px;
-      display: flex;
-      justify-content: space-around;
-      font-weight: bold;
-
-      .tournament-tab {
-        text-align: center;
-        line-height: 2.8em;
-        color: #bcbcbc;
-        width: 50%;
-        height: 40px;
-        background: linear-gradient(to bottom, #010116 50%,#374355 100%);
-        border-radius: 20px;
-        span.icon {
-          vertical-align: top;
-          margin-right: 10px;
-        }
-        &.active {
-          background: linear-gradient(to bottom, #374355 0%,#010116 50%);
-        }
-        &.link:hover {
-          cursor: pointer;
-          color: #ffffff;
-          background: linear-gradient(to bottom, #010116 33%,#374355 100%);
-
-          .icon-private {
-            background-position: -413px -37px;
-          }
-
-          .icon-duel {
-            background-position: -375px -37px;
-          }
-        }
-      }
-    }
-
   }
-
 }

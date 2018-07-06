@@ -1,11 +1,9 @@
-<h2>Create a Private Game or Tournament</h2>
-  <form action="<%=tournament_path(@conn, :create) %>" method="POST" name="tournament" id="new-tournament">
-  </form>
-<script>
-
-<%# TODO move this to call via a service %>
-PageData = {friends:[]};
-<%= for friend <- @conn.assigns[:friends] do %>
-  PageData.friends.push( {user_id: <%= friend.id %>, username: "<%= friend.username %>", selected: false });
-<% end %>
-</script>
+<div id="section-wrapper">
+  <section id="tournament-new-wrapper" class="tournament-area" data-username="<%= @conn.assigns[:username] %>" data-profile-image="<%= @conn.assigns[:profile_image] %>">
+  <h2>Create a Private Game or Tournament</h2>
+    <form action="<%=tournament_path(@conn, :create) %>" method="POST" name="tournament" id="new-tournament">
+    </form>
+  </section>
+  <section id="tournament-image-holder">
+  </section>
+<div>

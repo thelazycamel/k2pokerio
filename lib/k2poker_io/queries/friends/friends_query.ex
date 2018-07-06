@@ -24,7 +24,6 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     Repo.paginate(query, params)
   end
 
-  #TODO order by username
   def friends_only(current_user_id, params) do
     query = from f in Friendship,
       where: [user_id: ^current_user_id, status: true],
@@ -33,7 +32,6 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     Repo.paginate(query, params)
   end
 
-  #TODO order by username
   def pending_me(current_user_id, params) do
     query = from f in Friendship,
       where: [friend_id: ^current_user_id, status: false],
@@ -41,7 +39,6 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     Repo.paginate(query, params)
   end
 
-  #TODO order by username
   def pending_them(current_user_id, params) do
     query = from f in Friendship,
       where: [user_id: ^current_user_id, status: false],
@@ -82,16 +79,19 @@ defmodule K2pokerIo.Queries.Friends.FriendsQuery do
     Repo.paginate(query, params)
   end
 
+  # TODO: sorting here is pointless, we need to order by username in
+  # the queries because of pagination
+
   def decorate_users(query, current_user_id) do
     Enum.map(query, fn (user) ->
       FriendDecorator.user_decorator(user, current_user_id)
-    end)
+    end) |> Enum.sort_by( fn (u) -> String.downcase(u.username) end)
   end
 
   def decorate_friendships(query, current_user_id) do
     Enum.map(query, fn (friendship) ->
       FriendDecorator.decorate(friendship, current_user_id)
-    end)
+    end) |> Enum.sort_by( fn (u) -> String.downcase(u.username) end)
   end
 
 end

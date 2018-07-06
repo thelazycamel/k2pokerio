@@ -46,4 +46,14 @@ export default class FriendsController extends BaseController {
     )
   }
 
+  friendsOnly(query) {
+    return (
+      fetch(`${this.baseUrl}/friends_only?${this.parameterize(query)}`, {
+        headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
+        credentials: 'same-origin',
+        method: 'get'
+      }).then(response => { return response.json() })
+    )
+  }
+
 }

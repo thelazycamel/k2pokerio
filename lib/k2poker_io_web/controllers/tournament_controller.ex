@@ -63,9 +63,8 @@ defmodule K2pokerIoWeb.TournamentController do
 
   def new(conn, params) do
     if logged_in?(conn) do
-      {query, kerosene} = FriendsQuery.friends_only(current_user(conn).id, params)
-      friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
-      render conn, "new.html", %{friends: friends, kerosene: kerosene}
+      %{username: username, image: profile_image} = current_user(conn)
+      render conn, "new.html", %{username: username, profile_image: profile_image}
     else
       redirect conn, to: "/"
     end

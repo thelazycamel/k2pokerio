@@ -123,10 +123,11 @@ class TournamentIndexComponent extends React.Component {
           </a>
         </td>
         <td className="score">
-          <span className="icon icon-med icon-invite active"></span>
         </td>
         <td className="action">
-          <a className="btn btn-sm btn-play-button" href={"/invitations/accept/"+invite.id}>Accept</a>
+          <a className="btn btn-sm btn-play-button btn-accept" href={"/invitations/accept/"+invite.id}>
+            Accept
+          </a>
         </td>
         <td className="action">
           <span className="icon icon-sm icon-delete" onClick={this.destroyInvite.bind(this, invite.id)}></span>

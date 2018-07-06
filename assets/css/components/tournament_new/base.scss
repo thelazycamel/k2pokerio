@@ -1,0 +1,65 @@
+body.tournament.new {
+
+  .tournament-name {
+    background-color: #374355;
+    border: none;
+    color: #eeeeee;
+    font-weight: normal;
+    margin-bottom: 20px;
+    &::placeholder {
+      color: #8393a7;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    .btn {
+      margin: 0px 5px;
+    }
+    .buttons-left p {
+      margin: 0px 5px;
+    }
+  }
+
+  .friend-holder {
+    .btn {
+      width: 150px;
+      text-align: left;
+      border-radius: 12px;
+      margin: 3px;
+      &.btn-unselected-friend {
+        border: 2px solid #8393a7;
+        .friend-image {
+          filter: grayscale(100%);
+        }
+        &:hover {
+          color: #01ab16;
+          border: 2px solid #1f5d1f;
+          .friend-image {
+            filter: grayscale(0%);
+          }
+        }
+      }
+      &.btn-selected-friend {
+        border: 2px solid #1f5d1f;
+        background-color: #01ab16;
+        &:hover {
+          border: 2px solid #d9534f;
+          background-color: #d9534f;
+          color: #dddddd;
+          .friend-image {
+            filter: grayscale(100%);
+          }
+        }
+      }
+      .friend-image {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+}

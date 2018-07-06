@@ -69,6 +69,13 @@
       }
     }
 
+    &.icon-invite {
+      background-position: -225px 0px;
+      &:hover, &.active {
+        background-position: -225px -25px;
+      }
+    }
+
   }
 
   &.icon-med {
