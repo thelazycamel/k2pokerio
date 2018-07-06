@@ -19,7 +19,7 @@ class TournamentNewPage extends page {
   }
 
   wrapperElement(){
-    return document.getElementById("tournament-new-wrapper")
+    return document.getElementById("section-wrapper")
   }
 
   initializeNewTournamentComponent() {

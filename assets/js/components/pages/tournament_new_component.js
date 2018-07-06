@@ -171,17 +171,22 @@ class TournamentNewComponent extends React.Component {
 
   render() {
     return (
-      <div id="tournament-new-root">
-        <div id="tournament-header">
-          <div id="user-details">
-            <img src={this.props.profile_image} className="main-profile-image"/>
-            <h4>{this.props.username}</h4>
+      <div id="tournament-wrapper">
+        <section id="tournament-new-wrapper" className="tournament-area">
+          <div id="tournament-header">
+            <div id="user-details">
+              <img src={this.props.profile_image} className="main-profile-image"/>
+              <h4>{this.props.username}</h4>
+            </div>
+            <a className="btn btn-empty" href="/tournaments/">{App.t("back")}</a>
           </div>
-          <a className="btn btn-empty" href="/tournaments/">{App.t("back")}</a>
-        </div>
-        { this.renderTabs() }
-        { this.renderForm() }
-        { this.renderFriends() }
+          { this.renderTabs() }
+          { this.renderForm() }
+          { this.renderFriends() }
+        </section>
+        <section id="tournament-image-holder">
+          <img className="game-type-image" src={"/images/pages/tournament-new-" + this.state.game + ".svg"} alt={this.state.game}/>
+        </section>
       </div>
     )
   }
