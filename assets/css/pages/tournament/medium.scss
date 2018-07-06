@@ -2,11 +2,25 @@
 
 @media (min-width: $media-medium-min) and (max-width: $media-medium-max) {
 
-  .tournament-area {
-    width: 538px;
+  body.tournament {
+
+    .tournament-area {
+      width: 538px;
+    }
+
+    section#tournament-image-holder {
+      left: 538px;
+      width: 366px;
+      img.game-type-image {
+        margin-top: 100px;
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    .tournament-bottom-actions {
+      width: 538px;
+    }
   }
 
-  .tournament-bottom-actions {
-    width: 538px;
-  }
 }
