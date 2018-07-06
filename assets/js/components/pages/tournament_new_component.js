@@ -111,7 +111,7 @@ class TournamentNewComponent extends React.Component {
         { ["tournament", "duel"].map((tab) => {
           return(
             <div key={tab} className={ "tournament-tab " + (game == tab ? "active" : "link")} onClick={ this.tabClicked.bind(this, tab) }>
-              <span className={"icon icon-med icon-" + (tab == "tournament" ? "private" : "duel") + " " + (game == tab ? "active" : "")}></span>
+              <span className={"icon icon-sm icon-" + (tab == "tournament" ? "private" : "duel") + " " + (game == tab ? "active" : "")}></span>
               { App.t("private_" + tab) }
             </div>
           )
@@ -151,7 +151,7 @@ class TournamentNewComponent extends React.Component {
         <input key="duel-input" type="text" id="input-duel-name" name="tournament[duel_name]" className="form-control tournament-name input-duel" value={this.state.duel_name} disabled={true} />
         <div className="action-buttons form-group">
           <div className="buttons-left">
-            <p>Choose a friend</p>
+            <p>{ App.t("choose_an_opponent") }</p>
           </div>
           <div className="buttons-right">
             <button className="btn btn-primary" onClick={this.prepareForSubmit.bind(this)}>Create</button>

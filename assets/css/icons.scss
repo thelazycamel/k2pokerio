@@ -76,6 +76,20 @@
       }
     }
 
+    &.icon-private {
+      background-position: -275px 0px;
+      &:hover, &.active {
+        background-position: -275px -25px;
+      }
+    }
+
+    &.icon-duel {
+      background-position: -250px 0px;
+      &:hover, &.active {
+        background-position: -250px -25px;
+      }
+    }
+
   }
 
   &.icon-med {

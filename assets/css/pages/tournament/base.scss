@@ -29,7 +29,7 @@ body.tournament {
         background: linear-gradient(to bottom, #010116 50%,#374355 100%);
         border-radius: 20px;
         span.icon {
-          vertical-align: top;
+          vertical-align: text-bottom;
           margin-right: 10px;
         }
         &.active {
@@ -41,12 +41,13 @@ body.tournament {
           color: #ffffff;
           background: linear-gradient(to bottom, #010116 33%,#374355 100%);
 
-          .icon-private {
-            background-position: -413px -37px;
-          }
-
-          .icon-duel {
-            background-position: -375px -37px;
+          .icon {
+            &.icon-private {
+              background-position: -275px -25px;
+            }
+            &.icon-duel {
+              background-position: -250px -25px;
+            }
           }
         }
       }

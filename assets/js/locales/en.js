@@ -40,7 +40,8 @@ class LocaleEn {
       "invitations": "Invitations",
       "create_a_game": "Create a Game",
       "private_tournament": "Private Tournament",
-      "private_duel": "2 Player Duel"
+      "private_duel": "2 Player Duel",
+      "choose_an_opponent": "Choose an opponent"
     });
   }
 
