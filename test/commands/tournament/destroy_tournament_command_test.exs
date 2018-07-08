@@ -22,7 +22,7 @@ defmodule K2pokerIo.DestroyTournamentCommandTest do
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player2.id, status: true}))
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player3.id, status: true}))
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player4.id, status: true}))
-    friend_ids = Enum.join([player2.id, player3.id, player4.id], ",")
+    friend_ids = [player2.id, player3.id, player4.id]
     #create the tournament
     {:ok, tournament} = CreateTournamentCommand.execute(player1, %{"game_type" => "tournament", "name" => "My Test Tournament", "friend_ids" => friend_ids})
     #create user_tournament_details
@@ -43,7 +43,7 @@ defmodule K2pokerIo.DestroyTournamentCommandTest do
   end
 
   test "should destroy tournament when someone down to last 2 people", context do
-    friend_ids = "#{context.player2.id}"
+    friend_ids = [context.player2.id]
     {:ok, duel} = CreateTournamentCommand.execute(context.player1, %{"game_type" => "duel", "friend_ids" => friend_ids})
     assert(duel)
     DestroyTournamentCommand.execute(context.player2, duel.id)

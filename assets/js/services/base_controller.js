@@ -20,13 +20,13 @@ export default class BaseController {
     )
   }
 
-  create(id) {
+  create(params) {
     return (
       fetch(this.baseUrl, {
         headers: {'x-csrf-token': App.settings.csrf_token, 'Content-type': 'application/json'},
         credentials: 'same-origin',
         method: 'post',
-        body: JSON.stringify({id: id})
+        body: JSON.stringify(params)
       }).then(response => { return response.json() })
     )
   }

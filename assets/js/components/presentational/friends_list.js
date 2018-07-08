@@ -27,7 +27,7 @@ class FriendsList extends React.Component {
   }
 
   addFriend(friend) {
-    App.services.friends.create(friend.id).then(data => {
+    App.services.friends.create({id: friend.id}).then(data => {
       let friends = this.state.friends.map(f => {
         if(f.id == friend.id) {f.status = data.friend}
         return f;

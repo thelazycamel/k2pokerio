@@ -25,7 +25,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "tournament",
       "name" => "My Test Tournament",
-      "friend_ids" => Enum.join([context.player2.id,context.player3.id,context.player4.id], ",")
+      "friend_ids" => [context.player2.id,context.player3.id,context.player4.id]
       }
     {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
@@ -37,11 +37,12 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
   test "it should create a duel with invitations", context do
     params = %{
       "game_type" => "duel",
-      "friend_ids" => to_string(context.player2.id)
+      "friend_ids" => [context.player2.id],
+      "name" => "bob vs stu"
       }
     {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
-    assert(tournament.name == "bob v stu")
+    assert(tournament.name == "bob vs stu")
     assert(tournament.lose_type == "half")
     assert(invite_count == 2)
   end
@@ -51,7 +52,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "tournament",
       "name" => "My Test Tournament",
-      "friend_ids" => "#{context.player2.id},#{player5.id}"
+      "friend_ids" => [context.player2.id,player5.id]
     }
     {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
     invite_count = Repo.one(from i in Invitation, where: i.tournament_id == ^tournament.id, select: count(i.id))
@@ -64,7 +65,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     params = %{
       "game_type" => "duel",
       "name" => "Duel 1",
-      "friend_ids" => to_string(context.player2.id)
+      "friend_ids" => [context.player2.id]
     }
     {:ok, tournament_1} = CreateTournamentCommand.execute(context.player1, params)
     refute(tournament_1.finished)

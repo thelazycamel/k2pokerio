@@ -48,7 +48,7 @@ class Comment extends React.Component {
 
   sendFriendRequest(){
     let { comment } = this.props;
-    App.services.friends.create(comment.user_id).then(response => {
+    App.services.friends.create({id: comment.user_id}).then(response => {
       let show = response.friend;
       App.store.dispatch({type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: show})});
     })

@@ -106,26 +106,24 @@ defmodule K2pokerIo.TournamentControllerTest do
     assert(response =~ expected)
   end
 
-  test "#create should create a new tournament and redirect to tournament index", context do
-    friend_ids = "#{context.player2.id}"
+  test "#create should create a new tournament and return the tournament_id as json", context do
+    friend_ids = [context.player2.id]
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(tournament_path(conn, :create, %{"tournament" => %{"game_type" => "duel", "friend_ids" => friend_ids}}))
-      |> response(302)
-    tournament = Repo.one from t in Tournament, where: [user_id: ^context.player1.id]
-    assert(tournament.name == "stu v bob")
-    expected = ~r/You\ are\ being\ \<a\ href="\/tournaments"/
-    assert(response =~ expected)
+      |> post(tournament_path(conn, :create, %{"game_type" => "duel", "friend_ids" => friend_ids}))
+      |> json_response(200)
+      %{"status" => status, "id" => _} = response
+    assert(status == "ok")
   end
 
-  test "#create should redirect to root unless signed in", context do
-    friend_ids = "#{context.player2.id}"
+  test "#create should return json error if not logged in", context do
+    friend_ids = [context.player2.id]
     conn = context.conn
     response = conn
       |> post(tournament_path(conn, :create, %{"tournament" => %{"game_type" => "duel", "friend_ids" => friend_ids}}))
-      |> response(302)
-    expected = ~r/You\ are\ being\ \<a\ href="\/"/
-    assert(response =~ expected)
+      |> response(401)
+    %{"status" => status, "message" => _} = Poison.decode!(response)
+    assert(status == "error")
   end
 
 end

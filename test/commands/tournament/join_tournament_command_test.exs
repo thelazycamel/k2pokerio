@@ -23,7 +23,7 @@ defmodule K2pokerIo.JoinTournamentCommandTest do
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player2.id, status: true}))
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player3.id, status: true}))
     Repo.insert(Friendship.changeset(%Friendship{}, %{user_id: player1.id, friend_id: player4.id, status: true}))
-    friend_ids = Enum.join([player2.id, player3.id], ",")
+    friend_ids = [player2.id, player3.id]
     #create the tournaments
     {:ok, private_tournament} = CreateTournamentCommand.execute(player1, %{"game_type" => "tournament", "name" => "My Test Tournament", "friend_ids" => friend_ids})
     freeroll_tournament = Repo.insert!(Tournament.changeset(%Tournament{}, %{

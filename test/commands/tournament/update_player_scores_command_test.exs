@@ -81,7 +81,7 @@ defmodule K2pokerIo.UpdatePlayerScoreCommandTest do
     params = %{
       "game_type" => "duel",
       "user_id" => context.player1.id,
-      "friend_ids" => to_string(context.player2.id)
+      "friend_ids" => [context.player2.id]
       }
     {:ok, duel} = CreateTournamentCommand.execute(context.player1, params)
     {:ok, [utd_id: p1_utd_id]} = JoinTournamentCommand.execute(context.player1, duel.id)
@@ -108,7 +108,7 @@ defmodule K2pokerIo.UpdatePlayerScoreCommandTest do
     params = %{
       "game_type" => "duel",
       "user_id" => context.player1.id,
-      "friend_ids" => to_string(context.player2.id)
+      "friend_ids" => [context.player2.id]
       }
     {:ok, duel} = CreateTournamentCommand.execute(context.player1, params)
     {:ok, [utd_id: p1_utd_id]} = JoinTournamentCommand.execute(context.player1, duel.id)

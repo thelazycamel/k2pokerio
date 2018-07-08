@@ -70,16 +70,16 @@ defmodule K2pokerIoWeb.TournamentController do
     end
   end
 
-  def create(conn, %{"tournament" => tournament_params}) do
+  def create(conn, params) do
     if logged_in?(conn) do
-      case CreateTournamentCommand.execute(current_user(conn), tournament_params) do
-        {:ok, _} -> redirect conn, to: tournament_path(conn, :index)
-        {:error, message} -> conn
-          |> put_flash(:error, message)
-          |> redirect(to: tournament_path(conn, :new))
+      case CreateTournamentCommand.execute(current_user(conn), params) do
+        {:ok, tournament} -> json conn, %{status: :ok, id: tournament.id}
+        {:error, message} -> json conn, %{status: :error, message: message}
       end
     else
-      redirect conn, to: "/"
+      conn
+      |> put_status(401)
+      |> json(%{status: :error, message: "Not logged in"})
     end
   end
 

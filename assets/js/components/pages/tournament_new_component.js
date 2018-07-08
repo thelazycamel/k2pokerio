@@ -8,9 +8,9 @@ class TournamentNewComponent extends React.Component {
     this.state = {
       friends: [],
       pagination: {},
-      game: "tournament",
-      tournament_name: this.props.username + "'s Tournament ",
-      duel_name: this.props.username + " vs "
+      gameType: "tournament",
+      tournamentName: this.props.username + "'s Tournament ",
+      duelName: this.props.username + " vs "
     }
   }
 
@@ -22,14 +22,6 @@ class TournamentNewComponent extends React.Component {
       });
       this.setState(...this.state, {friends: friends, pagination: data.pagination})
     });
-  }
-
-  isDuel() {
-    return this.state.game == "duel";
-  }
-
-  isTournament(){
-    return this.state.game == "tournament";
   }
 
   selectedFriendClass(selected){
@@ -53,13 +45,21 @@ class TournamentNewComponent extends React.Component {
   }
 
   updateDuelName(friend, selected){
-    if(this.state.game == "duel") {
+    if(this.state.gameType == "duel") {
       if(selected){
-        this.setState(...this.state, {duel_name: this.props.username + " vs " + friend.username})
+        this.setState(...this.state, {duelName: this.props.username + " vs " + friend.username})
       } else {
-        this.setState(...this.state, {duel_name: this.props.username + " vs "})
+        this.setState(...this.state, {duelName: this.props.username + " vs "})
       }
     }
+  }
+
+  tournamentNameChanged(e) {
+    this.setState(...this.state, {tournamentName: e.currentTarget.value});
+  }
+
+  duelNameChanged(e) {
+    this.setState(...this.state, {duelName: e.currentTarget.value});
   }
 
   toggleSelectedFriend(user_id) {
@@ -68,7 +68,7 @@ class TournamentNewComponent extends React.Component {
         this.updateDuelName(friend, !friend.selected);
         friend["selected"] = !friend["selected"];
         return friend;
-      } else if(this.state.game == "duel") {
+      } else if(this.state.gameType == "duel") {
         friend["selected"] = false;
         return friend;
       } else {
@@ -95,23 +95,32 @@ class TournamentNewComponent extends React.Component {
     )
   }
 
-  gameTypeChecked(type){
-    return type == this.state.game;
-  }
-
   tabClicked(tab) {
     this.deSelectAll();
-    this.setState(...this.state, {game: tab, duel_name: this.props.username + " vs "});
+    this.setState(...this.state, {gameType: tab, duelName: this.props.username + " vs "});
+  }
+
+  submitForm(e) {
+    let friend_ids = this.state.friends.filter(friend => { return friend.selected }).map(friend => {return friend.id})
+    let name = (this.state.gameType == "tournament") ? this.state.tournamentName : this.state.duelName;
+    let params = {
+      friend_ids: friend_ids,
+      game_type: this.state.gameType,
+      name: name
+    }
+    App.services.tournaments.create(params).then(data => {
+      console.log(data);
+    })
   }
 
   renderTabs() {
-    let { game } = this.state;
+    let { gameType } = this.state;
     return (
       <div className="game-menu">
         { ["tournament", "duel"].map((tab) => {
           return(
-            <div key={tab} className={ "tournament-tab " + (game == tab ? "active" : "link")} onClick={ this.tabClicked.bind(this, tab) }>
-              <span className={"icon icon-sm icon-" + (tab == "tournament" ? "private" : "duel") + " " + (game == tab ? "active" : "")}></span>
+            <div key={tab} className={ "tournament-tab " + (gameType == tab ? "active" : "link")} onClick={ this.tabClicked.bind(this, tab) }>
+              <span className={"icon icon-sm icon-" + (tab == "tournament" ? "private" : "duel") + " " + (gameType == tab ? "active" : "")}></span>
               { App.t("private_" + tab) }
             </div>
           )
@@ -120,25 +129,25 @@ class TournamentNewComponent extends React.Component {
     )
   }
 
-  prepareForSubmit(){
-    let element = document.getElementById("friend-ids");
-    let selectedFriendIds = this.state.friends.map(function(friend){ if(friend.selected) { return friend.user_id }}).filter(Number);
-    if(selectedFriendIds.length == 0) { return false; }
-    element.value = selectedFriendIds.join(",");
-    document.getElementById("new-tournament").submit();
-  }
-
   renderTournamentForm(){
     return (
       <div id="form-holder-tournament">
-        <input key="tournament-input" type="text" id="input-tournament-name" name="tournament[name]" className="form-control tournament-name input-tournament" placeholder="Tournament Name" defaultValue={this.state.tournament_name}/>
+        <input key="tournament-input"
+               type="text"
+               id="input-tournament-name"
+               name="tournament[name]"
+               className="form-control tournament-name input-tournament"
+               placeholder="Tournament Name"
+               defaultValue={this.state.tournamentName}
+               onChange={this.tournamentNameChanged.bind(this)}
+               />
         <div className="action-buttons form-group">
           <div className="buttons-left">
             <button className="btn btn-success" onClick={this.selectAll.bind(this)}>Select All</button>
             <button className="btn btn-danger" onClick={this.deSelectAll.bind(this)}>Deselect All</button>
           </div>
           <div className="buttons-right">
-            <button className="btn btn-primary" onClick={this.prepareForSubmit.bind(this)}>Create</button>
+            <button className="btn btn-primary" onClick={this.submitForm.bind(this)}>Create</button>
           </div>
         </div>
       </div>
@@ -148,13 +157,21 @@ class TournamentNewComponent extends React.Component {
   renderDuelForm(){
     return (
       <div id="form-holder-duel">
-        <input key="duel-input" type="text" id="input-duel-name" name="tournament[duel_name]" className="form-control tournament-name input-duel" value={this.state.duel_name} disabled={true} />
+        <input key="duel-input"
+               type="text"
+               id="input-duel-name"
+               name="tournament[duel_name]"
+               className="form-control tournament-name input-duel"
+               value={this.state.duelName}
+               disabled={true}
+               onChange={this.duelNameChanged.bind(this)}
+               />
         <div className="action-buttons form-group">
           <div className="buttons-left">
             <p>{ App.t("choose_an_opponent") }</p>
           </div>
           <div className="buttons-right">
-            <button className="btn btn-primary" onClick={this.prepareForSubmit.bind(this)}>Create</button>
+            <button className="btn btn-primary" onClick={this.submitForm.bind(this)}>Create</button>
           </div>
         </div>
       </div>
@@ -162,7 +179,7 @@ class TournamentNewComponent extends React.Component {
   }
 
   renderForm() {
-    if(this.state.game == "duel"){
+    if(this.state.gameType == "duel"){
       return this.renderDuelForm();
     } else {
       return this.renderTournamentForm();
@@ -185,7 +202,7 @@ class TournamentNewComponent extends React.Component {
           { this.renderFriends() }
         </section>
         <section id="tournament-image-holder">
-          <img className="game-type-image" src={"/images/pages/tournament-new-" + this.state.game + ".svg"} alt={this.state.game}/>
+          <img className="game-type-image" src={"/images/pages/tournament-new-" + this.state.gameType + ".svg"} alt={this.state.gameType}/>
         </section>
       </div>
     )
