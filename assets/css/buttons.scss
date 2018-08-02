@@ -1,0 +1,114 @@
+.btn-k2poker {
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #2d82e5 0%, #143a66 100%);
+  color: #ffffff;
+  border: 3px solid #143a66;
+  &:hover {
+    color: #cccccc;
+    background: linear-gradient(to bottom, #2d82e5 50%, #143a66 100%);
+  }
+}
+
+.btn-empty {
+  background-color: transparent;
+  color: #cccccc;
+  border: 1px solid #8393a7;
+  &:hover, &:focus {
+    color: #dddddd;
+  }
+}
+
+.btn-pending {
+  background-color: #940000;
+  color: #cccccc;
+  &:hover, &:focus {
+    background-color: #d9534f;
+    color: #eeeeee;
+  }
+}
+
+
+.btn-friends {
+  background-color: #ff9947;
+  color: #ffffff;
+  &:hover, &:focus {
+    background-color: #transparent;
+    color: #eeeeee;
+  }
+}
+
+.btn-pagination {
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #4398c9;
+  border: 1px solid #4398c9;
+  &:hover {
+    color: #a1ddff;
+    border: 1px solid #a1ddff;
+  }
+  &:focus {
+    color: #4398c9;
+    border: 1px solid #4398c9;
+  }
+}
+
+.btn-search {
+  background-color: transparent;
+  color: #cdcdcd;
+  border: 1px solid #374355;
+  &:hover, &:focus {
+    color: #cdcdcd;
+    border: 1px solid #374355;
+  }
+}
+
+.btn-invisible {
+  cursor: auto;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  &:hover, &:focus {
+    color: transparent;
+  }
+}
+
+.btn-play-button {
+  &.btn-sm {
+    width: 100px;
+    height: 32px;
+  }
+  cursor: pointer;
+  background-image: url("/images/play-button.svg");
+  background-size: cover;
+  text-align: center;
+  color: #c3c3c3;
+  transition: opacity .5s;
+
+  &:hover {
+    text-decoration: none;
+    color: #f3f3f3;
+    background-image: url("/images/play-button-hover.svg");
+  }
+
+}
+
+.btn-join-button {
+
+  &.btn-sm {
+    width: 100px;
+    height: 32px;
+  }
+  cursor: pointer;
+  background-image: url("/images/bot-request-button.svg");
+  background-size: cover;
+  text-align: center;
+  color: #efefef;
+  transition: opacity .5s;
+
+  &:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background-image: url("/images/bot-request-button-hover.svg");
+  }
+
+}

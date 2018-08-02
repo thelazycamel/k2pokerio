@@ -139,17 +139,17 @@ class FriendsList extends React.Component {
 
   renderPendingMeButton(){
     if(this.state.area == "pending_me"){
-      return <div className="friends-tab active">{App.t("pending_me")}</div>
+      return <div className="friends-tab pending-me-tab active">{App.t("pending_me")}</div>
     } else {
-      return <div className="friends-tab link" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</div>
+      return <div className="friends-tab pending-me-tab link" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</div>
     }
   }
 
   renderFriendsButton(){
     if(this.state.area == "friends") {
-      return <div className="friends-tab active">{App.t("friends")}</div>
+      return <div className="friends-tab all-friends-tab active">{App.t("friends")}</div>
     } else {
-      return <div className="friends-tab link" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</div>
+      return <div className="friends-tab all-friends-tab link" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</div>
     }
   }
 

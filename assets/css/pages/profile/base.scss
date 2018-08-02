@@ -238,10 +238,15 @@ body.profile {
                 text-align: center;
                 line-height: 2.8em;
                 color: #bcbcbc;
-                width: 50%;
                 height: 40px;
                 background: linear-gradient(to bottom, #010116 50%,#374355 100%);
                 border-radius: 20px;
+                &.all-friends-tab {
+                  width: 66%;
+                }
+                &.pending-me-tab {
+                  width: 34%;
+                }
                 &.active {
                   background: linear-gradient(to bottom, #374355 0%,#010116 50%);
                 }

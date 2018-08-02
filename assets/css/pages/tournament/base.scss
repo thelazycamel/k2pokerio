@@ -28,6 +28,12 @@ body.tournament {
         height: 40px;
         background: linear-gradient(to bottom, #010116 50%,#374355 100%);
         border-radius: 20px;
+        &.invitations {
+          width: 34%;
+        }
+        &.tournaments {
+          width: 66%;
+        }
         span.icon {
           vertical-align: text-bottom;
           margin-right: 10px;

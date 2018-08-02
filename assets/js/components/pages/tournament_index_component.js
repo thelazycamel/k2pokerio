@@ -71,7 +71,7 @@ class TournamentIndexComponent extends React.Component {
   }
 
   renderPlayButton(tournament) {
-    return <a className="btn btn-sm btn-play-button" href={"/tournaments/join/"+tournament.id}>Play</a>
+    return <a className="btn btn-sm btn-join-button" href={"/tournaments/join/"+tournament.id}>Play</a>
   }
 
   renderTournament(tournament) {
@@ -165,7 +165,7 @@ class TournamentIndexComponent extends React.Component {
       <div className="tournament-menu">
         { ["tournaments", "invitations"].map((tab) => {
           return(
-            <div key={tab} className={ "tournament-tab " + (area == tab ? "active" : "link")} onClick={ this.tabClicked.bind(this, tab) }>
+            <div key={tab} className={ `tournament-tab ${(area == tab ? "active" : "link")} ${tab}`} onClick={ this.tabClicked.bind(this, tab) }>
               { App.t(tab) }
             </div>
           )
