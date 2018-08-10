@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import TournamentCreatedPopup from "../popups/tournament_created_popup"
 
 class TournamentNewComponent extends React.Component {
 
@@ -109,6 +110,10 @@ class TournamentNewComponent extends React.Component {
       name: name
     }
     App.services.tournaments.create(params).then(data => {
+      // TODO open popup to give user option to go to tournament now
+      // TournamentCreatedPopup
+      // options play or back to /tournaments
+      // ensure All popups have a background screen cover
       console.log(data);
     })
   }

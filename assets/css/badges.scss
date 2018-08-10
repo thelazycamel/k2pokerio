@@ -1,0 +1,206 @@
+.k2-badge {
+  background-image: url("/images/badges-sprite.png");
+  background-position: -240px 0px;
+
+  &.k2-badge-med {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: 1000px 1000px;
+
+    &.k2-badge-jacks {
+      background-position: 0px 0px;
+      &.k2-badge-off {
+        background-position: 0px -60px;
+      }
+    }
+
+    &.k2-badge-queens {
+      background-position: -60px 0px;
+      &.k2-badge-off {
+        background-position: -60px -60px;
+      }
+    }
+
+    &.k2-badge-kings {
+      background-position: -120px 0px;
+      &.k2-badge-off {
+        background-position: -120px -60px;
+      }
+    }
+
+    &.k2-badge-aces {
+      background-position: -180px 0px;
+      &.k2-badge-off {
+        background-position: -180px -60px;
+      }
+    }
+
+    &.k2-badge-hearts {
+      background-position: -0px -120px;
+      &.k2-badge-off {
+        background-position: -0px -180px;
+      }
+    }
+
+    &.k2-badge-clubs {
+      background-position: -60px -120px;
+      &.k2-badge-off {
+        background-position: -60px -180px;
+      }
+    }
+
+    &.k2-badge-diamonds {
+      background-position: -120px -120px;
+      &.k2-badge-off {
+        background-position: -120px -180px;
+      }
+    }
+
+    &.k2-badge-spades {
+      background-position: -180px -120px;
+      &.k2-badge-off {
+        background-position: -180px -180px;
+      }
+    }
+
+    &.k2-badge-duel {
+      background-position: 0px -240px;
+      &.k2-badge-off {
+        background-position: 0px -300px;
+      }
+    }
+
+    &.k2-badge-private {
+      background-position: -60px -240px;
+      &.k2-badge-off {
+        background-position: -60px -300px;
+      }
+    }
+
+    &.k2-badge-k2-tournament {
+      background-position: -120px -240px;
+      &.k2-badge-off {
+        background-position: -120px -300px;
+      }
+    }
+
+    &.k2-badge-monero {
+      background-position: -180px -240px;
+      &.k2-badge-off {
+        background-position: -180px -300px;
+      }
+    }
+
+    &.k2-badge-k2-cards {
+      background-position: 0px -360px;
+      &.k2-badge-off {
+        background-position: 0px -420px;
+      }
+    }
+
+    &.k2-badge-cracked-aces {
+      background-position: -60px -360px;
+      &.k2-badge-off {
+        background-position: -60px -420px;
+      }
+    }
+
+    &.k2-badge-hill-climber {
+      background-position: -120px -360px;
+      &.k2-badge-off {
+        background-position: -120px -420px;
+      }
+    }
+
+    &.k2-badge-high-flyer {
+      background-position: -180px -360px;
+      &.k2-badge-off {
+        background-position: -180px -420px;
+      }
+    }
+
+    &.k2-badge-profile {
+      background-position: 0px -480px;
+      &.k2-badge-off {
+        background-position: 0px -540px;
+      }
+    }
+
+    &.k2-badge-friends {
+      background-position: -60px -480px;
+      &.k2-badge-off {
+        background-position: -60px -540px;
+      }
+    }
+
+    &.k2-badge-chat {
+      background-position: -120px -480px;
+      &.k2-badge-off {
+        background-position: -120px -540px;
+      }
+    }
+
+    &.k2-badge-social {
+      background-position: -180px -480px;
+      &.k2-badge-off {
+        background-position: -180px -540px;
+      }
+    }
+
+    &.k2-badge-low-straight {
+      background-position: 0px -600px;
+      &.k2-badge-off {
+        background-position: 0px -660px;
+      }
+    }
+
+    &.k2-badge-high-straight {
+      background-position: -60px -600px;
+      &.k2-badge-off {
+        background-position: -60px -660px;
+      }
+    }
+
+    &.k2-badge-straight-flush {
+      background-position: -120px -600px;
+      &.k2-badge-off {
+        background-position: -120px -660px;
+      }
+    }
+
+    &.k2-badge-royal-flush {
+      background-position: -180px -600px;
+      &.k2-badge-off {
+        background-position: -180px -660px;
+      }
+    }
+
+    &.k2-badge-gold-phone {
+      background-position: -240px -60px;
+    }
+
+    &.k2-badge-top-dog {
+      background-position: -240px -120px;
+    }
+
+    &.k2-badge-shark {
+      background-position: -240px -180px;
+    }
+
+    &.k2-badge-fantastic-fours {
+      background-position: -240px -240px;
+    }
+
+    &.k2-badge-flush-master {
+      background-position: -240px -300px;
+    }
+
+    &.k2-badge-vip {
+      background-position: -240px -360px;
+    }
+
+  }
+
+
+}
