@@ -12,14 +12,14 @@
       </thead>
       <tbody>
         <tr id="social-badges">
-          <td><span class="k2-badge k2-badge-profile k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-friends k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-profile k2-badge-med off"></span></td>
+          <td><span class="k2-badge k2-badge-friends k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-chat k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-social k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-gold-phone k2-badge-med"></span></td>
         </tr>
         <tr id="random-badges">
-          <td><span class="k2-badge k2-badge-k2-cards k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-k2-cards k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-cracked-aces k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-hill-climber k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-high-flyer k2-badge-med"></span></td>
@@ -29,28 +29,28 @@
           <td><span class="k2-badge k2-badge-low-straight k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-high-straight k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-straight-flush k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-royal-flush k2-badge-med k2-badge"></span></td>
+          <td><span class="k2-badge k2-badge-royal-flush k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-vip k2-badge-med"></span></td>
         </tr>
         <tr id="flush-badges">
           <td><span class="k2-badge k2-badge-hearts k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-clubs k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-diamonds k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-clubs k2-badge-med off"></span></td>
+          <td><span class="k2-badge k2-badge-diamonds k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-spades k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-flush-master k2-badge-med"></span></td>
         </tr>
         <tr id="four-of-a-kind-badges">
-          <td><span class="k2-badge k2-badge-jacks k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-jacks k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-queens k2-badge-med"></span></td>
           <td><span class="k2-badge k2-badge-kings k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-aces k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-aces k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-fantastic-fours k2-badge-med"></span></td>
         </tr>
         <tr id="tournament-badges">
           <td><span class="k2-badge k2-badge-duel k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-private k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-private k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-k2-tournament k2-badge-med"></span></td>
-          <td><span class="k2-badge k2-badge-monero k2-badge-med"></span></td>
+          <td><span class="k2-badge k2-badge-monero k2-badge-med off"></span></td>
           <td><span class="k2-badge k2-badge-shark k2-badge-med"></span></td>
         </tr>
       </tbody>
