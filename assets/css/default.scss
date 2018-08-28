@@ -24,18 +24,32 @@ h1, h2 {
 .alert {
   z-index: 100;
   position: fixed;
-  top: 5px;
-  left: 50%;
-  width: 300px;
-  margin-left: -150px;
-  opacity: 0.7;
-}
-
-//consider moving this if we add any more
-@media (max-width: $media-plablet-max) {
-  .alert {
-    width: 300px;
-    margin-left: -150px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(to bottom, #041732 50%,#4398c9 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  &.alert-danger {
+    background: linear-gradient(to bottom, #852C30 50%,#D25B60 100%);
   }
 }
 
+.unread-counter {
+  position: relative;
+  top: -6px;
+  left: 1px;
+  display: inline-block;
+  padding: 3px;
+  min-width: 16px;
+  height: 16px;
+  line-height: 1em;
+  text-align: center;
+  font-size: 10px;
+  font-weight: normal;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #d25b60 50%, #9d0000 50%);
+  border-radius: 50%;
+}

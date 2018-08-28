@@ -8,20 +8,18 @@ class TournamentIndexComponent extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      area: "invitations",
+      area: "tournaments",
       tournaments: [],
       invitations: [],
+      invite_count: 0,
       pagination: {page_no: 1, per_page: 8, max_page: 100}
     }
   }
 
   componentDidMount() {
     App.services.invitations.count().then(data => {
-      if(data.count > 0){
-        this.loadPage(1, "invitations");
-      } else {
-        this.loadPage(1, "tournaments");
-      }
+      this.setState(...this.state, {invite_count: data.count})
+      this.loadPage(1, "tournaments");
     })
   }
 
@@ -39,16 +37,22 @@ class TournamentIndexComponent extends React.Component {
       App.services.invitations.index(pagination).then(data => {
         let pageNo = parseInt(data.pagination.params.page_no, 10);
         pagination = Object.assign(data.pagination, {page_no: pageNo, page: pageNo});
-        this.setState(...this.state, {invitations: data.invitations, area: "invitations", pagination: pagination});
+        this.setState(...this.state, {
+          invitations: data.invitations,
+          invite_count: data.invitations.length,
+          area: "invitations",
+          pagination: pagination
+        });
       });
     }
   }
 
   destroyInvite(invite_id) {
     App.services.invitations.destroy(invite_id).then(data => {
-      this.setState(...this.state,
-        { invitations: this.state.invitations.filter(el => { return el.id != invite_id }) }
-      )
+      this.setState(...this.state, {
+        invitations: this.state.invitations.filter(el => { return el.id != invite_id }),
+        invite_count: this.state.invite_count -1
+      })
     });
   }
 
@@ -125,7 +129,7 @@ class TournamentIndexComponent extends React.Component {
         <td className="score">
         </td>
         <td className="action">
-          <a className="btn btn-sm btn-play-button btn-accept" href={"/invitations/accept/"+invite.id}>
+          <a className="btn btn-sm btn-join-button btn-accept" href={"/invitations/accept/"+invite.id}>
             Accept
           </a>
         </td>
@@ -159,17 +163,23 @@ class TournamentIndexComponent extends React.Component {
     this.loadPage(1, tab);
   }
 
+  renderInvitationCount(){
+    if(this.state.invite_count > 0) {
+      return <span className="unread-counter">{this.state.invite_count}</span>
+    }
+  }
+
   renderTabs() {
     let {area} = this.state;
     return (
       <div className="tournament-menu">
-        { ["tournaments", "invitations"].map((tab) => {
-          return(
-            <div key={tab} className={ `tournament-tab ${(area == tab ? "active" : "link")} ${tab}`} onClick={ this.tabClicked.bind(this, tab) }>
-              { App.t(tab) }
-            </div>
-          )
-        }) }
+        <div className={ `tournament-tab ${(area == "tournaments" ? "active" : "link")} tournaments`} onClick={ this.tabClicked.bind(this, "tournaments") }>
+          { App.t("tournaments") }
+        </div>
+        <div className={ `tournament-tab ${(area == "invitations" ? "active" : "link")} invitations`} onClick={ this.tabClicked.bind(this, "invitations") }>
+          { App.t("invitations") }
+          { this.renderInvitationCount() }
+        </div>
       </div>
     )
   }

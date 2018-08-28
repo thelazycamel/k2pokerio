@@ -5,6 +5,7 @@
   <div id="mountain"></div>
   <div id="middle"></div>
   <div id="foreground"></div>
+  <div id="suites"></div>
 
   <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
 

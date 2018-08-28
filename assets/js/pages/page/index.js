@@ -24,13 +24,16 @@ class PageIndexPage extends page {
     let mountain = document.getElementById("mountain");
     let rock = document.getElementById("middle");
     let foreground = document.getElementById("foreground");
+    let suites = document.getElementById("suites");
     let skyTop = (50 - position) * 0.5;
     let mountainTop = (50 - position) * 1;
     let rockTop = (50 - position) * 1.5;
     let foregroundTop = (50 - position) * 1.75;
+    let suitesTop = (50 + position) * 2.25;
     mountain.style.top = mountainTop + "px";
     rock.style.top = rockTop + "px";
     foreground.style.top = foregroundTop + "px";
+    suites.style.top = suitesTop + "px";
   }
 
 }

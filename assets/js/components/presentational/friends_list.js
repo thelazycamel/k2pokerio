@@ -8,6 +8,7 @@ class FriendsList extends React.Component {
     this.state = {
       page: 1,
       friends: [],
+      pending_me: 0,
       area: "",
       pagination: {},
       search: ""
@@ -16,13 +17,8 @@ class FriendsList extends React.Component {
 
   componentDidMount(){
     App.services.friends.count("pending_me").then(data => {
-      if(data.pending_me == 0) {
-        this.setState(...this.state, {area: "friends"});
-        this.loadPage(1, "friends");
-      } else {
-        this.setState(...this.state, {area: "pending_me"});
-        this.loadPage(1, "pending_me");
-      }
+      this.setState(...this.state, {area: "friends", pending_me: data.pending_me});
+      this.loadPage(1, "friends");
     })
   }
 
@@ -42,7 +38,8 @@ class FriendsList extends React.Component {
         if(f.id == friend.id) { f.status = data.friend }
         return f
       });
-      this.setState(...this.state, {friends: friends});
+      let pending_me = this.state.area == "pending_me" ? this.state.pending_me -1 : this.state.pending_me;
+      this.setState(...this.state, {friends: friends, pending_me: pending_me});
     })
   }
 
@@ -52,7 +49,7 @@ class FriendsList extends React.Component {
         if(f.id == friend.id) { f.status = data.friend }
         return f
       });
-      this.setState(...this.state, {friends: friends});
+      this.setState(...this.state, {friends: friends, pending_me: this.state.pending_me - 1});
     });
   }
 
@@ -115,7 +112,8 @@ class FriendsList extends React.Component {
       this.loadSearch(pageNo);
     } else {
       App.services.friends.index({page: pageNo, per_page: 7, area: area, max_page: 100}).then(response => {
-        this.setState(...this.state, {friends: response.friends, pagination: response.pagination});
+        let pending_me = area == "pending_me" ? response.friends.length : this.state.pending_me;
+        this.setState(...this.state, {friends: response.friends, pagination: response.pagination, pending_me: pending_me});
       });
     }
   }
@@ -137,12 +135,19 @@ class FriendsList extends React.Component {
     return textArray;
   }
 
-  renderPendingMeButton(){
-    if(this.state.area == "pending_me"){
-      return <div className="friends-tab pending-me-tab active">{App.t("pending_me")}</div>
-    } else {
-      return <div className="friends-tab pending-me-tab link" onClick={this.changeArea.bind(this, "pending_me")}>{App.t("pending_me")}</div>
+  renderPendingMeCount() {
+    if(this.state.pending_me > 0) {
+      return <span className="unread-counter">{this.state.pending_me}</span>
     }
+  }
+
+  renderPendingMeButton(){
+    return (
+      <div className={`friends-tab pending-me-tab ${this.state.area == "pending_me" ? "active" : "link"}`} onClick={this.changeArea.bind(this, "pending_me")}>
+        { App.t("pending_me") }
+        { this.renderPendingMeCount() }
+      </div>
+    )
   }
 
   renderFriendsButton(){

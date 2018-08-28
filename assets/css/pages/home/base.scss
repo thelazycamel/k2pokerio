@@ -61,6 +61,18 @@ body.page.index {
         background-position: center;
         background-size: cover;
       }
+      #suites {
+        width: 266px;
+        height: 192px;
+        background-image: url("/images/homepage/cards.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 150px;
+        left: 50%;
+        margin-left: -133px;
+        z-index: 1;
+      }
       .btn {
         z-index: 5;
       }
