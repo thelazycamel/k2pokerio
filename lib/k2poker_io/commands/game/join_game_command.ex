@@ -39,10 +39,11 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     end
   end
 
+  #TODO need to lock this transaction so we dont get db race conditions
   defp join_game(utd, game) do
     game_changeset = Game.join_changeset(game, %{
       player2_id: utd.player_id,
-      p2_timestamp: Ecto.DateTime.utc,
+      p2_timestamp: NaiveDateTime.utc_now,
       waiting_for_players: false
       })
     case Repo.update(game_changeset) do
@@ -54,7 +55,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   defp create_new_game(utd) do
     changeset = Game.new_changeset(%Game{}, %{
       player1_id:          utd.player_id,
-      p1_timestamp:        Ecto.DateTime.utc,
+      p1_timestamp:        NaiveDateTime.utc_now,
       tournament_id:       utd.tournament_id,
       value:               utd.current_score,
       waiting_for_players: true,

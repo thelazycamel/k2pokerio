@@ -13,7 +13,7 @@ defmodule K2pokerIo.Tournament do
     has_many :user_tournament_details, K2pokerIo.UserTournamentDetail
     has_many :invitations, K2pokerIo.Invitation
     field :rebuys, {:array, :integer}  # can be for example [128,1024]
-    field :start_time, Ecto.DateTime
+    field :start_time, :naive_datetime
     field :lose_type, :string  #one of "all" or "half"
     field :type, :string #currently tournament or duel
     field :starting_chips, :integer

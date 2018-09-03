@@ -50,6 +50,11 @@ h1, h2 {
   font-size: 10px;
   font-weight: normal;
   color: #ffffff;
-  background: linear-gradient(to bottom, #d25b60 50%, #9d0000 50%);
+  background: linear-gradient(to bottom, #d25b60 40%, #9d0000 80%);
   border-radius: 50%;
 }
+
+.profile-image {
+  border-radius: 5px;
+}
+

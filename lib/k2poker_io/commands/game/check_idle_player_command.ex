@@ -17,8 +17,8 @@ defmodule K2pokerIo.Commands.Game.CheckIdlePlayerCommand do
     timestamp = opponents_timestamp(game, player_id)
     if timestamp do
       timestamp = convert_timestamp_to_timex(timestamp)
-      fifteen_seconds_ago = Timex.now |> Timex.shift(seconds: -15)
-      if Timex.before?(timestamp, fifteen_seconds_ago) do
+      ten_seconds_ago = Timex.now |> Timex.shift(seconds: -10)
+      if Timex.before?(timestamp, ten_seconds_ago) do
         force_play(game, player_id)
       else
         {:ok, :no_change}
@@ -49,11 +49,9 @@ defmodule K2pokerIo.Commands.Game.CheckIdlePlayerCommand do
     end
   end
 
-  defp convert_timestamp_to_timex(ecto_time) do
-    ecto_time
-    |> Ecto.DateTime.dump
-    |> elem(1)
-    |> Timex.DateTime.Helpers.construct("Etc/UTC")
+  defp convert_timestamp_to_timex(datetime) do
+    NaiveDateTime.to_iso8601(datetime)
+    |> Timex.parse!("{ISO:Extended}")
   end
 
 end

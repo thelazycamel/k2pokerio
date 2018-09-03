@@ -97,9 +97,23 @@
 
 .btn-join-button {
 
+  &.btn-lg {
+    width: 175px;
+    height: 57px;
+    font-size: 1.5em;
+  }
+
+  &.btn-md {
+    width: 140px;
+    height: 46px;
+    font-size: 1.3em;
+    line-height: 1.6em;
+  }
+
   &.btn-sm {
     width: 100px;
     height: 32px;
+    line-height: 1.8em;
   }
   cursor: pointer;
   background-image: url("/images/bot-request-button.svg");

@@ -11,10 +11,10 @@
 
     th {
       padding: 1px;
-      border-bottom: 1px solid #efefef;
     }
     td {
       padding: 5px 0px;
+      border-bottom: 1px solid #121233;
 
       &.tournament-icon {
         padding: 0px 5px;
@@ -73,5 +73,50 @@
       }
     }
 
+  }
+}
+
+.tournament-detail-table {
+  width: 100%;
+  tr {
+    th {
+      padding: 10px;
+    }
+    td {
+      padding: 10px;
+    }
+  }
+  .highlighted-area {
+    border: 2px solid #222262;
+    background-color: #121233;
+  }
+}
+
+.tournament-winners-table {
+  width: 100%;
+  tbody {
+    border-top: 5px dotted #222262;
+    border-bottom: 5px dotted #222262;
+  }
+  tr {
+    th {
+      padding: 10px;
+      font-size: 1.1em;
+    }
+    td {
+      padding: 10px;
+    }
+  }
+}
+
+td, tr {
+  .left {
+    text-align: left;
+  }
+  .right {
+    text-align: right;
+  }
+  .center {
+    text-align: center;
   }
 }

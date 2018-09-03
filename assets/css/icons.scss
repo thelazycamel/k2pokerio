@@ -4,6 +4,16 @@
   display: inline-block;
   overflow: hidden;
 
+  &.icon-tiny {
+    background-size: 250px 250px;
+    width: 10px;
+    height: 10px;
+
+    &.icon-info {
+      background-position: -50px -25px;
+    }
+  }
+
   &.icon-sm {
     background-size: 500px 500px;
     width: 20px;

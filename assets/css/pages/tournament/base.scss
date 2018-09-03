@@ -12,7 +12,14 @@ body.tournament {
       height: 569px;
       overflow: hidden;
       overflow-y: scroll;
+
+      .tournament-show-detail {
+        .tournament-title {
+          text-align: center;
+        }
+      }
     }
+
 
     .tournament-menu, .game-menu {
       margin: 20px 0px;
@@ -57,6 +64,21 @@ body.tournament {
           }
         }
       }
+    }
+
+    .tournament-table {
+      .title {
+         a {
+          position: relative;
+          .icon {
+            position: relative;
+            top: -4px;
+            left: 2px;
+          }
+        }
+      }
+
+
     }
 
     .tournament-bottom-actions {

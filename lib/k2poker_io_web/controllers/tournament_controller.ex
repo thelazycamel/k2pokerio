@@ -28,9 +28,18 @@ defmodule K2pokerIoWeb.TournamentController do
   def show(conn, %{"id" => tournament_id}) do
     player_id = get_session(conn, :player_id)
     tournament = get_tournament(tournament_id)
-    players = GetPlayersQuery.all(tournament_id)
+    total_players_count = GetPlayersQuery.registered_count(tournament_id)
+    current_players_count = GetPlayersQuery.count(tournament_id)
+    players = GetPlayersQuery.top_five(tournament_id)
     if current_user(conn) && AccessPolicy.accessible?(current_user(conn), tournament) do
-      render(conn, "show.html", logged_in: logged_in?(conn), tournament_id: tournament.id, player_id: player_id, tournament: tournament, players: players)
+      render(conn, "show.html", logged_in: logged_in?(conn),
+                                tournament_id: tournament.id,
+                                player_id: player_id,
+                                tournament: tournament,
+                                total_players_count: total_players_count,
+                                current_players_count: current_players_count,
+                                players: players
+            )
     else
       redirect conn, to: "/"
     end

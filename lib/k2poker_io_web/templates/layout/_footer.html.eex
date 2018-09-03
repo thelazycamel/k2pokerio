@@ -3,12 +3,12 @@
     <div class="container">
       <img src="<%= static_path(@conn, "/images/footer-chips.png") %>" alt="Poker Chips" id="footer-chips">
       <ul class="footer-nav">
+        <li><a href="/tournaments">Home<span class="reflection">Home</span></a></li>
         <li><a href="/profile">Profile<span class="reflection">Profile</span></a></li>
         <li><a href="#">Partners<span class="reflection">Partners</span></a></li>
         <li><a href="#">Poker<span class="reflection">Poker</span></a></li>
         <li><a href="#">Rules<span class="reflection">Rules</span></a></li>
         <li><a href="#">About<span class="reflection">About</span></a></li>
-        <li><a href="#">K2Poker App<span class="reflection">K2Poker App</span></a></li>
         <%= unless logged_in?(@conn) do %>
           <li>
             <%= link to: registration_path(@conn, :new) do %>

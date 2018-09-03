@@ -83,7 +83,9 @@ class TournamentIndexComponent extends React.Component {
       <tr key={"tournament-" + tournament.id}>
         <td className="tournament-icon"><img src={tournament.image} className="tourament-icon"/></td>
         <td className="title">
-          <a href={"/tournaments/"+tournament.id}>{tournament.name}</a>
+          <a href={"/tournaments/"+tournament.id}>
+            {tournament.name}
+          </a>
         </td>
         <td className="score">{tournament.current_score || tournament.starting_chips}</td>
         <td className="action">

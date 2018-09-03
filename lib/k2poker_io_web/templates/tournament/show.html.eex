@@ -1,33 +1,64 @@
 <div id="section-wrapper">
-  <section id="tournament-area">
-    <table class="tournament-table">
+  <section class="tournament-area">
+    <div class="tournament-show-detail">
+      <div class="tournament-title">
+        <h1><img src="<%= @tournament.image %>" alt="<%= @tournament.name %>" width="50px" height: "50px"/> <%= @tournament.name %></h1>
+      </div>
+    </div>
+    <table class="tournament-detail-table">
+      <tbody>
+        <tr>
+          <th width="25%">No. of Players:</th>
+          <th width="25%"><%= @total_players_count %></th>
+          <th width="25%" class="right">Type:</th>
+          <th width="25%" class="right"><%= if @tournament.private, do: "Private", else: "Public" %></th>
+        </tr>
+        <tr>
+          <th>Players Online:</th>
+          <th><%= @current_players_count %></td>
+          <th class="right">Bots in Play:</th>
+          <th class="right"><%= if @tournament.bots, do: "Bots in Play", else: "No Bots" %></th>
+        </tr>
+        <tr>
+          <td colspan="4" class="center highlighted-area">TODO: Add a tournament description field and fill it with text to show here...
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="center" colspan="4">
+            <a href="/tournaments/join/<%=@conn.assigns[:tournament_id]%>" class=" btn btn-md btn-join-button">Play</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <table class="tournament-winners-table">
       <thead>
         <tr>
-          <th><%= @tournament.name %></th>
-          <th>No. of Players <%= Enum.count(@players) %></th>
-          <th><%= if @tournament.private, do: "Private", else: "Public" %></th>
-          <th><%= if @tournament.bots, do: "Bots in Play", else: "No Bots" %></th>
-        <tr height="50px">
-          <th colspan="2">User</th>
-          <th>Last seen</th>
-          <th class="score">Score</th>
+          <th colspan="3" class="center">Top Players</th>
         </tr>
       </thead>
       <tbody>
         <%= for {player, _} <- Enum.with_index(@conn.assigns[:players]) do %>
             <tr>
-              <td><%= player.username %></td>
-              <td><img src=<%= profile_image_url(player.image) %> width="50px" height="50px"/></td>
+              <td>
+                  <img src=<%= profile_image_url(player.image) %> width="40px" height="40px" class="profile-image"/>
+                  <%= player.username %>
+              </td>
               <td><%= time_ago(player.last_seen) %></td>
               <td class="score"><%= if player.invite, do: "Invited", else: player.current_score %></td>
             </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="center">
+            <a href="/tournaments" class=" btn btn-empty">Back</a>
+          </td>
+        </tr>
+      </tfoot>
     </table>
-  </section>
-  <section id="tournament-bottom-actions">
-    <a href="/tournaments" class=" btn btn-default">Back</a>
-    <a href="/tournaments/join/<%=@conn.assigns[:tournament_id]%>" class=" btn btn-success">Play</a>
   </section>
   <section id="chat-holder" class="full-height tournament-page">
     <div id="chat-root"></div>

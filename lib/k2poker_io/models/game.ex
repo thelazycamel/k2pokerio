@@ -12,8 +12,8 @@ defmodule K2pokerIo.Game do
     field :open, :boolean
     field :p1_paid, :boolean
     field :p2_paid, :boolean
-    field :p1_timestamp, Ecto.DateTime
-    field :p2_timestamp, Ecto.DateTime
+    field :p1_timestamp, :naive_datetime
+    field :p2_timestamp, :naive_datetime
     field :waiting_for_players, :boolean
     belongs_to :tournament, K2pokerIo.Tournament
 

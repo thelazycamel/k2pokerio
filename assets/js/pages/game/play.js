@@ -49,7 +49,7 @@ class GamePlayPage extends page {
   setWaitingPing() {
     this.waitingPing = setTimeout(function(){
       App.store.dispatch({type: "GAME:WAITING_PING"});
-    }, 16000);
+    }, 11000);
   }
 
   clearWaitingPing() {

@@ -79,7 +79,7 @@ class FriendsList extends React.Component {
     return(
       <tr key={friend.id}>
         <td className="show-friend profile-image">
-          <img src={ friend.image } alt={ friend.username } className="friend-image" />
+          <img src={ friend.image } alt={ friend.username } className="friend-image profile-image" />
         </td>
         <td className="show-friend user-name">
           { friend.username }

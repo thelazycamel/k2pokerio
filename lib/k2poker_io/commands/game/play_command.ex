@@ -31,14 +31,8 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
   end
 
   defp update_timestamp(game, player_id) do
-    timestamp = Ecto.DateTime.utc
-    player1_id = game.player1_id
-    player2_id = game.player2_id
-    case player_id do
-      player1_id -> %{p1_timestamp: timestamp}
-      player2_id -> %{p2_timestamp: timestamp}
-      _ -> %{}
-    end
+    timestamp = NaiveDateTime.utc_now
+    if player1_id = game.player1_id, do: %{p1_timestamp: timestamp}, else: %{p2_timestamp: timestamp}
   end
 
 end
