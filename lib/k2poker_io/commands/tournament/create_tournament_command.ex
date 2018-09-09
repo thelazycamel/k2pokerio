@@ -17,7 +17,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
 
   defp create_tournament(current_user, params) do
     if has_unfinished_tournament_with_opponent?(current_user, params) do
-      {:error, "You already have a duel open with this player"}
+      {:error, "You already have a duel open with this player, please finish the duel or choose another opponent"}
     else
       changeset = case params["game_type"] do
        "tournament" -> tournament_params(current_user, params)

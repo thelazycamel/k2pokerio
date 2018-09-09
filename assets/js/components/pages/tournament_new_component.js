@@ -110,12 +110,20 @@ class TournamentNewComponent extends React.Component {
       name: name
     }
     App.services.tournaments.create(params).then(data => {
-      // TODO open popup to give user option to go to tournament now
-      // TournamentCreatedPopup
-      // options play or back to /tournaments
-      // ensure All popups have a background screen cover
-      console.log(data);
+      if(data.status == "ok") {
+        document.location = '/tournaments/' + data.id + "?alert=success&alertMessage=Your%20Tournament%20has%20been%20created";
+      } else {
+        this.showAlert("danger", data.message)
+      }
     })
+  }
+
+  showAlert(type, message) {
+    App.page.showAlert(type, message)
+  }
+
+  closeAlert(){
+    React.unmountComponentAtNode();
   }
 
   renderTabs() {

@@ -43,10 +43,11 @@ body.tournament.new {
       }
       &.btn-selected-friend {
         border: 2px solid #1f5d1f;
-        background-color: #01ab16;
+        background: linear-gradient(to bottom, #185700 50%,#18a000 100%);
         &:hover {
           border: 2px solid #d9534f;
           background-color: #d9534f;
+          background: linear-gradient(to bottom,#8f1b11 50%,#d9434f 100%);
           color: #dddddd;
           .friend-image {
             filter: grayscale(100%);

@@ -30,6 +30,13 @@ defmodule K2pokerIo.Queries.Tournaments.GetPlayersQuery do
     Repo.one(query)
   end
 
+  def invited_count(tournament_id) do
+    query = from invite in Invitation,
+      select: count(invite.id),
+      where: invite.tournament_id == ^tournament_id
+    Repo.one(query)
+  end
+
   def count(tournament_id) do
     query = from utd in UserTournamentDetail,
       select: count(utd.id),

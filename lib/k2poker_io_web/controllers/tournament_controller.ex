@@ -28,7 +28,8 @@ defmodule K2pokerIoWeb.TournamentController do
   def show(conn, %{"id" => tournament_id}) do
     player_id = get_session(conn, :player_id)
     tournament = get_tournament(tournament_id)
-    total_players_count = GetPlayersQuery.registered_count(tournament_id)
+    confirmed_players_count = GetPlayersQuery.registered_count(tournament_id)
+    invited_players_count = GetPlayersQuery.invited_count(tournament_id)
     current_players_count = GetPlayersQuery.count(tournament_id)
     players = GetPlayersQuery.top_five(tournament_id)
     if current_user(conn) && AccessPolicy.accessible?(current_user(conn), tournament) do
@@ -36,7 +37,8 @@ defmodule K2pokerIoWeb.TournamentController do
                                 tournament_id: tournament.id,
                                 player_id: player_id,
                                 tournament: tournament,
-                                total_players_count: total_players_count,
+                                invited_players_count: invited_players_count,
+                                confirmed_players_count: confirmed_players_count,
                                 current_players_count: current_players_count,
                                 players: players
             )

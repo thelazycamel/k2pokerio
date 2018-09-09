@@ -8,10 +8,16 @@
     <table class="tournament-detail-table">
       <tbody>
         <tr>
-          <th width="25%">No. of Players:</th>
-          <th width="25%"><%= @total_players_count %></th>
+          <th width="25%">Players Invited:</th>
+          <th width="25%"><%= @invited_players_count %></th>
           <th width="25%" class="right">Type:</th>
           <th width="25%" class="right"><%= if @tournament.private, do: "Private", else: "Public" %></th>
+        </tr>
+        <tr>
+          <th width="25%">Players Confirmed:</th>
+          <th width="25%"><%= @confirmed_players_count %></th>
+          <th width="25%" class="right">Pot:</th>
+          <th width="25%" class="right">n/a</th>
         </tr>
         <tr>
           <th>Players Online:</th>
