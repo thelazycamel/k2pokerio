@@ -6,6 +6,7 @@ defmodule K2pokerIo.Tournament do
 
   schema "tournaments" do
     field :name, :string
+    field :description, :string
     field :default_tournament, :boolean
     field :finished, :boolean
     field :private, :boolean
@@ -25,7 +26,7 @@ defmodule K2pokerIo.Tournament do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type, :finished, :type])
+    |> cast(params, [:name, :description, :private, :user_id, :rebuys, :starting_chips, :max_score, :bots, :lose_type, :finished, :type])
     |> validate_required(:name)
     |> validate_required(:type)
     |> validate_required(:lose_type)

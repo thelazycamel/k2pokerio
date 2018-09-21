@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProfileSettings from '../presentational/profile_settings.js';
-import ChangePassword from '../presentational/change_password.js';
-import FriendsList from '../presentational/friends_list.js';
+import ProfileSettings from '../../presentational/profile_settings.js';
+import ChangePassword from '../../presentational/change_password.js';
+import FriendsList from '../../presentational/friends_list.js';
 
-class EditProfileComponent extends React.Component {
+class ProfileEditComponent extends React.Component {
 
   constructor(props){
     super(props);
@@ -166,4 +166,4 @@ class EditProfileComponent extends React.Component {
   }
 }
 
-export default EditProfileComponent;
+export default ProfileEditComponent;

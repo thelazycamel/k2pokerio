@@ -43,6 +43,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
   defp tournament_params(current_user, params) do
     %Tournament{
       name: params["name"],
+      description: params["description"],
       default_tournament: false,
       finished: false,
       private: true,
@@ -51,9 +52,19 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
       image: "/images/tournament/private.svg",
       lose_type: "all",
       starting_chips: 1,
-      max_score: 1048576,
+      max_score: max_score(params["max_score"]),
       bots: true
     }
+  end
+
+  defp max_score(max_score) do
+    max_score = max_score || "1048576"
+    {max_score, _} = Integer.parse(max_score)
+    if Enum.member?(available_scores, max_score), do: max_score, else: 1048576
+  end
+
+  defp available_scores do
+    [64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384,131072,1048576]
   end
 
   defp duel_params(current_user, params) do
@@ -61,6 +72,7 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
     opponent = Repo.get(User, opponent_id)
     %Tournament{
       name: params["name"],
+      description: "It's a duel... Rags or Riches!",
       default_tournament: false,
       finished: false,
       private: true,

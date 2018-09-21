@@ -124,7 +124,7 @@ defmodule K2pokerIo.Test.Helpers do
     if Tournament.default do
       Tournament.default
     else
-      Repo.insert!(%Tournament{name: "The Big Kahuna", default_tournament: true, type: "tournament", private: false, finished: false, rebuys: [0]})
+      Repo.insert!(%Tournament{name: "K2 Summit", description: "K2 Summit is the big one, play against everyone in this free and open tournament, always available.", default_tournament: true, type: "tournament", private: false, finished: false, rebuys: [0]})
     end
   end
 

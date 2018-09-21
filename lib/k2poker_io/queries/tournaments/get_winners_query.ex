@@ -15,7 +15,7 @@ defmodule K2pokerIo.Queries.Tournaments.GetWinnersQuery do
   defp get_winner(player_id, tournament) do
     winner = winner_or_other_players_utd(player_id, tournament)
     case winner do
-      nil -> %{username: "TODO check tournament type", current_score: 1}
+      nil -> %{username: "Waiting", current_score: 1}
       _ -> winner
     end
   end

@@ -23,17 +23,22 @@
           <th>Players Online:</th>
           <th><%= @current_players_count %></td>
           <th class="right">Bots in Play:</th>
-          <th class="right"><%= if @tournament.bots, do: "Bots in Play", else: "No Bots" %></th>
+          <th class="right"><%= if @tournament.bots, do: "Yes", else: "No" %></th>
         </tr>
         <tr>
-          <td colspan="4" class="center highlighted-area">TODO: Add a tournament description field and fill it with text to show here...
-          </td>
+          <th width="25%"></th>
+          <th width="25%"></th>
+          <th width="25%" class="right">Winning Chips:</th>
+          <th width="25%" class="right"><%= @tournament.max_score %></th>
+        </tr>
+        <tr>
+          <td colspan="4" class="center highlighted-area"><%= @tournament.description %></td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <td class="center" colspan="4">
-            <a href="/tournaments/join/<%=@conn.assigns[:tournament_id]%>" class=" btn btn-md btn-join-button">Play</a>
+            <a href="/tournaments/join/<%= @tournament.id %>" class=" btn btn-md btn-join-button">Play</a>
           </td>
         </tr>
       </tfoot>

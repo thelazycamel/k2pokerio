@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import TournamentCreatedPopup from "../popups/tournament_created_popup"
+import TournamentCreatedPopup from "../../popups/tournament_created_popup"
 
 class TournamentNewComponent extends React.Component {
 
@@ -11,6 +11,8 @@ class TournamentNewComponent extends React.Component {
       pagination: {},
       gameType: "tournament",
       tournamentName: this.props.username + "'s Tournament ",
+      description: "",
+      maxScore: 1048576,
       duelName: this.props.username + " vs "
     }
   }
@@ -59,6 +61,14 @@ class TournamentNewComponent extends React.Component {
     this.setState(...this.state, {tournamentName: e.currentTarget.value});
   }
 
+  tournamentDescriptionChanged(e) {
+    this.setState(...this.state, {tournamentDescription: e.currentTarget.value});
+  }
+
+  maxScoreChanged(e) {
+    this.setState(...this.state, {maxScore: e.currentTarget.value});
+  }
+
   duelNameChanged(e) {
     this.setState(...this.state, {duelName: e.currentTarget.value});
   }
@@ -102,12 +112,16 @@ class TournamentNewComponent extends React.Component {
   }
 
   submitForm(e) {
-    let friend_ids = this.state.friends.filter(friend => { return friend.selected }).map(friend => {return friend.id})
+    let friendIds = this.state.friends.filter(friend => { return friend.selected }).map(friend => {return friend.id})
     let name = (this.state.gameType == "tournament") ? this.state.tournamentName : this.state.duelName;
+    let description = this.state.tournamentDescription;
+    let maxScore = this.state.maxScore;
     let params = {
-      friend_ids: friend_ids,
+      friend_ids: friendIds,
       game_type: this.state.gameType,
-      name: name
+      name: name,
+      max_score: maxScore,
+      description: description
     }
     App.services.tournaments.create(params).then(data => {
       if(data.status == "ok") {
@@ -149,11 +163,32 @@ class TournamentNewComponent extends React.Component {
                type="text"
                id="input-tournament-name"
                name="tournament[name]"
-               className="form-control tournament-name input-tournament"
+               className="form-control tournament-input"
                placeholder="Tournament Name"
                defaultValue={this.state.tournamentName}
+               maxLength="30"
                onChange={this.tournamentNameChanged.bind(this)}
                />
+        <input type="text"
+               name="tournament[description]"
+               className="form-control tournament-input"
+               placeholder="Short Description"
+               maxLength="254"
+               onChange={ this.tournamentDescriptionChanged.bind(this) }
+               />
+        <select name="tournament[max_score]" className="form-control tournament-input" onChange={this.maxScoreChanged.bind(this)}>
+          <option selected value="1048576">Winning Chips. 1048576</option>
+          <option value="64">64</option>
+          <option value="128">128</option>
+          <option value="256">256</option>
+          <option value="512">512</option>
+          <option value="1024">1024</option>
+          <option value="2048">2048</option>
+          <option value="4096">4096</option>
+          <option value="8192">8192</option>
+          <option value="16384">16384</option>
+          <option value="131072">131072</option>
+        </select>
         <div className="action-buttons form-group">
           <div className="buttons-left">
             <button className="btn btn-success" onClick={this.selectAll.bind(this)}>Select All</button>
@@ -174,7 +209,7 @@ class TournamentNewComponent extends React.Component {
                type="text"
                id="input-duel-name"
                name="tournament[duel_name]"
-               className="form-control tournament-name input-duel"
+               className="form-control tournament-input"
                value={this.state.duelName}
                disabled={true}
                onChange={this.duelNameChanged.bind(this)}

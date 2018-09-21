@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import TournamentNewComponent from "../../components/pages/tournament_new_component"
+import TournamentNewComponent from "../../components/pages/tournament/new"
 
 class TournamentNewPage extends page {
 

@@ -25,12 +25,20 @@ class LadderComponent extends React.Component {
     }
   }
 
+  renderValue(value) {
+    if(value <= this.props.maxScore) {
+      return <span className={this.scoreClass(value)}>{value}</span>
+    } else {
+      return <span className={this.scoreClass(value) + " empty"}></span>
+    }
+  }
+
   renderScoreCell(value){
     return(
       <td className="score-cell">
-        {this.renderPlayer(value)}
-        <span className={this.scoreClass(value)}>{value}</span>
-        {this.renderOtherPlayer(value)}
+          { this.renderPlayer(value) }
+          { this.renderValue(value) }
+          { this.renderOtherPlayer(value) }
       </td>);
   }
 
@@ -60,7 +68,6 @@ class LadderComponent extends React.Component {
       return "xsmall";
     }
   }
-
 
   renderRows() {
     let rowNo = 20;

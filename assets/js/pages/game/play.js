@@ -72,6 +72,11 @@ class GamePlayPage extends page {
     App.services.games.join();
   }
 
+  maxScore() {
+    let element = document.getElementById("ladder-holder");
+    return parseInt(element.dataset.maxScore, 10);
+  }
+
   showTournamentLoserPopup(action) {
     ReactDOM.render(<TournamentLoserPopup username={action.username} type={action.type}/>, document.getElementById('popup-holder'));
   }
@@ -81,7 +86,7 @@ class GamePlayPage extends page {
   }
 
   initializeLadderComponent() {
-    ReactDOM.render(<LadderComponent store={App.store} title="Tournament Name" page="Game"/>, document.getElementById('ladder-holder'));
+    ReactDOM.render(<LadderComponent store={App.store} maxScore={this.maxScore()} page="Game"/>, document.getElementById('ladder-holder'));
   }
 
   initializeChipsComponent() {

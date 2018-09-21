@@ -9,7 +9,7 @@
       </div>
     </div>
   </section>
-  <section id="ladder-holder" data-tournament="<%= @tournament_id %>">
+  <section id="ladder-holder" data-tournament="<%= @tournament_id %>" data-max-score="<%= @max_score %>">
     <div id="ladder-root"></div>
   </section>
   <section id="chips-holder">

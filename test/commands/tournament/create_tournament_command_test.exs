@@ -34,6 +34,28 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
     assert(invite_count == 4)
   end
 
+  test "it should create a tournament with given max score", context do
+    params = %{
+      "game_type" => "tournament",
+      "name" => "My Small Tournament",
+      "max_score" => "512",
+      "friend_ids" => [context.player2.id,context.player3.id,context.player4.id]
+      }
+    {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
+    assert(tournament.max_score == 512)
+  end
+
+  test "it should create a tournament with max score of 1048576 if given max_score is bad", context do
+    params = %{
+      "game_type" => "tournament",
+      "name" => "My Big Tournament",
+      "max_score" => "1020202022",
+      "friend_ids" => [context.player2.id,context.player3.id,context.player4.id]
+      }
+    {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
+    assert(tournament.max_score == 1048576)
+  end
+
   test "it should create a duel with invitations", context do
     params = %{
       "game_type" => "duel",

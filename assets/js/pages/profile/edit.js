@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import EditProfileComponent from "../../components/pages/edit_profile_component"
+import ProfileEditComponent from "../../components/pages/profile/edit"
 
 class ProfileEditPage extends page {
 
@@ -15,7 +15,7 @@ class ProfileEditPage extends page {
 
   initializeMyProfileComponent() {
     let element = document.getElementById('edit-profile-wrapper')
-    ReactDOM.render(<EditProfileComponent
+    ReactDOM.render(<ProfileEditComponent
                       username= {element.dataset.username}
                       blurb=    {element.dataset.blurb}
                       image=    {element.dataset.image}
