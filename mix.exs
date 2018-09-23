@@ -41,7 +41,7 @@ defmodule K2pokerIo.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 1.0"},
-      {:kerosene, "~> 0.7.0"},
+      {:kerosene, "~> 0.8.1"},
       {:k2poker, path: "~/dev/k2_poker/elixir/k2poker"},
       {:mix_test_watch, "~> 0.3", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},

@@ -67,6 +67,7 @@ defmodule K2pokerIoWeb.FriendController do
     if current_user(conn) do
       {query, pagination} = FriendsQuery.friends_only(current_user(conn).id, params)
       friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
+
       json conn, %{friends: friends, pagination: pagination}
     else
       json conn, %{error: true, status: 401}

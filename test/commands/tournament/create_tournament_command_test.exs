@@ -53,7 +53,7 @@ defmodule K2pokerIo.CreateTournamentCommandTest do
       "friend_ids" => [context.player2.id,context.player3.id,context.player4.id]
       }
     {:ok, tournament} = CreateTournamentCommand.execute(context.player1, params)
-    assert(tournament.max_score == 1048576)
+    assert(tournament.max_score == 1024)
   end
 
   test "it should create a duel with invitations", context do

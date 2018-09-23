@@ -8,7 +8,7 @@ class TournamentNewComponent extends React.Component {
     super(props);
     this.state = {
       friends: [],
-      pagination: {},
+      pagination: {per_page: 0},
       gameType: "tournament",
       tournamentName: this.props.username + "'s Tournament ",
       description: "",
@@ -176,8 +176,8 @@ class TournamentNewComponent extends React.Component {
                maxLength="254"
                onChange={ this.tournamentDescriptionChanged.bind(this) }
                />
-        <select name="tournament[max_score]" className="form-control tournament-input" onChange={this.maxScoreChanged.bind(this)}>
-          <option selected value="1048576">Winning Chips. 1048576</option>
+        <select name="tournament[max_score]" defaultValue="1024" className="form-control tournament-input" onChange={this.maxScoreChanged.bind(this)}>
+          <option>Winning Chips. 1024</option>
           <option value="64">64</option>
           <option value="128">128</option>
           <option value="256">256</option>
@@ -188,6 +188,7 @@ class TournamentNewComponent extends React.Component {
           <option value="8192">8192</option>
           <option value="16384">16384</option>
           <option value="131072">131072</option>
+          <option value="1048576">1048576</option>
         </select>
         <div className="action-buttons form-group">
           <div className="buttons-left">
