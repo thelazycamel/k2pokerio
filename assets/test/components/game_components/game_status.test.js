@@ -29,7 +29,7 @@ describe("Game Status Component", () => {
 
   it("should show win status", () => {
     let gameStatusComponent = mount(<GameStatusComponent waiting={false} finished={true} game_status="finished" player_status="win" />)
-    expect(gameStatusComponent.find("#game-status .win-status").text()).toEqual("You Win")
+    expect(gameStatusComponent.find("#game-status .win-status").text()).toEqual("YOU WIN")
   });
 
 

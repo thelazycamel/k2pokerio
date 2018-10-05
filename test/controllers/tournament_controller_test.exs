@@ -4,10 +4,7 @@ defmodule K2pokerIo.TournamentControllerTest do
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.User
-  alias K2pokerIo.Invitation
-  alias K2pokerIo.Tournament
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Repo
   import Plug.Test
 
   doctest K2pokerIoWeb.TournamentController

@@ -89,9 +89,4 @@ defmodule K2pokerIo.UserTest do
     end)
   end
 
-  @tag :skip
-  test "it should return a suggested username if one already taken" do
-    # TODO this is a nice to have and can be done after beta release
-  end
-
 end

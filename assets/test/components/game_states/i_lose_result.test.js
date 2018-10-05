@@ -49,7 +49,7 @@ describe("Game States: Player wins", () => {
   });
 
   test('The game status should be "You Win"', () => {
-    expect(gameComponent.find("#game-status").text()).toEqual("You Lose");
+    expect(gameComponent.find("#game-status").text()).toEqual("YOU LOSE");
   });
 
   test('The best hand show show a status', () => {

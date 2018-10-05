@@ -141,7 +141,7 @@ defmodule K2pokerIo.FriendsQueryTest do
     friend4 = Helpers.create_user("zFriend")
     Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: friend3.id, status: true}))
     Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: friend4.id, status: true}))
-    {query, pagination} = FriendsQuery.all(context.player1.id, %{})
+    {query, _} = FriendsQuery.all(context.player1.id, %{})
     friends = FriendsQuery.decorate_friendships(query, context.player1.id)
     assert Enum.count(friends) == 4
     assert Enum.at(friends, 0).username == "aFriend"
@@ -151,7 +151,7 @@ defmodule K2pokerIo.FriendsQueryTest do
   end
 
   test "kerosene pagination with no params", context do
-    {friends, kerosene} = FriendsQuery.all(context.player1.id, %{})
+    {_, kerosene} = FriendsQuery.all(context.player1.id, %{})
     assert(kerosene.page == 1)
     assert(kerosene.per_page == 7)
     assert(kerosene.total_count == 2)
@@ -159,7 +159,7 @@ defmodule K2pokerIo.FriendsQueryTest do
   end
 
   test "kerosene pagination with page and per page sent", context do
-    {friends, kerosene} = FriendsQuery.all(context.player1.id, %{"page" => 2})
+    {_, kerosene} = FriendsQuery.all(context.player1.id, %{"page" => 2})
     assert(kerosene.page == 2)
   end
 

@@ -9,13 +9,10 @@ defmodule K2pokerIo.GameChannelTest do
 
   doctest K2pokerIoWeb.GameChannel
 
-  #TODO these tests create DBConnectionErrors
-
   setup do
     Helpers.advanced_set_up(["bob", "stu"])
   end
 
-  @tag :skip
   test "game:game_play", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -26,12 +23,12 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "ready")
+    close(socket)
   end
 
-  @tag :skip
   test "game:bot_request" do
     tournament = Helpers.create_tournament()
-    player = Helpers.create_user("bob")
+    player = Helpers.create_user("BobTheTester")
     player_id = User.player_id(player)
     utd = Helpers.create_user_tournament_detail(player_id, player.username, tournament.id)
 
@@ -45,9 +42,9 @@ defmodule K2pokerIo.GameChannelTest do
 
     game = Repo.get(Game, game.id)
     assert(game.player2_id == "BOT")
+    close(socket)
   end
 
-  @tag :skip
   test "game:game_discard", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -59,9 +56,9 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "discarded")
+    close(socket)
   end
 
-  @tag :skip
   test "game:fold", context do
     player_id = K2pokerIo.User.player_id(context.player1)
     {:ok, _, socket} = socket("", %{player_id: player_id})
@@ -73,6 +70,7 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "folded")
+    close(socket)
   end
 
 end
