@@ -71,14 +71,16 @@
         }
 
         #game-status .win-status {
+          font-weight: bold;
           font-size: 1.3em;
-          line-height: 2em;
+          line-height: 2.3em;
           color: #C6C82C;
         }
 
         #game-status .lose-status {
+          font-weight: bold;
           font-size: 1.3em;
-          line-height: 2em;
+          line-height: 2.3em;
           color: #DE1F1B;
         }
 
@@ -116,6 +118,16 @@
       cursor: auto;
       color: #f3f3f3;
       background-image: url("/images/wait-button.svg");
+    }
+
+    &.next-game {
+      color: #efefef;
+      background-image: url("/images/bot-request-button.svg");
+    }
+
+    &.next-game:hover {
+      color: #efefef;
+      background-image: url("/images/bot-request-button-hover.svg");
     }
 
     &.disabled:hover {

@@ -6,7 +6,7 @@ class GameStatusComponent extends React.Component {
   winLoseStatus(){
    return(
      <span className={`${this.props.player_status}-status`}>
-      You {App.t(this.props.player_status)}
+      { `You ${App.t(this.props.player_status)}`.toUpperCase() }
      </span>
    );
   }

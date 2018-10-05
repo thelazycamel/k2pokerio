@@ -25,6 +25,10 @@ defmodule K2pokerIo.DiscardCommandTest do
     new_p1 = K2poker.player_data(new_decoded_game, player1_id)
     refute(List.first(new_p1.cards) == List.first(player1.cards))
     assert(List.last(new_p1.cards) == List.last(player1.cards))
+    #it should update the timestamp for p1
+    assert(reloaded_game.p1_timestamp != context.game.p1_timestamp)
+    #it should not update the timestamp for p2
+    assert(reloaded_game.p2_timestamp == context.game.p2_timestamp)
   end
 
 end

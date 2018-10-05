@@ -25,7 +25,7 @@ class PlayButtonComponent extends React.Component {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.setState({disabled: false})
-    }, 1000);
+    }, 500);
   }
 
   messageType(){
