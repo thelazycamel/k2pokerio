@@ -1,13 +1,25 @@
 defmodule K2pokerIo.Commands.Game.PlayCommand do
 
-  alias K2pokerIo.Repo
   alias K2pokerIo.Game
+  alias K2pokerIo.Repo
+  alias Ecto.Multi
+  import Ecto.Query
 
   def execute(game_id, player_id) do
-    if game = get_game(game_id) do
-      play(game, player_id) |> update_game(game, player_id)
-    else
-      :error
+    game = Multi.new()
+    |> Multi.run(:get_game, fn %{} ->
+      {:ok, Repo.one(
+        from g in Game,
+          where: g.id == ^game_id,
+          lock: "FOR UPDATE",
+          preload: [:tournament]) }
+      end)
+    |> Multi.run(:game_data, fn %{get_game: get_game} -> play(get_game, player_id) end)
+    |> Multi.run(:updated_game, fn %{game_data: game_data, get_game: get_game} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)
+    |> Repo.transaction
+    |> case do
+      {:ok, %{get_game: _, game_data: _, updated_game: updated_game}} -> {:ok, updated_game}
+      {:error, _, _, _} -> :error
     end
   end
 
@@ -16,18 +28,14 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
   end
 
   defp play(game, player_id) do
-    Game.decode_game_data(game.data)
-    |> K2poker.play(player_id)
+    game_data = Game.decode_game_data(game.data) |> K2poker.play(player_id)
+    {:ok, game_data}
   end
 
-  defp update_game(game_data, game, player_id) do
+  defp updated_changeset(game_data, game, player_id) do
     encoded_game_data = Poison.encode!(game_data)
     changes = Map.merge(update_timestamp(game, game_data, player_id), %{data: encoded_game_data})
-    updated_changeset = Game.changeset(game, changes)
-    case Repo.update(updated_changeset) do
-      {:ok, updated_game} -> {:ok, updated_game}
-      {:error, _} -> :error
-    end
+    Game.changeset(game, changes)
   end
 
   # Update the players timestamp, if both players have played the reset both timestamps,
