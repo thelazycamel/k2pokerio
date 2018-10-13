@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store'
-import PlayButtonComponent from '../../../js/components/game_components/play_button_component';
+import PlayButtonComponent from '../../../js/components/game_partials/play_button_component';
 import MockApp from '../../support/mock_app';
 const mockStore = configureStore();
 let store, playButtonComponent;

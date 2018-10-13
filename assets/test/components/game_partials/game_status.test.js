@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store'
 import MockApp from '../../support/mock_app';
-import GameStatusComponent from '../../../js/components/game_components/game_status_component';
+import GameStatusComponent from '../../../js/components/game_partials/game_status_component';
 
 const mockStore = configureStore();
 

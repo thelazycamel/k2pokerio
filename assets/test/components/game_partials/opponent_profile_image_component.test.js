@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import MockApp from '../../support/mock_app';
 import configureStore from 'redux-mock-store'
-import OpponentProfileImageComponent from '../../../js/components/game_components/opponent_profile_image_component';
+import OpponentProfileImageComponent from '../../../js/components/game_partials/opponent_profile_image_component';
 
 const mockStore = configureStore();
 

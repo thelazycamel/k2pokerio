@@ -6,7 +6,8 @@ defmodule K2pokerIoWeb.ProfileController do
   alias K2pokerIo.Commands.User.UpdatePasswordCommand
 
   def edit(conn, _params) do
-    render(conn, "edit.html", profile: current_user(conn))
+    gravatar = Gravity.image(current_user(conn).email, size: 200)
+    render(conn, "edit.html", profile: current_user(conn), gravatar: gravatar)
   end
 
   def update_image(conn, %{"image" => image} ) do

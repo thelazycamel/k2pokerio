@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store'
 import MockApp from '../../support/mock_app';
-import BestHandComponent from '../../../js/components/game_components/best_hand_component';
+import BestHandComponent from '../../../js/components/game_partials/best_hand_component';
 
 const mockStore = configureStore();
 

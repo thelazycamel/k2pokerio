@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'enzyme';
 import configureStore from 'redux-mock-store'
-import CardComponent from '../../../js/components/game_components/card_component';
+import CardComponent from '../../../js/components/game_partials/card_component';
 
 const mockStore = configureStore();
 

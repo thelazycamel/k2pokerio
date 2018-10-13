@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProfileSettings from '../../presentational/profile_settings.js';
-import ChangePassword from '../../presentational/change_password.js';
-import FriendsList from '../../presentational/friends_list.js';
+import ProfileSettings from './partials/profile_settings.js';
+import ChangePassword from './partials/change_password.js';
+import FriendsList from './partials/friends_list.js';
 
 class ProfileEditComponent extends React.Component {
 
@@ -70,7 +70,7 @@ class ProfileEditComponent extends React.Component {
       "/images/profile-images/yosemitesam.png",
       "/images/profile-images/rousso.png",
       "/images/profile-images/shannon.png",
-      "/images/profile-images/fish.png"
+      this.props.gravatar
     ]
   }
 

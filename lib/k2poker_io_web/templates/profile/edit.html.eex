@@ -3,7 +3,8 @@
     data-username="<%= @profile.username %>"
     data-blurb="<%= @profile.blurb %>"
     data-image="<%= @profile.image %>"
-    data-email="<%= @profile.email %>" >
+    data-email="<%= @profile.email %>"
+    data-gravatar="<%= @gravatar %>" >
   </section>
   <section id="profile-badges">
     <table class="badges-table">

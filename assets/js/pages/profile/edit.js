@@ -19,7 +19,9 @@ class ProfileEditPage extends page {
                       username= {element.dataset.username}
                       blurb=    {element.dataset.blurb}
                       image=    {element.dataset.image}
-                      email=    {element.dataset.email} />, element);
+                      email=    {element.dataset.email}
+                      gravatar = {element.dataset.gravatar}
+                     />, element);
   }
 
 }

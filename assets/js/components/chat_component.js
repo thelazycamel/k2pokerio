@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
-import Comment from './presentational/comment'
+import Comment from './shared_partials/comment'
 
 class ChatComponent extends React.Component {
 
