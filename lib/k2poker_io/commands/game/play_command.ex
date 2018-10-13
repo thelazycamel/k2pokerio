@@ -6,7 +6,7 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
   import Ecto.Query
 
   def execute(game_id, player_id) do
-    game = Multi.new()
+    Multi.new()
     |> Multi.run(:get_game, fn %{} -> get_game(game_id) end)
     |> Multi.run(:game_data, fn %{get_game: get_game} -> play(get_game, player_id) end)
     |> Multi.run(:updated_game, fn %{game_data: game_data, get_game: get_game} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)

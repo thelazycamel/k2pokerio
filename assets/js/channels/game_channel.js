@@ -13,12 +13,18 @@ export default class GameChannel {
         App.services.games.opponent_profile();
         App.settings["game_id"] = game_id;
         App.services.tournaments.get_scores();
-      }).receive("error", reason =>
-        console.log("join failed")
+      }).receive("error", reason => {
+        console.log("join failed");
+        window.location = "/";
+        }
       )
 
       App.gameChannel.on("game:new_game_data", function(resp) {
-        App.store.dispatch({type: "GAME:DATA_RECEIVED", game: resp});
+        if(resp.error) {
+          window.location = "/";
+        } else {
+          App.store.dispatch({type: "GAME:DATA_RECEIVED", game: resp});
+        }
       });
     } else {
       window.location = "/";

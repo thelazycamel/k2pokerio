@@ -70,18 +70,22 @@
           }
         }
 
-        #game-status .win-status {
+        #game-status span {
           font-weight: bold;
-          font-size: 1.3em;
-          line-height: 2.3em;
-          color: #C6C82C;
-        }
+          font-size: 1em;
+          line-height: 2.8em;
 
-        #game-status .lose-status {
-          font-weight: bold;
-          font-size: 1.3em;
-          line-height: 2.3em;
-          color: #DE1F1B;
+          &.win-status {
+            font-size: 1.3em;
+            line-height: 2.3em;
+            color: #C6C82C;
+          }
+
+          &.lose-status {
+            font-size: 1.3em;
+            line-height: 2.3em;
+            color: #DE1F1B;
+          }
         }
 
         #best-hand .result-hand {
@@ -160,6 +164,9 @@
       text-decoration: none;
       color: #f3f3f3;
       background-image: url("/images/fold-button-hover.svg");
+    }
+    &:disabled, &[disabled=disabled] {
+      opacity: 0.5;
     }
   }
 

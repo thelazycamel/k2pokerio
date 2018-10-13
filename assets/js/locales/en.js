@@ -41,7 +41,12 @@ class LocaleEn {
       "create_a_game": "Create a Game",
       "private_tournament": "Tournament",
       "private_duel": "2 Player Duel",
-      "choose_an_opponent": "Choose an opponent"
+      "choose_an_opponent": "Choose an opponent",
+      "player_status_win": "YOU WIN",
+      "player_status_lose": "YOU LOSE",
+      "player_status_draw": "DRAW",
+      "player_status_folded": "YOU FOLDED",
+      "player_status_other_player_folded": "THEY FOLDED"
     });
   }
 

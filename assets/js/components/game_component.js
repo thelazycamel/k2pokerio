@@ -37,7 +37,8 @@ class GameComponent extends React.Component {
     return (this.props.game.player_status == "ready") ? true : false;
   }
 
-  foldButtonClicked() {
+  foldButtonClicked(e) {
+    e.target.setAttribute("disabled", "disabled");
     App.store.dispatch({type: "GAME:FOLD"});
     return false;
   }
@@ -132,7 +133,7 @@ class GameComponent extends React.Component {
 
   foldButton() {
     if(this.displayFoldButton()) {
-      return (<a id="fold-button" onClick={this.foldButtonClicked}>Fold</a>);
+      return (<a id="fold-button" onClick={this.foldButtonClicked.bind(this)}>Fold</a>);
     }
   }
 
