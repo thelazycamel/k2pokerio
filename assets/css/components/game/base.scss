@@ -135,8 +135,8 @@
     }
 
     &.disabled:hover {
-      cursor: auto;
-      opacity: 0.8;
+      color: #f3f3f3;
+      background-image: url("/images/wait-button.svg");
     }
 
     &.bot-request {
