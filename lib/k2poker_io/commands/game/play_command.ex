@@ -7,13 +7,7 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
 
   def execute(game_id, player_id) do
     game = Multi.new()
-    |> Multi.run(:get_game, fn %{} ->
-      {:ok, Repo.one(
-        from g in Game,
-          where: g.id == ^game_id,
-          lock: "FOR UPDATE",
-          preload: [:tournament]) }
-      end)
+    |> Multi.run(:get_game, fn %{} -> get_game(game_id) end)
     |> Multi.run(:game_data, fn %{get_game: get_game} -> play(get_game, player_id) end)
     |> Multi.run(:updated_game, fn %{game_data: game_data, get_game: get_game} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)
     |> Repo.transaction
@@ -24,7 +18,12 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
   end
 
   defp get_game(game_id) do
-    Repo.get(Game, game_id) |> Repo.preload(:tournament)
+    game = Repo.one(from g in Game,
+      where: g.id == ^game_id,
+      lock: "FOR UPDATE",
+      preload: [:tournament]
+    )
+    {:ok, game}
   end
 
   defp play(game, player_id) do
@@ -45,7 +44,7 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
     timestamp = NaiveDateTime.utc_now
     cond do
       next_turn -> %{p1_timestamp: timestamp, p2_timestamp: timestamp}
-      player1_id = game.player1_id -> %{p1_timestamp: timestamp}
+      player_id == game.player1_id -> %{p1_timestamp: timestamp}
       true -> %{p2_timestamp: timestamp}
     end
   end

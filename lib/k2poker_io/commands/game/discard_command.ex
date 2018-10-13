@@ -9,13 +9,7 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
 
   def execute(game_id, player_id, card_index) do
     Multi.new()
-    |> Multi.run(:get_game, fn %{} ->
-      {:ok, Repo.one(
-        from g in Game,
-          where: g.id == ^game_id,
-          lock: "FOR UPDATE",
-          preload: [:tournament]) }
-      end)
+    |> Multi.run(:get_game, fn %{} -> get_game(game_id) end)
     |> Multi.run(:game_data, fn %{get_game: get_game} -> discard(get_game, player_id, card_index) end)
     |> Multi.run(:updated_game, fn %{get_game: get_game, game_data: game_data} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)
     |> Repo.transaction
@@ -26,6 +20,15 @@ defmodule K2pokerIo.Commands.Game.DiscardCommand do
   end
 
   #PRIVATE
+
+  defp get_game(game_id) do
+    game = Repo.one(from g in Game,
+      where: g.id == ^game_id,
+      lock: "FOR UPDATE",
+      preload: [:tournament]
+    )
+    {:ok, game}
+  end
 
   defp discard(game, player_id, card_index) do
     game_data = Game.decode_game_data(game.data)

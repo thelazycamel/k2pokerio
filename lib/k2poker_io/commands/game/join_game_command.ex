@@ -3,17 +3,13 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
+  alias Ecto.Multi
 
   import Ecto.Query
 
   def execute(user_tournament_detail) do
     user_tournament_detail = check_valid_score!(user_tournament_detail)
-    case find_or_create_game(user_tournament_detail) do
-     {:ok, game} ->
-       update_user_tournament_detail(user_tournament_detail, game)
-       {:ok, game}
-     {:error} -> {:error}
-    end
+    find_or_create_game(user_tournament_detail)
   end
 
   defp check_valid_score!(user_tournament_detail) do
@@ -31,61 +27,31 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     user_tournament_detail.current_score >= user_tournament_detail.tournament.max_score
   end
 
-  defp find_or_create_game(user_tournament_detail) do
-    if game = get_game(user_tournament_detail) do
-      join_game(user_tournament_detail, game)
-    else
-      create_new_game(user_tournament_detail)
+  defp find_or_create_game(utd) do
+    Multi.new()
+    |> Multi.run(:find_game, fn %{} -> find_game_waiting(utd) end)
+    |> Multi.run(:game, fn %{find_game: find_game} ->
+      if find_game do
+        Repo.update(join_game_changeset(utd, find_game))
+      else
+        Repo.insert(create_new_game_changeset(utd))
+      end
+    end)
+    |> Multi.run(:update_utd, fn %{game: game} -> Repo.update(update_utd_changeset(utd, game)) end)
+    |> Repo.transaction
+    |> case do
+      {:ok, %{find_game: _, game: game, update_utd: _}} -> {:ok, game}
+      {:error, _, _, _} -> {:error}
     end
   end
 
-  #TODO need to lock this transaction so we dont get db race conditions
-  defp join_game(utd, game) do
-    game_changeset = Game.join_changeset(game, %{
-      player2_id: utd.player_id,
-      p2_timestamp: NaiveDateTime.utc_now,
-      waiting_for_players: false
-      })
-    case Repo.update(game_changeset) do
-      {:ok, existing_game} -> {:ok, existing_game}
-      {:error, _} -> {:error}
-    end
-  end
-
-  defp create_new_game(utd) do
-    changeset = Game.new_changeset(%Game{}, %{
-      player1_id:          utd.player_id,
-      p1_timestamp:        NaiveDateTime.utc_now,
-      tournament_id:       utd.tournament_id,
-      value:               utd.current_score,
-      waiting_for_players: true,
-      open: true
-    })
-    case Repo.insert(changeset) do
-      {:ok, game} -> {:ok, game}
-      {:error, _} -> {:error}
-    end
-  end
-
-  defp update_user_tournament_detail(utd, game) do
-    utd_changeset = UserTournamentDetail.changeset(utd, %{game_id: game.id})
-    Repo.update(utd_changeset)
-  end
-
-  defp get_game(utd) do
+  defp find_game_waiting(utd) do
     tournament = utd.tournament
-    cond do
-      tournament.private && tournament.bots == false -> any_available_game(utd)
+    game = cond do
+      tournament.type == "duel" -> any_available_game(utd)
       true -> game_by_current_score(utd)
     end
-  end
-
-  defp any_available_game(utd) do
-    query = from Game, where: [tournament_id: ^utd.tournament_id,
-                       waiting_for_players: true,
-                       open: true
-                       ], limit: 1, preload: [:tournament]
-    Repo.all(query) |> List.first()
+    {:ok, game}
   end
 
   defp game_by_current_score(utd) do
@@ -93,8 +59,40 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
                        value: ^utd.current_score,
                        waiting_for_players: true,
                        open: true,
-                       ], limit: 1, preload: [:tournament]
+                       ], limit: 1, preload: [:tournament], lock: "FOR UPDATE"
     List.first(Repo.all(query))
   end
+
+  defp any_available_game(utd) do
+    query = from Game, where: [tournament_id: ^utd.tournament_id,
+                       waiting_for_players: true,
+                       open: true
+                       ], limit: 1, preload: [:tournament], lock: "FOR UPDATE"
+    Repo.all(query) |> List.first()
+  end
+
+  defp join_game_changeset(utd, game) do
+    Game.join_changeset(game, %{
+      player2_id: utd.player_id,
+      p2_timestamp: NaiveDateTime.utc_now,
+      waiting_for_players: false
+    })
+  end
+
+  defp create_new_game_changeset(utd) do
+    Game.new_changeset(%Game{}, %{
+      player1_id:          utd.player_id,
+      p1_timestamp:        NaiveDateTime.utc_now,
+      tournament_id:       utd.tournament_id,
+      value:               utd.current_score,
+      waiting_for_players: true,
+      open: true
+    })
+  end
+
+  defp update_utd_changeset(utd, game) do
+    UserTournamentDetail.changeset(utd, %{game_id: game.id})
+  end
+
 
 end
