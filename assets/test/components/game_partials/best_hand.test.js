@@ -22,9 +22,14 @@ describe("Best Hand", () => {
     expect(bestHandComponent.find(".result-hand").text()).toEqual("One Pair");
   });
 
-  it("should show winning hand  when passed finished", () => {
-    let bestHandComponent = mount(<BestHandComponent is_finished={true} winning_hand="flush" hand="one_pair" />);
-    expect(bestHandComponent.find(".result-hand").text()).toEqual("Flush");
+  it("should show winning hand when passed finished", () => {
+    let bestHandComponent = mount(<BestHandComponent is_finished={true} winning_hand="flush" losing_hand="one_pair" hand="one_pair" />);
+    expect(bestHandComponent.find(".result-hand").text()).toEqual("FlushBeatsOne Pair");
+  });
+
+  it("should show folded when passed finished with folded", () => {
+    let bestHandComponent = mount(<BestHandComponent is_finished={true} winning_hand="folded" losing_hand="other_player_folded" hand="one_pair" />);
+    expect(bestHandComponent.find(".result-hand").text()).toEqual("Folded");
   });
 
 });

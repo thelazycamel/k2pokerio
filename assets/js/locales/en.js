@@ -47,7 +47,10 @@ class LocaleEn {
       "player_status_draw": "DRAW",
       "player_status_folded": "YOU FOLDED",
       "player_status_other_player_folded": "THEY FOLDED",
-      "beats": "Beats"
+      "beats": "Beats",
+      "folded": "Folded",
+      "other_player_folded": "They Folded",
+      "draw": "Draw"
 
     });
   }
