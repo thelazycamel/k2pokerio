@@ -89,8 +89,16 @@
         }
 
         #best-hand .result-hand {
-          font-size: 1.1em;
-          line-height: 2.5em;
+          .final-hand {
+            margin-top: -3px;
+            display: inline-block;
+            font-size: 1em;
+            line-height: 1.2em;
+          }
+          .standard-hand {
+            font-size: 1.1em;
+            line-height: 2.5em;
+          }
         }
       }
     }

@@ -147,6 +147,12 @@ class GameComponent extends React.Component {
     }
   }
 
+  loseDescription(){
+    if(this.props.game.result){
+      return this.props.game.result.lose_description;
+    }
+  }
+
   renderOpponentProfileImage(){
     if(this.canShowOpponentProfileImage()){
       return <OpponentProfileImageComponent opponent_profile={this.props.opponent_profile} />
@@ -171,7 +177,7 @@ class GameComponent extends React.Component {
               <GameStatusComponent waiting={this.waitingForOpponent()} finished={this.isFinished()} game_status={this.props.game.status} player_status={this.props.game.player_status} />
               <PlayButtonComponent store={this.props.store} />
               <div id="player-cards">{this.renderPlayerCards()}</div>
-              <BestHandComponent is_finished={this.isFinished()} winning_hand={this.winDescription()} hand={this.props.game.hand_description} />
+              <BestHandComponent is_finished={this.isFinished()} winning_hand={this.winDescription()} losing_hand={this.loseDescription()} hand={this.props.game.hand_description} />
               <Scoreboard current_score={this.props.player.current_score} />
             </div>
           </div>

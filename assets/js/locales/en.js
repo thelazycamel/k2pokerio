@@ -46,7 +46,9 @@ class LocaleEn {
       "player_status_lose": "YOU LOSE",
       "player_status_draw": "DRAW",
       "player_status_folded": "YOU FOLDED",
-      "player_status_other_player_folded": "THEY FOLDED"
+      "player_status_other_player_folded": "THEY FOLDED",
+      "beats": "Beats"
+
     });
   }
 
