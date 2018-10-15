@@ -16,6 +16,7 @@ defmodule K2pokerIo.JoinChangesetTest do
     player2_utd = Helpers.create_user_tournament_detail(stu.username, tournament.id)
     params = %{
       player1_id: player1_utd.player_id,
+      p1_timestamp: NaiveDateTime.utc_now,
       tournament_id: player1_utd.tournament_id,
       value: player1_utd.current_score,
       waiting_for_players: true,
@@ -29,7 +30,7 @@ defmodule K2pokerIo.JoinChangesetTest do
   test "#join_changeset -> creates a changeset with a current game and a new player", context do
     player2_utd = context.player2_utd
     game = context.game
-    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
+    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now}
     join_changeset = Game.join_changeset(game, new_params)
     assert(join_changeset.valid?)
   end
@@ -47,7 +48,7 @@ defmodule K2pokerIo.JoinChangesetTest do
   test "#join_changeset -> it should add the new player", context do
     player2_utd = context.player2_utd
     game = context.game
-    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
+    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now}
     join_changeset = Game.join_changeset(game, new_params)
     game = Repo.update!(join_changeset)
     assert(game.player2_id == player2_utd.player_id)
@@ -56,7 +57,7 @@ defmodule K2pokerIo.JoinChangesetTest do
   test "#join_changeset -> the game should no longer be waiting for players", context do
     player2_utd = context.player2_utd
     game = context.game
-    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
+    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now}
     join_changeset = Game.join_changeset(game, new_params)
     game = Repo.update!(join_changeset)
     refute(game.waiting_for_players)
@@ -65,7 +66,7 @@ defmodule K2pokerIo.JoinChangesetTest do
   test "#join_changeset -> the game should hold some game data", context do
     player2_utd = context.player2_utd
     game = context.game
-    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
+    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now}
     join_changeset = Game.join_changeset(game, new_params)
     game = Repo.update!(join_changeset)
     game_data = Game.decode_game_data(game.data)

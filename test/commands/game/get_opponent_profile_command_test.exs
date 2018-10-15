@@ -39,7 +39,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     player = Helpers.create_user("stu")
     utd = Helpers.create_user_tournament_detail(User.player_id(player), player.username, tournament.id)
     {:ok, game} = Helpers.join_game(utd)
-    game_changeset = K2pokerIo.Game.join_changeset(game, %{player2_id: "BOT", waiting_for_players: false})
+    game_changeset = K2pokerIo.Game.join_changeset(game, %{player2_id: "BOT", waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now})
     game = Repo.update!(game_changeset)
     opponent = GetOpponentProfileCommand.execute(game, User.player_id(player))
     assert(opponent.id == nil)

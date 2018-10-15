@@ -16,6 +16,7 @@ defmodule K2pokerIo.GameTest do
     player2_utd = Helpers.create_user_tournament_detail(stu.username, tournament.id)
     params = %{
       player1_id: player1_utd.player_id,
+      p1_timestamp: NaiveDateTime.utc_now,
       tournament_id: player1_utd.tournament_id,
       value: player1_utd.current_score,
       waiting_for_players: true,
@@ -23,7 +24,7 @@ defmodule K2pokerIo.GameTest do
       }
     new_changeset = Game.new_changeset(%Game{}, params)
     game = Repo.insert!(new_changeset)
-    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false}
+    new_params = %{player2_id: player2_utd.player_id, waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now}
     join_changeset = Game.join_changeset(game, new_params)
     game = Repo.update!(join_changeset)
     %{game: game, player1_utd: player1_utd, player2_utd: player2_utd, tournament: tournament}

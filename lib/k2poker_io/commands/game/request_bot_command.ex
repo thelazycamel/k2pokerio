@@ -28,8 +28,8 @@ defmodule K2pokerIo.Commands.Game.RequestBotCommand do
   end
 
   defp set_bot_as_player_2(game) do
-    game_changeset = Game.join_changeset(game, %{player2_id: "BOT", waiting_for_players: false})
-    Repo.update(game_changeset)
+    Game.join_changeset(game, %{player2_id: "BOT", waiting_for_players: false, p2_timestamp: NaiveDateTime.utc_now})
+    |> Repo.update()
   end
 
 end

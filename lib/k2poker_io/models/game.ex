@@ -32,14 +32,19 @@ defmodule K2pokerIo.Game do
 
   def join_changeset(model, params \\ %{}) do
     model
+    |> cast(params, [:player2_id, :p2_timestamp, :waiting_for_players])
+    |> validate_required(:player2_id)
+    |> validate_required(:p2_timestamp)
+    |> validate_required(:waiting_for_players)
     |> changeset(params)
     |> create_game_data(model)
   end
 
   def new_changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:player1_id, :tournament_id, :value, :waiting_for_players, :open])
+    |> cast(params, [:player1_id, :p1_timestamp, :tournament_id, :value, :waiting_for_players, :open])
     |> validate_required(:player1_id)
+    |> validate_required(:p1_timestamp)
     |> validate_required(:tournament_id)
     |> validate_required(:value)
     |> validate_acceptance(:waiting_for_players)

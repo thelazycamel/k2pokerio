@@ -38,14 +38,15 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
   end
 
   # Update the players timestamp, if both players have played the reset both timestamps,
-  # I believe this fixes a bug where players were being forced to play
+  #
   defp update_timestamp(game, game_data, player_id) do
     next_turn = Enum.all?(game_data.players, fn (player) -> player.status == "new" end)
     timestamp = NaiveDateTime.utc_now
     cond do
       next_turn -> %{p1_timestamp: timestamp, p2_timestamp: timestamp}
       player_id == game.player1_id -> %{p1_timestamp: timestamp}
-      true -> %{p2_timestamp: timestamp}
+      player_id == game.player2_id -> %{p2_timestamp: timestamp}
+      true -> %{}
     end
   end
 

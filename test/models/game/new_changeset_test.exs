@@ -14,6 +14,7 @@ defmodule K2pokerIo.NewChangesetTest do
     player_utd = Helpers.create_user_tournament_detail(player.username, tournament.id)
     params = %{
       player1_id: player_utd.player_id,
+      p1_timestamp: NaiveDateTime.utc_now,
       tournament_id: player_utd.tournament_id,
       value: player_utd.current_score,
       waiting_for_players: true,
