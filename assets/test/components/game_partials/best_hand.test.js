@@ -32,4 +32,9 @@ describe("Best Hand", () => {
     expect(bestHandComponent.find(".result-hand").text()).toEqual("Folded");
   });
 
+  it("should show single result when passed finished with result_status draw", () => {
+    let bestHandComponent = mount(<BestHandComponent is_finished={true} winning_hand="one_pair" losing_hand="one_pair" hand="one_pair" result_status="draw" />);
+    expect(bestHandComponent.find(".result-hand").text()).toEqual("One Pair");
+  });
+
 });

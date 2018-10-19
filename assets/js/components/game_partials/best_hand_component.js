@@ -5,7 +5,7 @@ class BestHandComponent extends React.Component {
 
   resultHand() {
     if(this.props.is_finished) {
-      if(this.isWinningHand()) {
+      if(this.isWinningHand() && !this.isDraw()) {
         return this.winningHand()
       } else {
         return this.finishedHand()
@@ -20,7 +20,7 @@ class BestHandComponent extends React.Component {
   }
 
   nonWinningStatus(){
-    return ["folded", "other_player_folded", "draw"]
+    return ["folded", "other_player_folded"]
   }
 
   finishedHand() {
@@ -37,6 +37,10 @@ class BestHandComponent extends React.Component {
         { App.t(this.props.hand) }
       </span>
     )
+  }
+
+  isDraw() {
+    return this.props.result_status == "draw";
   }
 
   winningHand() {

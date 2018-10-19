@@ -142,7 +142,7 @@
       background-image: url("/images/bot-request-button-hover.svg");
     }
 
-    &.disabled:hover {
+    &.disabled, &.disabled:hover {
       color: #f3f3f3;
       background-image: url("/images/wait-button.svg");
     }

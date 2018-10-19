@@ -16,16 +16,17 @@ class PlayButtonComponent extends React.Component {
       console.log("disabled");
     } else {
       App.store.dispatch({type: this.messageType()})
-      this.timeOutPlayButton()
+      let milliseconds = this.props.game.status == "river" ? 2000 : 500;
+      this.timeOutPlayButton(milliseconds)
     }
   }
 
-  timeOutPlayButton() {
+  timeOutPlayButton(milliseconds) {
     this.setState({disabled: true});
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.setState({disabled: false})
-    }, 500);
+    }, milliseconds);
   }
 
   messageType(){
