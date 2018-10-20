@@ -9,6 +9,10 @@
       background: none;
       width: 320px;
       height: 540px;
+      .rules-section {
+        height: 495px;
+        overflow-y: scroll;
+      }
       p {
         padding: 5px;
       }

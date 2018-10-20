@@ -6,6 +6,19 @@
     #rules-root {
       left: 629px;
       width: 511px;
+
+      #rules-navigation {
+        margin-top: 30px;
+      }
+      .rules-section {
+        height: 230px;
+        overflow-y: scroll;
+        .hand-ranking {
+          display: block;
+          width: 60%;
+          margin: 0px auto;
+        }
+      }
     }
   }
 

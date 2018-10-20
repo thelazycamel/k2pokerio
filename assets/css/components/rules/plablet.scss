@@ -16,8 +16,9 @@
         border-radius: 10px;
         overflow: hidden;
         height: 100%;
-        h2 {
-          border-radius: 10px 10px 0px 0px;
+        .rules-section {
+          height: 550px;
+          overflow-y: scroll;
         }
       }
     }

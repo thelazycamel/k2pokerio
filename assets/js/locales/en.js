@@ -50,7 +50,16 @@ class LocaleEn {
       "beats": "Beats",
       "folded": "Folded",
       "other_player_folded": "They Folded",
-      "draw": "Draw"
+      "draw": "Draw",
+      "tournament_rules_tab": "Rules",
+      "duel_rules_tab": "Duel Rules",
+      "card_rankings_tab": "Hand Rankings",
+      "tournament_rules_1": "K2 Poker plays similar to Texas Hold'em except you can swap'em",
+      "tournament_rules_2": "On each turn of the card you can swap one card, except the river (the last turn) where you can swap both",
+      "tournament_rules_3": "Play each game against another player or a dumb bot to build the best hand ranking",
+      "tournament_rules_4": "Doubling up your score each time to reach the million jackpot, just twenty wins in a row!",
+      "tournament_rules_5": "Fold at any time to forfeit half of your current score",
+      "tournament_rules_6": "Lose the hand and its straight back to the first step"
 
     });
   }

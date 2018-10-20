@@ -1,14 +1,42 @@
 #rules-holder {
+
   #rules-root {
     position: absolute;
     top: 319px;
     height: 300px;
     border-radius: 10px;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+
+    #rules-navigation {
+      margin: 10px;
+      display: flex;
+      justify-content: space-around;
+      font-weight: bold;
+
+      .tab-link {
+        text-align: center;
+        line-height: 2.8em;
+        color: #8393a7;
+        width: 50%;
+        height: 40px;
+        background: linear-gradient(to bottom, #010116 50%,#374355 100%);
+        border-radius: 20px;
+        &.active {
+          color: #ffffff;
+          background: linear-gradient(to bottom, #374355 0%,#010116 50%);
+        }
+        &:hover:not(.active) {
+          cursor: pointer;
+          color: #ffffff;
+        }
+      }
+    }
     .rules-section {
       padding: 10px;
+      img {
+        margin: 5px 0px;
+      }
     }
   }
-
 }
 

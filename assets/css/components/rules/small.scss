@@ -5,6 +5,10 @@
     #rules-root {
       left: 419px;
       width: 250px;
+      .rules-section {
+        height: 230px;
+        overflow-y: scroll;
+      }
     }
   }
 

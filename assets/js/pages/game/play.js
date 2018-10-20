@@ -110,7 +110,7 @@ class GamePlayPage extends page {
   }
 
   initializeRulesComponent() {
-    ReactDOM.render(<RulesComponent store={App.store}/>, document.getElementById('rules-holder'));
+    ReactDOM.render(<RulesComponent store={App.store} />, document.getElementById('rules-holder'));
   }
 
   initializeSideNavComponent() {
