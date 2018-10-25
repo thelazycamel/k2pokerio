@@ -7,25 +7,31 @@ class PlayButtonComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {disabled: false};
+  }
+
+  componentDidUpdate(){
+    if(this.props.game.disable_button == "timeout"){
+      if(this.isFinished()){
+        this.timeOutPlayButton(1500);
+      } else {
+        this.timeOutPlayButton(750);
+      }
+    }
   }
 
   playButtonClicked(e) {
     e.preventDefault();
-    if(this.state.disabled){
+    if(this.props.game.disable_button){
       console.log("disabled");
     } else {
       App.store.dispatch({type: this.messageType()})
-      let milliseconds = this.props.game.status == "river" ? 2000 : 500;
-      this.timeOutPlayButton(milliseconds)
     }
   }
 
   timeOutPlayButton(milliseconds) {
-    this.setState({disabled: true});
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.setState({disabled: false})
+      App.store.dispatch({type: "GAME:ENABLE_PLAY_BUTTON"})
     }, milliseconds);
   }
 
@@ -37,9 +43,15 @@ class PlayButtonComponent extends React.Component {
     }
   }
 
+  disabled() {
+    if(this.props.game) {
+      return this.props.game.disable_button == true || this.props.game.disable_button == "timeout";
+    }
+  }
+
   classNames() {
     let names = [];
-    if(this.state.disabled) {
+    if(this.disabled()) {
       names.push("disabled");
     }
     if(this.isFinished()) {

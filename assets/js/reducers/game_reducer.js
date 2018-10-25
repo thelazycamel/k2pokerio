@@ -4,7 +4,7 @@ var gameReducer = function(state = {}, action) {
 
   switch(action.type) {
     case "GAME:PLAY":
-      return state;
+      return Object.assign({}, state, {disable_button: true});
     case "GAME:DISCARD":
       let cards = state.cards;
       cards[action.card_index] = "discarded";
@@ -16,8 +16,11 @@ var gameReducer = function(state = {}, action) {
     case "GAME:FOLD":
        return state;
        break;
+    case "GAME:ENABLE_PLAY_BUTTON":
+      return Object.assign({}, state, {disable_button: false});
     case "GAME:DATA_RECEIVED":
-      return Object.assign({}, action.game);
+      let buttonState = state.disable_button ? "timeout" : false;
+      return Object.assign({}, {disable_button: buttonState}, action.game);
       break; 
     case "GAME:NEXT_GAME":
       return state;
