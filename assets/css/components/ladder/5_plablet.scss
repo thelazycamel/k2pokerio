@@ -1,71 +1,75 @@
 @import "../../variables";
 
-@media (max-width: $media-phone-max) {
+@media (min-width: $media-plablet-min) and (max-width: $media-plablet-max) {
 
   #ladder-holder {
     #ladder-root {
-      display: none;
-      height: 554px;
-      width: 320px;
-      border-radius: 10px;
+      left: 0px;
+      top: 0px;
+      width: 419px;
+      height: 619px;
+      background: linear-gradient(to bottom, #82e1ff 0%,#172a55 50%);
+      padding: 2px;
       #ladder-inner {
+        background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
+        border-radius: 10px;
+        overflow: hidden;
         #score-ladder {
-          margin-top: 50px;
           width: 100%;
-          font-size: 1.2em;
-          line-height: 1.4em;
+          height: 100%;
+          margin-top: 6px;
           tr {
-            height: 24px;
+            height: 29px;
             td {
-              font-size: 14px;
+              font-size: 18px;
               div.player-score {
-                height: 24px;
+                height: 30px;
                 .username {
-                  right: 45px;
+                  right: 55px;
                 }
                 .tournament-chip {
-                  width: 40px;
-                  height: 20px;
+                  width: 50px;
+                  height: 25px;
                 }
               }
               div.other-player-score {
                 height: 30px;
                 .username {
-                  left: 45px;
+                  left: 55px;
                 }
                 .tournament-chip {
-                  width: 40px;
-                  height: 20px;
+                  width: 50px;
+                  height: 25px;
                 }
               }
               .size-xlarge {
-                width: 150px;
+                width: 190px;
                 .username {
-                  max-width: 115px;
+                  max-width: 145px;
                 }
               }
               .size-large {
-                width: 145px;
+                width: 185px;
                 .username {
-                  max-width: 110px;
+                  max-width: 140px;
                 }
               }
               .size-medium {
-                width: 140px;
+                width: 180px;
                 .username {
-                  max-width: 105px;
+                  max-width: 125px;
                 }
               }
               .size-small {
-                width: 135px;
+                width: 175px;
                 .username {
-                  max-width: 85px;
+                  max-width: 120px;
                 }
               }
               .size-xsmall {
-                width: 130px;
+                width: 170px;
                 .username {
-                  max-width: 80px;
+                  max-width: 115px;
                 }
               }
             }
@@ -73,13 +77,30 @@
           &.score-size-64 {
             margin-top: 0px;
             tr.normal {
-              height: 80px;
+              height: 88px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 80px;
+                  height: 88px;
                   .tournament-chip {
                     top: 30px;
+                  }
+                  .username {
+                    top: 32px;
+                  }
+                }
+              }
+            }
+          }
+          &.score-size-128 {
+            tr.normal {
+              height: 76px;
+              td {
+                font-size: 16px;
+                div.player-score, div.other-player-score {
+                  height: 76px;
+                  .tournament-chip {
+                    top: 28px;
                   }
                   .username {
                     top: 28px;
@@ -88,25 +109,26 @@
               }
             }
           }
-          &.score-size-128 {
+          &.score-size-256 {
+            margin-top: 2px;
             tr.normal {
-              height: 62px;
+              height: 68px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 62px;
+                  height: 68px;
                   .tournament-chip {
-                    top: 23px;
+                    top: 22px;
                   }
                   .username {
-                    top: 20px;
+                    top: 24px;
                   }
                 }
               }
             }
           }
-          &.score-size-256 {
-            margin-top: 0px;
+          &.score-size-512 {
+            margin-top: 16px;
             tr.normal {
               height: 60px;
               td {
@@ -117,21 +139,40 @@
                     top: 20px;
                   }
                   .username {
-                    top: 19px;
+                    top: 20px;
                   }
                 }
               }
             }
           }
-          &.score-size-512 {
+          &.score-size-1024 {
+            margin-top: 10px;
             tr.normal {
-              height: 50px;
+              height: 55px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 50px;
+                  height: 55px;
                   .tournament-chip {
-                    top: 17px;
+                    top: 16px;
+                  }
+                  .username {
+                    top: 18px;
+                  }
+                }
+              }
+            }
+          }
+          &.score-size-2048 {
+            margin-top: 5px;
+            tr.normal {
+              height: 51px;
+              td {
+                font-size: 16px;
+                div.player-score, div.other-player-score {
+                  height: 51px;
+                  .tournament-chip {
+                    top: 13px;
                   }
                   .username {
                     top: 15px;
@@ -140,54 +181,19 @@
               }
             }
           }
-          &.score-size-1024 {
-            tr.normal {
-              height: 45px;
-              td {
-                font-size: 16px;
-                div.player-score, div.other-player-score {
-                  height: 45px;
-                  .tournament-chip {
-                    top: 12px;
-                  }
-                  .username {
-                    top: 10px;
-                  }
-                }
-              }
-            }
-          }
-          &.score-size-2048 {
-            margin-top: 10px;
-            tr.normal {
-              height: 44px;
-              td {
-                font-size: 16px;
-                div.player-score, div.other-player-score {
-                  height: 44px;
-                  .tournament-chip {
-                    top: 12px;
-                  }
-                  .username {
-                    top: 10px;
-                  }
-                }
-              }
-            }
-          }
           &.score-size-4096 {
-            margin-top: 0px;
+            margin-top: 16px;
             tr.normal {
-              height: 42px;
+              height: 46px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 42px;
+                  height: 46px;
                   .tournament-chip {
                     top: 10px;
                   }
                   .username {
-                    top: 10px;
+                    top: 13px;
                   }
                 }
               }
@@ -196,52 +202,52 @@
           &.score-size-8192 {
             margin-top: 0px;
             tr.normal {
-              height: 39px;
+              height: 44px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 39px;
+                  height: 44px;
                   .tournament-chip {
                     top: 10px;
                   }
                   .username {
-                    top: 8px;
+                    top: 13px;
                   }
                 }
               }
             }
           }
           &.score-size-16384 {
-            margin-top: 4px;
+            margin-top: 0px;
             tr.normal {
-              height: 36px;
+              height: 41px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 36px;
+                  height: 41px;
                   .tournament-chip {
                     top: 8px;
                   }
                   .username {
-                    top: 6px;
+                    top: 10px;
                   }
                 }
               }
             }
           }
           &.score-size-131072 {
-            margin-top: 5px;
+            margin-top: 4px;
             tr.normal {
-              height: 30px;
+              height: 34px;
               td {
                 font-size: 16px;
                 div.player-score, div.other-player-score {
-                  height: 30px;
+                  height: 34px;
                   .tournament-chip {
                     top: 5px;
                   }
                   .username {
-                    top: 4px;
+                    top: 6px;
                   }
                 }
               }
@@ -252,4 +258,3 @@
     }
   }
 }
-

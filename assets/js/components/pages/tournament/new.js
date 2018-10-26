@@ -176,8 +176,8 @@ class TournamentNewComponent extends React.Component {
                maxLength="254"
                onChange={ this.tournamentDescriptionChanged.bind(this) }
                />
-        <select name="tournament[max_score]" defaultValue="1024" className="form-control tournament-input" onChange={this.maxScoreChanged.bind(this)}>
-          <option>Winning Chips. 1024</option>
+        <select name="tournament[max_score]" defaultValue="MaxScore" className="form-control tournament-input" onChange={this.maxScoreChanged.bind(this)}>
+          <option value="MaxScore" disabled>Winning Score</option>
           <option value="64">64</option>
           <option value="128">128</option>
           <option value="256">256</option>

@@ -58,7 +58,11 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
   end
 
   defp max_score(max_score) do
-    max_score = max_score || "1024"
+    max_score = case max_score do
+      "maxScore" -> "1024"
+      nil -> "1024"
+      _ -> max_score
+    end
     {max_score, _} = Integer.parse(max_score)
     if Enum.member?(available_scores, max_score), do: max_score, else: 1024
   end

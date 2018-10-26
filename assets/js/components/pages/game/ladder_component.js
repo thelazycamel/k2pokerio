@@ -69,13 +69,21 @@ class LadderComponent extends React.Component {
     }
   }
 
+  rowClass(value){
+    if(value > this.props.maxScore) {
+      return "empty";
+    } else {
+      return "normal";
+    }
+  }
+
   renderRows() {
     let rowNo = 20;
     let rows = [];
     for(rowNo; rowNo > -1; rowNo--) {
       let value = Math.pow(2, rowNo);
       rows.push(
-        <tr key={"row-"+rowNo}>
+        <tr key={"row-"+rowNo} className={this.rowClass(value)}>
           {this.renderScoreCell(value)}
         </tr>
       );
