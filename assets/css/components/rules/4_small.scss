@@ -8,6 +8,10 @@
       .rules-section {
         height: 230px;
         overflow-y: scroll;
+        .hand-ranking {
+          display: block;
+          width: 80%;
+        }
       }
     }
   }

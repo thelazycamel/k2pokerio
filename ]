@@ -60,7 +60,6 @@ defmodule K2pokerIoWeb.Router do
     get "/rules", PageController, :rules
     get "/terms", PageController, :terms
     get "/about", PageController, :about
-    get "/promo", PageController, :promo
 
     get "/", PageController, :index
   end

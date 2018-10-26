@@ -12,6 +12,10 @@
       .rules-section {
         height: 495px;
         overflow-y: scroll;
+        .hand-ranking {
+          display: block;
+          width: 70%;
+        }
       }
       p {
         padding: 5px;

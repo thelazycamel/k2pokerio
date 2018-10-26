@@ -51,7 +51,13 @@ class RulesComponent extends React.Component {
   renderDuelRules() {
     return(
       <div className="rules-section tournament-rules">
-        <p>put some duel rules here</p>
+        <ol>
+          <li>{ App.t("duel_rules_1") }</li>
+          <li>{ App.t("tournament_rules_2") }</li>
+          <li>{ App.t("duel_rules_3") }</li>
+          <li>{ App.t("duel_rules_4") }</li>
+          <li>{ App.t("duel_rules_5") }</li>
+        </ol>
       </div>
     )
   }

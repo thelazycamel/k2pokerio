@@ -12,6 +12,22 @@ defmodule K2pokerIoWeb.PageController do
     end
   end
 
+  def rules(conn, _params) do
+    render conn, "rules.html"
+  end
+
+  def terms(conn, _params) do
+    render conn, "terms.html"
+  end
+
+  def about(conn, _params) do
+    render conn, "about.html"
+  end
+
+  def promo(conn, _params) do
+    render conn, "promo.html"
+  end
+
   def anon_user_create(conn, %{"anon_user" => %{"username" => anon_username}}) do
     case CreateAnonUser.execute(anon_username) do
       {:ok, utd} ->

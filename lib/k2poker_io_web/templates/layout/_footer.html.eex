@@ -4,12 +4,9 @@
       <img src="<%= static_path(@conn, "/images/footer-chips.png") %>" alt="Poker Chips" id="footer-chips">
       <ul class="footer-nav">
         <li><a href="/tournaments">Home<span class="reflection">Home</span></a></li>
-        <li><a href="/profile">Profile<span class="reflection">Profile</span></a></li>
-        <li><a href="#">Partners<span class="reflection">Partners</span></a></li>
-        <li><a href="#">Poker<span class="reflection">Poker</span></a></li>
-        <li><a href="#">Rules<span class="reflection">Rules</span></a></li>
-        <li><a href="#">About<span class="reflection">About</span></a></li>
-        <%= unless logged_in?(@conn) do %>
+        <%= if logged_in?(@conn) do %>
+          <li><a href="/profile">Profile<span class="reflection">Profile</span></a></li>
+         <% else %>
           <li>
             <%= link to: registration_path(@conn, :new) do %>
               Sign-up<span class='reflection'>Sign-up</span>
@@ -21,6 +18,9 @@
             <% end %>
           </li>
         <% end %>
+        <li><a href="/rules">Rules<span class="reflection">Rules</span></a></li>
+        <li><a href="/terms">T&Cs<span class="reflection">T&Cs</span></a></li>
+        <li><a href="/about">About<span class="reflection">About</span></a></li>
       </ul>
 
       <img src="<%= static_path(@conn, "/images/footer-logo.png") %>" alt="K2Poker.io" id="footer-logo">

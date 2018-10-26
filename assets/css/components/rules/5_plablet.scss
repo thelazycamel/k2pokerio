@@ -19,6 +19,10 @@
         .rules-section {
           height: 550px;
           overflow-y: scroll;
+          .hand-ranking {
+            display: block;
+            width: 60%;
+          }
         }
       }
     }

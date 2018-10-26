@@ -55,12 +55,15 @@ class LocaleEn {
       "duel_rules_tab": "Duel Rules",
       "card_rankings_tab": "Hand Rankings",
       "tournament_rules_1": "K2 Poker plays similar to Texas Hold'em except you can swap'em",
-      "tournament_rules_2": "On each turn of the card you can swap one card, except the river (the last turn) where you can swap both",
+      "tournament_rules_2": "On each turn of the cards you can swap one card, except the river (the last turn) where you can swap both",
       "tournament_rules_3": "Play each game against another player or a dumb bot to build the best hand ranking",
       "tournament_rules_4": "Doubling up your score each time to reach the million jackpot, just twenty wins in a row!",
       "tournament_rules_5": "Fold at any time to forfeit half of your current score",
-      "tournament_rules_6": "Lose the hand and its straight back to the first step"
-
+      "tournament_rules_6": "Lose the hand and its straight back to the first step",
+      "duel_rules_1": "K2 Poker Duel plays similar to Texas Hold'em except you can swap'em",
+      "duel_rules_3": "Play against your opponent in a fight to win or lose it all",
+      "duel_rules_4": "Doubling or halving your score each time.",
+      "duel_rules_5": "You are given 1 fold (you will not lose any score by using it), when you use the fold, it is passed to your opponent until they use it, then it passes back to you"
     });
   }
 
