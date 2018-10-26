@@ -9,6 +9,9 @@ use Mix.Config
 config :k2poker_io,
   ecto_repos: [K2pokerIo.Repo]
 
+# I18n translations (gettext) locale configuration
+config :k2poker_io, K2pokerIoWeb, default_locale: "en", locales: ~w(en es)
+
 # Configures the endpoint
 config :k2poker_io, K2pokerIoWeb.Endpoint,
   url: [host: "localhost"],

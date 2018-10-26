@@ -1,0 +1,27 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es\n"
+
+#: lib/k2poker_io_web/templates/page/about.html.eex:2
+msgid "About K2Poker"
+msgstr "Informaction de K2Poker"
+
+#: lib/k2poker_io_web/templates/page/rules.html.eex:2
+msgid "How to play K2Poker"
+msgstr "Como Jugar K2poker"
+
+#: lib/k2poker_io_web/templates/page/promo.html.eex:2
+msgid "K2Poker Promotions"
+msgstr "K2Poker Promociones"
+
+#: lib/k2poker_io_web/templates/page/terms.html.eex:2
+msgid "Terms and Conditiones"
+msgstr "Terms y Condiciones"

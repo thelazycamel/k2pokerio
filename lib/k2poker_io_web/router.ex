@@ -11,17 +11,13 @@ defmodule K2pokerIoWeb.Router do
   end
 
   pipeline :api do
-
     plug :accepts, ["json"]
-
   end
 
   scope "/", K2pokerIoWeb do
 
     pipe_through :browser # Use the default browser stack
 
-    # There are only very few actual pages, so most of these
-    # routes should be moved to the api scope.
 
     post "/anon-user", PageController, :anon_user_create
 
@@ -61,6 +57,7 @@ defmodule K2pokerIoWeb.Router do
     get "/terms", PageController, :terms
     get "/about", PageController, :about
     get "/promo", PageController, :promo
+
 
     get "/", PageController, :index
   end
