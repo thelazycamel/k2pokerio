@@ -88,7 +88,7 @@ class LadderComponent extends React.Component {
       <Provider store ={this.props.store}>
         <div id="ladder-root" className={this.props.page.tabs["ladder"]}>
           <div id="ladder-inner">
-            <table id="score-ladder">
+            <table id="score-ladder" className={ "score-size-"+this.props.maxScore }>
               <tbody>
                 {this.renderRows()}
               </tbody>
