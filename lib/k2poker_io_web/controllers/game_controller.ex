@@ -4,6 +4,7 @@ defmodule K2pokerIoWeb.GameController do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
+  alias K2pokerIo.Commands.Game.DuelFixCommand
 
   def play(conn, _params) do
     if player_id = get_session(conn, :player_id) do
@@ -41,6 +42,12 @@ defmodule K2pokerIoWeb.GameController do
   def player_score(conn, _params) do
     utd = get_user_tournament_detail(conn)
     json conn, %{current_score: utd.current_score, username: utd.username}
+  end
+
+  def duel_fix(conn, _) do
+    utd = get_user_tournament_detail(conn)
+    result = DuelFixCommand.execute(utd)
+    json conn, %{status: :ok, message: result}
   end
 
   #PRIVATE METHODS

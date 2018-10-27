@@ -1,7 +1,5 @@
 defmodule K2pokerIo.Game do
 
-  #TODO why don't I associate this with the user_tournament_details?
-
   use K2pokerIoWeb, :model
 
   schema "games" do

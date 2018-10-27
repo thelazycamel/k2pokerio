@@ -64,6 +64,26 @@ class GamePlayPage extends page {
     }
   }
 
+  //Fixes an issue where 2 players can create a new game in a duel
+  //at exactly the same time, this pings the server to check for 2 open
+  //games and will delete one then reload the game
+  duelFix() {
+    if(App.settings.tournament_type == "duel") {
+      let rand = Math.floor((Math.random() *10000) + 1000);
+      let _this = this;
+      this.duelFixTimeout = setTimeout(function(){
+        console.log("sending duelfix request")
+        App.services.games.duelFix().then(data => {
+          console.log(data);
+          console.log(data.message);
+          if(data.message == "updated") {
+            _this.loadNewGame();
+          }
+        })
+      },rand);
+    }
+  }
+
   clearBotRequest() {
     clearTimeout(this.botPopupRequest);
   }

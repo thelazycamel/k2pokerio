@@ -4,6 +4,7 @@ const gameEventsMiddleware = store => next => action => {
   switch(action.type) {
     case "GAME:JOINED":
       new GameChannel(action.game_id);
+      App.page.duelFix();
       break;
     case "GAME:JOIN_FAILED":
       window.location = "/";

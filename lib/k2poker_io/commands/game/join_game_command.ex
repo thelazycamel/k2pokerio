@@ -67,8 +67,8 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
     query = from Game, where: [tournament_id: ^utd.tournament_id,
                        waiting_for_players: true,
                        open: true
-                       ], limit: 1, preload: [:tournament], lock: "FOR UPDATE"
-    Repo.all(query) |> List.first()
+                       ], limit: 1, preload: [:tournament]
+    Repo.all(query) |> List.first
   end
 
   defp join_game_changeset(utd, game) do
@@ -93,6 +93,5 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   defp update_utd_changeset(utd, game) do
     UserTournamentDetail.changeset(utd, %{game_id: game.id})
   end
-
 
 end
