@@ -42,7 +42,7 @@ defmodule K2pokerIo.Mixfile do
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 1.0"},
       {:kerosene, "~> 0.8.1"},
-      {:k2poker, path: "~/dev/k2_poker/elixir/k2poker"},
+      {:k2poker, git: "git@github.com:thelazycamel/k2poker.git"},
       {:gravity, "~> 1.0.1"},
       {:mix_test_watch, "~> 0.3", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
