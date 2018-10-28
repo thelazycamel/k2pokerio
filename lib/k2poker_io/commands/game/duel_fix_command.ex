@@ -30,7 +30,7 @@ defmodule K2pokerIo.Commands.Game.DuelFixCommand do
   end
 
   # destory the players own game, then the users game will be refreshed
-  # 
+  #
   def fix_games(utd) do
     query = from Game, where: [ tournament_id: ^utd.tournament_id, open: true, player1_id: ^utd.player_id]
     Repo.all(query)

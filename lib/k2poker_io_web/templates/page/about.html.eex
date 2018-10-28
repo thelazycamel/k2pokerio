@@ -1,5 +1,32 @@
 <div id="page-inner">
   <h2><%= gettext "About K2Poker" %></h2>
-  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>K2Poker is currently in a beta stage, as such not all sections are in full operation and you may experience the occasional bug, however it is totally playable.<br/>
+  You can play the main "K2 Ascent Tournamnent" or create your one mini tournament or duel</br>
+  Concept, design and coding by Stuart Hanscombe. Built with TLC on lost weekends and the occasional evening.</p>
+  <h2>Road Map</h2>
+  <p>In no particular order or timescale</p>
+  <ol>
+    <li>Polyfills to fix IE</li>
+    <li>Achievement Badges and Win stats</li>
+    <li>Sounds</li>
+    <li>Translations (Spanish first)</li>
+    <li>Crypto Tournaments</li>
+    <li>Facebook / Social Media Integration</li>
+    <li>Apple / Android Apps</li>
+    <li>Build a CMS (In Ruby on Rails) for user and tournament management</li>
+    <li>Upgrade from Beta Site</li>
+    <li>Marketing</li>
+    <li>Gaming Licence</li>
+    <li>Full crypto payment/payout integration</li>
+  </ol>
+  <h2>Thanks</h2>
+  <p>For my better half for her endless patience and support, my daughter for helping to play, test and find bugs.</br>
+    In loving memory of my dear sister Michelle and my old friend Ross (Kompressor).</p>
+  <h2>Technology Stack</h2>
+  <ol>
+    <li>Backend:  <a href="https://phoenixframework.org/" target="_blank">Phoenix</a>, <a href="https://elixir-lang.org/" target="_blank">Elixir</a> and <a href="https://www.erlang.org/" target="_blank">Erlang</a>. Database provided by <a href="https://www.postgresql.org/" target="_blank">Postgres</a>.</li>
+    <li>Frontend: <a href="https://reactjs.org/" target="_blank">React</a>, <a href="https://sass-lang.com/" target="_blank">Sass/Scss</a> Fully responsive with 5 different responsive states (phone, plablet, vertical tablet, horizontal tablet, monitor)</li>
+    <li>Testing: JavaScript / React test suite with <a href="https://jestjs.io/" target="_blank">Jest</a>, Full coverage on backend with <a href="https://hexdocs.pm/ex_unit/ExUnit.html" target="_blank">ExUnit</a></li>
+    <li>Designs and Imagery created with <a href="https://affinity.serif.com" target="_blank">Affinity Designer</a></li>
+  </ol>
 </div>

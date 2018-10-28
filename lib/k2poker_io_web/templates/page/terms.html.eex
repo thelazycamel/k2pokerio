@@ -2,16 +2,12 @@
   <h1><%= gettext "Terms and Conditions" %></h1>
   <h3><%= gettext "Promotions" %></h3>
   <ol>
-    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-    <li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</li>
-    <li>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</li>
-    <li>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</li>
+    <li>No promotions will be running during the beta phase.</p>
   </ol>
   <h3><%= gettext "General Terms" %></h3>
   <ul>
-    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-    <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-    <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
-    <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+    <li>The site is currently in a beta state</li>
+    <li>As such, all software is provided as is, with no recourse to the law</li>
+    <li>Have fun</li>
    </ul>
 </div>

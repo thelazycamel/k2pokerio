@@ -11,7 +11,10 @@ class ProfileSettings extends React.Component {
     return (
         <div id="profile-settings-wrapper">
           <h2>General Settings</h2>
-          <div className="form-check">
+          <p>Coming Soon...</p>
+          <p>Once set up to crypto tournaments, players will be able to add
+             their crypto public keys here along with email preferences and sounds</p>
+          {/*  <div className="form-check">
             <label className="form-check-label">
               <input type="checkbox" name="email-opt-in" className="form-check-input" value=""/>
               <span className="checkbox-input-text">I would like to receive weekly news/marketing emails from K2Poker</span>
@@ -24,6 +27,7 @@ class ProfileSettings extends React.Component {
             <input type="text" name="monero-address" className="form-control" placeholder="Monero Public Address"/>
           </div>
           <button className="btn btn-large btn-default" onClick={this.submitSettings.bind(this)}>Update Settings</button>
+          */}
         </div>
     )
   }

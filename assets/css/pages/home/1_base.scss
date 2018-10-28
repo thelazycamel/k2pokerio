@@ -61,16 +61,15 @@ body.page.index {
         background-position: center;
         background-size: cover;
       }
-      #suites {
-        width: 266px;
-        height: 192px;
-        background-image: url("/images/homepage/cards.svg");
+      #beta {
+        width: 100px;
+        height: 100px;
+        background-image: url("/images/homepage/beta.svg");
         background-repeat: no-repeat;
         background-size: cover;
         position: absolute;
-        top: 150px;
-        left: 50%;
-        margin-left: -133px;
+        top: 0px;
+        right: 0px;
         z-index: 1;
       }
       .btn {
