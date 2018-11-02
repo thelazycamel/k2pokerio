@@ -33,4 +33,3 @@ erl_crash.dump
 #ignore release files
 
 .deliver/
-/rel/
