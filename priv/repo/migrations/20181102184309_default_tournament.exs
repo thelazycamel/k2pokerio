@@ -1,5 +1,7 @@
 defmodule K2pokerIo.Repo.Migrations.DefaultTournament do
   use Ecto.Migration
+  alias K2pokerIo.Repo
+  alias K2pokerIo.Tournament
 
   def change do
     Repo.insert!(%Tournament{
