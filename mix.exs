@@ -19,7 +19,7 @@ defmodule K2pokerIo.Mixfile do
   def application do
     [mod: {K2pokerIo, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :k2poker, :timex]]
+                    :phoenix_ecto, :postgrex, :k2poker, :timex, :edeliver]]
   end
 
   # Specifies which paths to compile per environment.
