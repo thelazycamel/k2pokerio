@@ -51,3 +51,10 @@ release :k2poker_io do
   ]
 end
 
+release :default do
+  set version: current_version(:k2poker_io)
+  set applications: [
+    :runtime_tools
+  ]
+end
+
