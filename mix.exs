@@ -49,8 +49,8 @@ defmodule K2pokerIo.Mixfile do
       {:ex_unit_notifier, "~> 0.1", only: :test},
       {:phoenix_html_sanitizer, "~> 1.0.0"},
       {:timex, "~> 3.1"},
-      {:edeliver, "~> 1.4.3"},
-      {:distillery, "~> 1.4"}
+      {:edeliver, "~> 1.6.0"},
+      {:distillery, "~> 2.0.10"}
     ]
   end
 
