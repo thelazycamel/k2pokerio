@@ -3,7 +3,7 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.5.10",
+     version: "0.5.11",
      elixir: "~> 1.7",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -29,6 +29,7 @@ defmodule K2pokerIo.Mixfile do
                     :k2poker,
                     :gravity,
                     :poison,
+                    :phoenix_html_sanitizer,
                     :kerosene,
                     :timex,
                     :comeonin,
