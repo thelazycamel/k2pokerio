@@ -3,7 +3,7 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.5.7",
+     version: "0.5.8",
      elixir: "~> 1.7",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -18,8 +18,24 @@ defmodule K2pokerIo.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {K2pokerIo, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :k2poker, :timex, :comeonin, :edeliver]]
+     applications: [:phoenix,
+                    :phoenix_pubsub,
+                    :phoenix_html,
+                    :cowboy,
+                    :logger,
+                    :gettext,
+                    :phoenix_ecto,
+                    :postgrex,
+                    :k2poker,
+                    :gravity,
+                    :poison,
+                    :kerosene,
+                    :timex,
+                    :comeonin,
+                    :bcrypt_elixir,
+                    :edeliver
+                    ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
