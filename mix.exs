@@ -40,14 +40,17 @@ defmodule K2pokerIo.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:comeonin, "~> 1.0"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
       {:kerosene, "~> 0.8.1"},
       {:k2poker, git: "git@github.com:thelazycamel/k2poker.git", tag: "1.1.0"},
       {:gravity, "~> 1.0.1"},
       {:mix_test_watch, "~> 0.3", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
       {:phoenix_html_sanitizer, "~> 1.0.0"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:edeliver, "~> 1.4.3"},
+      {:distillery, "~> 1.4"}
     ]
   end
 

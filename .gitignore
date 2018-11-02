@@ -29,3 +29,8 @@ erl_crash.dump
 #ignore nodemodules, there are too god damn many of them!
 
 /assets/node_modules
+
+#ignore release files
+
+.deliver/
+/rel/
