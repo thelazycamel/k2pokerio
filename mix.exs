@@ -3,7 +3,7 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.5.4",
+     version: "0.5.5",
      elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -40,7 +40,7 @@ defmodule K2pokerIo.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:comeonin, "~> 4.0"},
+      {:comeonin, "~> 3.2"},
       {:bcrypt_elixir, "~> 1.0"},
       {:kerosene, "~> 0.8.1"},
       {:k2poker, git: "git@github.com:thelazycamel/k2poker.git", tag: "1.1.0"},
