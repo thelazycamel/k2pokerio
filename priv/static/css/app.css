@@ -1210,10 +1210,10 @@
           border-radius: 0 0 20px 20px; }
       #game-holder #game-root #game #opponent-card-1 {
         top: 26px;
-        left: 168px; }
+        left: 170px; }
       #game-holder #game-root #game #opponent-card-2 {
         top: 26px;
-        left: 273px; }
+        left: 275px; }
       #game-holder #game-root #game #fold-button {
         top: 46px;
         left: 403px;
@@ -1232,25 +1232,25 @@
         line-height: 3em; }
       #game-holder #game-root #game #table-card-1 {
         top: 167px;
-        left: 26px; }
+        left: 28px; }
       #game-holder #game-root #game #table-card-2 {
         top: 167px;
-        left: 123px; }
+        left: 125px; }
       #game-holder #game-root #game #table-card-3 {
         top: 167px;
-        left: 220px; }
+        left: 222px; }
       #game-holder #game-root #game #table-card-4 {
         top: 167px;
-        left: 317px; }
+        left: 319px; }
       #game-holder #game-root #game #table-card-5 {
         top: 167px;
-        left: 414px; }
+        left: 416px; }
       #game-holder #game-root #game #player-card-1 {
         top: 395px;
-        left: 129px; }
+        left: 131px; }
       #game-holder #game-root #game #player-card-2 {
         top: 395px;
-        left: 273px; }
+        left: 275px; }
       #game-holder #game-root #game #game-status {
         position: absolute;
         text-align: center;
