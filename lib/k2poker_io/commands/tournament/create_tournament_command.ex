@@ -72,8 +72,6 @@ defmodule K2pokerIo.Commands.Tournament.CreateTournamentCommand do
   end
 
   defp duel_params(current_user, params) do
-    opponent_id = List.first(params["friend_ids"])
-    opponent = Repo.get(User, opponent_id)
     %Tournament{
       name: params["name"],
       description: "It's a duel... Rags or Riches!",

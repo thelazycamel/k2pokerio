@@ -33,11 +33,6 @@ defmodule K2pokerIoWeb.ProfileController do
     end
   end
 
-  def settings(conn) do
-    # link to here from profile for further settings
-    # such as mail settings and crypto keys
-  end
-
   def update(conn, %{"profile" => profile_params}) do
     changeset = User.profile_changeset(current_user(conn), profile_params)
     case Repo.update(changeset) do

@@ -2,7 +2,6 @@ defmodule K2pokerIoWeb.TournamentController do
 
   use K2pokerIoWeb, :controller
 
-  alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Queries.Tournaments.GetPlayersQuery
   alias K2pokerIo.Queries.Tournaments.UserTournamentsQuery
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
@@ -72,7 +71,7 @@ defmodule K2pokerIoWeb.TournamentController do
     end
   end
 
-  def new(conn, params) do
+  def new(conn, _) do
     if logged_in?(conn) do
       %{username: username, image: profile_image} = current_user(conn)
       render conn, "new.html", %{username: username, profile_image: profile_image}

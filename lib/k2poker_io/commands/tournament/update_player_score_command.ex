@@ -45,7 +45,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   # to make the 2nd process fall over and rollback during transaction
   #
   defp update_players_score(game, utd, score, status) do
-    game = Multi.new()
+    Multi.new()
     |> Multi.run(:get_game, fn %{} ->
       {:ok, Repo.one(from g in Game, where: g.id == ^game.id, lock: "FOR SHARE NOWAIT", preload: [:tournament]) }
      end)
@@ -56,7 +56,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     |> Repo.transaction
     |> case do
       {:ok, %{get_game: get_game, updateable: _, utd: _, game: _, update_tournament_winner: _}} -> get_game
-      {:error, _, value, _} -> game
+      {:error, _, _, _} -> :error
     end
   end
 
@@ -74,8 +74,6 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
       player_id == game.player2_id && game.p2_paid == true -> {:error, "Already Updated"}
       true -> {:ok, "Ready for update!"}
     end
-    {type, value} = result
-    result
   end
 
   defp get_user_tournament_detail(player_id, tournament_id) do
@@ -93,16 +91,6 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
       true -> %{}
     end
     Game.changeset(game, updates)
-  end
-
-  defp mark_player_as_paid_out(game, player_id) do
-    updates = cond do
-      player_id == game.player1_id -> %{p1_paid: true}
-      player_id == game.player2_id -> %{p2_paid: true}
-      true -> %{}
-    end
-    changeset = Game.changeset(game, updates)
-    Repo.update!(changeset) |> Repo.preload(:tournament)
   end
 
   defp update_tournament_winner(game, utd) do

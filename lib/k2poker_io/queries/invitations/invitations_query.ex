@@ -2,7 +2,6 @@ defmodule K2pokerIo.Queries.Invitations.InvitationsQuery do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Invitation
-  alias K2pokerIo.Tournament
 
   import K2pokerIo.Queries.Pagination
   import Ecto.Query

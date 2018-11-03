@@ -5,7 +5,6 @@ defmodule K2pokerIoWeb.InvitationController do
   alias K2pokerIo.Commands.Invitation.AcceptInvitationCommand
   alias K2pokerIo.Commands.Invitation.DestroyInvitationCommand
   alias K2pokerIo.Queries.Invitations.InvitationsQuery
-  alias K2pokerIo.Decorators.TournamentDecorator
 
   def index(conn, params) do
     if current_user(conn) do

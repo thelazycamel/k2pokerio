@@ -37,7 +37,7 @@ defmodule K2pokerIoWeb.ChatChannel do
     {:noreply, socket}
   end
 
-  def handle_info({:after_join, tournament_id: tournament_id, username: username}, socket) do
+  def handle_info({:after_join, tournament_id: tournament_id, username: _}, socket) do
     {tournament_id, _} = Integer.parse(tournament_id)
     player_id = socket.assigns[:player_id]
     comments = Chat.get_ten_json(tournament_id, player_id)

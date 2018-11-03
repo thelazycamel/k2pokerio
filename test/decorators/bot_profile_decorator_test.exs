@@ -15,7 +15,7 @@ defmodule K2pokerIo.BotProfileDecoratorTest do
   end
 
   test "should have a username", context do
-    assert(context.decorator.username == "RandomBot")
+    assert(context.decorator.username == "DumbBot")
   end
 
   test "should have an opponent type", context do
@@ -23,7 +23,7 @@ defmodule K2pokerIo.BotProfileDecoratorTest do
   end
 
   test "should have a blurb", context do
-    assert(context.decorator.blurb == "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.")
+    assert(context.decorator.blurb =~ ~r/Blackmail is such an ugly word/)
   end
 
   test "should have an image", context do

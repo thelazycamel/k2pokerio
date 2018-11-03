@@ -43,9 +43,9 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
     game = Repo.update!(game_changeset)
     opponent = GetOpponentProfileCommand.execute(game, User.player_id(player))
     assert(opponent.id == nil)
-    assert(opponent.username == "RandomBot")
+    assert(opponent.username == "DumbBot")
     assert(opponent.opponent == :bot)
-    assert(opponent.blurb == "Blackmail is such an ugly word. I prefer extortion. The ‘x’ makes it sound cool.")
+    assert(opponent.blurb =~ ~r/Blackmail is such an ugly word/)
     assert(opponent.image == "/images/profile-images/bot.png")
     assert(opponent.friend == :na)
   end
