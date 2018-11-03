@@ -6,11 +6,10 @@
   <h2>Road Map</h2>
   <p>In no particular order or timescale</p>
   <ol>
-    <li>Polyfills to fix IE</li>
     <li>Achievement Badges and Win stats</li>
     <li>Sounds</li>
     <li>Translations (Spanish first)</li>
-    <li>Crypto Tournaments</li>
+    <li>Free Crypto Tournaments</li>
     <li>Facebook / Social Media Integration</li>
     <li>Apple / Android Apps</li>
     <li>Build a CMS (In Ruby on Rails) for user and tournament management</li>
