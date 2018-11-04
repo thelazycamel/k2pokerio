@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4000],
-  url: [host: "k2poker.io", port: 443],
+  url: [host: "k2poker.io"],
   https: [
     port: 443,
     keyfile: "/etc/letsencrypt/live/k2poker.io/privkey.pem",
