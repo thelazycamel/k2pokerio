@@ -14,13 +14,8 @@ use Mix.Config
 config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4000],
   url: [host: "k2poker.io"],
-  https: [
-    port: 443,
-    keyfile: "/etc/letsencrypt/live/k2poker.io/privkey.pem",
-    certfile: "/etc/letsencrypt/live/k2poker.io/fullchain.pem"
-  ],
-  cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["https://www.k2poker.io", "https://k2poker.io"],
+  cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   code_reloader: false
 
