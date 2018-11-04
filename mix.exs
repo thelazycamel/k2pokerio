@@ -34,6 +34,7 @@ defmodule K2pokerIo.Mixfile do
                     :timex,
                     :comeonin,
                     :bcrypt_elixir,
+                    :recaptcha,
                     :edeliver
                     ]
     ]
@@ -67,7 +68,8 @@ defmodule K2pokerIo.Mixfile do
       {:phoenix_html_sanitizer, "~> 1.0.0"},
       {:timex, "~> 3.1"},
       {:edeliver, "~> 1.6.0"},
-      {:distillery, "~> 2.0.10"}
+      {:distillery, "~> 2.0.10"},
+      {:recaptcha, "~> 2.3"}
     ]
   end
 

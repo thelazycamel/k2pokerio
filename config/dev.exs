@@ -14,6 +14,11 @@ config :k2poker_io, K2pokerIoWeb.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
+# Recaptcha (localhost)
+
+config :recaptcha,
+  public_key: "6LcQqngUAAAAAKxVs7jMdo7zAnGuxQZxOS2MR_LT",
+  secret: "6LcQqngUAAAAAIbjwUXnbgy0l7Ol1g617KFbhLrb"
 
 # Watch static and templates for browser reloading.
 config :k2poker_io, K2pokerIoWeb.Endpoint,

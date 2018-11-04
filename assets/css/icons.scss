@@ -107,6 +107,13 @@
     width: 30px;
     height: 30px;
 
+    &.icon-cards {
+      background-position: 0px 0px;
+      &.icon-link:hover {
+        background-position: 0px -38px;
+      }
+    }
+
     &.icon-profile {
       background-position: -188px 0px;
       &.icon-link:hover {
@@ -144,6 +151,13 @@
       background-position: -413px 0px;
       &:hover, &.active {
         background-position: -413px -37px;
+      }
+    }
+
+    &.icon-cowboy {
+      background-position: -488px 0px;
+      &:hover, &.active {
+        background-position: -488px -37px;
       }
     }
 

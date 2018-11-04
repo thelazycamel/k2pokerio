@@ -20,6 +20,9 @@ defmodule K2pokerIo.Queries.Tournaments.GetWinnersQuery do
     end
   end
 
+  #TODO check where updated_at is today, to make sure we only
+  # return todays highest (possibly could be in the last hour!)
+
   defp winner_or_other_players_utd(player_id, tournament) do
     query = from utd in UserTournamentDetail,
       select: %{username: utd.username, current_score: utd.current_score},

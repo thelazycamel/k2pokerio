@@ -20,6 +20,8 @@
       <%= error_tag f, :password %>
     </div>
 
+    <%= raw Recaptcha.Template.display %>
+
     <div class="form-group">
       <%= submit "Signup", class: "btn btn-primary" %>
       <%= link "Already have an account?", to: session_path(@conn, :new), class: "btn btn-link form-link" %>
