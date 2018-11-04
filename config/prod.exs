@@ -15,11 +15,12 @@ config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4000],
   url: [host: "k2poker.io", port: 443],
   https: [
+    otp_app: :k2poker_io,
     port: 443,
     keyfile: "/etc/letsencrypt/live/k2poker.io/privkey.pem",
     certfile: "/etc/letsencrypt/live/k2poker.io/fullchain.pem"
   ],
-  force_ssl: [hsts: true],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["https://www.k2poker.io", "https://k2poker.io"],
   server: true,

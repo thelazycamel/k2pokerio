@@ -3,7 +3,7 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.5.16",
+     version: "0.5.17",
      elixir: "~> 1.7",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -34,6 +34,7 @@ defmodule K2pokerIo.Mixfile do
                     :timex,
                     :comeonin,
                     :bcrypt_elixir,
+                    :ssl,
                     :edeliver
                     ]
     ]
