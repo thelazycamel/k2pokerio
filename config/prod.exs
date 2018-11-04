@@ -17,7 +17,7 @@ config :k2poker_io, K2pokerIoWeb.Endpoint,
   https: [
     port: 443,
     keyfile: "/etc/letsencrypt/live/k2poker.io/privkey.pem",
-    certfile: "/etc/letsencrypt/live/k2poker.io/cert.pem"
+    certfile: "/etc/letsencrypt/live/k2poker.io/fullchain.pem"
   ],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
