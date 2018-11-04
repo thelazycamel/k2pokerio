@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :k2poker_io, K2pokerIoWeb.Endpoint,
   http: [port: 4000],
-  url: [host: "127.0.0.1"],
+  url: [host: "k2poker.io"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   https: [
     port: 443,
