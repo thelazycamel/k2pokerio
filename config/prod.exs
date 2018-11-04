@@ -19,7 +19,6 @@ config :k2poker_io, K2pokerIoWeb.Endpoint,
     keyfile: "/etc/letsencrypt/live/k2poker.io/privkey.pem",
     certfile: "/etc/letsencrypt/live/k2poker.io/fullchain.pem"
   ],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["https://www.k2poker.io", "https://k2poker.io"],
   server: true,
