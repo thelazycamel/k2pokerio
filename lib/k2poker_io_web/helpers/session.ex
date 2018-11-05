@@ -3,8 +3,10 @@ defmodule K2pokerIoWeb.Helpers.Session do
   alias K2pokerIo.User
   alias K2pokerIo.Repo
 
+  #TODO move login to a command
+
   def login(params) do
-    user = Repo.get_by(User, email: String.downcase(params["email"]))
+    user = Repo.get_by(User, email: params["email"]) || Repo.get_by(User, username: params["email"])
     case authenticate(user, params["password"]) do
       true -> {:ok, user}
       _    -> :error

@@ -1,3 +1,6 @@
+0.5.29
+	Sign in with email or username
+	Create anon username if blank
 0.5.28
 	Adding Recaptcha to site
 0.5.15

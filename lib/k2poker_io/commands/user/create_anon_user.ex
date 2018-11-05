@@ -5,8 +5,17 @@ defmodule K2pokerIo.Commands.User.CreateAnonUser do
   alias K2pokerIo.Tournament
 
   def execute(anon_username) do
-    clean_username(anon_username)
+    set_name_or_anon(anon_username)
+    |> clean_username()
     |> create_user_tournament_detail()
+  end
+
+  defp set_name_or_anon(anon_username) do
+    anon_username = case anon_username do
+      "" -> "anon"
+      nil -> "anon"
+      _ -> anon_username
+    end
   end
 
   defp clean_username(anon_username) do

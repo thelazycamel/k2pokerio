@@ -21,7 +21,7 @@ defmodule K2pokerIoWeb.SessionController do
         |> redirect(to: tournament_path(conn, :index))
       :error ->
         conn
-        |> put_flash(:error, "Oops, seems like a wrong email or password")
+        |> put_flash(:error, "Oops, seems like a wrong email/username or password")
         |> render("new.html")
     end
   end

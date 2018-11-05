@@ -13,6 +13,16 @@ defmodule K2pokerIo.CreateAnonUserTest do
     %{anon_user: anon_user}
   end
 
+  test "#create anon user with nil will return anon" do
+    {:ok, utd} = CreateAnonUser.execute(nil)
+    assert utd.username == "anon"
+  end
+
+  test "#create anon user with empty string will return anon" do
+    {:ok, utd} = CreateAnonUser.execute("")
+    assert utd.username == "anon"
+  end
+
   test "#create should create a new anon_user user_tournament_detal with default tournament", context do
     anon_user = context.anon_user
     default_tournament_id = K2pokerIo.Tournament.default.id

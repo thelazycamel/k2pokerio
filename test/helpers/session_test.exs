@@ -28,6 +28,12 @@ defmodule K2pokerIo.SessionTest do
     assert(user.id == context.user.id)
   end
 
+  test "login with username", context do
+    params = %{"email" => "bob", "password" => "abc123"}
+    {:ok, user} = Session.login(params)
+    assert(user.id == context.user.id)
+  end
+
   test "login fail" do
     params = %{"email" => "bob@test.com", "password" => "wrongPassword"}
     assert(:error = Session.login(params))
