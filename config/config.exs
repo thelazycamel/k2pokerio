@@ -5,6 +5,9 @@
 # is restricted to this project.
 use Mix.Config
 
+# Specify the env so i can pick it up in the app
+config :k2poker_io, env: Mix.env
+
 # General application configuration
 config :k2poker_io,
   ecto_repos: [K2pokerIo.Repo]

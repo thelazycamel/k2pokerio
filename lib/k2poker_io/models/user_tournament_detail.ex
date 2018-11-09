@@ -32,4 +32,8 @@ defmodule K2pokerIo.UserTournamentDetail do
     |> validate_required(:rebuys)
   end
 
+  def is_anon_user?(player_id) do
+    Regex.match?(~r/^anon\|/, player_id)
+  end
+
 end

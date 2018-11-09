@@ -12,8 +12,7 @@ defmodule K2pokerIoWeb.RegistrationController do
   def create(conn, params) do
     %{"user" => user_params} = params
     changeset = User.changeset(%User{}, Map.merge(user_params, %{"image" => "/images/profile-images/fish.png"}))
-
-    case Recaptcha.verify(params["g-recaptcha-response"]) do
+    case validate_recaptcha(params) do
       {:ok, _} ->
         case RegisterCommand.execute(changeset) do
           {:ok, changeset} ->
@@ -32,6 +31,14 @@ defmodule K2pokerIoWeb.RegistrationController do
         |> render("new.html", changeset: changeset)
     end
 
+  end
+
+  def validate_recaptcha(params) do
+    unless Application.get_env(:k2poker_io, :env) == :test do
+      Recaptcha.verify(params["g-recaptcha-response"])
+    else
+      {:ok, "test"}
+    end
   end
 
 end

@@ -78,4 +78,21 @@ defmodule K2pokerIo.UserTournamentDetailTest do
     assert(utd.user_id == player.id)
   end
 
+  test "is_anon_user? should confirm is that user_tournament_detail belongs to an anon user", context do
+    anon = Helpers.create_user_tournament_detail("bob", context.tournament_id)
+    assert(UserTournamentDetail.is_anon_user?(anon.player_id) == true)
+  end
+
+  test "is_anon_user? should refute user_tournament_detail when real user", context do
+    user = Helpers.create_user("notanon")
+    player_id = User.player_id(user)
+    utd =  Helpers.create_user_tournament_detail(player_id, user.username, context.tournament_id)
+    refute(UserTournamentDetail.is_anon_user?(utd.player_id) == true)
+  end
+
+  test "is_anon_user? other cases" do
+    refute(UserTournamentDetail.is_anon_user?("user|anon") == true)
+    assert(UserTournamentDetail.is_anon_user?("anon|user") == true)
+  end
+
 end

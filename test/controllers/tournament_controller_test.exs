@@ -36,6 +36,16 @@ defmodule K2pokerIo.TournamentControllerTest do
     assert(response =~ expected)
   end
 
+  test "#index should redirect to games play if anon user", context do
+    anon_user = Helpers.create_user_tournament_detail("bob", context.tournament.id)
+    conn = init_test_session(context.conn, player_id: anon_user.player_id)
+    response = conn
+      |> get(tournament_path(conn, :index))
+      |> response(302)
+    expected = ~r/redirected/
+    assert(response =~ expected)
+  end
+
   test "#show should redirect to root player does not have access to tournament", context do
     private_tournament = Helpers.create_private_tournament(context.player2, "Private Tourney")
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))

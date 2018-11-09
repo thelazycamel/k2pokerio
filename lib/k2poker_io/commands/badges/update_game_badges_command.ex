@@ -3,7 +3,6 @@ defmodule K2pokerIo.Commands.Badges.UpdateGameBadgesCommand do
   alias K2pokerIo.Game
 
   def execute(game, player_id) do
-    #TODO
     player_data = get_player_data(game, player_id)
     [game, player_id, player_data]
     game
