@@ -3,6 +3,7 @@ defmodule K2pokerIoWeb.GameController do
   use K2pokerIoWeb, :controller
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinGameCommand
+  alias K2pokerIo.Commands.Game.QuitGameCommand
   alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
   alias K2pokerIo.Commands.Game.DuelFixCommand
 
@@ -30,6 +31,18 @@ defmodule K2pokerIoWeb.GameController do
       end
     else
       json conn, %{status: "error"}
+    end
+  end
+
+  def quit(conn, _params) do
+    if utd = get_user_tournament_detail(conn) do
+      if QuitGameCommand.execute(utd) do
+        json conn, %{ok: true}
+      else
+        json conn, %{error: 401}
+      end
+    else
+      json conn, %{error: 401}
     end
   end
 

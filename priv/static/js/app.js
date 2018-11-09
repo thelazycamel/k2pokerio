@@ -25552,6 +25552,21 @@ var GameComponent = function (_React$Component) {
       return false;
     }
   }, {
+    key: "quitButtonClicked",
+    value: function quitButtonClicked(e) {
+      var target = e.target;
+      target.setAttribute("disabled", "disabled");
+      App.services.games.quit().then(function (response) {
+        if (response.ok) {
+          window.location = "/";
+        } else {
+          target.removeAttribute("disabled");
+          App.page.showAlert("warning", "Unable to quit");
+        }
+      });
+      return false;
+    }
+  }, {
     key: "renderPlayerCards",
     value: function renderPlayerCards() {
       var _this2 = this;
@@ -25658,15 +25673,31 @@ var GameComponent = function (_React$Component) {
       return this.isFinished() ? "result" : "";
     }
   }, {
-    key: "foldButton",
-    value: function foldButton() {
+    key: "foldQuitButton",
+    value: function foldQuitButton() {
       if (this.displayFoldButton()) {
         return _react2.default.createElement(
           "a",
           { id: "fold-button", onClick: this.foldButtonClicked.bind(this) },
           "Fold"
         );
+      } else if (this.searchingForOpponent()) {
+        return _react2.default.createElement(
+          "a",
+          { id: "quit-button", onClick: this.quitButtonClicked.bind(this) },
+          "Quit"
+        );
       }
+    }
+  }, {
+    key: "searchingForOpponent",
+    value: function searchingForOpponent() {
+      return this.waitingForOpponent() && this.showBotRequest();
+    }
+  }, {
+    key: "showBotRequest",
+    value: function showBotRequest() {
+      return this.props.game && this.props.game.show_bot_request;
     }
   }, {
     key: "displayFoldButton",
@@ -25728,7 +25759,7 @@ var GameComponent = function (_React$Component) {
                 { id: "opponent-cards" },
                 this.renderOpponentCards()
               ),
-              this.foldButton(),
+              this.foldQuitButton(),
               _react2.default.createElement(
                 "div",
                 { id: "table-cards" },
@@ -29597,8 +29628,8 @@ var LocaleEn = function () {
         "private_tournament": "Tournament",
         "private_duel": "2 Player Duel",
         "choose_an_opponent": "Choose an opponent",
-        "player_status_win": "YOU WIN",
-        "player_status_lose": "YOU LOSE",
+        "player_status_win": "WIN",
+        "player_status_lose": "LOSE",
         "player_status_draw": "DRAW",
         "player_status_folded": "YOU FOLDED",
         "player_status_other_player_folded": "THEY FOLDED",
@@ -31063,6 +31094,15 @@ var GameController = function (_BaseController) {
         } else {
           App.store.dispatch({ type: "GAME:JOIN_FAILED", resp: { friend: "na" } });
         }
+      });
+    }
+  }, {
+    key: 'quit',
+    value: function quit() {
+      return fetch(this.baseUrl + '/quit', {
+        headers: { 'x-csrf-token': App.settings.csrf_token },
+        method: 'POST',
+        credentials: 'same-origin'
       });
     }
   }, {

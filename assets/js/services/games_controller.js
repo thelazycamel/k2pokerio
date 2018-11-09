@@ -25,6 +25,18 @@ export default class GameController extends BaseController {
     })
   }
 
+  quit() {
+    return (
+      fetch(`${this.baseUrl}/quit`,
+        {
+          headers: {'x-csrf-token': App.settings.csrf_token},
+          method: 'POST',
+          credentials: 'same-origin'
+        }
+      )
+    )
+  }
+
   duelFix() {
     return (
       fetch(`${this.baseUrl}/duel_fix`,

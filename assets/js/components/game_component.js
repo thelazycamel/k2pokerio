@@ -43,6 +43,20 @@ class GameComponent extends React.Component {
     return false;
   }
 
+  quitButtonClicked(e) {
+    let target = e.target;
+    target.setAttribute("disabled", "disabled");
+    App.services.games.quit().then(response => {
+      if(response.ok) {
+        window.location = "/";
+      } else {
+        target.removeAttribute("disabled");
+        App.page.showAlert("warning", "Unable to quit");
+      }
+    })
+    return false;
+  }
+
   renderPlayerCards() {
     if(this.props.game.cards){
       let cards = this.props.game.cards.map((card, index) => {
@@ -131,10 +145,20 @@ class GameComponent extends React.Component {
     return this.isFinished() ? "result" : "";
   }
 
-  foldButton() {
+  foldQuitButton() {
     if(this.displayFoldButton()) {
       return (<a id="fold-button" onClick={this.foldButtonClicked.bind(this)}>Fold</a>);
+    } else if(this.searchingForOpponent()) {
+      return (<a id="quit-button" onClick={this.quitButtonClicked.bind(this)}>Quit</a>);
     }
+  }
+
+  searchingForOpponent(){
+    return this.waitingForOpponent() && this.showBotRequest();
+  }
+
+  showBotRequest(){
+    return this.props.game && this.props.game.show_bot_request;
   }
 
   displayFoldButton() {
@@ -178,7 +202,7 @@ class GameComponent extends React.Component {
               <div id="shine"></div>
               { this.renderOpponentProfileImage() }
               <div id="opponent-cards">{this.renderOpponentCards()}</div>
-              { this.foldButton() }
+              { this.foldQuitButton() }
               <div id="table-cards">{this.renderTableCards()}</div>
               <GameStatusComponent waiting={this.waitingForOpponent()} finished={this.isFinished()} game_status={this.props.game.status} player_status={this.props.game.player_status} />
               <PlayButtonComponent store={this.props.store} />

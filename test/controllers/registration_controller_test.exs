@@ -21,7 +21,6 @@ defmodule K2pokerIo.RegistrationControllerTest do
     assert(response =~ password_field)
   end
 
-
   test "#new should create a new user", %{conn: conn} do
     params = %{"user" =>
       %{ "email" => "bob@test.com",

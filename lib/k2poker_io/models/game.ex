@@ -49,6 +49,15 @@ defmodule K2pokerIo.Game do
     |> validate_acceptance(:open)
   end
 
+  def close_changeset(model, params \\ %{}) do
+    model
+    |> cast(params, [:waiting_for_players, :open])
+    |> validate_change(:waiting_for_players, fn _, waiting_for_players ->
+      if waiting_for_players, do: [waiting_for_players: "can not be true"], else: []
+    end)
+    |> validate_change(:open, fn _, open -> if open, do: [open: "can not be true"], else: [] end)
+  end
+
   def create_game_data(changeset, model) do
     if changeset.valid? do
       game_data = K2poker.new(model.player1_id, changeset.changes.player2_id)

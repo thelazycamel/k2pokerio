@@ -1110,7 +1110,7 @@
     color: #ffffff;
     background-image: url("/images/bot-request-button-hover.svg"); }
 
-#game-holder #fold-button {
+#game-holder #fold-button, #game-holder #quit-button {
   position: absolute;
   z-index: 6;
   display: inline-block;
@@ -1118,11 +1118,11 @@
   background-image: url("/images/fold-button.svg");
   text-align: center;
   color: #c3c3c3; }
-  #game-holder #fold-button:hover {
+  #game-holder #fold-button:hover, #game-holder #quit-button:hover {
     text-decoration: none;
     color: #f3f3f3;
     background-image: url("/images/fold-button-hover.svg"); }
-  #game-holder #fold-button:disabled, #game-holder #fold-button[disabled=disabled] {
+  #game-holder #fold-button:disabled, #game-holder #fold-button[disabled=disabled], #game-holder #quit-button:disabled, #game-holder #quit-button[disabled=disabled] {
     opacity: 0.5; }
 
 @media (min-width: 1200px) {
@@ -1155,7 +1155,7 @@
       #game-holder #game-root #game #opponent-card-2 {
         top: 27px;
         left: 320px; }
-      #game-holder #game-root #game #fold-button {
+      #game-holder #game-root #game #fold-button, #game-holder #game-root #game #quit-button {
         top: 46px;
         left: 464px;
         width: 85px;
@@ -1237,7 +1237,7 @@
       #game-holder #game-root #game #opponent-card-2 {
         top: 26px;
         left: 275px; }
-      #game-holder #game-root #game #fold-button {
+      #game-holder #game-root #game #fold-button, #game-holder #game-root #game #quit-button {
         top: 46px;
         left: 403px;
         width: 85px;
@@ -1337,7 +1337,7 @@
       #game-holder #game-root #game-inner #game #opponent-card-2 {
         top: 17px;
         left: 210px; }
-      #game-holder #game-root #game-inner #game #fold-button {
+      #game-holder #game-root #game-inner #game #fold-button, #game-holder #game-root #game-inner #game #quit-button {
         top: 37px;
         left: 324px;
         width: 61px;
@@ -1437,7 +1437,7 @@
         #game-holder #game-root #game-inner #game #opponent-card-2 {
           top: 21px;
           left: 162px; }
-        #game-holder #game-root #game-inner #game #fold-button {
+        #game-holder #game-root #game-inner #game #fold-button, #game-holder #game-root #game-inner #game #quit-button {
           top: 30px;
           left: 244px;
           width: 53px;
