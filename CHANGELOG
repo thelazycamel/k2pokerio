@@ -1,3 +1,7 @@
+0.5.31
+	Add Cancel (quit) button
+	Fix anon user 500 error after winning
+	Add warning alerts
 0.5.30
 	Remove rebuys from chips component
 0.5.29
