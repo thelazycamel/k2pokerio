@@ -132,7 +132,7 @@ class ProfileEditComponent extends React.Component {
             <table id="user-stats-table">
               <thead>
                 <tr className="light">
-                  <th colSpan="4">Stats</th>
+                  <th colSpan="4">Player Stats</th>
                 </tr>
               </thead>
               <tbody>
@@ -155,7 +155,7 @@ class ProfileEditComponent extends React.Component {
                   <td>{ stats.duels_won }</td>
                 </tr>
                 <tr className="light">
-                  <td>Top Score K2</td>
+                  <td>Top Score (K2)</td>
                   <td>{ stats.top_score }</td>
                   <td>Win Ratio</td>
                   <td>{ this.winRatio(stats.games_played, stats.games_won) }</td>

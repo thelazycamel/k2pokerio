@@ -192,6 +192,7 @@ body.profile {
         }
         #user-stats {
           width: 100%;
+          margin: 5px 0px;
           border: 1px solid #8393a7;
           border-radius: 10px;
           padding: 5px;
@@ -205,10 +206,11 @@ body.profile {
                 background-color: #09102d;
               }
               th {
+                padding: 10px;
                 text-align: center;
               }
               td {
-                padding: 3px;
+                padding: 10px 3px;
               }
             }
           }

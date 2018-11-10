@@ -3285,6 +3285,7 @@ body.profile.edit main {
         height: 200px; }
     body.profile.edit main #edit-profile #user-stats {
       width: 100%;
+      margin: 5px 0px;
       border: 1px solid #8393a7;
       border-radius: 10px;
       padding: 5px; }
@@ -3295,9 +3296,10 @@ body.profile.edit main {
         body.profile.edit main #edit-profile #user-stats table tr.light {
           background-color: #09102d; }
         body.profile.edit main #edit-profile #user-stats table tr th {
+          padding: 10px;
           text-align: center; }
         body.profile.edit main #edit-profile #user-stats table tr td {
-          padding: 3px; }
+          padding: 10px 3px; }
   body.profile.edit main #profile-badges {
     position: absolute;
     top: 0px;

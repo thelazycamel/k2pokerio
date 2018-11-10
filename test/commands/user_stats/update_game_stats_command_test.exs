@@ -58,7 +58,7 @@ defmodule K2pokerIo.UpdateGameStatsTest do
     assert(user_stats1.games_lost == 0)
     assert(user_stats2.games_played == 1)
     assert(user_stats2.games_folded == 0)
-    assert(user_stats2.games_won == 0)
+    assert(user_stats2.games_won == 1)
     assert(user_stats2.games_lost == 0)
   end
 

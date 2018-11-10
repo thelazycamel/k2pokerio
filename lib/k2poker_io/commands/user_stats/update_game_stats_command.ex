@@ -36,7 +36,7 @@ defmodule K2pokerIo.Commands.UserStats.UpdateGameStatsCommand do
   end
 
   defp calculate_games_won(games_won, result) do
-    if result == "win", do: games_won + 1, else: games_won
+    if result == "win" || result == "other_player_folded", do: games_won + 1, else: games_won
   end
 
   defp calculate_games_lost(games_lost, result) do

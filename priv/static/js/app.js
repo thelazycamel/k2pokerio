@@ -27486,7 +27486,7 @@ var ProfileEditComponent = function (_React$Component) {
                   _react2.default.createElement(
                     'th',
                     { colSpan: '4' },
-                    'Stats'
+                    'Player Stats'
                   )
                 )
               ),
@@ -27571,7 +27571,7 @@ var ProfileEditComponent = function (_React$Component) {
                   _react2.default.createElement(
                     'td',
                     null,
-                    'Top Score K2'
+                    'Top Score (K2)'
                   ),
                   _react2.default.createElement(
                     'td',
