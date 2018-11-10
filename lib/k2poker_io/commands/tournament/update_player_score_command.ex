@@ -4,6 +4,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   alias K2pokerIo.Game
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
+  alias K2pokerIo.Commands.UserStats.UpdateTopScoreCommand
   alias Ecto.Multi
 
   import Ecto.Query
@@ -52,12 +53,17 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     |> Multi.run(:updateable, fn %{get_game: get_game} -> score_already_updated?(get_game, utd.player_id) end)
     |> Multi.update(:utd, UserTournamentDetail.changeset(utd, utd_changeset(game, score, status)))
     |> Multi.run(:game, fn %{get_game: get_game, utd: utd} -> Repo.update(game_update_changeset(get_game, utd.player_id)) end)
+    |> Multi.run(:user_stats, fn %{utd: utd} -> update_top_score(score, utd) end)
     |> Multi.run(:update_tournament_winner, fn %{utd: utd, game: game} -> check_tournament_winner(game, utd) end)
     |> Repo.transaction
     |> case do
       {:ok, %{get_game: get_game, updateable: _, utd: _, game: _, update_tournament_winner: _}} -> get_game
       {:error, _, _, _} -> :error
     end
+  end
+
+  def update_top_score(score, utd) do
+    UpdateTopScoreCommand.execute(score, utd)
   end
 
   def utd_changeset(game, score, status) do

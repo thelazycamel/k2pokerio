@@ -4,6 +4,7 @@ defmodule K2pokerIo.Test.Helpers do
   alias K2pokerIo.Game
   alias K2pokerIo.Tournament
   alias K2pokerIo.User
+  alias K2pokerIo.UserStats
   alias K2pokerIo.Chat
   alias K2pokerIo.Invitation
   alias K2pokerIo.UserTournamentDetail
@@ -31,8 +32,8 @@ defmodule K2pokerIo.Test.Helpers do
   # advanced_set_up(["bob","stu"]), sets up a game with
   # 2 real players and returns a map
   # %{
-  #    player_1:    player1,
-  #    player_2:    player2,
+  #    player1:    player1,
+  #    player2:    player2,
   #    p1_utd:      p1_utd,
   #    p2_utd:      p2_utd,
   #    game:        game,
@@ -131,6 +132,23 @@ defmodule K2pokerIo.Test.Helpers do
   def create_user(username) do
     email = "#{username}=#{:rand.uniform(100000000)}@test.com"
     Repo.insert!(%User{username: username, email: email, password: "password"})
+  end
+
+  def create_user_stats(user) do
+    Repo.insert!(UserStats.changeset(
+      %UserStats{},
+        %{
+          user_id: user.id,
+          games_played: 0,
+          games_won: 0,
+          games_lost: 0,
+          games_folded: 0,
+          tournaments_won: 0,
+          duels_won: 0,
+          top_score: 0
+        }
+      )
+    )
   end
 
   def create_chat(tournament_id, user_id, comment, admin) do

@@ -179,8 +179,6 @@ body.profile {
         #profile-bio {
           position: relative;
           margin: 10px 0px;
-          overflow: hidden;
-          height: 200px;
           .profile-bio-inner {
             position: relative;
             margin: 0px;
@@ -192,7 +190,31 @@ body.profile {
             height: 200px;
           }
         }
-
+        #user-stats {
+          width: 100%;
+          margin: 5px 0px;
+          border: 1px solid #8393a7;
+          border-radius: 10px;
+          padding: 5px;
+          table {
+            width: 100%;
+            tr {
+              &.dark {
+                background-color: #010116;
+              }
+              &.light {
+                background-color: #09102d;
+              }
+              th {
+                padding: 10px;
+                text-align: center;
+              }
+              td {
+                padding: 10px 3px;
+              }
+            }
+          }
+        }
       }
 
       #profile-badges {

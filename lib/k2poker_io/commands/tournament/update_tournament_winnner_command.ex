@@ -4,6 +4,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Chat.BroadcastTournamentMessageCommand
+  alias K2pokerIo.Commands.UserStats.UpdateTournamentStatsCommand
 
   import Ecto.Query
 
@@ -11,6 +12,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
 
   def execute(game, utd) do
     update_tournament(game, utd)
+    update_tournament_stats(utd)
   end
 
   defp update_tournament(game, utd) do
@@ -19,14 +21,28 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
     default = game.tournament.default_tournament
     cond do
       tournament_type == "duel" ->
-        close_tournament(game) |> message_room(utd) |> alert_all_losers(utd) |> alert_winner(utd)
+        close_tournament(game)
+        |> message_room(utd)
+        |> alert_all_losers(utd)
+        |> alert_winner(utd)
       tournament_type == "tournament" && default == true ->
-        message_room(game, utd) |> alert_winner(utd)
+        message_room(game, utd)
+        |> alert_winner(utd)
       tournament_type == "tournament" && private == true ->
-        close_tournament(game) |> message_room(utd) |> alert_all_losers(utd) |> alert_winner(utd)
+        close_tournament(game)
+        |> message_room(utd)
+        |> alert_all_losers(utd)
+        |> alert_winner(utd)
       tournament_type == "tournament" && private == false ->
-        close_tournament(game) |> message_room(utd) |> alert_all_losers(utd) |> alert_winner(utd)
+        close_tournament(game)
+        |> message_room(utd)
+        |> alert_all_losers(utd)
+        |> alert_winner(utd)
     end
+  end
+
+  defp update_tournament_stats(utd) do
+    UpdateTournamentStatsCommand.execute(utd)
   end
 
   defp close_tournament(game) do
