@@ -138,27 +138,27 @@ class ProfileEditComponent extends React.Component {
               <tbody>
                 <tr className="dark">
                   <td>Games Played</td>
-                  <td>{ stats.games_played }</td>
+                  <td className="value">{ stats.games_played }</td>
                   <td>Games Won</td>
-                  <td>{ stats.games_won }</td>
+                  <td className="value">{ stats.games_won }</td>
                 </tr>
                 <tr className="light">
                   <td>Games Lost</td>
-                  <td>{ stats.games_lost }</td>
+                  <td className="value">{ stats.games_lost }</td>
                   <td>Games Folded</td>
-                  <td>{ stats.games_folded }</td>
+                  <td className="value">{ stats.games_folded }</td>
                 </tr>
                 <tr className="dark">
                   <td>Tournaments Won</td>
-                  <td>{ stats.tournaments_won }</td>
+                  <td className="value">{ stats.tournaments_won }</td>
                   <td>Duels Won</td>
-                  <td>{ stats.duels_won }</td>
+                  <td className="value">{ stats.duels_won }</td>
                 </tr>
                 <tr className="light">
                   <td>Top Score (K2)</td>
-                  <td>{ stats.top_score }</td>
+                  <td className="value">{ stats.top_score }</td>
                   <td>Win Ratio</td>
-                  <td>{ this.winRatio(stats.games_played, stats.games_won) }</td>
+                  <td className="value">{ this.winRatio(stats.games_played, stats.games_won) }</td>
                 </tr>
               </tbody>
             </table>

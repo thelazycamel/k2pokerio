@@ -211,6 +211,10 @@ body.profile {
               }
               td {
                 padding: 10px 3px;
+              &.value {
+                text-align: right;
+                padding-right: 7px;
+              }
               }
             }
           }
