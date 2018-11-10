@@ -1,3 +1,5 @@
+0.5.32
+	Updating mix.exs to version 0.5.32
 0.5.31
 	Add Cancel (quit) button
 	Fix anon user 500 error after winning
