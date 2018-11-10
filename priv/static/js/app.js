@@ -27581,18 +27581,29 @@ var ProfileEditComponent = function (_React$Component) {
                   _react2.default.createElement(
                     'td',
                     null,
-                    '\xA0'
+                    'Win Ratio'
                   ),
                   _react2.default.createElement(
                     'td',
                     null,
-                    '\xA0'
+                    this.winRatio(stats.games_played, stats.games_won)
                   )
                 )
               )
             )
           )
         );
+      }
+    }
+  }, {
+    key: 'winRatio',
+    value: function winRatio(played, wins) {
+      if (wins == 0 || played == 0) {
+        return "-";
+      } else {
+        var percent = wins / played * 100;
+        percent = Math.round(percent * 100) / 100;
+        return percent + '%';
       }
     }
   }, {

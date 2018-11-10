@@ -157,14 +157,24 @@ class ProfileEditComponent extends React.Component {
                 <tr className="light">
                   <td>Top Score K2</td>
                   <td>{ stats.top_score }</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
+                  <td>Win Ratio</td>
+                  <td>{ this.winRatio(stats.games_played, stats.games_won) }</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       )
+    }
+  }
+
+  winRatio(played, wins){
+    if(wins == 0 || played == 0) {
+      return "-";
+    } else {
+      let percent = wins / played * 100;
+      percent = Math.round(percent * 100) / 100;
+      return `${percent}%`;
     }
   }
 
