@@ -31,8 +31,8 @@ defmodule K2pokerIo.Test.Helpers do
   # advanced_set_up(["bob","stu"]), sets up a game with
   # 2 real players and returns a map
   # %{
-  #    player_1:    player1,
-  #    player_2:    player2,
+  #    player1:    player1,
+  #    player2:    player2,
   #    p1_utd:      p1_utd,
   #    p2_utd:      p2_utd,
   #    game:        game,

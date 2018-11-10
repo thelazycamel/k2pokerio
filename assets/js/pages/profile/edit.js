@@ -16,11 +16,12 @@ class ProfileEditPage extends page {
   initializeMyProfileComponent() {
     let element = document.getElementById('edit-profile-wrapper')
     ReactDOM.render(<ProfileEditComponent
-                      username= {element.dataset.username}
-                      blurb=    {element.dataset.blurb}
-                      image=    {element.dataset.image}
-                      email=    {element.dataset.email}
+                      username=  {element.dataset.username}
+                      blurb=     {element.dataset.blurb}
+                      image=     {element.dataset.image}
+                      email=     {element.dataset.email}
                       gravatar = {element.dataset.gravatar}
+                      stats =    {element.dataset.stats}
                      />, element);
   }
 

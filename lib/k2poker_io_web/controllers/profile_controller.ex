@@ -3,11 +3,13 @@ defmodule K2pokerIoWeb.ProfileController do
   use K2pokerIoWeb, :controller
 
   alias K2pokerIo.User
+  alias K2pokerIo.UserStats
+  alias K2pokerIo.Decorators.UserStatsDecorator
   alias K2pokerIo.Commands.User.UpdatePasswordCommand
 
   def edit(conn, _params) do
-    gravatar = Gravity.image(current_user(conn).email, size: 200)
-    render(conn, "edit.html", profile: current_user(conn), gravatar: gravatar)
+    gravatar = Gravity.image(String.downcase(current_user(conn).email), size: 200)
+    render(conn, "edit.html", profile: current_user(conn), gravatar: gravatar, user_stats: user_stats(current_user(conn)))
   end
 
   def update_image(conn, %{"image" => image} ) do
@@ -45,6 +47,12 @@ defmodule K2pokerIoWeb.ProfileController do
         |> put_flash(:info, "An error occurred, please try again")
         |> redirect(to: profile_path(conn, :edit))
     end
+  end
+
+  defp user_stats(current_user) do
+    user_id = current_user.id
+    Repo.one(from us in UserStats, where: us.user_id == ^user_id)
+    |> UserStatsDecorator.decorate()
   end
 
 end

@@ -10,6 +10,7 @@ class ProfileEditComponent extends React.Component {
     super(props);
     this.state = {
       profileImage: this.props.image,
+      stats: this.decodeStats(props),
       imageSelector: false,
       blurb: this.props.blurb,
       showChangePassword: false,
@@ -17,6 +18,10 @@ class ProfileEditComponent extends React.Component {
       showFriends: false,
       showBlurb: true,
     };
+  }
+
+  decodeStats(props){
+    return JSON.parse(props.stats);
   }
 
   updateBlurb(event){
@@ -118,10 +123,46 @@ class ProfileEditComponent extends React.Component {
   }
 
   renderBlurb(){
+    let { stats } = this.state;
     if(this.state.showBlurb){
       return(
         <div id="profile-bio">
           <textarea placeholder="Bio" className="profile-bio-inner" defaultValue={this.state.blurb} onBlur={ this.updateBlurb.bind(this) }></textarea>
+          <div id="user-stats">
+            <table id="user-stats-table">
+              <thead>
+                <tr className="light">
+                  <th colSpan="4">Stats</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="dark">
+                  <td>Games Played</td>
+                  <td>{ stats.games_played }</td>
+                  <td>Games Won</td>
+                  <td>{ stats.games_won }</td>
+                </tr>
+                <tr className="light">
+                  <td>Games Lost</td>
+                  <td>{ stats.games_lost }</td>
+                  <td>Games Folded</td>
+                  <td>{ stats.games_folded }</td>
+                </tr>
+                <tr className="dark">
+                  <td>Tournaments Won</td>
+                  <td>{ stats.tournaments_won }</td>
+                  <td>Duels Won</td>
+                  <td>{ stats.duels_won }</td>
+                </tr>
+                <tr className="light">
+                  <td>Top Score K2</td>
+                  <td>{ stats.top_score }</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       )
     }

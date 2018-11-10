@@ -4,7 +4,8 @@
     data-blurb="<%= @profile.blurb %>"
     data-image="<%= @profile.image %>"
     data-email="<%= @profile.email %>"
-    data-gravatar="<%= @gravatar %>" >
+    data-gravatar="<%= @gravatar %>"
+    data-stats= "<%= Poison.encode!(@user_stats) %>" >
   </section>
   <section id="profile-badges">
     <table class="badges-table">
