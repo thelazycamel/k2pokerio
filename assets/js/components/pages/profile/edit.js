@@ -137,21 +137,21 @@ class ProfileEditComponent extends React.Component {
               </thead>
               <tbody>
                 <tr className="dark">
-                  <td>Games Played</td>
+                  <td>Played</td>
                   <td className="value">{ stats.games_played }</td>
-                  <td>Games Won</td>
+                  <td>Won</td>
                   <td className="value">{ stats.games_won }</td>
                 </tr>
                 <tr className="light">
-                  <td>Games Lost</td>
+                  <td>Lost</td>
                   <td className="value">{ stats.games_lost }</td>
-                  <td>Games Folded</td>
+                  <td>Folded</td>
                   <td className="value">{ stats.games_folded }</td>
                 </tr>
                 <tr className="dark">
-                  <td>Tournaments Won</td>
+                  <td>Tournaments</td>
                   <td className="value">{ stats.tournaments_won }</td>
-                  <td>Duels Won</td>
+                  <td>Duels</td>
                   <td className="value">{ stats.duels_won }</td>
                 </tr>
                 <tr className="light">
