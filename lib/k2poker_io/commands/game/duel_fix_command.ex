@@ -14,7 +14,7 @@ defmodule K2pokerIo.Commands.Game.DuelFixCommand do
 
   def execute(utd) do
     cond do
-      utd.tournament.type != "duel" -> :ok
+      utd.tournament.tournament_type != "duel" -> :ok
       two_games_waiting(utd) -> fix_games(utd)
       true -> :ok
     end

@@ -48,7 +48,7 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
   defp find_game_waiting(utd) do
     tournament = utd.tournament
     game = cond do
-      tournament.type == "duel" -> any_available_game(utd)
+      tournament.tournament_type == "duel" -> any_available_game(utd)
       true -> game_by_current_score(utd)
     end
     {:ok, game}

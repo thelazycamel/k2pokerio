@@ -33,7 +33,7 @@ defmodule K2pokerIo.Commands.Game.GetDataCommand do
   end
 
   def merge_folded(game, player_id, player_data) do
-    if game.tournament.type == "duel" do
+    if game.tournament.tournament_type == "duel" do
       tournament_id = game.tournament.id
       utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player_id, tournament_id: ^tournament_id])
       Map.merge(player_data, %{fold: utd.fold})

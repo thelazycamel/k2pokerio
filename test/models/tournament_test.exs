@@ -13,7 +13,7 @@ defmodule K2pokerIo.TournamentTest do
     params = %{
       name: "Test Tournament",
       private: false,
-      type: "tournament",
+      tournament_type: "tournament",
       lose_type: "all",
       user_id: player.id,
       rebuys: [0],
@@ -61,7 +61,7 @@ defmodule K2pokerIo.TournamentTest do
     params = %{name: "test tourney", private: false, user_id: "123", rebuys: true, starting_chips: 1, max_score: 1048576, bots: true, lose_type: "all", finished: false}
     changeset = Tournament.changeset(%Tournament{}, params)
     refute(changeset.valid?)
-    {text, [error]} = changeset.errors[:type]
+    {text, [error]} = changeset.errors[:tournament_type]
     assert(text == "can't be blank")
     assert(error == {:validation, :required})
   end

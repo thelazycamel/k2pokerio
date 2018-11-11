@@ -68,8 +68,8 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
 
   def utd_changeset(game, score, status) do
     cond do
-      status == "folded" && game.tournament.type == "duel" -> %{current_score: score, fold: false}
-      status == "other_player_folded" && game.tournament.type == "duel" -> %{current_score: score, fold: true}
+      status == "folded" && game.tournament.tournament_type == "duel" -> %{current_score: score, fold: false}
+      status == "other_player_folded" && game.tournament.tournament_type == "duel" -> %{current_score: score, fold: true}
       true -> %{current_score: score}
     end
   end
@@ -104,7 +104,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   end
 
   defp player_folded_policy(score, utd) do
-    if utd.tournament.type == "duel" do
+    if utd.tournament.tournament_type == "duel" do
       score
     else
       round(score / 2)

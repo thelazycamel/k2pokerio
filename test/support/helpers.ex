@@ -73,7 +73,7 @@ defmodule K2pokerIo.Test.Helpers do
     Repo.insert!(%Tournament{
       name: "#{user.username} v #{opponent.username}",
       default_tournament: false,
-      type: "duel",
+      tournament_type: "duel",
       private: true,
       finished: false,
       user_id: user.id,
@@ -94,7 +94,7 @@ defmodule K2pokerIo.Test.Helpers do
       name: tournament_name,
       default_tournament: false,
       private: true,
-      type: "tournament",
+      tournament_type: "tournament",
       finished: false,
       user_id: user.id,
       lose_type: "all",
@@ -110,7 +110,7 @@ defmodule K2pokerIo.Test.Helpers do
       name: tournament_name,
       default_tournament: false,
       private: false,
-      type: "tournament",
+      tournament_type: "tournament",
       finished: false,
       user_id: user.id,
       lose_type: "all",
@@ -125,7 +125,7 @@ defmodule K2pokerIo.Test.Helpers do
     if Tournament.default do
       Tournament.default
     else
-      Repo.insert!(%Tournament{name: "K2 Summit", description: "K2 Summit is the big one, play against everyone in this free and open tournament, always available.", default_tournament: true, type: "tournament", private: false, finished: false, rebuys: [0]})
+      Repo.insert!(%Tournament{name: "K2 Summit", description: "K2 Summit is the big one, play against everyone in this free and open tournament, always available.", default_tournament: true, tournament_type: "tournament", private: false, finished: false, rebuys: [0]})
     end
   end
 

@@ -24,7 +24,7 @@ defmodule K2pokerIo.Commands.UserStats.UpdateTournamentStatsCommand do
   end
 
   defp update_user_stats(user_stats, utd) do
-    if utd.tournament.type == "duel" do
+    if utd.tournament.tournament_type == "duel" do
       duels_won = user_stats.duels_won + 1
       Repo.update(UserStats.changeset(user_stats, %{duels_won: duels_won}))
     else

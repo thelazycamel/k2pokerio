@@ -10,7 +10,7 @@ defmodule K2pokerIoWeb.GameController do
   def play(conn, _params) do
     if player_id = get_session(conn, :player_id) do
       if utd = get_user_tournament_detail(conn) do
-        render(conn, "play.html", player_id: player_id, tournament_id: utd.tournament_id, logged_in: logged_in?(conn), bots: utd.tournament.bots, max_score: utd.tournament.max_score, tournament_type: utd.tournament.type)
+        render(conn, "play.html", player_id: player_id, tournament_id: utd.tournament_id, logged_in: logged_in?(conn), bots: utd.tournament.bots, max_score: utd.tournament.max_score, tournament_type: utd.tournament.tournament_type)
       else
         redirect(conn, to: "/tournaments")
       end

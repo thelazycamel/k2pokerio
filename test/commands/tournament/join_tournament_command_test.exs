@@ -29,7 +29,7 @@ defmodule K2pokerIo.JoinTournamentCommandTest do
     freeroll_tournament = Repo.insert!(Tournament.changeset(%Tournament{}, %{
       name: "Test Tourney Freeroll",
       default_tournament: false,
-      type: "tournament",
+      tournament_type: "tournament",
       private: false,
       user_id: nil,
       lose_type: "all",

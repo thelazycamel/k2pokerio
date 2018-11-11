@@ -16,7 +16,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   end
 
   defp update_tournament(game, utd) do
-    tournament_type = game.tournament.type
+    tournament_type = game.tournament.tournament_type
     private = game.tournament.private
     default = game.tournament.default_tournament
     cond do
@@ -59,12 +59,12 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   end
 
   defp alert_all_losers(game, utd) do
-    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:loser", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.type})
+    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:loser", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.tournament_type})
     game
   end
 
   defp alert_winner(game, utd) do
-    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:winner", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.type})
+    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{game.tournament_id}", "tournament:winner", %{username: utd.username, player_id: utd.player_id, type: utd.tournament.tournament_type})
     game
   end
 

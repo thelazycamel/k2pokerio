@@ -14,7 +14,7 @@ defmodule K2pokerIo.InvitationTest do
     params = %{
       name: "Test Tournament",
       private: true,
-      type: "tournament",
+      tournament_type: "tournament",
       lose_type: "all",
       user_id: player.id,
       rebuys: [0],
