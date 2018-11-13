@@ -21,7 +21,13 @@ defmodule K2pokerIoWeb.TournamentController do
         redirect conn, to: game_path(conn, :play)
       else
         %{username: username, image: profile_image} = current_user(conn)
-        render(conn, "index.html", logged_in: logged_in?(conn), tournament_id: Tournament.default.id, player_id: player_id, username: username, profile_image: profile_image)
+        render(conn, "index.html",
+          logged_in: logged_in?(conn),
+          tournament_id: Tournament.default.id,
+          player_id: player_id,
+          username: username,
+          profile_image: profile_image
+        )
       end
     else
       redirect conn, to: "/"
@@ -78,7 +84,9 @@ defmodule K2pokerIoWeb.TournamentController do
   def new(conn, _) do
     if logged_in?(conn) do
       %{username: username, image: profile_image} = current_user(conn)
-      render conn, "new.html", %{username: username, profile_image: profile_image}
+      render conn, "new.html",
+        username: username,
+        profile_image: profile_image
     else
       redirect conn, to: "/"
     end

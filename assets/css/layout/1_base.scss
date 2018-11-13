@@ -42,8 +42,13 @@ header {
           background-color: transparent;
         }
       }
-      span {
+      span.text {
         display: none;
+      }
+      span.unread-counter {
+        top: -18px;
+        left: auto;
+        right: 1px;
       }
     }
   }

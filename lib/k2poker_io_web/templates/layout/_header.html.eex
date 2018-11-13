@@ -4,8 +4,21 @@
     <div id="header-nav-component-holder"></div>
     <ul class="nav navbar-nav navbar-right">
         <%= if logged_in?(@conn) do %>
-          <li><a href="/tournaments" class="icon icon-med icon-tournament icon-link" title="Tournaments"><span>Tournaments<span></a></li>
-          <li><a href="/profile" class="icon icon-med icon-profile icon-link" title="Profile (<%= current_user(@conn).username %>)"><span>Profile</span></a></li>
+          <li>
+            <a href="/tournaments" class="icon icon-med icon-tournament icon-link" title="Tournaments">
+              <span class="text">Tournaments<span>
+            </a>
+          </li>
+          <li>
+              <a href="/profile" class="icon icon-med icon-cowboy icon-link" title="Profile (<%= current_user(@conn).username %>)">
+              <span class="text">Profile</span>
+              <%= if friend_requests = friend_requests(current_user(@conn)) do %>
+                <%= unless friend_requests == 0 do %>
+                  <span class="unread-counter" id="profile-friend-requests"><%= friend_requests %></span>
+                <% end %>
+              <% end %>
+              </a>
+           </li>
         <% else %>
           <li id="sign-up-link"><%= link "Sign-up", to: registration_path(@conn, :new), class: "text-link" %></li>
           <li id="login-link"><%= link "Login", to: session_path(@conn, :new), class: "text-link" %></li>

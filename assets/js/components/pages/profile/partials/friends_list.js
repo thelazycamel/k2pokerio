@@ -8,7 +8,7 @@ class FriendsList extends React.Component {
     this.state = {
       page: 1,
       friends: [],
-      pending_me: 0,
+      pending_me: this.props.pending_me,
       area: "",
       pagination: {},
       search: ""
@@ -16,10 +16,8 @@ class FriendsList extends React.Component {
   }
 
   componentDidMount(){
-    App.services.friends.count("pending_me").then(data => {
-      this.setState(...this.state, {area: "friends", pending_me: data.pending_me});
-      this.loadPage(1, "friends");
-    })
+    this.setState(...this.state, {area: "friends"});
+    this.loadPage(1, "friends");
   }
 
   addFriend(friend) {
@@ -38,8 +36,8 @@ class FriendsList extends React.Component {
         if(f.id == friend.id) { f.status = data.friend }
         return f
       });
-      let pending_me = this.state.area == "pending_me" ? this.state.pending_me -1 : this.state.pending_me;
-      this.setState(...this.state, {friends: friends, pending_me: pending_me});
+      this.props.getPendingMe();
+      this.setState(...this.state, {friends: friends});
     })
   }
 
@@ -49,7 +47,8 @@ class FriendsList extends React.Component {
         if(f.id == friend.id) { f.status = data.friend }
         return f
       });
-      this.setState(...this.state, {friends: friends, pending_me: this.state.pending_me - 1});
+      this.props.getPendingMe()
+      this.setState(...this.state, {friends: friends});
     });
   }
 
@@ -136,8 +135,8 @@ class FriendsList extends React.Component {
   }
 
   renderPendingMeCount() {
-    if(this.state.pending_me > 0) {
-      return <span className="unread-counter">{this.state.pending_me}</span>
+    if(this.props.pending_me > 0) {
+      return <span className="unread-counter">{this.props.pending_me}</span>
     }
   }
 

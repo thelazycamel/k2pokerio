@@ -20,7 +20,7 @@ defmodule K2pokerIoWeb.LayoutView do
       tournament_id: conn.assigns[:tournament_id],
       logged_in: conn.assigns[:logged_in],
       locale: "en",  #TODO set a ISO locale (from the request) in the conn to be picked up here
-      bots: conn.assigns[:bots],
+      bots: conn.assigns[:bots] || false,
       tournament_type: conn.assigns[:tournament_type]
     ]
   end

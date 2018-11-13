@@ -2871,8 +2871,12 @@ header {
         margin-right: 10px; }
         header .navbar-right a.icon:hover {
           background-color: transparent; }
-      header .navbar-right a span {
+      header .navbar-right a span.text {
         display: none; }
+      header .navbar-right a span.unread-counter {
+        top: -18px;
+        left: auto;
+        right: 1px; }
 
 #main-content main {
   position: relative;

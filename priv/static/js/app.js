@@ -27353,6 +27353,7 @@ var ProfileEditComponent = function (_React$Component) {
       imageSelector: false,
       blurb: _this.props.blurb,
       showChangePassword: false,
+      pending_me: 0,
       showSettings: false,
       showFriends: false,
       showBlurb: true
@@ -27361,6 +27362,27 @@ var ProfileEditComponent = function (_React$Component) {
   }
 
   _createClass(ProfileEditComponent, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getPendingMe();
+    }
+  }, {
+    key: 'getPendingMe',
+    value: function getPendingMe() {
+      var _this2 = this;
+
+      App.services.friends.count("pending_me").then(function (data) {
+        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ pending_me: data.pending_me }]));
+        /*hack*/
+        var headerEl = document.getElementById("profile-friend-requests");
+        if (data.pending_me == 0) {
+          headerEl.parentNode.removeChild(headerEl);
+        } else {
+          headerEl.innerHTML = data.pending_me;
+        }
+      });
+    }
+  }, {
     key: 'decodeStats',
     value: function decodeStats(props) {
       return JSON.parse(props.stats);
@@ -27368,10 +27390,10 @@ var ProfileEditComponent = function (_React$Component) {
   }, {
     key: 'updateBlurb',
     value: function updateBlurb(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       App.services.profile.update_blurb(event.target.value).then(function (data) {
-        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ blurb: data.blurb }]));
+        _this3.setState.apply(_this3, _toConsumableArray(_this3.state).concat([{ blurb: data.blurb }]));
       });
     }
   }, {
@@ -27387,10 +27409,10 @@ var ProfileEditComponent = function (_React$Component) {
   }, {
     key: 'selectImage',
     value: function selectImage(image) {
-      var _this3 = this;
+      var _this4 = this;
 
       App.services.profile.update_image(image).then(function (data) {
-        _this3.setState.apply(_this3, _toConsumableArray(_this3.state).concat([{ imageSelector: false, profileImage: image }]));
+        _this4.setState.apply(_this4, _toConsumableArray(_this4.state).concat([{ imageSelector: false, profileImage: image }]));
       });
     }
   }, {
@@ -27401,14 +27423,14 @@ var ProfileEditComponent = function (_React$Component) {
   }, {
     key: 'profileImageSelect',
     value: function profileImageSelect() {
-      var _this4 = this;
+      var _this5 = this;
 
       var display = this.state.imageSelector ? "flex" : "none";
       return _react2.default.createElement(
         'div',
         { id: 'profile-image-select', name: 'profile-image', style: { display: display } },
         this.images().map(function (image, index) {
-          return _this4.profileImageOption(image, index);
+          return _this5.profileImageOption(image, index);
         })
       );
     }
@@ -27451,7 +27473,7 @@ var ProfileEditComponent = function (_React$Component) {
     key: 'renderFriends',
     value: function renderFriends() {
       if (this.state.showFriends) {
-        return _react2.default.createElement(_friends_list2.default, null);
+        return _react2.default.createElement(_friends_list2.default, { pending_me: this.state.pending_me, getPendingMe: this.getPendingMe.bind(this) });
       }
     }
   }, {
@@ -27607,6 +27629,17 @@ var ProfileEditComponent = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderFriendRequests',
+    value: function renderFriendRequests() {
+      if (this.state.pending_me > 0) {
+        return _react2.default.createElement(
+          'span',
+          { className: 'unread-counter' },
+          this.state.pending_me
+        );
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -27621,7 +27654,7 @@ var ProfileEditComponent = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'profile-text' },
-              _react2.default.createElement('span', { className: 'icon icon-med icon-profile' }),
+              _react2.default.createElement('span', { className: 'icon icon-med icon-cowboy' }),
               _react2.default.createElement(
                 'span',
                 { className: 'text-username' },
@@ -27663,7 +27696,8 @@ var ProfileEditComponent = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { id: 'profile-friends', className: ' btn btn-large btn-friends', onClick: this.friendsButtonClicked.bind(this) },
-            'Friends'
+            'Friends',
+            this.renderFriendRequests()
           ),
           _react2.default.createElement(
             'button',
@@ -27840,7 +27874,7 @@ var FriendsList = function (_React$Component) {
     _this.state = {
       page: 1,
       friends: [],
-      pending_me: 0,
+      pending_me: _this.props.pending_me,
       area: "",
       pagination: {},
       search: ""
@@ -27851,57 +27885,54 @@ var FriendsList = function (_React$Component) {
   _createClass(FriendsList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
-
-      App.services.friends.count("pending_me").then(function (data) {
-        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ area: "friends", pending_me: data.pending_me }]));
-        _this2.loadPage(1, "friends");
-      });
+      this.setState.apply(this, _toConsumableArray(this.state).concat([{ area: "friends" }]));
+      this.loadPage(1, "friends");
     }
   }, {
     key: 'addFriend',
     value: function addFriend(friend) {
-      var _this3 = this;
+      var _this2 = this;
 
       App.services.friends.create({ id: friend.id }).then(function (data) {
+        var friends = _this2.state.friends.map(function (f) {
+          if (f.id == friend.id) {
+            f.status = data.friend;
+          }
+          return f;
+        });
+        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ friends: friends }]));
+      });
+    }
+  }, {
+    key: 'deleteFriend',
+    value: function deleteFriend(friend) {
+      var _this3 = this;
+
+      App.services.friends.destroy(friend.id).then(function (data) {
         var friends = _this3.state.friends.map(function (f) {
           if (f.id == friend.id) {
             f.status = data.friend;
           }
           return f;
         });
+        _this3.props.getPendingMe();
         _this3.setState.apply(_this3, _toConsumableArray(_this3.state).concat([{ friends: friends }]));
       });
     }
   }, {
-    key: 'deleteFriend',
-    value: function deleteFriend(friend) {
+    key: 'confirmFriend',
+    value: function confirmFriend(friend) {
       var _this4 = this;
 
-      App.services.friends.destroy(friend.id).then(function (data) {
+      App.services.friends.confirm(friend.id).then(function (data) {
         var friends = _this4.state.friends.map(function (f) {
           if (f.id == friend.id) {
             f.status = data.friend;
           }
           return f;
         });
-        var pending_me = _this4.state.area == "pending_me" ? _this4.state.pending_me - 1 : _this4.state.pending_me;
-        _this4.setState.apply(_this4, _toConsumableArray(_this4.state).concat([{ friends: friends, pending_me: pending_me }]));
-      });
-    }
-  }, {
-    key: 'confirmFriend',
-    value: function confirmFriend(friend) {
-      var _this5 = this;
-
-      App.services.friends.confirm(friend.id).then(function (data) {
-        var friends = _this5.state.friends.map(function (f) {
-          if (f.id == friend.id) {
-            f.status = data.friend;
-          }
-          return f;
-        });
-        _this5.setState.apply(_this5, _toConsumableArray(_this5.state).concat([{ friends: friends, pending_me: _this5.state.pending_me - 1 }]));
+        _this4.props.getPendingMe();
+        _this4.setState.apply(_this4, _toConsumableArray(_this4.state).concat([{ friends: friends }]));
       });
     }
   }, {
@@ -27959,10 +27990,10 @@ var FriendsList = function (_React$Component) {
   }, {
     key: 'renderFriends',
     value: function renderFriends() {
-      var _this6 = this;
+      var _this5 = this;
 
       return this.state.friends.map(function (friend) {
-        return _this6.renderFriend(friend);
+        return _this5.renderFriend(friend);
       });
     }
   }, {
@@ -27974,14 +28005,14 @@ var FriendsList = function (_React$Component) {
   }, {
     key: 'loadPage',
     value: function loadPage(pageNo, area) {
-      var _this7 = this;
+      var _this6 = this;
 
       if (area == "search") {
         this.loadSearch(pageNo);
       } else {
         App.services.friends.index({ page: pageNo, per_page: 7, area: area, max_page: 100 }).then(function (response) {
-          var pending_me = area == "pending_me" ? response.friends.length : _this7.state.pending_me;
-          _this7.setState.apply(_this7, _toConsumableArray(_this7.state).concat([{ friends: response.friends, pagination: response.pagination, pending_me: pending_me }]));
+          var pending_me = area == "pending_me" ? response.friends.length : _this6.state.pending_me;
+          _this6.setState.apply(_this6, _toConsumableArray(_this6.state).concat([{ friends: response.friends, pagination: response.pagination, pending_me: pending_me }]));
         });
       }
     }
@@ -28030,11 +28061,11 @@ var FriendsList = function (_React$Component) {
   }, {
     key: 'renderPendingMeCount',
     value: function renderPendingMeCount() {
-      if (this.state.pending_me > 0) {
+      if (this.props.pending_me > 0) {
         return _react2.default.createElement(
           'span',
           { className: 'unread-counter' },
-          this.state.pending_me
+          this.props.pending_me
         );
       }
     }
@@ -28125,10 +28156,10 @@ var FriendsList = function (_React$Component) {
   }, {
     key: 'loadSearch',
     value: function loadSearch(page) {
-      var _this8 = this;
+      var _this7 = this;
 
       App.services.friends.search({ query: this.state.search, page: page, per_page: 7, max_page: 100 }).then(function (response) {
-        _this8.setState.apply(_this8, _toConsumableArray(_this8.state).concat([{ friends: response.friends, pagination: response.pagination, area: "search" }]));
+        _this7.setState.apply(_this7, _toConsumableArray(_this7.state).concat([{ friends: response.friends, pagination: response.pagination, area: "search" }]));
       });
     }
   }, {

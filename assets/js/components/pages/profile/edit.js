@@ -14,10 +14,28 @@ class ProfileEditComponent extends React.Component {
       imageSelector: false,
       blurb: this.props.blurb,
       showChangePassword: false,
+      pending_me: 0,
       showSettings: false,
       showFriends: false,
       showBlurb: true,
     };
+  }
+
+  componentDidMount(){
+    this.getPendingMe();
+  }
+
+  getPendingMe(){
+    App.services.friends.count("pending_me").then(data => {
+      this.setState(...this.state, {pending_me: data.pending_me});
+      /*hack*/
+      let headerEl = document.getElementById("profile-friend-requests")
+      if(data.pending_me == 0) {
+        headerEl.parentNode.removeChild(headerEl);
+      } else {
+        headerEl.innerHTML = data.pending_me;
+      }
+    });
   }
 
   decodeStats(props){
@@ -109,7 +127,7 @@ class ProfileEditComponent extends React.Component {
   renderFriends() {
     if(this.state.showFriends) {
       return(
-        <FriendsList />
+        <FriendsList pending_me={this.state.pending_me} getPendingMe={this.getPendingMe.bind(this) } />
       )
     }
   }
@@ -178,13 +196,19 @@ class ProfileEditComponent extends React.Component {
     }
   }
 
+  renderFriendRequests() {
+    if(this.state.pending_me > 0) {
+      return <span className="unread-counter">{this.state.pending_me}</span>
+    }
+  }
+
   render() {
     return (
       <div id="edit-profile">
         <div id="user-details">
           <div id="user-details-flex">
             <div className="profile-text">
-              <span className="icon icon-med icon-profile"></span>
+              <span className="icon icon-med icon-cowboy"></span>
               <span className="text-username">
                 {this.props.username}
                 <a id="profile-logout" href="#" onClick={this.logoutClicked}>(Logout)</a>
@@ -203,7 +227,10 @@ class ProfileEditComponent extends React.Component {
         </div>
         <div id="profile-buttons">
           <button id="profile-settings" className="btn btn-large btn-settings" onClick={this.settingsButtonClicked.bind(this)}>Settings</button>
-          <button id="profile-friends" className=" btn btn-large btn-friends" onClick={this.friendsButtonClicked.bind(this)}>Friends</button>
+          <button id="profile-friends" className=" btn btn-large btn-friends" onClick={this.friendsButtonClicked.bind(this)}>
+            Friends
+            { this.renderFriendRequests() }
+          </button>
           <button id="profile-password" className="btn btn-large btn-password" onClick={this.passwordButtonClicked.bind(this)}>Change Password</button>
         </div>
 
