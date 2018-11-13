@@ -30,10 +30,12 @@ class ProfileEditComponent extends React.Component {
       this.setState(...this.state, {pending_me: data.pending_me});
       /*hack*/
       let headerEl = document.getElementById("profile-friend-requests")
-      if(data.pending_me == 0) {
-        headerEl.parentNode.removeChild(headerEl);
-      } else {
-        headerEl.innerHTML = data.pending_me;
+      if(headerEl) {
+        if(data.pending_me == 0) {
+          headerEl.parentNode.removeChild(headerEl);
+        } else {
+          headerEl.innerHTML = data.pending_me;
+        }
       }
     });
   }
