@@ -3,7 +3,7 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.6.6",
+     version: "0.6.7",
      elixir: "~> 1.7",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
