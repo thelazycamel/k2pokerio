@@ -9,6 +9,23 @@
         height: auto;
         #edit-profile {
           width: 100%;
+
+          #profile-buttons {
+            flex-wrap: wrap;
+            .btn {
+              flex-grow: 1;
+              flex-basis: 40%;
+
+              &.btn-stats {
+                margin-bottom: 10px;
+              }
+
+              &.btn-settings {
+                margin-right: 0px;
+                margin-bottom: 10px;
+              }
+            }
+          }
         }
 
         #profile-badges {

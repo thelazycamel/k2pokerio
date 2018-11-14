@@ -85,33 +85,78 @@ body.profile {
           margin: 10px 0px;
           display: flex;
           justify-content: space-between;
-          .btn {
-            flex-grow: 1;
-            flex-basis: 33%;
-          }
 
-          .btn-settings {
-            background-color: #ff9947;
-            margin-right: 10px;
-            &:hover {
-              background-color: #cc7a39;
-              color: #dddddd;
+          .btn {
+
+            flex-grow: 1;
+            flex-basis: 25%;
+
+            &.btn-stats {
+              background-color: #00acde;
+              margin-right: 10px;
+              &.btn-selected {
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #00acde;
+                &:hover {
+                  background-color: transparent;
+                }
+              }
+              &:hover {
+                background-color: #0084AB;
+                color: #dddddd;
+              }
             }
-          }
-          .btn-friends {
-            background-color: #03a750;
-            &:hover {
-              background-color: #027438;
-              color: #dddddd;
+
+            &.btn-settings {
+              background-color: #9EC021;
+              margin-right: 10px;
+              &.btn-selected {
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #9ec021;
+                &:hover {
+                  background-color: transparent;
+                }
+              }
+              &:hover {
+                background-color: #6B8700;
+                color: #dddddd;
+              }
             }
-          }
-          .btn-password {
-            background-color: #157efa;
-            &:hover {
-              background-color: #1164c7;
-              color: #dddddd;
+
+            &.btn-friends {
+              background-color: #F0961C;
+              &.btn-selected {
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #f0961c;
+                &:hover {
+                  background-color: transparent;
+                }
+              }
+              &:hover {
+                background-color: #B76A00;
+                color: #dddddd;
+              }
             }
-            margin-left: 10px;
+
+            &.btn-password {
+              background-color: #DF0E0A;
+              &.btn-selected {
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #df0e0a;
+                &:hover {
+                  background-color: transparent;
+                }
+              }
+              &:hover {
+                background-color: #A60300;
+                color: #dddddd;
+              }
+              margin-left: 10px;
+            }
           }
         }
 
@@ -187,7 +232,7 @@ body.profile {
             background-color: #09102d;
             border-radius: 10px;
             width: 100%;
-            height: 200px;
+            height: 100px;
           }
         }
         #user-stats {

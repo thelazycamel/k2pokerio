@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ProfileSettings from './partials/profile_settings.js';
 import ChangePassword from './partials/change_password.js';
 import FriendsList from './partials/friends_list.js';
+import Stats from './partials/stats.js';
 
 class ProfileEditComponent extends React.Component {
 
@@ -11,13 +12,11 @@ class ProfileEditComponent extends React.Component {
     this.state = {
       profileImage: this.props.image,
       stats: this.decodeStats(props),
-      imageSelector: false,
       blurb: this.props.blurb,
+      imageSelector: false,
       showChangePassword: false,
       pending_me: 0,
-      showSettings: false,
-      showFriends: false,
-      showBlurb: true,
+      area: "stats"
     };
   }
 
@@ -40,22 +39,18 @@ class ProfileEditComponent extends React.Component {
     });
   }
 
-  decodeStats(props){
-    return JSON.parse(props.stats);
-  }
-
   updateBlurb(event){
     App.services.profile.update_blurb(event.target.value).then(data => {
       this.setState(...this.state, { blurb: data.blurb });
     });
   }
 
-  editProfileImageClicked(){
-    this.setState(...this.state, {imageSelector: !this.state.imageSelector});
+  decodeStats(props){
+    return JSON.parse(props.stats);
   }
 
-  editBlurbClicked(){
-    this.setState(...this.state, {blurbEditor: !this.state.blurbEditor});
+  editProfileImageClicked(){
+    this.setState(...this.state, {imageSelector: !this.state.imageSelector});
   }
 
   selectImage(image){
@@ -103,104 +98,37 @@ class ProfileEditComponent extends React.Component {
     App.services.logout_service.call();
   }
 
-  passwordButtonClicked(){
-    let showBlurb = this.state.showChangePassword;
-    this.setState(...this.state, { showChangePassword: !this.state.showChangePassword, showSettings: false, showFriends: false, showBlurb: showBlurb });
+  areaButtonClicked(buttonName){
+    this.setState(...this.state, { area: buttonName});
   }
 
-  friendsButtonClicked(){
-    let showBlurb = this.state.showFriends;
-    this.setState(...this.state, { showFriends: !this.state.showFriends, showChangePassword: false, showSettings: false, showBlurb: showBlurb });
-  }
-
-  settingsButtonClicked(){
-    let showBlurb = this.state.showSettings;
-    this.setState(...this.state, { showSettings: !this.state.showSettings, showChangePassword: false, showFriends: false, showBlurb: showBlurb });
-  }
-
-  renderChangePassword() {
-    if(this.state.showChangePassword) {
-      return(
-        <ChangePassword />
-      )
-    }
-  }
-
-  renderFriends() {
-    if(this.state.showFriends) {
-      return(
-        <FriendsList pending_me={this.state.pending_me} getPendingMe={this.getPendingMe.bind(this) } />
-      )
-    }
-  }
-
-  renderSettings() {
-    if(this.state.showSettings) {
-      return(
-        <ProfileSettings />
-      )
-    }
-  }
-
-  renderBlurb(){
-    let { stats } = this.state;
-    if(this.state.showBlurb){
-      return(
-        <div id="profile-bio">
-          <textarea placeholder="Bio" className="profile-bio-inner" defaultValue={this.state.blurb} onBlur={ this.updateBlurb.bind(this) }></textarea>
-          <div id="user-stats">
-            <table id="user-stats-table">
-              <thead>
-                <tr className="light">
-                  <th colSpan="4">Player Stats</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="dark">
-                  <td>Played</td>
-                  <td className="value">{ stats.games_played }</td>
-                  <td>Won</td>
-                  <td className="value">{ stats.games_won }</td>
-                </tr>
-                <tr className="light">
-                  <td>Lost</td>
-                  <td className="value">{ stats.games_lost }</td>
-                  <td>Folded</td>
-                  <td className="value">{ stats.games_folded }</td>
-                </tr>
-                <tr className="dark">
-                  <td>Tournaments</td>
-                  <td className="value">{ stats.tournaments_won }</td>
-                  <td>Duels</td>
-                  <td className="value">{ stats.duels_won }</td>
-                </tr>
-                <tr className="light">
-                  <td>Top Score (K2)</td>
-                  <td className="value">{ stats.top_score }</td>
-                  <td>Win Ratio</td>
-                  <td className="value">{ this.winRatio(stats.games_played, stats.games_won) }</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )
-    }
-  }
-
-  winRatio(played, wins){
-    if(wins == 0 || played == 0) {
-      return "-";
-    } else {
-      let percent = wins / played * 100;
-      percent = Math.round(percent * 100) / 100;
-      return `${percent}%`;
+  renderArea() {
+    switch(this.state.area) {
+    case "settings":
+      return <ProfileSettings />
+      break;
+    case "friends":
+      return <FriendsList pending_me={this.state.pending_me} getPendingMe={this.getPendingMe.bind(this) } />
+      break;
+    case "password":
+      return <ChangePassword />
+      break;
+    default:
+      return <Stats stats={this.state.stats} blurb={this.state.blurb} updateBlurb={this.updateBlurb.bind(this)} />
     }
   }
 
   renderFriendRequests() {
     if(this.state.pending_me > 0) {
       return <span className="unread-counter">{this.state.pending_me}</span>
+    }
+  }
+
+  selectedClass(buttonName) {
+    if(buttonName == this.state.area) {
+      return " btn-selected";
+    } else {
+      return "";
     }
   }
 
@@ -228,18 +156,16 @@ class ProfileEditComponent extends React.Component {
           </div>
         </div>
         <div id="profile-buttons">
-          <button id="profile-settings" className="btn btn-large btn-settings" onClick={this.settingsButtonClicked.bind(this)}>Settings</button>
-          <button id="profile-friends" className=" btn btn-large btn-friends" onClick={this.friendsButtonClicked.bind(this)}>
+          <button id="profile-stats" className={"btn btn-large btn-stats" + this.selectedClass("stats") } onClick={this.areaButtonClicked.bind(this, "stats")}>Stats</button>
+          <button id="profile-settings" className={"btn btn-large btn-settings" + this.selectedClass("settings") } onClick={this.areaButtonClicked.bind(this, "settings")}>Settings</button>
+          <button id="profile-friends" className={"btn btn-large btn-friends" + this.selectedClass("friends") } onClick={this.areaButtonClicked.bind(this, "friends")}>
             Friends
             { this.renderFriendRequests() }
           </button>
-          <button id="profile-password" className="btn btn-large btn-password" onClick={this.passwordButtonClicked.bind(this)}>Change Password</button>
+          <button id="profile-password" className={"btn btn-large btn-password"+ this.selectedClass("password") } onClick={this.areaButtonClicked.bind(this, "password")}>Change Password</button>
         </div>
 
-        { this.renderChangePassword() }
-        { this.renderFriends() }
-        { this.renderSettings() }
-        { this.renderBlurb() }
+        { this.renderArea() }
 
       </div>
     )
