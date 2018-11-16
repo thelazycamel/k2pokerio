@@ -36,6 +36,7 @@ defmodule K2pokerIoWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
+    max_age: 24*60*60*365,
     key: "_k2poker_io_key",
     signing_salt: "xNvzuKCbJGcPjBo69D4M3#6UCXmrUG#?2ZM43G7tuU9yPD,r$E"
 
