@@ -5,6 +5,21 @@
     #profile-root {
       left: 419px;
       width: 250px;
+      #profile-information {
+        display: flex;
+        flex-direction: column-reverse;
+        .left-col {
+          float: none;
+        }
+        .right-col {
+          float: none;
+          #profile-image {
+            float: right;
+            margin-bottom: 10px;
+          }
+        }
+
+      }
     }
   }
 

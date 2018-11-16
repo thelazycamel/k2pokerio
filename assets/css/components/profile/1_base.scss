@@ -3,32 +3,56 @@
     position: absolute;
     top: 319px;
     height: 300px;
+    overflow-y: scroll;
     background: linear-gradient(to bottom,#010116 50%,#25417f 100%);
     border-radius: 10px;
-    #profile-image {
-      float: right;
-      margin: 10px;
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 10px;
-      }
-    }
-    .friend-status {
-      clear: right;
-      float: right;
-      text-align: center;
-      margin: 10px;
-      width: 100px;
-      &.friend {
-        color: #3d6fe1;
-      }
-      &.pending {
-        color: #a1750b;
-      }
-    }
     #profile-information {
       padding: 10px;
+      .left-col {
+        float: left;
+        p {
+          margin-bottom: 20px;
+        }
+        table#opponent-stats {
+          width: 100%;
+          tr {
+            th {
+              text-align:center;
+              border-top: 4px solid #1f366d;
+              border-bottom: 4px solid #1f366d;
+            }
+            td {
+              padding: 2px;
+              border-bottom: 4px solid #1f366d;
+              &.value {
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+      .right-col {
+        float: right;
+        #profile-image {
+          margin: 0px;
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+          }
+        }
+        .friend-status {
+          text-align: center;
+          width: 100px;
+          &.friend {
+            color: #3d6fe1;
+          }
+          &.pending {
+            color: #a1750b;
+          }
+        }
+
+      }
     }
   }
 

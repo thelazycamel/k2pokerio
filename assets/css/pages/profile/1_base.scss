@@ -92,67 +92,67 @@ body.profile {
             flex-basis: 25%;
 
             &.btn-stats {
-              background-color: #00acde;
+              background-color: #c53d14;
               margin-right: 10px;
               &.btn-selected {
                 background-color: transparent;
                 color: #ffffff;
-                border: 1px solid #00acde;
+                border: 1px solid #c53d14;
                 &:hover {
                   background-color: transparent;
                 }
               }
               &:hover {
-                background-color: #0084AB;
+                background-color: #922d0f;
                 color: #dddddd;
               }
             }
 
             &.btn-settings {
-              background-color: #9EC021;
+              background-color: #67c50a;
               margin-right: 10px;
               &.btn-selected {
                 background-color: transparent;
                 color: #ffffff;
-                border: 1px solid #9ec021;
+                border: 1px solid #67c50a;
                 &:hover {
                   background-color: transparent;
                 }
               }
               &:hover {
-                background-color: #6B8700;
+                background-color: #4C9207;
                 color: #dddddd;
               }
             }
 
             &.btn-friends {
-              background-color: #F0961C;
+              background-color: #213586;
               &.btn-selected {
                 background-color: transparent;
                 color: #ffffff;
-                border: 1px solid #f0961c;
+                border: 1px solid #213586;
                 &:hover {
                   background-color: transparent;
                 }
               }
               &:hover {
-                background-color: #B76A00;
+                background-color: #142153;
                 color: #dddddd;
               }
             }
 
             &.btn-password {
-              background-color: #DF0E0A;
+              background-color: #461303;
               &.btn-selected {
                 background-color: transparent;
                 color: #ffffff;
-                border: 1px solid #df0e0a;
+                border: 1px solid #461303;
                 &:hover {
                   background-color: transparent;
                 }
               }
               &:hover {
-                background-color: #A60300;
+                background-color: #330E02;
                 color: #dddddd;
               }
               margin-left: 10px;

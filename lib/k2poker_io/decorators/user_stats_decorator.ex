@@ -2,13 +2,13 @@ defmodule K2pokerIo.Decorators.UserStatsDecorator do
 
   def decorate(user_stats) do
     if user_stats do
-      user_stats_struct(user_stats)
+      user_stats(user_stats)
     else
       nil_user_stats
     end
   end
 
-  defp user_stats_struct(user_stats) do
+  defp user_stats(user_stats) do
     %{
       games_played:    user_stats.games_played,
       games_won:       user_stats.games_won,
@@ -31,6 +31,5 @@ defmodule K2pokerIo.Decorators.UserStatsDecorator do
       top_score: 0
     }
   end
-
 
 end

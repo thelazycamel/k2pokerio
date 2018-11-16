@@ -9,8 +9,15 @@
       background: none;
       width: 320px;
       height: 540px;
-      p {
-        padding: 5px;
+      #profile-information {
+        .left-col {
+          width: 190px;
+          p {
+            padding: 5px;
+          }
+        }
+        .right-col {
+        }
       }
     }
   }

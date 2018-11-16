@@ -26,6 +26,7 @@ import mainStore from "./reducers/main_store";
 
 /* Utils */
 import Translate from "./utils/translate";
+import Utils from "./utils/utils";
 
 /* API Services */
 
@@ -57,6 +58,7 @@ window.App = {
   init: function() {
     this.setConfig();
     this.setUpTranslations();
+    this.setUpUtils();
     this.initializeServices();
     this.createReduxStore();
     this.setUpCurrentPage();
@@ -67,6 +69,10 @@ window.App = {
     let configurations = document.getElementsByTagName("body")[0].dataset;
     configurations["csrf_token"] = $("meta[name='csrf_token']").attr("content");
     this.settings = Object.assign({}, configurations);
+  },
+
+  setUpUtils(){
+    this.utils = new Utils;
   },
 
   setUpTranslations(){

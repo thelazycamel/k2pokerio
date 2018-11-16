@@ -6,6 +6,11 @@
     #profile-root {
       left: 629px;
       width: 511px;
+      #profile-information {
+        .left-col {
+          width: 380px;
+        }
+      }
     }
   }
 

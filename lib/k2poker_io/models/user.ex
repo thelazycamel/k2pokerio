@@ -9,7 +9,7 @@ defmodule K2pokerIo.User do
     field :password, :string, virtual: true
     field :image, :string
     field :blurb, :string
-    has_one :user_stats, {"user_stats", UserStats}
+    has_one :user_stats, {"user_stats", K2pokerIo.UserStats}
     timestamps()
   end
 

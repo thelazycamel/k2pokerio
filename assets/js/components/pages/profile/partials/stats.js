@@ -10,15 +10,6 @@ class Stats extends React.Component {
     }
   }
 
-  winRatio(played, wins){
-    if(wins == 0 || played == 0) {
-      return "-";
-    } else {
-      let percent = wins / played * 100;
-      percent = Math.round(percent * 100) / 100;
-      return `${percent}%`;
-    }
-  }
 
   render(){
     let { stats } = this.props;
@@ -55,7 +46,7 @@ class Stats extends React.Component {
                 <td>Top Score (K2)</td>
                 <td className="value">{ stats.top_score }</td>
                 <td>Win Ratio</td>
-                <td className="value">{ this.winRatio(stats.games_played, stats.games_won) }</td>
+                <td className="value">{ App.utils.percentage(stats.games_played, stats.games_won) }</td>
               </tr>
             </tbody>
           </table>

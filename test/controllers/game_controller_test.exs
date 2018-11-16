@@ -100,7 +100,15 @@ defmodule K2pokerIo.GameControllerTest do
                   "id" => context.player2.id,
                   "image" => nil,
                   "opponent" => "user",
-                  "username" => context.player2.username
+                  "username" => context.player2.username,
+                  "stats" => true,
+                  "games_won" => 0,
+                  "games_folded" => 0,
+                  "games_lost" => 0,
+                  "games_played" => 0,
+                  "top_score" => 0,
+                  "duels_won" => 0,
+                  "tournaments_won" => 0
                 }
     assert(response == expected)
   end

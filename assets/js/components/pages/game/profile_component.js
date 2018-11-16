@@ -42,15 +42,69 @@ class ProfileComponent extends React.Component {
     }
   }
 
+  renderStats() {
+    let { opponent_profile } = this.props;
+    if(opponent_profile && opponent_profile.stats){
+      return(
+        <table id="opponent-stats">
+          <thead>
+            <tr>
+              <th colSpan="2">Stats</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Played</td>
+              <td className="value">{ opponent_profile.games_played }</td>
+            </tr>
+            <tr>
+              <td>Won</td>
+              <td className="value">{ opponent_profile.games_won }</td>
+            </tr>
+            <tr>
+              <td>Lost</td>
+              <td className="value">{ opponent_profile.games_lost }</td>
+            </tr>
+            <tr>
+              <td>Folded</td>
+              <td className="value">{ opponent_profile.games_folded }</td>
+            </tr>
+            <tr>
+              <td>Top Score</td>
+              <td className="value">{ opponent_profile.top_score }</td>
+            </tr>
+            <tr>
+              <td>Win Ratio</td>
+              <td className="value">{ App.utils.percentage(opponent_profile.games_played, opponent_profile.games_won) }</td>
+            </tr>
+            <tr>
+              <td>Tournaments</td>
+              <td className="value">{ opponent_profile.tournaments_won }</td>
+            </tr>
+            <tr>
+              <td>Duels</td>
+              <td className="value">{ opponent_profile.duels_won }</td>
+            </tr>
+          </tbody>
+        </table>
+      )
+    }
+  }
+
   render() {
     return (<Provider store={this.props.store}>
         <div id="profile-root" className={this.props.page.tabs["profile"]}>
           <div id="profile-inner">
             <h2>{this.props.opponent_profile.username}</h2>
             <div id="profile-information">
-              { this.renderProfileImage() }
-              { this.renderFriendLink() }
-              <p>{this.props.opponent_profile.blurb}</p>
+              <div className="left-col">
+                <p>{this.props.opponent_profile.blurb}</p>
+                { this.renderStats() }
+              </div>
+              <div className="right-col">
+                { this.renderProfileImage() }
+                { this.renderFriendLink() }
+              </div>
             </div>
           </div>
         </div>
