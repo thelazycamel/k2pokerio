@@ -1,3 +1,7 @@
+0.6.8
+	Session Expiry: 1 year
+	Opponent Profile show stats
+	Profile controller redirect if logged out;
 0.6.7
 	Redesign of profile buttons
 0.6.5
