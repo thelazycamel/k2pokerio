@@ -22,7 +22,9 @@ class ChatComponent extends React.Component {
   }
 
   renderInput() {
-    if(App.settings.logged_in == "true"){
+    if(App.settings.chat_disabled == "true"){
+      return <input type="text" id="new-chat" placeholder="Chat disabled, please contact support" disabled />
+    } else if(App.settings.logged_in == "true"){
       return <input type="text" className="logged-in" id="new-chat" onKeyPress={this.handleKeyPress.bind(this)} />
     } else {
       return <input type="text" id="new-chat" placeholder="Log in to join the conversation" disabled />

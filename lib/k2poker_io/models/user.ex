@@ -9,6 +9,7 @@ defmodule K2pokerIo.User do
     field :password, :string, virtual: true
     field :image, :string
     field :blurb, :string
+    field :data, :map
     has_one :user_stats, {"user_stats", K2pokerIo.UserStats}
     timestamps()
   end
@@ -53,6 +54,14 @@ defmodule K2pokerIo.User do
 
   def email_regexp do
     ~r/@/
+  end
+
+  def chat_disabled?(user) do
+    if user do
+      user.data["chat_disabled"] == true
+    else
+      false
+    end
   end
 
 end

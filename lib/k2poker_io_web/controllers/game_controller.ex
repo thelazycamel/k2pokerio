@@ -2,6 +2,7 @@ defmodule K2pokerIoWeb.GameController do
 
   use K2pokerIoWeb, :controller
   alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.User
   alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.QuitGameCommand
   alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
@@ -14,6 +15,7 @@ defmodule K2pokerIoWeb.GameController do
                 player_id: player_id,
                 tournament_id: utd.tournament_id,
                 logged_in: logged_in?(conn),
+                chat_disabled: User.chat_disabled?(current_user(conn)) || false,
                 bots: utd.tournament.bots,
                 max_score: utd.tournament.max_score,
                 tournament_type: utd.tournament.tournament_type

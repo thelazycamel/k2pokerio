@@ -3,6 +3,7 @@ defmodule K2pokerIoWeb.ChatChannel do
   use K2pokerIoWeb, :channel
 
   alias K2pokerIo.Chat
+  alias K2pokerIo.User
   alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Chat.CreateCommentCommand
 
@@ -19,12 +20,14 @@ defmodule K2pokerIoWeb.ChatChannel do
 
   def handle_in("chat:create_comment", %{"comment" => comment, "tournament_id" => tournament_id}, socket) do
     if current_user = socket.assigns[:current_user] do
-      {tournament_id, _} = Integer.parse(tournament_id)
-      case CreateCommentCommand.execute(%{user_id: current_user.id, tournament_id: tournament_id, comment: comment, admin: false}) do
-        {:ok, chat} ->
-          broadcast! socket, "chat:new_comment", %{"chat_id" => chat.id}
-        {:error, _} ->
-          :error
+      unless User.chat_disabled?(current_user) do
+        {tournament_id, _} = Integer.parse(tournament_id)
+        case CreateCommentCommand.execute(%{user_id: current_user.id, tournament_id: tournament_id, comment: comment, admin: false}) do
+          {:ok, chat} ->
+            broadcast! socket, "chat:new_comment", %{"chat_id" => chat.id}
+          {:error, _} ->
+            :error
+        end
       end
     end
     {:noreply, socket}

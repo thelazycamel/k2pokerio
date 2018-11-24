@@ -9,6 +9,7 @@ defmodule K2pokerIoWeb.TournamentController do
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
   alias K2pokerIo.Policies.Tournament.AccessPolicy
   alias K2pokerIo.Queries.Tournaments.GetWinnersQuery
+  alias K2pokerIo.User
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
@@ -23,6 +24,7 @@ defmodule K2pokerIoWeb.TournamentController do
         %{username: username, image: profile_image} = current_user(conn)
         render(conn, "index.html",
           logged_in: logged_in?(conn),
+          chat_disabled: User.chat_disabled?(current_user(conn)),
           tournament_id: Tournament.default.id,
           player_id: player_id,
           username: username,
@@ -43,6 +45,7 @@ defmodule K2pokerIoWeb.TournamentController do
     players = GetPlayersQuery.top_five(tournament_id)
     if current_user(conn) && AccessPolicy.accessible?(current_user(conn), tournament) do
       render(conn, "show.html", logged_in: logged_in?(conn),
+                                chat_disabled: User.chat_disabled?(current_user(conn)),
                                 tournament_id: tournament.id,
                                 player_id: player_id,
                                 tournament: tournament,
