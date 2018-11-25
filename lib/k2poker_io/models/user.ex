@@ -64,4 +64,20 @@ defmodule K2pokerIo.User do
     end
   end
 
+  def admin?(user) do
+    if user do
+      user.data["admin"] == true
+    else
+      false
+    end
+  end
+
+  def mute_sounds?(user) do
+    if user do
+      user.data["mute"] == true
+    else
+      false
+    end
+  end
+
 end
