@@ -6,6 +6,7 @@ defmodule K2pokerIoWeb.ProfileController do
   alias K2pokerIo.UserStats
   alias K2pokerIo.Decorators.UserStatsDecorator
   alias K2pokerIo.Commands.User.UpdatePasswordCommand
+  alias K2pokerIo.Queries.Badges.BadgesQuery
 
   def edit(conn, _params) do
     if current_user(conn) do
@@ -13,6 +14,7 @@ defmodule K2pokerIoWeb.ProfileController do
       render(conn, "edit.html",
               profile: current_user(conn),
               gravatar: gravatar,
+              badges: user_badges(current_user(conn)),
               user_stats: user_stats(current_user(conn))
       )
     else
@@ -61,6 +63,10 @@ defmodule K2pokerIoWeb.ProfileController do
     user_id = current_user.id
     Repo.one(from us in UserStats, where: us.user_id == ^user_id)
     |> UserStatsDecorator.decorate()
+  end
+
+  defp user_badges(current_user) do
+    BadgesQuery.all_by_user(current_user)
   end
 
 end
