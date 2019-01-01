@@ -10,6 +10,8 @@ defmodule K2pokerIo.Badge do
     field :group, :integer
     field :position, :integer
     field :gold, :boolean
+    has_many :user_badges, K2pokerIo.UserBadge
+
     timestamps()
   end
 

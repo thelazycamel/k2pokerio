@@ -30,6 +30,7 @@ import Utils from "./utils/utils";
 
 /* API Services */
 
+import BadgeController from               "./services/badge_controller"
 import FriendsController from             "./services/friends_controller"
 import GamesController from               "./services/games_controller"
 import InvitationsController from         "./services/invitations_controller"
@@ -82,6 +83,7 @@ window.App = {
 
   initializeServices: function() {
     this.services = {};
+    this.services.badges             = new BadgeController();
     this.services.friends            = new FriendsController();
     this.services.games              = new GamesController();
     this.services.invitations        = new InvitationsController();

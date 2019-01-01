@@ -40,6 +40,9 @@ defmodule K2pokerIoWeb.Router do
     get "/friends/search", FriendController, :search
     get "/friends/friends_only", FriendController, :friends_only
 
+    resources "/badges", BadgeController, only: [:index]
+    get "/badges/gold", BadgeController, :gold
+
     resources "/invitations", InvitationController, only: [:index, :delete]
     get "/invitations/accept/:id", InvitationController, :accept
     get "/invitations/count", InvitationController, :count

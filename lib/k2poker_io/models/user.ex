@@ -11,6 +11,7 @@ defmodule K2pokerIo.User do
     field :blurb, :string
     field :data, :map
     has_one :user_stats, {"user_stats", K2pokerIo.UserStats}
+    has_many :user_badges, K2pokerIo.UserBadge
     timestamps()
   end
 

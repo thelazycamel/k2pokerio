@@ -30916,6 +30916,10 @@ var _utils = require("./utils/utils");
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _badge_controller = require("./services/badge_controller");
+
+var _badge_controller2 = _interopRequireDefault(_badge_controller);
+
 var _friends_controller = require("./services/friends_controller");
 
 var _friends_controller2 = _interopRequireDefault(_friends_controller);
@@ -30987,19 +30991,21 @@ var _tournament_events_middleware2 = _interopRequireDefault(_tournament_events_m
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* middleware */
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
 
-// Import dependencies
+
+/* API Services */
+
+/* Utils */
+
+
+// Import local files
 //
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
+// Local files can be imported directly using relative
+// paths "./socket" or full ones "web/static/js/socket".
+
+// libs
+
+/* local */
 window.App = {
 
   init: function init() {
@@ -31031,6 +31037,7 @@ window.App = {
 
   initializeServices: function initializeServices() {
     this.services = {};
+    this.services.badges = new _badge_controller2.default();
     this.services.friends = new _friends_controller2.default();
     this.services.games = new _games_controller2.default();
     this.services.invitations = new _invitations_controller2.default();
@@ -31064,19 +31071,19 @@ window.App = {
 
 /* pages */
 
-/* API Services */
-
-/* Utils */
-
-
-// Import local files
+// Brunch automatically concatenates all files in your
+// watched paths. Those paths can be configured at
+// config.paths.watched in "brunch-config.js".
 //
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
+// However, those files will only be executed if
+// explicitly imported. The only exception are files
+// in vendor, which are never wrapped in imports and
+// therefore are always executed.
 
-// libs
-
-/* local */
+// Import dependencies
+//
+// If you no longer want to use a dependency, remember
+// to also remove its path from "config.paths.watched".
 
 
 App.init();
@@ -33345,7 +33352,7 @@ var ConnectedSideNavComponent = (0, _reactRedux.connect)(mapStateToProps)(SideNa
 exports.default = ConnectedSideNavComponent;
 });
 
-require.register("js/components/pages/profile/edit.js", function(exports, require, module) {
+require.register("js/components/pages/profile/badges_component.js", function(exports, require, module) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33362,22 +33369,6 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _profile_settings = require('./partials/profile_settings.js');
-
-var _profile_settings2 = _interopRequireDefault(_profile_settings);
-
-var _change_password = require('./partials/change_password.js');
-
-var _change_password2 = _interopRequireDefault(_change_password);
-
-var _friends_list = require('./partials/friends_list.js');
-
-var _friends_list2 = _interopRequireDefault(_friends_list);
-
-var _stats = require('./partials/stats.js');
-
-var _stats2 = _interopRequireDefault(_stats);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -33388,228 +33379,112 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ProfileEditComponent = function (_React$Component) {
-  _inherits(ProfileEditComponent, _React$Component);
+var BadgesComponent = function (_React$Component) {
+  _inherits(BadgesComponent, _React$Component);
 
-  function ProfileEditComponent(props) {
-    _classCallCheck(this, ProfileEditComponent);
+  function BadgesComponent(props) {
+    _classCallCheck(this, BadgesComponent);
 
-    var _this = _possibleConstructorReturn(this, (ProfileEditComponent.__proto__ || Object.getPrototypeOf(ProfileEditComponent)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (BadgesComponent.__proto__ || Object.getPrototypeOf(BadgesComponent)).call(this, props));
 
     _this.state = {
-      profileImage: _this.props.image,
-      stats: _this.decodeStats(props),
-      blurb: _this.props.blurb,
-      imageSelector: false,
-      showChangePassword: false,
-      pending_me: 0,
-      area: "stats"
+      badges: []
     };
     return _this;
   }
 
-  _createClass(ProfileEditComponent, [{
+  _createClass(BadgesComponent, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.getPendingMe();
+      this.getBadges();
     }
   }, {
-    key: 'getPendingMe',
-    value: function getPendingMe() {
+    key: 'getBadges',
+    value: function getBadges() {
       var _this2 = this;
 
-      App.services.friends.count("pending_me").then(function (data) {
-        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ pending_me: data.pending_me }]));
-        /*hack*/
-        var headerEl = document.getElementById("profile-friend-requests");
-        if (headerEl) {
-          if (data.pending_me == 0) {
-            headerEl.parentNode.removeChild(headerEl);
-          } else {
-            headerEl.innerHTML = data.pending_me;
-          }
-        }
+      App.services.badges.index({}).then(function (data) {
+        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ badges: data.badges }]));
       });
     }
   }, {
-    key: 'updateBlurb',
-    value: function updateBlurb(event) {
-      var _this3 = this;
-
-      App.services.profile.update_blurb(event.target.value).then(function (data) {
-        _this3.setState.apply(_this3, _toConsumableArray(_this3.state).concat([{ blurb: data.blurb }]));
-      });
-    }
-  }, {
-    key: 'decodeStats',
-    value: function decodeStats(props) {
-      return JSON.parse(props.stats);
-    }
-  }, {
-    key: 'editProfileImageClicked',
-    value: function editProfileImageClicked() {
-      this.setState.apply(this, _toConsumableArray(this.state).concat([{ imageSelector: !this.state.imageSelector }]));
-    }
-  }, {
-    key: 'selectImage',
-    value: function selectImage(image) {
-      var _this4 = this;
-
-      App.services.profile.update_image(image).then(function (data) {
-        _this4.setState.apply(_this4, _toConsumableArray(_this4.state).concat([{ imageSelector: false, profileImage: image }]));
-      });
-    }
-  }, {
-    key: 'profileImageOption',
-    value: function profileImageOption(image, index) {
-      return _react2.default.createElement('div', { className: 'profile-image-option', value: image, style: { backgroundImage: 'url(\'' + image + '\')' }, key: index, onClick: this.selectImage.bind(this, image) });
-    }
-  }, {
-    key: 'profileImageSelect',
-    value: function profileImageSelect() {
-      var _this5 = this;
-
-      var display = this.state.imageSelector ? "flex" : "none";
-      return _react2.default.createElement(
-        'div',
-        { id: 'profile-image-select', name: 'profile-image', style: { display: display } },
-        this.images().map(function (image, index) {
-          return _this5.profileImageOption(image, index);
-        })
-      );
-    }
-  }, {
-    key: 'images',
-    value: function images() {
-      return ["/images/profile-images/bond.png", "/images/profile-images/clint.png", "/images/profile-images/damon.png", "/images/profile-images/delboy.png", "/images/profile-images/female.png", "/images/profile-images/lockstock.png", "/images/profile-images/mcqueen.png", "/images/profile-images/norton.png", "/images/profile-images/penelope.png", "/images/profile-images/rango.png", "/images/profile-images/bettyboop.png", "/images/profile-images/yosemitesam.png", "/images/profile-images/rousso.png", "/images/profile-images/shannon.png", this.props.gravatar];
-    }
-  }, {
-    key: 'logoutClicked',
-    value: function logoutClicked() {
-      App.services.logout_service.call();
-    }
-  }, {
-    key: 'areaButtonClicked',
-    value: function areaButtonClicked(buttonName) {
-      this.setState.apply(this, _toConsumableArray(this.state).concat([{ area: buttonName }]));
-    }
-  }, {
-    key: 'renderArea',
-    value: function renderArea() {
-      switch (this.state.area) {
-        case "settings":
-          return _react2.default.createElement(_profile_settings2.default, null);
-          break;
-        case "friends":
-          return _react2.default.createElement(_friends_list2.default, { pending_me: this.state.pending_me, getPendingMe: this.getPendingMe.bind(this) });
-          break;
-        case "password":
-          return _react2.default.createElement(_change_password2.default, null);
-          break;
-        default:
-          return _react2.default.createElement(_stats2.default, { stats: this.state.stats, blurb: this.state.blurb, updateBlurb: this.updateBlurb.bind(this) });
-      }
-    }
-  }, {
-    key: 'renderFriendRequests',
-    value: function renderFriendRequests() {
-      if (this.state.pending_me > 0) {
+    key: 'renderBadgeRow',
+    value: function renderBadgeRow(badge) {
+      if (badge.gold) {
+        var image = badge.achieved ? badge.image : "unknown";
         return _react2.default.createElement(
-          'span',
-          { className: 'unread-counter' },
-          this.state.pending_me
+          'td',
+          { key: badge.group + "" + badge.position, title: badge.name },
+          _react2.default.createElement('span', { className: 'k2-badge k2-badge-' + image + ' k2-badge-med', title: badge.description })
+        );
+      } else {
+        var achieved = badge.achieved ? "" : "off";
+        return _react2.default.createElement(
+          'td',
+          { key: badge.group + "" + badge.position, title: badge.name },
+          _react2.default.createElement('span', { className: 'k2-badge k2-badge-' + badge.image + ' k2-badge-med ' + achieved, title: badge.description })
         );
       }
     }
   }, {
-    key: 'selectedClass',
-    value: function selectedClass(buttonName) {
-      if (buttonName == this.state.area) {
-        return " btn-selected";
-      } else {
-        return "";
-      }
+    key: 'renderGroup',
+    value: function renderGroup(group) {
+      var _this3 = this;
+
+      var badges = this.state.badges.filter(function (badge) {
+        return badge.group == group;
+      });
+      return _react2.default.createElement(
+        'tr',
+        { className: "group-" + group },
+        badges.sort(function (badge) {
+          return badge.position;
+        }).map(function (badge) {
+          return _this3.renderBadgeRow(badge);
+        })
+      );
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { id: 'edit-profile' },
+        'table',
+        { className: 'badges-table' },
         _react2.default.createElement(
-          'div',
-          { id: 'user-details' },
+          'thead',
+          null,
           _react2.default.createElement(
-            'div',
-            { id: 'user-details-flex' },
+            'tr',
+            null,
             _react2.default.createElement(
-              'div',
-              { className: 'profile-text' },
-              _react2.default.createElement('span', { className: 'icon icon-med icon-cowboy' }),
+              'td',
+              { colSpan: '5' },
               _react2.default.createElement(
-                'span',
-                { className: 'text-username' },
-                this.props.username,
-                _react2.default.createElement(
-                  'a',
-                  { id: 'profile-logout', href: '#', onClick: this.logoutClicked },
-                  '(Logout)'
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'profile-text' },
-              _react2.default.createElement('span', { className: 'icon icon-med icon-email' }),
-              _react2.default.createElement(
-                'span',
-                { className: 'text-email' },
-                this.props.email
+                'h2',
+                null,
+                'Badges'
               )
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { id: 'profile-image' },
-            _react2.default.createElement('img', { src: this.state.profileImage, alt: 'Profile Image' }),
-            _react2.default.createElement('div', { id: 'edit-image', className: 'icon icon-med icon-edit', onClick: this.editProfileImageClicked.bind(this) }),
-            this.profileImageSelect()
           )
         ),
         _react2.default.createElement(
-          'div',
-          { id: 'profile-buttons' },
-          _react2.default.createElement(
-            'button',
-            { id: 'profile-stats', className: "btn btn-large btn-stats" + this.selectedClass("stats"), onClick: this.areaButtonClicked.bind(this, "stats") },
-            'Stats'
-          ),
-          _react2.default.createElement(
-            'button',
-            { id: 'profile-settings', className: "btn btn-large btn-settings" + this.selectedClass("settings"), onClick: this.areaButtonClicked.bind(this, "settings") },
-            'Settings'
-          ),
-          _react2.default.createElement(
-            'button',
-            { id: 'profile-friends', className: "btn btn-large btn-friends" + this.selectedClass("friends"), onClick: this.areaButtonClicked.bind(this, "friends") },
-            'Friends',
-            this.renderFriendRequests()
-          ),
-          _react2.default.createElement(
-            'button',
-            { id: 'profile-password', className: "btn btn-large btn-password" + this.selectedClass("password"), onClick: this.areaButtonClicked.bind(this, "password") },
-            'Change Password'
-          )
-        ),
-        this.renderArea()
+          'tbody',
+          null,
+          this.renderGroup(1),
+          this.renderGroup(2),
+          this.renderGroup(3),
+          this.renderGroup(4),
+          this.renderGroup(5),
+          this.renderGroup(6)
+        )
       );
     }
   }]);
 
-  return ProfileEditComponent;
+  return BadgesComponent;
 }(_react2.default.Component);
 
-exports.default = ProfileEditComponent;
+exports.default = BadgesComponent;
 });
 
 require.register("js/components/pages/profile/partials/change_password.js", function(exports, require, module) {
@@ -34381,6 +34256,273 @@ var Stats = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Stats;
+});
+
+require.register("js/components/pages/profile/profile_edit_component.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _profile_settings = require('./partials/profile_settings.js');
+
+var _profile_settings2 = _interopRequireDefault(_profile_settings);
+
+var _change_password = require('./partials/change_password.js');
+
+var _change_password2 = _interopRequireDefault(_change_password);
+
+var _friends_list = require('./partials/friends_list.js');
+
+var _friends_list2 = _interopRequireDefault(_friends_list);
+
+var _stats = require('./partials/stats.js');
+
+var _stats2 = _interopRequireDefault(_stats);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProfileEditComponent = function (_React$Component) {
+  _inherits(ProfileEditComponent, _React$Component);
+
+  function ProfileEditComponent(props) {
+    _classCallCheck(this, ProfileEditComponent);
+
+    var _this = _possibleConstructorReturn(this, (ProfileEditComponent.__proto__ || Object.getPrototypeOf(ProfileEditComponent)).call(this, props));
+
+    _this.state = {
+      profileImage: _this.props.image,
+      stats: _this.decodeStats(props),
+      blurb: _this.props.blurb,
+      imageSelector: false,
+      showChangePassword: false,
+      pending_me: 0,
+      area: "stats"
+    };
+    return _this;
+  }
+
+  _createClass(ProfileEditComponent, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getPendingMe();
+    }
+  }, {
+    key: 'getPendingMe',
+    value: function getPendingMe() {
+      var _this2 = this;
+
+      App.services.friends.count("pending_me").then(function (data) {
+        _this2.setState.apply(_this2, _toConsumableArray(_this2.state).concat([{ pending_me: data.pending_me }]));
+        /*hack*/
+        var headerEl = document.getElementById("profile-friend-requests");
+        if (headerEl) {
+          if (data.pending_me == 0) {
+            headerEl.parentNode.removeChild(headerEl);
+          } else {
+            headerEl.innerHTML = data.pending_me;
+          }
+        }
+      });
+    }
+  }, {
+    key: 'updateBlurb',
+    value: function updateBlurb(event) {
+      var _this3 = this;
+
+      App.services.profile.update_blurb(event.target.value).then(function (data) {
+        _this3.setState.apply(_this3, _toConsumableArray(_this3.state).concat([{ blurb: data.blurb }]));
+      });
+    }
+  }, {
+    key: 'decodeStats',
+    value: function decodeStats(props) {
+      return JSON.parse(props.stats);
+    }
+  }, {
+    key: 'editProfileImageClicked',
+    value: function editProfileImageClicked() {
+      this.setState.apply(this, _toConsumableArray(this.state).concat([{ imageSelector: !this.state.imageSelector }]));
+    }
+  }, {
+    key: 'selectImage',
+    value: function selectImage(image) {
+      var _this4 = this;
+
+      App.services.profile.update_image(image).then(function (data) {
+        _this4.setState.apply(_this4, _toConsumableArray(_this4.state).concat([{ imageSelector: false, profileImage: image }]));
+      });
+    }
+  }, {
+    key: 'profileImageOption',
+    value: function profileImageOption(image, index) {
+      return _react2.default.createElement('div', { className: 'profile-image-option', value: image, style: { backgroundImage: 'url(\'' + image + '\')' }, key: index, onClick: this.selectImage.bind(this, image) });
+    }
+  }, {
+    key: 'profileImageSelect',
+    value: function profileImageSelect() {
+      var _this5 = this;
+
+      var display = this.state.imageSelector ? "flex" : "none";
+      return _react2.default.createElement(
+        'div',
+        { id: 'profile-image-select', name: 'profile-image', style: { display: display } },
+        this.images().map(function (image, index) {
+          return _this5.profileImageOption(image, index);
+        })
+      );
+    }
+  }, {
+    key: 'images',
+    value: function images() {
+      return ["/images/profile-images/bond.png", "/images/profile-images/clint.png", "/images/profile-images/damon.png", "/images/profile-images/delboy.png", "/images/profile-images/female.png", "/images/profile-images/lockstock.png", "/images/profile-images/mcqueen.png", "/images/profile-images/norton.png", "/images/profile-images/penelope.png", "/images/profile-images/rango.png", "/images/profile-images/bettyboop.png", "/images/profile-images/yosemitesam.png", "/images/profile-images/rousso.png", "/images/profile-images/shannon.png", this.props.gravatar];
+    }
+  }, {
+    key: 'logoutClicked',
+    value: function logoutClicked() {
+      App.services.logout_service.call();
+    }
+  }, {
+    key: 'areaButtonClicked',
+    value: function areaButtonClicked(buttonName) {
+      this.setState.apply(this, _toConsumableArray(this.state).concat([{ area: buttonName }]));
+    }
+  }, {
+    key: 'renderArea',
+    value: function renderArea() {
+      switch (this.state.area) {
+        case "settings":
+          return _react2.default.createElement(_profile_settings2.default, null);
+          break;
+        case "friends":
+          return _react2.default.createElement(_friends_list2.default, { pending_me: this.state.pending_me, getPendingMe: this.getPendingMe.bind(this) });
+          break;
+        case "password":
+          return _react2.default.createElement(_change_password2.default, null);
+          break;
+        default:
+          return _react2.default.createElement(_stats2.default, { stats: this.state.stats, blurb: this.state.blurb, updateBlurb: this.updateBlurb.bind(this) });
+      }
+    }
+  }, {
+    key: 'renderFriendRequests',
+    value: function renderFriendRequests() {
+      if (this.state.pending_me > 0) {
+        return _react2.default.createElement(
+          'span',
+          { className: 'unread-counter' },
+          this.state.pending_me
+        );
+      }
+    }
+  }, {
+    key: 'selectedClass',
+    value: function selectedClass(buttonName) {
+      if (buttonName == this.state.area) {
+        return " btn-selected";
+      } else {
+        return "";
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'edit-profile' },
+        _react2.default.createElement(
+          'div',
+          { id: 'user-details' },
+          _react2.default.createElement(
+            'div',
+            { id: 'user-details-flex' },
+            _react2.default.createElement(
+              'div',
+              { className: 'profile-text' },
+              _react2.default.createElement('span', { className: 'icon icon-med icon-cowboy' }),
+              _react2.default.createElement(
+                'span',
+                { className: 'text-username' },
+                this.props.username,
+                _react2.default.createElement(
+                  'a',
+                  { id: 'profile-logout', href: '#', onClick: this.logoutClicked },
+                  '(Logout)'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'profile-text' },
+              _react2.default.createElement('span', { className: 'icon icon-med icon-email' }),
+              _react2.default.createElement(
+                'span',
+                { className: 'text-email' },
+                this.props.email
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { id: 'profile-image' },
+            _react2.default.createElement('img', { src: this.state.profileImage, alt: 'Profile Image' }),
+            _react2.default.createElement('div', { id: 'edit-image', className: 'icon icon-med icon-edit', onClick: this.editProfileImageClicked.bind(this) }),
+            this.profileImageSelect()
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'profile-buttons' },
+          _react2.default.createElement(
+            'button',
+            { id: 'profile-stats', className: "btn btn-large btn-stats" + this.selectedClass("stats"), onClick: this.areaButtonClicked.bind(this, "stats") },
+            'Stats'
+          ),
+          _react2.default.createElement(
+            'button',
+            { id: 'profile-settings', className: "btn btn-large btn-settings" + this.selectedClass("settings"), onClick: this.areaButtonClicked.bind(this, "settings") },
+            'Settings'
+          ),
+          _react2.default.createElement(
+            'button',
+            { id: 'profile-friends', className: "btn btn-large btn-friends" + this.selectedClass("friends"), onClick: this.areaButtonClicked.bind(this, "friends") },
+            'Friends',
+            this.renderFriendRequests()
+          ),
+          _react2.default.createElement(
+            'button',
+            { id: 'profile-password', className: "btn btn-large btn-password" + this.selectedClass("password"), onClick: this.areaButtonClicked.bind(this, "password") },
+            'Change Password'
+          )
+        ),
+        this.renderArea()
+      );
+    }
+  }]);
+
+  return ProfileEditComponent;
+}(_react2.default.Component);
+
+exports.default = ProfileEditComponent;
 });
 
 require.register("js/components/pages/tournament/index.js", function(exports, require, module) {
@@ -36591,9 +36733,13 @@ var _page2 = require("../page");
 
 var _page3 = _interopRequireDefault(_page2);
 
-var _edit = require("../../components/pages/profile/edit");
+var _profile_edit_component = require("../../components/pages/profile/profile_edit_component");
 
-var _edit2 = _interopRequireDefault(_edit);
+var _profile_edit_component2 = _interopRequireDefault(_profile_edit_component);
+
+var _badges_component = require("../../components/pages/profile/badges_component");
+
+var _badges_component2 = _interopRequireDefault(_badges_component);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36618,12 +36764,13 @@ var ProfileEditPage = function (_page) {
     key: "setUpPage",
     value: function setUpPage() {
       this.initializeMyProfileComponent();
+      this.initializeBadgesComponent();
     }
   }, {
     key: "initializeMyProfileComponent",
     value: function initializeMyProfileComponent() {
       var element = document.getElementById('edit-profile-wrapper');
-      _reactDom2.default.render(_react2.default.createElement(_edit2.default, {
+      _reactDom2.default.render(_react2.default.createElement(_profile_edit_component2.default, {
         username: element.dataset.username,
         blurb: element.dataset.blurb,
         image: element.dataset.image,
@@ -36631,6 +36778,12 @@ var ProfileEditPage = function (_page) {
         gravatar: element.dataset.gravatar,
         stats: element.dataset.stats
       }), element);
+    }
+  }, {
+    key: "initializeBadgesComponent",
+    value: function initializeBadgesComponent() {
+      var element = document.getElementById('profile-badges');
+      _reactDom2.default.render(_react2.default.createElement(_badges_component2.default, null), element);
     }
   }]);
 
@@ -37127,7 +37280,58 @@ var tournamentReducer = function tournamentReducer() {
 exports.default = tournamentReducer;
 });
 
-require.register("js/services/base_controller.js", function(exports, require, module) {
+require.register("js/services/badge_controller.js", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _base_controller = require("./base_controller");
+
+var _base_controller2 = _interopRequireDefault(_base_controller);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BadgeController = function (_BaseController) {
+  _inherits(BadgeController, _BaseController);
+
+  function BadgeController() {
+    _classCallCheck(this, BadgeController);
+
+    var _this = _possibleConstructorReturn(this, (BadgeController.__proto__ || Object.getPrototypeOf(BadgeController)).call(this));
+
+    _this.baseUrl = "/badges";
+    return _this;
+  }
+
+  _createClass(BadgeController, [{
+    key: "gold",
+    value: function gold() {
+      return fetch(this.baseUrl + "/gold", {
+        headers: { 'x-csrf-token': App.settings.csrf_token },
+        credentials: 'same-origin'
+      }).then(function (response) {
+        return response.json();
+      });
+    }
+  }]);
+
+  return BadgeController;
+}(_base_controller2.default);
+
+exports.default = BadgeController;
+});
+
+;require.register("js/services/base_controller.js", function(exports, require, module) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

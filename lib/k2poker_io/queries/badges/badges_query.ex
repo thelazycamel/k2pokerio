@@ -2,19 +2,30 @@ defmodule K2pokerIo.Queries.Badges.BadgesQuery do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Badge
+  alias K2pokerIo.UserBadge
 
   import Ecto.Query
 
   def all_by_user(current_user) do
+    current_user_id = current_user.id
     Repo.all(
       from b in Badge,
+      left_join: ub in assoc(b, :user_badges), on: [badge_id: b.id, user_id: ^current_user_id],
       order_by: [:group, :position],
-      select: %{name: b.name, description: b.description, group: b.group, position: b.position, image: b.image}
+        select: %{name: b.name, description: b.description, group: b.group, position: b.position, image: b.image, gold: b.gold, achieved: ub.id}
     )
   end
 
-  def golds(current_user) do
-    
+  def gold_by_user(current_user) do
+    current_user_id = current_user.id
+    Repo.all(
+      from b in Badge,
+      left_join: ub in assoc(b, :user_badges), on: [badge_id: b.id, user_id: ^current_user_id],
+      where: b.gold == true,
+      order_by: [:group, :position],
+        select: %{name: b.name, description: b.description, group: b.group, position: b.position, image: b.image, gold: b.gold, achieved: ub.id}
+    )
+
   end
 
 end

@@ -1,7 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import page from "../page"
-import ProfileEditComponent from "../../components/pages/profile/edit"
+import ProfileEditComponent from "../../components/pages/profile/profile_edit_component"
+import BadgesComponent from "../../components/pages/profile/badges_component"
 
 class ProfileEditPage extends page {
 
@@ -11,6 +12,7 @@ class ProfileEditPage extends page {
 
   setUpPage() {
     this.initializeMyProfileComponent();
+    this.initializeBadgesComponent();
   }
 
   initializeMyProfileComponent() {
@@ -23,6 +25,11 @@ class ProfileEditPage extends page {
                       gravatar = {element.dataset.gravatar}
                       stats =    {element.dataset.stats}
                      />, element);
+  }
+
+  initializeBadgesComponent() {
+    let element = document.getElementById('profile-badges')
+    ReactDOM.render(<BadgesComponent/>, element);
   }
 
 }
