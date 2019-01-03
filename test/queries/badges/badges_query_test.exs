@@ -110,4 +110,15 @@ defmodule K2pokerIo.BadgesQueryTest do
     refute(badge4.achieved)
   end
 
+  test "#by_action should return the badge id and achieved", context do
+    badge = BadgesQuery.by_action("update_bio", context.player1.id)
+    badge2 = BadgesQuery.by_action("5_friends", context.player2.id)
+    assert(badge.id == context.badge1.id)
+    assert(badge.group == context.badge1.group)
+    assert(badge.achieved)
+    assert(badge2.id == context.badge2.id)
+    assert(badge2.group == context.badge2.group)
+    refute(badge2.achieved)
+  end
+
 end

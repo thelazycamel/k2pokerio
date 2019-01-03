@@ -85,6 +85,7 @@ Repo.insert!(%Badge{
   name: "K2 Hand",
   description: "Win a hand with K2",
   image: "k2-cards",
+  action: "k2_cards",
   group: 2,
   position: 1,
   gold: false
@@ -94,6 +95,7 @@ Repo.insert!(%Badge{
   name: "Cracked Aces",
   description: "Beat a pair of Aces",
   image: "cracked-aces",
+  action: "cracked_aces",
   group: 2,
   position: 2,
   gold: false
@@ -103,6 +105,7 @@ Repo.insert!(%Badge{
   name: "Hill Climber",
   description: "Reach 1024 in K2 Summit",
   image: "hill-climber",
+  action: "hill_climber",
   group: 2,
   position: 3,
   gold: false
@@ -112,6 +115,7 @@ Repo.insert!(%Badge{
   name: "High Flyer",
   description: "Reach 32768 in K2 Summit",
   image: "high-flyer",
+  action: "high_flyer",
   group: 2,
   position: 4,
   gold: false
@@ -131,6 +135,7 @@ Repo.insert!(%Badge{
   name: "Low Straight",
   description: "Win with a really low straight (A2345)",
   image: "low-straight",
+  action: "low_straight",
   group: 3,
   position: 1,
   gold: false
@@ -140,6 +145,7 @@ Repo.insert!(%Badge{
   name: "High Straight",
   description: "Win with a really high straight (TJQKA)",
   image: "high-straight",
+  action: "high_straight",
   group: 3,
   position: 2,
   gold: false
@@ -149,6 +155,7 @@ Repo.insert!(%Badge{
   name: "Straight Flush",
   description: "Win with a straight flush",
   image: "straight-flush",
+  action: "straight_flush",
   group: 3,
   position: 3,
   gold: false
@@ -158,6 +165,7 @@ Repo.insert!(%Badge{
   name: "Royal Flush",
   description: "Win with a royal flush",
   image: "royal-flush",
+  action: "royal_flush",
   group: 3,
   position: 4,
   gold: false
@@ -177,6 +185,7 @@ Repo.insert!(%Badge{
   name: "Hearts",
   description: "Win with an Ace Flush (Hearts)",
   image: "hearts",
+  action: "hearts_flush",
   group: 4,
   position: 1,
   gold: false
@@ -186,6 +195,7 @@ Repo.insert!(%Badge{
   name: "Clubs",
   description: "Win with an Ace Flush (Clubs)",
   image: "clubs",
+  action: "clubs_flush",
   group: 4,
   position: 2,
   gold: false
@@ -195,6 +205,7 @@ Repo.insert!(%Badge{
   name: "Diamonds",
   description: "Win with an Ace Flush (Diamonds)",
   image: "diamonds",
+  action: "diamonds_flush",
   group: 4,
   position: 3,
   gold: false
@@ -204,6 +215,7 @@ Repo.insert!(%Badge{
   name: "Spades",
   description: "Win with an Ace Flush (Spades)",
   image: "spades",
+  action: "spades_flush",
   group: 4,
   position: 4,
   gold: false
@@ -223,6 +235,7 @@ Repo.insert!(%Badge{
   name: "Four Jacks",
   description: "Win with four Jacks",
   image: "jacks",
+  action: "4_jacks",
   group: 5,
   position: 1,
   gold: false
@@ -232,6 +245,7 @@ Repo.insert!(%Badge{
   name: "Four Queens",
   description: "Win with four Queens",
   image: "queens",
+  action: "4_queens",
   group: 5,
   position: 2,
   gold: false
@@ -241,6 +255,7 @@ Repo.insert!(%Badge{
   name: "Four Kings",
   description: "Win with four Kings",
   image: "kings",
+  action: "4_kings",
   group: 5,
   position: 3,
   gold: false
@@ -250,6 +265,7 @@ Repo.insert!(%Badge{
   name: "Four Aces",
   description: "Win with four Aces",
   image: "aces",
+  action: "4_aces",
   group: 5,
   position: 4,
   gold: false
@@ -269,6 +285,7 @@ Repo.insert!(%Badge{
   name: "Duel Winner",
   description: "Win a Duel",
   image: "duel",
+  action: "duel_winner",
   group: 6,
   position: 1,
   gold: false
@@ -278,6 +295,7 @@ Repo.insert!(%Badge{
   name: "Private Tournament Winner",
   description: "Win a Private Tournament",
   image: "private",
+  action: "private_winner",
   group: 6,
   position: 2,
   gold: false
@@ -287,6 +305,7 @@ Repo.insert!(%Badge{
   name: "K2 Summit Winner",
   description: "Win the K2 Summit Tournament",
   image: "k2-tournament",
+  action: "k2_winner",
   group: 6,
   position: 3,
   gold: false
@@ -296,6 +315,7 @@ Repo.insert!(%Badge{
   name: "Crypto Tournament",
   description: "Win a Crypto Tournament",
   image: "monero",
+  action: "crypto_winner",
   group: 6,
   position: 4,
   gold: false
