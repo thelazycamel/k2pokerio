@@ -85,7 +85,8 @@ defmodule K2pokerIo.Commands.Badges.UpdateGameBadgesCommand do
   end
 
   defp process_cracked_aces(player_data, player_id) do
-    if cards_match?(player_data.result.other_player_cards, [~r/A./, ~r/A./]) do
+    [card1, card2]  = player_data.result.other_player_cards
+    if Regex.match?(~r/A./, card1) && Regex.match?(~r/A./, card2) do
       add_badge("cracked_aces", player_id)
     end
   end
@@ -96,7 +97,6 @@ defmodule K2pokerIo.Commands.Badges.UpdateGameBadgesCommand do
     end
   end
 
-  #TODO create a function that can check match of regex (~r/A./)
   defp cards_match?(cards, required_hand) do
     Enum.all?(required_hand, fn (regex) ->
       Enum.any?(cards, fn(card) -> Regex.match?(regex, card) end)

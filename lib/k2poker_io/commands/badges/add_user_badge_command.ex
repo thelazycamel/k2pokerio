@@ -10,7 +10,7 @@ defmodule K2pokerIo.Commands.Badges.AddUserBadgeCommand do
   end
 
   def update_badge(badge, user_id) do
-    unless badge.achieved do
+    if badge && !badge.achieved do
       Repo.insert!(UserBadge.changeset(%UserBadge{}, %{badge_id: badge.id, user_id: user_id}))
       check_for_complete_group(badge, user_id)
     end

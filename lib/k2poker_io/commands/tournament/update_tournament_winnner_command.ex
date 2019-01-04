@@ -5,6 +5,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Chat.BroadcastTournamentMessageCommand
   alias K2pokerIo.Commands.UserStats.UpdateTournamentStatsCommand
+  alias K2pokerIo.Commands.Badges.UpdateTournamentBadgesCommand
 
   import Ecto.Query
 
@@ -13,6 +14,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
   def execute(game, utd) do
     update_tournament(game, utd)
     update_tournament_stats(utd)
+    update_tournament_badges(utd)
   end
 
   defp update_tournament(game, utd) do
@@ -43,6 +45,10 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
 
   defp update_tournament_stats(utd) do
     UpdateTournamentStatsCommand.execute(utd)
+  end
+
+  defp update_tournament_badges(utd) do
+    UpdateTournamentBadgesCommand.execute(utd.tournament, utd.player_id)
   end
 
   defp close_tournament(game) do
