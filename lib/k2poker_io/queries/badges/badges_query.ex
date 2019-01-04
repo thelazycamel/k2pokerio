@@ -15,6 +15,15 @@ defmodule K2pokerIo.Queries.Badges.BadgesQuery do
     )
   end
 
+  def count_by_group(group, user_id) do
+    Repo.one(
+      from ub in UserBadge,
+      left_join: b in assoc(ub, :badge),
+      where: (b.group == ^group and ub.user_id == ^user_id),
+      select: count(ub.id)
+    )
+  end
+
   def all_by_user(current_user) do
     current_user_id = current_user.id
     Repo.all(

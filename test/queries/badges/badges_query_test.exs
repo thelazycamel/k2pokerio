@@ -121,4 +121,11 @@ defmodule K2pokerIo.BadgesQueryTest do
     refute(badge2.achieved)
   end
 
+  test "#count_by_group the number of badges achieved for the given group", context do
+    p1_count = BadgesQuery.count_by_group(1, context.player1.id)
+    p2_count = BadgesQuery.count_by_group(1, context.player2.id)
+    assert(p1_count == 2)
+    assert(p2_count == 0)
+  end
+
 end
