@@ -5,6 +5,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
   alias K2pokerIo.Commands.UserStats.UpdateTopScoreCommand
+  alias K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand
   alias Ecto.Multi
 
   import Ecto.Query
@@ -54,6 +55,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
     |> Multi.update(:utd, UserTournamentDetail.changeset(utd, utd_changeset(game, score, status)))
     |> Multi.run(:game, fn %{get_game: get_game, utd: utd} -> Repo.update(game_update_changeset(get_game, utd.player_id)) end)
     |> Multi.run(:user_stats, fn %{utd: utd} -> update_top_score(score, utd) end)
+    |> Multi.run(:badges, fn %{utd: utd} -> check_badges(score, utd) end)
     |> Multi.run(:update_tournament_winner, fn %{utd: utd, game: game} -> check_tournament_winner(game, utd) end)
     |> Repo.transaction
     |> case do
@@ -64,6 +66,19 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
 
   def update_top_score(score, utd) do
     UpdateTopScoreCommand.execute(score, utd)
+  end
+
+  #TODO move these to update within the UpdateTournamentBadgesCommand
+  # that way they can be broadcast to the user via the tournament channel
+  def check_badges(score, utd) do
+    if utd.tournament.default_tournament do
+      case score do
+        1024 -> UpdateMiscBadgesCommand.execute("hill_climber", utd.player_id)
+        32768 -> UpdateMiscBadgesCommand.execute("high_flyer", utd.player_id)
+        _ -> {:ok}
+      end
+    end
+    {:ok, "badges checked"}
   end
 
   def utd_changeset(game, score, status) do

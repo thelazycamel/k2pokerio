@@ -10,7 +10,7 @@ defmodule K2pokerIo.Queries.Badges.BadgesQuery do
     Repo.one(from b in Badge,
       where: [action: ^action],
       left_join: ub in assoc(b, :user_badges), on: [badge_id: b.id, user_id: ^current_user_id],
-      select: %{id: b.id, group: b.group, achieved: ub.id},
+      select: %{id: b.id, group: b.group, name: b.name, description: b.description, image: b.image, achieved: ub.id},
       limit: 1
     )
   end

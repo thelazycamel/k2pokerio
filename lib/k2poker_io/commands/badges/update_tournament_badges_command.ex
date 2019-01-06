@@ -19,7 +19,7 @@ defmodule K2pokerIo.Commands.Badges.UpdateTournamentBadgesCommand do
 
   defp process_k2_tournament(tournament, player_id) do
     if tournament.default_tournament do
-      add_badge("k2_winner", player_id)
+      add_badge("k2_winner", player_id, tournament)
     end
   end
 
@@ -29,19 +29,26 @@ defmodule K2pokerIo.Commands.Badges.UpdateTournamentBadgesCommand do
 
   defp process_private_tournament(tournament, player_id) do
     if tournament.private && tournament.tournament_type == "tournament" do
-      add_badge("private_winner", player_id)
+      add_badge("private_winner", player_id, tournament)
     end
   end
 
   def process_duel(tournament, player_id) do
     if tournament.private && tournament.tournament_type == "duel" do
-      add_badge("duel_winner", player_id)
+      add_badge("duel_winner", player_id, tournament)
     end
   end
 
-  defp add_badge(action, player_id) do
+  defp add_badge(action, player_id, tournament) do
     {:user, user_id} = User.get_id(player_id)
-    AddUserBadgeCommand.execute(action, user_id)
+    {:ok, badges} = AddUserBadgeCommand.execute(action, user_id)
+    if Enum.any?(badges) do
+      broadcast_to_tournament_channel(badges, player_id, tournament.id)
+    end
+  end
+
+  defp broadcast_to_tournament_channel(badges, player_id, tournament_id) do
+    #TODO broadcast to user within the tournament channel so we can create an alert
   end
 
 end

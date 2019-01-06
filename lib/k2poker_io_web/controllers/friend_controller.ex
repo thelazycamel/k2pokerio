@@ -6,6 +6,7 @@ defmodule K2pokerIoWeb.FriendController do
   alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Queries.Friends.FriendsQuery
   alias K2pokerIo.Decorators.FriendDecorator
+  alias K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand
 
   def index(conn, params) do
     if current_user(conn) do
@@ -25,7 +26,8 @@ defmodule K2pokerIoWeb.FriendController do
     friend_id = convert_to_integer(friend_id)
     if current_user(conn) do
       status = RequestFriendCommand.execute(current_user(conn).id, friend_id)
-      json conn, %{friend: status}
+      {:ok, badges} = update_badges(current_user(conn).id, friend_id)
+      json conn, %{friend: status, badges: badges}
     else
       json conn, %{friend: :na}
     end
@@ -35,7 +37,8 @@ defmodule K2pokerIoWeb.FriendController do
     friend_id = convert_to_integer(friend_id)
     if current_user(conn) do
       status = RequestFriendCommand.execute(current_user(conn).id, friend_id)
-      json conn, %{friend: status}
+      {:ok, badges} = update_badges(current_user(conn).id, friend_id)
+      json conn, %{friend: status, badges: badges}
     else
       json conn, %{friend: :na}
     end
@@ -82,6 +85,19 @@ defmodule K2pokerIoWeb.FriendController do
 
   defp convert_to_integer(friend_id) do
     if is_integer(friend_id), do: friend_id, else: String.to_integer(friend_id)
+  end
+
+  defp update_badges(user_id, friend_id) do
+    update_badges_for_user(friend_id)
+    update_badges_for_user(user_id)
+  end
+
+  defp update_badges_for_user(user_id) do
+    if FriendsQuery.count(user_id, "friends") >= 5 do
+      UpdateMiscBadgesCommand.execute("5_friends", "user|#{user_id}")
+    else
+      {:ok, []}
+    end
   end
 
 end

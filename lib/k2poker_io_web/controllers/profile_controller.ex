@@ -7,6 +7,7 @@ defmodule K2pokerIoWeb.ProfileController do
   alias K2pokerIo.Decorators.UserStatsDecorator
   alias K2pokerIo.Commands.User.UpdatePasswordCommand
   alias K2pokerIo.Queries.Badges.BadgesQuery
+  alias K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand
 
   def edit(conn, _params) do
     if current_user(conn) do
@@ -32,8 +33,9 @@ defmodule K2pokerIoWeb.ProfileController do
 
   def update_blurb(conn, %{"blurb" => blurb} ) do
     changeset = User.profile_changeset(current_user(conn), %{blurb: blurb})
+    {:ok, badges} = UpdateMiscBadgesCommand.execute("update_bio", User.player_id(current_user(conn)))
     case Repo.update(changeset) do
-      {:ok, _} -> json conn, %{status: :ok, blurb: blurb}
+      {:ok, _} -> json conn, %{status: :ok, blurb: blurb, badges: badges}
       {:error, _} -> json conn, %{status: :error}
     end
   end

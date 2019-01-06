@@ -1,22 +1,20 @@
 defmodule K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand do
 
   alias K2pokerIo.UserTournamentDetail
+  alias K2pokerIo.User
+  alias K2pokerIo.Commands.Badges.AddUserBadgeCommand
 
   def execute(action, player_id) do
-    unless UserTournamentDetail.is_anon_user?(player_id) do
-      check_action(action, player_id)
+    if UserTournamentDetail.is_user?(player_id) do
+      add_badge(action, player_id)
+    else
+      {:ok, []}
     end
   end
 
-  defp check_action(action, player_id) do
-    case action do
-      :profile -> check_profile_badge(player_id)
-      _ -> IO.puts "ERROR: no misc badge action set"
-    end
-  end
-
-  defp check_profile_badge(player_id) do
-
+  defp add_badge(action, player_id) do
+    {:user, user_id} = User.get_id(player_id)
+    AddUserBadgeCommand.execute(action, user_id)
   end
 
 end

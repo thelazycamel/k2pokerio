@@ -36,4 +36,8 @@ defmodule K2pokerIo.UserTournamentDetail do
     Regex.match?(~r/^anon\|/, player_id)
   end
 
+  def is_user?(player_id) do
+    Regex.match?(~r/^user\|/, player_id)
+  end
+
 end
