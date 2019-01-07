@@ -2,7 +2,6 @@ defmodule K2pokerIo.UpdateTournamentBadgesCommandTest do
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Commands.Badges.UpdateTournamentBadgesCommand
-  alias K2pokerIo.User
   alias K2pokerIo.Tournament
   alias K2pokerIo.Badge
   alias K2pokerIo.UserBadge

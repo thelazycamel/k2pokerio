@@ -29,8 +29,9 @@ defmodule K2pokerIo.Commands.Chat.CreateCommentCommand do
     Repo.insert(changeset)
   end
 
+  # Note: this is run just before creating the new chat so check that 4 have already been created
   defp check_badge(user_id) do
-    if ChatsQuery.count(user_id) == 5 do
+    if ChatsQuery.count(user_id) == 4 do
       UpdateMiscBadgesCommand.execute("5_chats", "user|#{user_id}")
     end
   end

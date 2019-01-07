@@ -213,7 +213,6 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
     CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "third comment"})
     CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fourth comment"})
     CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fifth comment"})
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "sixth comment"})
 
     user_badge = Repo.one(from ub in UserBadge, where: [user_id: ^user_id, badge_id: ^badge_id])
 
