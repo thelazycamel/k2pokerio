@@ -1,4 +1,7 @@
+import React from "react"
 import socket from "../socket"
+import { renderToStaticMarkup } from 'react-dom/server'
+import BadgeAlertText from 'js/components/shared_partials/badge_alert_text';
 
 class Page {
 
@@ -25,12 +28,17 @@ class Page {
 
 
   /* TODO: Really this should all be done by a nice react component, but having spent some time trying
-   * with refs etc, it didnt work, so falling back to plain ole' JS for now. */
+   * with refs etc, it didnt work, so falling back to plain ole' JS for now.
+   * further note: checkout react portals */
 
   showAlert(type, message) {
     let placeHolder = document.getElementById("alert-popup-holder")
     placeHolder.innerHTML = '<div class="alert alert-' +  type + '" style="display: block"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>';
     this.setUpEventGlobalListeners();
+  }
+
+  showBadgeAlert(badges){
+    this.showAlert("success", renderToStaticMarkup(<BadgeAlertText badges={badges}/>));
   }
 
   searchParamsToObject() {

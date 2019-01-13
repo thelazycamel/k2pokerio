@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProfileSettings from './partials/profile_settings.js';
-import ChangePassword from './partials/change_password.js';
-import FriendsList from './partials/friends_list.js';
-import Stats from './partials/stats.js';
+import ProfileSettings from './partials/profile_settings';
+import ChangePassword from './partials/change_password';
+import FriendsList from './partials/friends_list';
+import Stats from './partials/stats';
 
 class ProfileEditComponent extends React.Component {
 
@@ -42,6 +42,10 @@ class ProfileEditComponent extends React.Component {
   updateBlurb(event){
     App.services.profile.update_blurb(event.target.value).then(data => {
       this.setState(...this.state, { blurb: data.blurb });
+      if(data.badges.length > 0) {
+        App.page.showBadgeAlert(data.badges);
+        App.page.rebuildBadgesComponent();
+      }
     });
   }
 

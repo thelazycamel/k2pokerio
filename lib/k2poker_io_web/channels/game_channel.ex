@@ -11,7 +11,7 @@ defmodule K2pokerIoWeb.GameChannel do
   alias K2pokerIo.Commands.Game.RequestBotCommand
   alias K2pokerIo.Commands.Game.CheckIdlePlayerCommand
 
-  intercept ["game:new_game_data", "game:new_game"]
+  intercept ["game:new_game_data", "game:new_game", "game:badge_awarded"]
 
   def join("game:" <> game_id, _params, socket) do
     player_id = socket.assigns[:player_id]
@@ -84,6 +84,14 @@ defmodule K2pokerIoWeb.GameChannel do
     player_id = socket.assigns[:player_id]
     payload = GetDataCommand.execute(get_game_id(socket), player_id)
     push socket, "game:new_game_data", payload
+    {:noreply, socket}
+  end
+
+  def handle_out("game:badge_awarded", payload, socket) do
+    player_id = socket.assigns[:player_id]
+    if player_id == payload.player_id do
+      push socket, "game:badge_awarded", payload
+    end
     {:noreply, socket}
   end
 

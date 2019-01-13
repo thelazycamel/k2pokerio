@@ -3,6 +3,7 @@ defmodule K2pokerIo.TournamentChannelTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIoWeb.TournamentChannel
   alias K2pokerIo.User
+  alias K2pokerIo.Badge
 
   use K2pokerIoWeb.ChannelCase
 
@@ -58,6 +59,36 @@ defmodule K2pokerIo.TournamentChannelTest do
       |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
     broadcast_from! socket, "tournament:winner", %{username: "stu", player_id: other_player_id}
     refute_push("tournament:winner", %{username: "stu", player_id: ^other_player_id})
+    leave socket
+  end
+
+  test "tournament:badge_awarded sends message to user getting the badge", context do
+
+    badge1 = Repo.insert!(%Badge{
+      name: "Four Queens",
+      description: "Win with four Queens",
+      image: "queens",
+      action: "4_queens",
+      group: 5,
+      position: 2,
+      gold: false
+    })
+
+    badge2 = Repo.insert!(%Badge{
+      name: "Four Kings",
+      description: "Win with four Kings",
+      image: "kings",
+      action: "4_kings",
+      group: 5,
+      position: 3,
+      gold: false
+    })
+    badges = [badge1,badge2]
+    player_id = K2pokerIo.User.player_id(context.player)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(TournamentChannel, "tournament:#{ context.tournament.id}")
+    broadcast_from! socket, "tournament:badge_achieved", %{player_id: player_id, badges: badges}
+    assert_push("tournament:badge_achieved", %{player_id: ^player_id, badges: badges})
     leave socket
   end
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Badge from 'js/components/shared_partials/badge';
 
 class BadgesComponent extends React.Component {
 
@@ -25,14 +26,13 @@ class BadgesComponent extends React.Component {
       let image = badge.achieved ? badge.image : "unknown";
       return(
         <td key={badge.group + "" + badge.position} title={ badge.name }>
-          <span className={ `k2-badge k2-badge-${image} k2-badge-med`} title={badge.description}></span>
+          <Badge image={image} name={badge.name} description={badge.description} size="med" key={badge.id}/>
         </td>
       )
     } else {
-      let achieved = badge.achieved ? "" : "off";
       return(
         <td key={badge.group + "" + badge.position} title={ badge.name }>
-          <span className={ `k2-badge k2-badge-${badge.image} k2-badge-med ${achieved}`} title={badge.description}></span>
+          <Badge {...badge} size="med" key={badge.id} />
         </td>
       )
     }
@@ -45,7 +45,6 @@ class BadgesComponent extends React.Component {
         { badges.sort(badge => badge.position).map(badge => { return this.renderBadgeRow(badge) }) }
       </tr>
     )
-
   }
 
   render() {

@@ -4,6 +4,7 @@ defmodule K2pokerIo.GameChannelTest do
   alias K2pokerIoWeb.GameChannel
   alias K2pokerIo.Game
   alias K2pokerIo.User
+  alias K2pokerIo.Badge
 
   use K2pokerIoWeb.ChannelCase
 
@@ -71,6 +72,36 @@ defmodule K2pokerIo.GameChannelTest do
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "folded")
     close(socket)
+  end
+
+  test "game:badge_awarded sends message to user getting the badge", context do
+
+    badge1 = Repo.insert!(%Badge{
+      name: "Four Queens",
+      description: "Win with four Queens",
+      image: "queens",
+      action: "4_queens",
+      group: 5,
+      position: 2,
+      gold: false
+    })
+
+    badge2 = Repo.insert!(%Badge{
+      name: "Four Kings",
+      description: "Win with four Kings",
+      image: "kings",
+      action: "4_kings",
+      group: 5,
+      position: 3,
+      gold: false
+    })
+    badges = [badge1,badge2]
+    player_id = K2pokerIo.User.player_id(context.player1)
+    {:ok, _, socket} = socket("", %{player_id: player_id})
+      |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
+    broadcast_from! socket, "game:badge_achieved", %{player_id: player_id, badges: badges}
+    assert_push("game:badge_achieved", %{player_id: ^player_id, badges: badges})
+    leave socket
   end
 
 end

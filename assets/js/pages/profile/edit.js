@@ -27,6 +27,14 @@ class ProfileEditPage extends page {
                      />, element);
   }
 
+  /* Hack to reload badges after user has received new ones */
+  /* At some point we should change the profile page into a 1 page app */
+  rebuildBadgesComponent(){
+    let element = document.getElementById('profile-badges')
+    ReactDOM.unmountComponentAtNode(element)
+    this.initializeBadgesComponent()
+  }
+
   initializeBadgesComponent() {
     let element = document.getElementById('profile-badges')
     ReactDOM.render(<BadgesComponent/>, element);

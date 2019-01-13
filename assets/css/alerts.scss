@@ -26,3 +26,16 @@
     background: linear-gradient(to bottom, #ff9947 50%,#ffab4c 100%);
   }
 }
+
+.alert-badge-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .badge {
+    margin: 0px 5px;
+  }
+  h5 {
+    margin-left: 5px;
+  }
+
+}

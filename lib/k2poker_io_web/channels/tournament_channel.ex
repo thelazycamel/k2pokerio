@@ -6,7 +6,7 @@ defmodule K2pokerIoWeb.TournamentChannel do
 
   alias K2pokerIo.Queries.Tournaments.GetPlayersQuery
 
-  intercept ["tournament:loser", "tournament:winner"]
+  intercept ["tournament:loser", "tournament:winner", "tournament:badge_awarded"]
 
   def join("tournament:" <> tournament_id, _params, socket) do
     send self(), {:after_join, tournament_id}
@@ -31,6 +31,14 @@ defmodule K2pokerIoWeb.TournamentChannel do
   def handle_out("tournament:winner", payload, socket) do
     if payload.player_id == socket.assigns[:player_id] do
       push socket, "tournament:winner", payload
+    end
+    {:noreply, socket}
+  end
+
+  def handle_out("tournament:badge_awarded", payload, socket) do
+    player_id = socket.assigns[:player_id]
+    if player_id == payload.player_id do
+      push socket, "tournament:badge_awarded", payload
     end
     {:noreply, socket}
   end

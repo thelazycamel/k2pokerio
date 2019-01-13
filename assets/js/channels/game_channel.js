@@ -25,10 +25,16 @@ export default class GameChannel {
           App.store.dispatch({type: "GAME:DATA_RECEIVED", game: resp});
         }
       });
+
+      App.gameChannel.on("game:badge_awarded", function(resp) {
+        App.page.showBadgeAlert(resp.badges);
+      });
+
     } else {
       window.location = "/";
     }
   }
+
 
 }
 

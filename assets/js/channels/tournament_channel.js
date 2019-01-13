@@ -23,6 +23,11 @@ class TournamentChannel {
     App.tournamentChannel.on("tournament:winner", (data) =>
       App.store.dispatch({type: "TOURNAMENT:WINNER", data: data})
     )
+
+    App.tournamentChannel.on("tournament:badge_awarded", function(data) {
+      App.page.showBadgeAlert(data.badges);
+    });
+
   }
 
 };

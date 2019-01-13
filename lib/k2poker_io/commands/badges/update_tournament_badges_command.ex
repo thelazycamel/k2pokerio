@@ -48,7 +48,8 @@ defmodule K2pokerIo.Commands.Badges.UpdateTournamentBadgesCommand do
   end
 
   defp broadcast_to_tournament_channel(badges, player_id, tournament_id) do
-    #TODO broadcast to user within the tournament channel so we can create an alert
+    payload = %{player_id: player_id, badges: badges}
+    K2pokerIoWeb.Endpoint.broadcast!("tournament:#{tournament_id}", "tournament:badge_awarded", payload)
   end
 
 end
