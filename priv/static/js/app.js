@@ -34773,6 +34773,10 @@ var ChatChannel = function () {
       App.chatChannel.on("chat:new_comment", function (resp) {
         App.store.dispatch({ type: "CHAT:COMMENT_RECEIVED", comment: resp });
       });
+
+      App.chatChannel.on("chat:badge_awarded", function (data) {
+        App.page.showBadgeAlert(data.badges);
+      });
     }
   }]);
 
@@ -37321,6 +37325,10 @@ var FriendsList = function (_React$Component) {
       var _this2 = this;
 
       App.services.friends.create({ id: friend.id }).then(function (data) {
+        if (data.badges.length > 0) {
+          App.page.showBadgeAlert(data.badges);
+          App.page.rebuildBadgesComponent();
+        }
         var friends = _this2.state.friends.map(function (f) {
           if (f.id == friend.id) {
             f.status = data.friend;
@@ -39611,6 +39619,9 @@ var Comment = function (_React$Component) {
 
       App.services.friends.create({ id: comment.user_id }).then(function (response) {
         var show = response.friend;
+        if (response.badges.length > 0) {
+          App.page.showBadgeAlert(response.badges);
+        }
         App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, { show: show }) });
       });
     }

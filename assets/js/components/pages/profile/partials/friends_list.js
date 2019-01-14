@@ -22,6 +22,10 @@ class FriendsList extends React.Component {
 
   addFriend(friend) {
     App.services.friends.create({id: friend.id}).then(data => {
+      if(data.badges.length > 0) {
+        App.page.showBadgeAlert(data.badges);
+        App.page.rebuildBadgesComponent();
+      }
       let friends = this.state.friends.map(f => {
         if(f.id == friend.id) {f.status = data.friend}
         return f;

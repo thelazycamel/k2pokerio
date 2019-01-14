@@ -50,6 +50,9 @@ class Comment extends React.Component {
     let { comment } = this.props;
     App.services.friends.create({id: comment.user_id}).then(response => {
       let show = response.friend;
+      if(response.badges.length > 0) {
+        App.page.showBadgeAlert(response.badges);
+      }
       App.store.dispatch({type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: show})});
     })
   }

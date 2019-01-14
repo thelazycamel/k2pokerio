@@ -26,7 +26,6 @@ class Page {
    }
   }
 
-
   /* TODO: Really this should all be done by a nice react component, but having spent some time trying
    * with refs etc, it didnt work, so falling back to plain ole' JS for now.
    * further note: checkout react portals */

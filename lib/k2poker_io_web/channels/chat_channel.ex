@@ -7,7 +7,7 @@ defmodule K2pokerIoWeb.ChatChannel do
   alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Chat.CreateCommentCommand
 
-  intercept ["chat:new_comment"]
+  intercept ["chat:new_comment", "chat:badge_awarded"]
 
   def join("chat:" <> tournament_id, _params, socket) do
     username = case socket.assigns[:current_user] do
@@ -45,6 +45,14 @@ defmodule K2pokerIoWeb.ChatChannel do
     player_id = socket.assigns[:player_id]
     comments = Chat.get_ten_json(tournament_id, player_id)
     push socket, "chat:new_list", %{comments: comments}
+    {:noreply, socket}
+  end
+
+  def handle_out("chat:badge_awarded", payload, socket) do
+    player_id = socket.assigns[:player_id]
+    if player_id == payload.player_id do
+      push socket, "chat:badge_awarded", payload
+    end
     {:noreply, socket}
   end
 

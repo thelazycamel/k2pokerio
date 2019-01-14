@@ -33,7 +33,7 @@ defmodule K2pokerIoWeb.ProfileController do
 
   def update_blurb(conn, %{"blurb" => blurb} ) do
     changeset = User.profile_changeset(current_user(conn), %{blurb: blurb})
-    {:ok, badges} = UpdateMiscBadgesCommand.execute("update_bio", User.player_id(current_user(conn)))
+    {:ok, badges} = UpdateMiscBadgesCommand.execute("update_bio", User.player_id(current_user(conn)), %{})
     case Repo.update(changeset) do
       {:ok, _} -> json conn, %{status: :ok, blurb: blurb, badges: badges}
       {:error, _} -> json conn, %{status: :error}

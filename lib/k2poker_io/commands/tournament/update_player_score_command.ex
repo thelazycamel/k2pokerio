@@ -70,11 +70,13 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
 
   #TODO move these to update within the UpdateTournamentBadgesCommand
   # that way they can be broadcast to the user via the tournament channel
+  # or pass in opts %{broadcast_to: tournament} so that we can broadcast from the
+  # misc badges
   def check_badges(score, utd) do
     if utd.tournament.default_tournament do
       case score do
-        1024 -> UpdateMiscBadgesCommand.execute("hill_climber", utd.player_id)
-        32768 -> UpdateMiscBadgesCommand.execute("high_flyer", utd.player_id)
+        1024 -> UpdateMiscBadgesCommand.execute("hill_climber", utd.player_id, %{broadcast: "tournament", id: utd.tournament_id})
+        32768 -> UpdateMiscBadgesCommand.execute("high_flyer", utd.player_id, %{broadcast: "tournament", id: utd.tournament_id})
         _ -> {:ok}
       end
     end

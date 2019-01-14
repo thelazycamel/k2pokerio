@@ -94,7 +94,7 @@ defmodule K2pokerIoWeb.FriendController do
 
   defp update_badges_for_user(user_id) do
     if FriendsQuery.count(user_id, "friends") >= 5 do
-      UpdateMiscBadgesCommand.execute("5_friends", "user|#{user_id}")
+      UpdateMiscBadgesCommand.execute("5_friends", "user|#{user_id}", %{})
     else
       {:ok, []}
     end
