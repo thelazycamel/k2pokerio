@@ -5,6 +5,7 @@ defmodule K2pokerIo.Decorators.UserProfileDecorator do
   alias K2pokerIo.UserStats
   alias K2pokerIo.Commands.User.GetFriendStatusCommand
   alias K2pokerIo.Decorators.UserStatsDecorator
+  alias K2pokerIo.Queries.Badges.BadgesQuery
 
   import Ecto.Query
 
@@ -21,12 +22,17 @@ defmodule K2pokerIo.Decorators.UserProfileDecorator do
       blurb:    opponent.blurb,
       image:    opponent.image,
       friend:   friend_status(opponent.id, current_player_id),
+      badges:   user_badges(opponent),
       stats:    true
     }
   end
 
   defp user_stats(opponent) do
     UserStatsDecorator.decorate(opponent.user_stats)
+  end
+
+  defp user_badges(opponent) do
+    BadgesQuery.gold_by_user(opponent)
   end
 
   defp friend_status(opponent_id, current_player_id) do

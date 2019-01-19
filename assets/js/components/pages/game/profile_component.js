@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
+import Badge from 'js/components/shared_partials/badge'
 
 class ProfileComponent extends React.Component {
 
@@ -40,6 +41,11 @@ class ProfileComponent extends React.Component {
           return <h4 className="confirm friend-status"><a href={ "#" + this.props.opponent_profile.id } onClick={this.friendConfirm.bind(this)}>Confirm</a></h4>
       }
     }
+  }
+
+  renderBadges() {
+    let { opponent_profile } = this.props;
+    return opponent_profile.badges.map(badge => { return <Badge key={badge.id} {...badge} size="sm" /> } )
   }
 
   renderStats() {
@@ -84,6 +90,11 @@ class ProfileComponent extends React.Component {
             <tr>
               <td>Duels</td>
               <td className="value">{ opponent_profile.duels_won }</td>
+            </tr>
+            <tr colSpan="2">
+              <td colSpan="2" className="badge-holder">
+                { this.renderBadges() }
+              </td>
             </tr>
           </tbody>
         </table>

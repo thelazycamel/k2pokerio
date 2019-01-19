@@ -36332,6 +36332,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require("react");
@@ -36343,6 +36345,10 @@ var _reactDom = require("react-dom");
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = require("react-redux");
+
+var _badge = require("js/components/shared_partials/badge");
+
+var _badge2 = _interopRequireDefault(_badge);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36425,6 +36431,15 @@ var ProfileComponent = function (_React$Component) {
             );
         }
       }
+    }
+  }, {
+    key: "renderBadges",
+    value: function renderBadges() {
+      var opponent_profile = this.props.opponent_profile;
+
+      return opponent_profile.badges.map(function (badge) {
+        return _react2.default.createElement(_badge2.default, _extends({ key: badge.id }, badge, { size: "sm" }));
+      });
     }
   }, {
     key: "renderStats",
@@ -36561,6 +36576,15 @@ var ProfileComponent = function (_React$Component) {
                 "td",
                 { className: "value" },
                 opponent_profile.duels_won
+              )
+            ),
+            _react2.default.createElement(
+              "tr",
+              { colSpan: "2" },
+              _react2.default.createElement(
+                "td",
+                { colSpan: "2", className: "badge-holder" },
+                this.renderBadges()
               )
             )
           )

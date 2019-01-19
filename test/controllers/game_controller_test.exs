@@ -101,6 +101,7 @@ defmodule K2pokerIo.GameControllerTest do
                   "image" => nil,
                   "opponent" => "user",
                   "username" => context.player2.username,
+                  "badges" => [],
                   "stats" => true,
                   "games_won" => 0,
                   "games_folded" => 0,

@@ -90,24 +90,15 @@ defmodule K2pokerIo.BadgesQueryTest do
 
   test "#gold should return correct results for player1", context do
     query = BadgesQuery.gold_by_user(context.player1)
-    badge3 = Enum.at(query, 0)
-    badge4 = Enum.at(query, 1)
-    assert(Enum.count(query) == 2)
-    assert(badge3.name == context.badge3.name)
-    assert(badge4.name == context.badge4.name)
-    assert(badge3.achieved)
-    refute(badge4.achieved)
+    badge = List.first(query)
+    assert(Enum.count(query) == 1)
+    assert(badge.name == context.badge3.name)
+    assert(badge.achieved)
   end
 
   test "#gold should return correct results for player2", context do
     query = BadgesQuery.gold_by_user(context.player2)
-    badge3 = Enum.at(query, 0)
-    badge4 = Enum.at(query, 1)
-    assert(Enum.count(query) == 2)
-    assert(badge3.name == context.badge3.name)
-    assert(badge4.name == context.badge4.name)
-    refute(badge3.achieved)
-    refute(badge4.achieved)
+    assert(Enum.count(query) == 0)
   end
 
   test "#by_action should return the badge id and achieved", context do

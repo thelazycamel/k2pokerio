@@ -14,6 +14,7 @@ defmodule K2pokerIo.Decorators.AnonUserProfileDecorator do
       blurb:    "Meh, just an anonymous fish",
       image:    "/images/profile-images/fish.png",
       friend:   :na,
+      badges:   [],
       stats: false
       }
   end

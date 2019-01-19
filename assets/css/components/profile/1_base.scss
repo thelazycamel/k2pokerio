@@ -18,14 +18,18 @@
           tr {
             th {
               text-align:center;
-              border-top: 4px solid #1f366d;
-              border-bottom: 4px solid #1f366d;
+              padding: 5px;
+              border-top: 1px solid #1f366d;
+              border-bottom: 1px solid #1f366d;
             }
             td {
               padding: 2px;
-              border-bottom: 4px solid #1f366d;
+              border-bottom: 1px solid #1f366d;
               &.value {
                 text-align: right;
+              }
+              &.badge-holder {
+                text-align: center;
               }
             }
           }

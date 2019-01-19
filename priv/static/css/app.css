@@ -2300,13 +2300,16 @@
         width: 100%; }
         #profile-holder #profile-root #profile-information .left-col table#opponent-stats tr th {
           text-align: center;
-          border-top: 4px solid #1f366d;
-          border-bottom: 4px solid #1f366d; }
+          padding: 5px;
+          border-top: 1px solid #1f366d;
+          border-bottom: 1px solid #1f366d; }
         #profile-holder #profile-root #profile-information .left-col table#opponent-stats tr td {
           padding: 2px;
-          border-bottom: 4px solid #1f366d; }
+          border-bottom: 1px solid #1f366d; }
           #profile-holder #profile-root #profile-information .left-col table#opponent-stats tr td.value {
             text-align: right; }
+          #profile-holder #profile-root #profile-information .left-col table#opponent-stats tr td.badge-holder {
+            text-align: center; }
     #profile-holder #profile-root #profile-information .right-col {
       float: right; }
       #profile-holder #profile-root #profile-information .right-col #profile-image {
