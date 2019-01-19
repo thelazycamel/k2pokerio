@@ -25,21 +25,26 @@ defmodule K2pokerIo.Commands.Badges.AddUserBadgeCommand do
   defp check_for_complete_group(badge, user_id) do
     count = BadgesQuery.count_by_group(badge.group, user_id)
     if count == 4  do
-      {:ok, [badge, add_gold_badge(badge, user_id)]}
+      add_gold_badge(badge, user_id)
     else
-      {:ok, [badge]}
+      {:ok, [decorated(badge)]}
     end
   end
 
   defp add_gold_badge(badge, user_id) do
-    group = badge.group
-    gold_badge = Repo.one(
-      from b in Badge,
-      where: [group: ^group, gold: true],
-      limit: 1
-    )
+    gold_badge = BadgesQuery.gold_for_group(badge.group)
     Repo.insert!(UserBadge.changeset(%UserBadge{}, %{badge_id: gold_badge.id, user_id: user_id}))
-    gold_badge
+    {:ok, [decorated(badge), decorated(gold_badge)]}
+  end
+
+  defp decorated(badge) do
+    %{
+      id: badge.id,
+      name: badge.name,
+      achieved: true,
+      image: badge.image,
+      description: badge.description
+    }
   end
 
 end

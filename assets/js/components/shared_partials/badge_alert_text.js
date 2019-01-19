@@ -12,17 +12,25 @@ class BadgeAlertText extends React.Component {
     return <Badge {...badge} achieved={true} size="sm" key={badge.id}/>
   }
 
-  renderBadges(){
+  renderImages(){
     return(
       this.props.badges.map(badge => { return this.renderBadge(badge) })
     )
   }
 
+  renderNames() {
+    const names = this.props.badges.map(badge => { return badge.name })
+    return names.join(", ")
+  }
+
   render() {
     return (
       <div className="alert-badge-wrapper">
-        { this.renderBadges() }
-        <h5>New {this.pluralizeBadge()} Awarded</h5>
+        { this.renderImages() }
+        <h5>
+          New {this.pluralizeBadge()} Awarded.&nbsp;
+          { this.renderNames() }
+        </h5>
       </div>
     )
   }

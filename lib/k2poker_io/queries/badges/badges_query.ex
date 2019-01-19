@@ -34,6 +34,14 @@ defmodule K2pokerIo.Queries.Badges.BadgesQuery do
     )
   end
 
+  def gold_for_group(group) do
+    Repo.one(
+      from b in Badge,
+      where: [group: ^group,  gold: true],
+      limit: 1
+    )
+  end
+
   def gold_by_user(current_user) do
     current_user_id = current_user.id
     Repo.all(

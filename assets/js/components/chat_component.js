@@ -8,7 +8,7 @@ class ChatComponent extends React.Component {
 
   handleKeyPress(e) {
     if(e.key == "Enter") {
-      App.store.dispatch({type: "CHAT:CREATE_COMMENT", comment: e.currentTarget.value});
+      this.props.store.dispatch({type: "CHAT:CREATE_COMMENT", comment: e.currentTarget.value});
       e.currentTarget.value = "";
     }
   }
