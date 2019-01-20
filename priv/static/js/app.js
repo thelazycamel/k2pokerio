@@ -34774,6 +34774,10 @@ var ChatChannel = function () {
         App.store.dispatch({ type: "CHAT:COMMENT_RECEIVED", comment: resp });
       });
 
+      App.chatChannel.on("chat:admin_message", function (resp) {
+        App.store.dispatch({ type: "CHAT:COMMENT_RECEIVED", comment: resp });
+      });
+
       App.chatChannel.on("chat:badge_awarded", function (data) {
         App.page.showBadgeAlert(data.badges);
       });

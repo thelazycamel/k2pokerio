@@ -19,6 +19,7 @@ defmodule K2pokerIo.Commands.Chat.CreateCommentCommand do
     %{
       user_id: params.user_id,
       tournament_id: params.tournament_id,
+      admin: params.admin,
       comment: sanatized_comment
     }
   end

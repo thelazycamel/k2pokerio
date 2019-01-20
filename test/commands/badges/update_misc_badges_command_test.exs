@@ -208,11 +208,11 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
     user_id = context.player1.id
     badge_id = badge.id
 
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "first comment"})
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "second comment"})
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "third comment"})
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fourth comment"})
-    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fifth comment"})
+    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "first comment", admin: false})
+    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "second comment", admin: false})
+    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "third comment", admin: false})
+    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fourth comment", admin: false})
+    CreateCommentCommand.execute(%{tournament_id: context.tournament.id, user_id: user_id, comment: "fifth comment", admin: false})
 
     user_badge = Repo.one(from ub in UserBadge, where: [user_id: ^user_id, badge_id: ^badge_id])
 

@@ -59,7 +59,7 @@ defmodule K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand do
 
   defp message_room(game, utd) do
     tournament = game.tournament
-    message = "has reached the Jackpot: #{tournament.max_score} ***"
+    message = "#{utd.username} has reached the Jackpot: #{tournament.max_score} ***"
     BroadcastTournamentMessageCommand.execute(tournament.id, message, utd.username)
     game
   end

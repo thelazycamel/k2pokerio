@@ -42,4 +42,15 @@ defmodule K2pokerIo.ChatChannelTest do
     leave(socket)
   end
 
+  test "can send an admin broadcast from anywhere within the app", context do
+    player_id = User.player_id(context.user)
+    tournament_id = "#{context.tournament.id}"
+    {:ok, _, socket} = socket("", %{player_id: player_id, current_user: context.user})
+      |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
+    payload = %{chat_id: "abc123", username: "thelazycamel", comment: "Has reached the K2 Summit", admin: true }
+    K2pokerIoWeb.Endpoint.broadcast! "chat:#{tournament_id}", "chat:admin_message", payload
+    assert_receive %Phoenix.Socket.Message{payload: %{chat_id: "abc123", username: "thelazycamel", comment: "Has reached the K2 Summit", admin: true}}
+    leave(socket)
+  end
+
 end

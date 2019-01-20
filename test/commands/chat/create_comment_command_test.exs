@@ -18,7 +18,8 @@ defmodule K2pokerIo.CreateCommentCommandTest do
     params = %{
       user_id: context.player1.id,
       tournament_id: context.tournament.id,
-      comment: "Testing, Testing 123"
+      comment: "Testing, Testing 123",
+      admin: false
     }
     {:ok, response} = CreateCommentCommand.execute(params)
     assert(response.comment == "Testing, Testing 123")
@@ -28,7 +29,8 @@ defmodule K2pokerIo.CreateCommentCommandTest do
     params = %{
       user_id: context.player1.id,
       tournament_id: context.tournament.id,
-      comment: ""
+      comment: "",
+      admin: false
     }
     {response_type, response} = CreateCommentCommand.execute(params)
     {error_message, error_type} = response.errors[:comment]
@@ -41,13 +43,12 @@ defmodule K2pokerIo.CreateCommentCommandTest do
     params = %{
       user_id: context.player1.id,
       tournament_id: context.tournament.id,
-      comment: "<script>something bad</script>"
+      comment: "<script>something bad</script>",
+      admin: false
     }
     {:ok, response} = CreateCommentCommand.execute(params)
     assert(response.comment == "something bad")
   end
-
-
 
 end
 

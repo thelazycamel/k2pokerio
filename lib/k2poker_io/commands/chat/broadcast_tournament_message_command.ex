@@ -9,12 +9,12 @@ defmodule K2pokerIo.Commands.Chat.BroadcastTournamentMessageCommand do
   end
 
   defp create_payload(tournament_id, comment, username) do
-    admin_id = "admin-#{:rand.uniform(100000000)}"
-    %{username: username, comment: comment, admin: true, id: admin_id}
+    chat_id = "admin-#{:rand.uniform(100000000)}"
+    %{username: username, comment: comment, admin: true, chat_id: chat_id}
   end
 
   defp broadcast_to_tournament(payload, tournament_id) do
-    K2pokerIoWeb.Endpoint.broadcast!("chat:#{tournament_id}", "chat:new_comment", payload)
+    K2pokerIoWeb.Endpoint.broadcast!("chat:#{tournament_id}", "chat:admin_message", payload)
   end
 
 end

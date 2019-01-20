@@ -96,6 +96,7 @@
           }
           &.admin {
             div.chat-text {
+              background-color: #1c2956 !important;
               div.username {
                 display: none;
               }
@@ -103,6 +104,9 @@
               width: auto;
               text-align: center;
               margin: 5px auto;
+              span.quote{
+                display: none;
+              }
             }
           }
         }

@@ -837,11 +837,14 @@
               left: auto;
               background-image: url("/images/chat/owner-comment.svg"); }
         #chat-holder #chat-root #chats #comments-holder .chat-comment.admin div.chat-text {
+          background-color: #1c2956 !important;
           color: #a1750b;
           width: auto;
           text-align: center;
           margin: 5px auto; }
           #chat-holder #chat-root #chats #comments-holder .chat-comment.admin div.chat-text div.username {
+            display: none; }
+          #chat-holder #chat-root #chats #comments-holder .chat-comment.admin div.chat-text span.quote {
             display: none; }
   #chat-holder #chat-root #new-chat {
     position: absolute;
