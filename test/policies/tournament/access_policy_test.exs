@@ -2,6 +2,7 @@ defmodule K2pokerIo.TournamentAccessPolicyTest do
 
   alias K2pokerIo.Repo
   alias K2pokerIo.Test.Helpers
+  alias K2pokerIo.Tournament
   alias K2pokerIo.Policies.Tournament.AccessPolicy
 
   import Ecto.Query
@@ -30,6 +31,25 @@ defmodule K2pokerIo.TournamentAccessPolicyTest do
 
   test "should not be accessible as uninvited", context do
     tournament = Helpers.create_private_tournament(context.player3, "I should not be accessible for player 1")
+    refute(AccessPolicy.accessible?(context.player1, tournament))
+  end
+
+  test "should not be accessible if finished", context do
+    tournament = Repo.insert!(%Tournament{
+      name: "Closing Tournament",
+      default_tournament: false,
+      private: false,
+      tournament_type: "tournament",
+      finished: false,
+      user_id: context.player1.id,
+      lose_type: "all",
+      starting_chips: 1,
+      max_score: 64,
+      bots: true,
+      rebuys: [0]
+    })
+    assert(AccessPolicy.accessible?(context.player1, tournament))
+    tournament = Repo.update!(Tournament.changeset(tournament, %{finished: true}))
     refute(AccessPolicy.accessible?(context.player1, tournament))
   end
 

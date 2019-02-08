@@ -9,7 +9,7 @@ defmodule K2pokerIo.Policies.Tournament.AccessPolicy do
     if tournament.private do
       Repo.one(from i in Invitation, where: [user_id: ^current_user.id, tournament_id: ^tournament.id])
     else
-      current_user #signed_in
+      current_user && !tournament.finished
     end
   end
 
