@@ -13,10 +13,10 @@
       padding: 0px;
       height: 554px;
       width: 320px;
-      border-radius: 0px 0px 10px 10px;
+      border-radius: 10px;
       #game-inner {
         height: 554px;
-        border-radius: 0px 0px 10px 10px;
+        border-radius: 10px;
 
         #game {
           width: 320px;
@@ -33,7 +33,7 @@
           #shine {
             width: 320px;
             height: 80px;
-            border-radius: 0;
+            border-radius: 10px 10px 0px 0px;
           }
 
           #opponent-image {

@@ -8,7 +8,7 @@ class LadderComponent extends React.Component {
 
   scoreClass(value){
     if(this.props.player){
-      return (this.props.player.current_score == value) ? "current-score" : "";
+      return (this.props.player.current_score == value) ? "current-score score" : "score";
     }
   }
 

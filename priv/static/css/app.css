@@ -1527,10 +1527,10 @@
     padding: 0px;
     height: 554px;
     width: 320px;
-    border-radius: 0px 0px 10px 10px; }
+    border-radius: 10px; }
     #game-holder #game-root #game-inner {
       height: 554px;
-      border-radius: 0px 0px 10px 10px; }
+      border-radius: 10px; }
       #game-holder #game-root #game-inner #game {
         width: 320px;
         height: 564px;
@@ -1543,7 +1543,7 @@
         #game-holder #game-root #game-inner #game #shine {
           width: 320px;
           height: 80px;
-          border-radius: 0; }
+          border-radius: 10px 10px 0px 0px; }
         #game-holder #game-root #game-inner #game #opponent-image {
           top: 30px;
           left: 23px;
@@ -1832,10 +1832,144 @@
     left: 890px;
     width: 250px;
     border-radius: 0px 0px 10px 0px; }
-    #ladder-holder #ladder-root #score-ladder {
+    #ladder-holder #ladder-root #ladder-inner #score-ladder {
       font-size: 0.8em;
       float: right;
-      width: 250px; } }
+      width: 250px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal {
+          height: 45px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score {
+              height: 45px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score .tournament-chip {
+                top: 15px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score .username {
+                top: 16px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal {
+        height: 40px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score {
+            height: 40px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score .tournament-chip {
+              top: 13px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score .username {
+              top: 14px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal {
+          height: 35px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score {
+              height: 35px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score .tournament-chip {
+                top: 10px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score .username {
+                top: 11px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal {
+        height: 32px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score {
+            height: 32px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score .tournament-chip {
+              top: 8px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score .username {
+              top: 9px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal {
+        height: 29px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score {
+            height: 29px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score .tournament-chip {
+              top: 6px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score .username {
+              top: 7px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 {
+        margin-top: 7px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal {
+          height: 26px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score {
+              height: 26px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score .tournament-chip {
+                top: 6px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score .username {
+                top: 7px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 {
+        margin-top: 7px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal {
+          height: 24px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score {
+              height: 24px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score .tournament-chip {
+                top: 5px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score .username {
+                top: 6px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 {
+        margin-top: 12px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal {
+          height: 22px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score {
+              height: 22px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score .tournament-chip {
+                top: 3px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score .username {
+                top: 4px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal {
+          height: 21px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score {
+              height: 21px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score .tournament-chip {
+                top: 3px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score .username {
+                top: 4px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 {
+        margin-top: 13px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal {
+          height: 17px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score {
+              height: 17px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score .tournament-chip {
+                top: 0px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score .username {
+                top: 1px; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   #ladder-holder #ladder-root {
@@ -1869,9 +2003,143 @@
   #ladder-holder #ladder-root {
     left: 419px;
     width: 250px; }
-    #ladder-holder #ladder-root #score-ladder {
+    #ladder-holder #ladder-root #ladder-inner #score-ladder {
       font-size: 0.8em;
-      width: 100%; } }
+      width: 100%; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal {
+          height: 45px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score {
+              height: 45px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score .tournament-chip {
+                top: 15px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-64 tr.normal td div.other-player-score .username {
+                top: 16px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal {
+        height: 40px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score {
+            height: 40px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score .tournament-chip {
+              top: 13px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-128 tr.normal td div.other-player-score .username {
+              top: 14px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal {
+          height: 35px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score {
+              height: 35px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score .tournament-chip {
+                top: 10px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-256 tr.normal td div.other-player-score .username {
+                top: 11px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal {
+        height: 32px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score {
+            height: 32px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score .tournament-chip {
+              top: 8px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-512 tr.normal td div.other-player-score .username {
+              top: 9px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal {
+        height: 29px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td {
+          font-size: 11px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td span.score {
+            font-size: 16px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score {
+            height: 29px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score .tournament-chip {
+              top: 6px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-1024 tr.normal td div.other-player-score .username {
+              top: 7px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 {
+        margin-top: 7px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal {
+          height: 26px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score {
+              height: 26px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score .tournament-chip {
+                top: 6px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-2048 tr.normal td div.other-player-score .username {
+                top: 7px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 {
+        margin-top: 7px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal {
+          height: 24px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score {
+              height: 24px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score .tournament-chip {
+                top: 5px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-4096 tr.normal td div.other-player-score .username {
+                top: 6px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 {
+        margin-top: 12px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal {
+          height: 22px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score {
+              height: 22px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score .tournament-chip {
+                top: 3px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-8192 tr.normal td div.other-player-score .username {
+                top: 4px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 {
+        margin-top: 4px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal {
+          height: 21px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score {
+              height: 21px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score .tournament-chip {
+                top: 3px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-16384 tr.normal td div.other-player-score .username {
+                top: 4px; }
+      #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 {
+        margin-top: 13px; }
+        #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal {
+          height: 17px; }
+          #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td {
+            font-size: 11px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td span.score {
+              font-size: 16px; }
+            #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score {
+              height: 17px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score .tournament-chip, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score .tournament-chip {
+                top: 0px; }
+              #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.player-score .username, #ladder-holder #ladder-root #ladder-inner #score-ladder.score-size-131072 tr.normal td div.other-player-score .username {
+                top: 1px; } }
 
 @media (min-width: 500px) and (max-width: 767px) {
   #ladder-holder #ladder-root {
@@ -3134,9 +3402,6 @@ footer {
 body.game.play main {
   height: 619px; }
 
-@media (max-width: 767px) {
-  body.game.play header {
-    display: none; } }
 
 body.page.index #main-content #homepage {
   position: relative;

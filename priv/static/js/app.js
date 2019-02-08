@@ -36184,7 +36184,7 @@ var LadderComponent = function (_React$Component) {
     key: "scoreClass",
     value: function scoreClass(value) {
       if (this.props.player) {
-        return this.props.player.current_score == value ? "current-score" : "";
+        return this.props.player.current_score == value ? "current-score score" : "score";
       }
     }
   }, {
