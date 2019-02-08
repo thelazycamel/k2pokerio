@@ -60,7 +60,8 @@ class GamePlayPage extends page {
   }
 
   startCountDown(){
-    if(this.countDown != 10) {
+    const { opponent } = App.store.getState().opponent_profile;
+    if(this.countDown != 10 || opponent == "bot" ) {
       return new Promise((resolve, reject) => {
         reject(false);
       });

@@ -102,7 +102,8 @@ class PlayButtonComponent extends React.Component {
 
   showTimer(){
     const { player_status, other_player_status, countDown } = this.props.game;
-    return ((player_status == "new" || player_status == "discarded") && other_player_status == "ready") && countDown
+    const { opponent } = this.props.opponent_profile;
+    return ((player_status == "new" || player_status == "discarded") && other_player_status == "ready") && countDown && opponent && opponent !== "bot";
   }
 
   timerIndicator(){
@@ -127,7 +128,8 @@ class PlayButtonComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    game: state.game
+    game: state.game,
+    opponent_profile: state.opponent_profile,
   }
 }
 

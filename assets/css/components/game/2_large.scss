@@ -61,6 +61,13 @@
           background-size: 200px 55px;
           font-size: 1.4em;
           line-height: 2.7em;
+
+          .count-down {
+            position: absolute;
+            left: auto;
+            top: -3px;
+            right: 8px;
+          }
         }
 
         #table-card-1 {
