@@ -47,7 +47,7 @@
 
 
 .k2-badge {
-  background-image: url("/images/badges-sprite.png");
+  background-image: url("/images/badges-sprite-9804ab8b8c6a665075a58f43ba73bc73.png?vsn=d");
   background-position: -240px 0px; }
   .k2-badge.k2-badge-med {
     display: inline-block;
@@ -343,7 +343,7 @@
 
 .btn-play-button {
   cursor: pointer;
-  background-image: url("/images/play-button.svg");
+  background-image: url("/images/play-button-58f3790f4f8d513d97815ddc83f02651.svg?vsn=d");
   background-size: cover;
   text-align: center;
   color: #c3c3c3;
@@ -354,11 +354,11 @@
   .btn-play-button:hover {
     text-decoration: none;
     color: #f3f3f3;
-    background-image: url("/images/play-button-hover.svg"); }
+    background-image: url("/images/play-button-hover-e0b52129fc40e8d6faddc45a2d608c3f.svg?vsn=d"); }
 
 .btn-join-button {
   cursor: pointer;
-  background-image: url("/images/bot-request-button.svg");
+  background-image: url("/images/bot-request-button-fd83088ca6a8035fca4ddcc37e3b8449.svg?vsn=d");
   background-size: cover;
   text-align: center;
   color: #efefef;
@@ -379,7 +379,7 @@
   .btn-join-button:hover {
     text-decoration: none;
     color: #ffffff;
-    background-image: url("/images/bot-request-button-hover.svg"); }
+    background-image: url("/images/bot-request-button-hover-fcfba3beb565426b7402e5b2283e0bf3.svg?vsn=d"); }
 
 .card {
   background-size: contain;
@@ -399,111 +399,111 @@
   .card.player-card.locked {
     cursor: not-allowed; }
   .card.card-2h {
-    background-image: url("/images/deck/2h.svg"); }
+    background-image: url("/images/deck/2h-43d4077095bd581999d306be91198ee5.svg?vsn=d"); }
   .card.card-3h {
-    background-image: url("/images/deck/3h.svg"); }
+    background-image: url("/images/deck/3h-7e11b0a682f7a8b5c06119f898b397dc.svg?vsn=d"); }
   .card.card-4h {
-    background-image: url("/images/deck/4h.svg"); }
+    background-image: url("/images/deck/4h-0b8eccc1faa5f3d22bb30868d4c69a41.svg?vsn=d"); }
   .card.card-5h {
-    background-image: url("/images/deck/5h.svg"); }
+    background-image: url("/images/deck/5h-3f4fcfc134897bd1b30c5c7ec87bbeb0.svg?vsn=d"); }
   .card.card-6h {
-    background-image: url("/images/deck/6h.svg"); }
+    background-image: url("/images/deck/6h-ca2215ff111df56508750036f6543429.svg?vsn=d"); }
   .card.card-7h {
-    background-image: url("/images/deck/7h.svg"); }
+    background-image: url("/images/deck/7h-b336ce60448c81094b73719f7eb21b42.svg?vsn=d"); }
   .card.card-8h {
-    background-image: url("/images/deck/8h.svg"); }
+    background-image: url("/images/deck/8h-18ff3835a544878f4e596d6e2a0df21c.svg?vsn=d"); }
   .card.card-9h {
-    background-image: url("/images/deck/9h.svg"); }
+    background-image: url("/images/deck/9h-a618b617edf6e4cf3be4043c342d40be.svg?vsn=d"); }
   .card.card-Th {
-    background-image: url("/images/deck/Th.svg"); }
+    background-image: url("/images/deck/Th-1a8d2e2c9a8c02497e7d511d19dc68f8.svg?vsn=d"); }
   .card.card-Jh {
-    background-image: url("/images/deck/Jh.svg"); }
+    background-image: url("/images/deck/Jh-0609501d13abcacae882ea43d98e67c3.svg?vsn=d"); }
   .card.card-Qh {
-    background-image: url("/images/deck/Qh.svg"); }
+    background-image: url("/images/deck/Qh-107c7a479ece71778f105754f1da9476.svg?vsn=d"); }
   .card.card-Kh {
-    background-image: url("/images/deck/Kh.svg"); }
+    background-image: url("/images/deck/Kh-a3be9eb6934dd61ce87a3ef96cfb306e.svg?vsn=d"); }
   .card.card-Ah {
-    background-image: url("/images/deck/Ah.svg"); }
+    background-image: url("/images/deck/Ah-180a1dd98638f87bfc4e3646934e1cce.svg?vsn=d"); }
   .card.card-2c {
-    background-image: url("/images/deck/2c.svg"); }
+    background-image: url("/images/deck/2c-3f5ed69013554bcebce15bf1cb4340d7.svg?vsn=d"); }
   .card.card-3c {
-    background-image: url("/images/deck/3c.svg"); }
+    background-image: url("/images/deck/3c-ed76cd9927bed368001e8ae7b8baeb6b.svg?vsn=d"); }
   .card.card-4c {
-    background-image: url("/images/deck/4c.svg"); }
+    background-image: url("/images/deck/4c-d3ff48faa623139be7226c932cf43afa.svg?vsn=d"); }
   .card.card-5c {
-    background-image: url("/images/deck/5c.svg"); }
+    background-image: url("/images/deck/5c-8dfb9ef3c69f645b0c3c66b17b1741b7.svg?vsn=d"); }
   .card.card-6c {
-    background-image: url("/images/deck/6c.svg"); }
+    background-image: url("/images/deck/6c-004f3ac21ad46ee15017e2d43b70e643.svg?vsn=d"); }
   .card.card-7c {
-    background-image: url("/images/deck/7c.svg"); }
+    background-image: url("/images/deck/7c-9ab93f63b66ae6ddc9dae8353991a7b8.svg?vsn=d"); }
   .card.card-8c {
-    background-image: url("/images/deck/8c.svg"); }
+    background-image: url("/images/deck/8c-c05f6d278184d8be9f81dd7b3972074b.svg?vsn=d"); }
   .card.card-9c {
-    background-image: url("/images/deck/9c.svg"); }
+    background-image: url("/images/deck/9c-807c01825683d102a4789114745d66fe.svg?vsn=d"); }
   .card.card-Tc {
-    background-image: url("/images/deck/Tc.svg"); }
+    background-image: url("/images/deck/Tc-0ed8448791402de67c87b29ee8dff22c.svg?vsn=d"); }
   .card.card-Jc {
-    background-image: url("/images/deck/Jc.svg"); }
+    background-image: url("/images/deck/Jc-9a64fb3f51f851575ace17468487a03c.svg?vsn=d"); }
   .card.card-Qc {
-    background-image: url("/images/deck/Qc.svg"); }
+    background-image: url("/images/deck/Qc-5fcba3e34d82a228e666a44ed5d1d9bd.svg?vsn=d"); }
   .card.card-Kc {
-    background-image: url("/images/deck/Kc.svg"); }
+    background-image: url("/images/deck/Kc-1341129dff3c7ad54a5fe1ced8cae8b8.svg?vsn=d"); }
   .card.card-Ac {
-    background-image: url("/images/deck/Ac.svg"); }
+    background-image: url("/images/deck/Ac-eb48223f799c48bf1aca71fcf4045054.svg?vsn=d"); }
   .card.card-2d {
-    background-image: url("/images/deck/2d.svg"); }
+    background-image: url("/images/deck/2d-cb2d1574177ac12606199906a96d0c02.svg?vsn=d"); }
   .card.card-3d {
-    background-image: url("/images/deck/3d.svg"); }
+    background-image: url("/images/deck/3d-61aa6f7bfa66561b75b28ce08c51049c.svg?vsn=d"); }
   .card.card-4d {
-    background-image: url("/images/deck/4d.svg"); }
+    background-image: url("/images/deck/4d-00c344b9589ac5905c91cf1e5ec70e21.svg?vsn=d"); }
   .card.card-5d {
-    background-image: url("/images/deck/5d.svg"); }
+    background-image: url("/images/deck/5d-67d9e581ea552bcc48dff98d5193f7cb.svg?vsn=d"); }
   .card.card-6d {
-    background-image: url("/images/deck/6d.svg"); }
+    background-image: url("/images/deck/6d-ece4b4eb609946e60250e835778e055f.svg?vsn=d"); }
   .card.card-7d {
-    background-image: url("/images/deck/7d.svg"); }
+    background-image: url("/images/deck/7d-661a686d72460ac6ddc3acdaa9acf94c.svg?vsn=d"); }
   .card.card-8d {
-    background-image: url("/images/deck/8d.svg"); }
+    background-image: url("/images/deck/8d-71cde7eaf0d2740f29c01654dc7939b6.svg?vsn=d"); }
   .card.card-9d {
-    background-image: url("/images/deck/9d.svg"); }
+    background-image: url("/images/deck/9d-b04dfdb54f1fa0dec70e0b19afbe9708.svg?vsn=d"); }
   .card.card-Td {
-    background-image: url("/images/deck/Td.svg"); }
+    background-image: url("/images/deck/Td-3faf5a55abe1b34c114bc9c3d74844f9.svg?vsn=d"); }
   .card.card-Jd {
-    background-image: url("/images/deck/Jd.svg"); }
+    background-image: url("/images/deck/Jd-3e785711ba279a4280d48f5255afc7a6.svg?vsn=d"); }
   .card.card-Qd {
-    background-image: url("/images/deck/Qd.svg"); }
+    background-image: url("/images/deck/Qd-9f16ee7225219dcea8c1b2c6b4d4b8f9.svg?vsn=d"); }
   .card.card-Kd {
-    background-image: url("/images/deck/Kd.svg"); }
+    background-image: url("/images/deck/Kd-8012c2ad5742053704b9d57d3779afec.svg?vsn=d"); }
   .card.card-Ad {
-    background-image: url("/images/deck/Ad.svg"); }
+    background-image: url("/images/deck/Ad-98f6a6a0be329e79dc6bdc6c5b832620.svg?vsn=d"); }
   .card.card-2s {
-    background-image: url("/images/deck/2s.svg"); }
+    background-image: url("/images/deck/2s-5d7f80e428302761ffd945d5546628ba.svg?vsn=d"); }
   .card.card-3s {
-    background-image: url("/images/deck/3s.svg"); }
+    background-image: url("/images/deck/3s-622a33e1d7dc91d5a6156eeaf236c1d1.svg?vsn=d"); }
   .card.card-4s {
-    background-image: url("/images/deck/4s.svg"); }
+    background-image: url("/images/deck/4s-298655fd4cf044508f4b9102cd996294.svg?vsn=d"); }
   .card.card-5s {
-    background-image: url("/images/deck/5s.svg"); }
+    background-image: url("/images/deck/5s-785925cf7d29c03e05c9432f61cfba77.svg?vsn=d"); }
   .card.card-6s {
-    background-image: url("/images/deck/6s.svg"); }
+    background-image: url("/images/deck/6s-362b07c3c280ffbba99d7fb9fd2da6cb.svg?vsn=d"); }
   .card.card-7s {
-    background-image: url("/images/deck/7s.svg"); }
+    background-image: url("/images/deck/7s-eeb78d03c8286114e7ff48d35a94dccc.svg?vsn=d"); }
   .card.card-8s {
-    background-image: url("/images/deck/8s.svg"); }
+    background-image: url("/images/deck/8s-d68537d202ebcc67f96353c26c0287da.svg?vsn=d"); }
   .card.card-9s {
-    background-image: url("/images/deck/9s.svg"); }
+    background-image: url("/images/deck/9s-0692c9522590fdeaa79f38d99baebaa7.svg?vsn=d"); }
   .card.card-Ts {
-    background-image: url("/images/deck/Ts.svg"); }
+    background-image: url("/images/deck/Ts-9067ee61537ed812087c64dd30c25583.svg?vsn=d"); }
   .card.card-Js {
-    background-image: url("/images/deck/Js.svg"); }
+    background-image: url("/images/deck/Js-a06afffbfe4bfba7589721abe8a07080.svg?vsn=d"); }
   .card.card-Qs {
-    background-image: url("/images/deck/Qs.svg"); }
+    background-image: url("/images/deck/Qs-4a266d7667645fc764bcede06c8bda0d.svg?vsn=d"); }
   .card.card-Ks {
-    background-image: url("/images/deck/Ks.svg"); }
+    background-image: url("/images/deck/Ks-ee5e69281f993bc1e997dad097883cb0.svg?vsn=d"); }
   .card.card-As {
-    background-image: url("/images/deck/As.svg"); }
+    background-image: url("/images/deck/As-7dc1feaacbd94f90b1ea79537da1a303.svg?vsn=d"); }
   .card.card-back {
-    background-image: url("/images/deck/card-back.svg"); }
+    background-image: url("/images/deck/card-back-11160b785878509a8ba37793a5415cbd.svg?vsn=d"); }
 
 @media (min-width: 1200px) {
   .player-card {
@@ -543,109 +543,109 @@
     /* diamonds */
     /* spades */ }
     .card.card-2h {
-      background-image: url("/images/small-deck/2h.svg"); }
+      background-image: url("/images/small-deck/2h-f76906f74cd464199690d0b2157f7bc1.svg?vsn=d"); }
     .card.card-3h {
-      background-image: url("/images/small-deck/3h.svg"); }
+      background-image: url("/images/small-deck/3h-b8c1a831bc06257256b5b4a6095055aa.svg?vsn=d"); }
     .card.card-4h {
-      background-image: url("/images/small-deck/4h.svg"); }
+      background-image: url("/images/small-deck/4h-717e71e648b7b6c8fd52a7ccdd048bff.svg?vsn=d"); }
     .card.card-5h {
-      background-image: url("/images/small-deck/5h.svg"); }
+      background-image: url("/images/small-deck/5h-efc4b99a1366cbd5fed24be27c4d0e2e.svg?vsn=d"); }
     .card.card-6h {
-      background-image: url("/images/small-deck/6h.svg"); }
+      background-image: url("/images/small-deck/6h-10839c0c27efc7366b0b66de48bbff72.svg?vsn=d"); }
     .card.card-7h {
-      background-image: url("/images/small-deck/7h.svg"); }
+      background-image: url("/images/small-deck/7h-83bba596cc335a6a87a6ae5d1b33b8d0.svg?vsn=d"); }
     .card.card-8h {
-      background-image: url("/images/small-deck/8h.svg"); }
+      background-image: url("/images/small-deck/8h-fb12b01000d31466bf8cdba623e6b6dc.svg?vsn=d"); }
     .card.card-9h {
-      background-image: url("/images/small-deck/9h.svg"); }
+      background-image: url("/images/small-deck/9h-de8be7ccd59824e2761cba85f3208a69.svg?vsn=d"); }
     .card.card-Th {
-      background-image: url("/images/small-deck/Th.svg"); }
+      background-image: url("/images/small-deck/Th-02f5f8db710f575a6a8aa28ca56bc2b6.svg?vsn=d"); }
     .card.card-Jh {
-      background-image: url("/images/small-deck/Jh.svg"); }
+      background-image: url("/images/small-deck/Jh-afbad19e2097d8ae64e502937be93960.svg?vsn=d"); }
     .card.card-Qh {
-      background-image: url("/images/small-deck/Qh.svg"); }
+      background-image: url("/images/small-deck/Qh-04e57bc2e9df0d5d6af507369be9c53d.svg?vsn=d"); }
     .card.card-Kh {
-      background-image: url("/images/small-deck/Kh.svg"); }
+      background-image: url("/images/small-deck/Kh-c3cc468f4e229e4f931da215553f95d9.svg?vsn=d"); }
     .card.card-Ah {
-      background-image: url("/images/small-deck/Ah.svg"); }
+      background-image: url("/images/small-deck/Ah-0a0eba626264d066ccab3e55dfd80aad.svg?vsn=d"); }
     .card.card-2c {
-      background-image: url("/images/small-deck/2c.svg"); }
+      background-image: url("/images/small-deck/2c-83ccd5f2d54bedfb72bbba81dd58f2b3.svg?vsn=d"); }
     .card.card-3c {
-      background-image: url("/images/small-deck/3c.svg"); }
+      background-image: url("/images/small-deck/3c-08dc22c2f0b346818d09d714de1fd5de.svg?vsn=d"); }
     .card.card-4c {
-      background-image: url("/images/small-deck/4c.svg"); }
+      background-image: url("/images/small-deck/4c-08b13454dbf80cb2b5df92f47536cf3c.svg?vsn=d"); }
     .card.card-5c {
-      background-image: url("/images/small-deck/5c.svg"); }
+      background-image: url("/images/small-deck/5c-4e66cf5da0d78a006faff76a02d84d57.svg?vsn=d"); }
     .card.card-6c {
-      background-image: url("/images/small-deck/6c.svg"); }
+      background-image: url("/images/small-deck/6c-686cd5dd33ac0ff206a7690bfaf29038.svg?vsn=d"); }
     .card.card-7c {
-      background-image: url("/images/small-deck/7c.svg"); }
+      background-image: url("/images/small-deck/7c-ec97fbafa4026b85f689224a11e9f62d.svg?vsn=d"); }
     .card.card-8c {
-      background-image: url("/images/small-deck/8c.svg"); }
+      background-image: url("/images/small-deck/8c-2e325e23e85c8112a52c238eab110f98.svg?vsn=d"); }
     .card.card-9c {
-      background-image: url("/images/small-deck/9c.svg"); }
+      background-image: url("/images/small-deck/9c-8b0dc0b11703f18b877d83b5a35a9fef.svg?vsn=d"); }
     .card.card-Tc {
-      background-image: url("/images/small-deck/Tc.svg"); }
+      background-image: url("/images/small-deck/Tc-4d025e03ac7ce2362bea43538a60ea02.svg?vsn=d"); }
     .card.card-Jc {
-      background-image: url("/images/small-deck/Jc.svg"); }
+      background-image: url("/images/small-deck/Jc-edda9c6e796b2694797f427beba03926.svg?vsn=d"); }
     .card.card-Qc {
-      background-image: url("/images/small-deck/Qc.svg"); }
+      background-image: url("/images/small-deck/Qc-12069add0cff7a51d789546529412a85.svg?vsn=d"); }
     .card.card-Kc {
-      background-image: url("/images/small-deck/Kc.svg"); }
+      background-image: url("/images/small-deck/Kc-ffe855a6a5668870156cbf95ffaf355c.svg?vsn=d"); }
     .card.card-Ac {
-      background-image: url("/images/small-deck/Ac.svg"); }
+      background-image: url("/images/small-deck/Ac-05dfcbff96b1072fe66e97b290c6874d.svg?vsn=d"); }
     .card.card-2d {
-      background-image: url("/images/small-deck/2d.svg"); }
+      background-image: url("/images/small-deck/2d-0eff62e4caaa18b8b73e841b528d47a8.svg?vsn=d"); }
     .card.card-3d {
-      background-image: url("/images/small-deck/3d.svg"); }
+      background-image: url("/images/small-deck/3d-be33cb42238c8fab7bc3983162a71b2b.svg?vsn=d"); }
     .card.card-4d {
-      background-image: url("/images/small-deck/4d.svg"); }
+      background-image: url("/images/small-deck/4d-b0e909ddbdab32a226602d6e403fde36.svg?vsn=d"); }
     .card.card-5d {
-      background-image: url("/images/small-deck/5d.svg"); }
+      background-image: url("/images/small-deck/5d-3ebec3138b352a2dfa000843bf088c34.svg?vsn=d"); }
     .card.card-6d {
-      background-image: url("/images/small-deck/6d.svg"); }
+      background-image: url("/images/small-deck/6d-b54758d7cc9f4148d67027970195f6ed.svg?vsn=d"); }
     .card.card-7d {
-      background-image: url("/images/small-deck/7d.svg"); }
+      background-image: url("/images/small-deck/7d-af8c99bc99cb10f43c792d8d2aad9ddc.svg?vsn=d"); }
     .card.card-8d {
-      background-image: url("/images/small-deck/8d.svg"); }
+      background-image: url("/images/small-deck/8d-a66209f4ef489ffbcf7b2731eccc08cc.svg?vsn=d"); }
     .card.card-9d {
-      background-image: url("/images/small-deck/9d.svg"); }
+      background-image: url("/images/small-deck/9d-d715eea01a47b3673d04ab920997c0f9.svg?vsn=d"); }
     .card.card-Td {
-      background-image: url("/images/small-deck/Td.svg"); }
+      background-image: url("/images/small-deck/Td-eb3905deae12172d73d51b3bc76f331b.svg?vsn=d"); }
     .card.card-Jd {
-      background-image: url("/images/small-deck/Jd.svg"); }
+      background-image: url("/images/small-deck/Jd-11253005922e8befebc396c83e95d6a7.svg?vsn=d"); }
     .card.card-Qd {
-      background-image: url("/images/small-deck/Qd.svg"); }
+      background-image: url("/images/small-deck/Qd-2d97873f20fe0cf6b98e6c0fdb8a47e2.svg?vsn=d"); }
     .card.card-Kd {
-      background-image: url("/images/small-deck/Kd.svg"); }
+      background-image: url("/images/small-deck/Kd-5db6b1d188048cfd5bbc18ec37623414.svg?vsn=d"); }
     .card.card-Ad {
-      background-image: url("/images/small-deck/Ad.svg"); }
+      background-image: url("/images/small-deck/Ad-251627f187ef896a2b60fbe60fce6d1a.svg?vsn=d"); }
     .card.card-2s {
-      background-image: url("/images/small-deck/2s.svg"); }
+      background-image: url("/images/small-deck/2s-cf250bc45b261ec73ad12616f628a1da.svg?vsn=d"); }
     .card.card-3s {
-      background-image: url("/images/small-deck/3s.svg"); }
+      background-image: url("/images/small-deck/3s-59a8d82cb645c5073645cff58110637a.svg?vsn=d"); }
     .card.card-4s {
-      background-image: url("/images/small-deck/4s.svg"); }
+      background-image: url("/images/small-deck/4s-28d6ae856aaa06a71ffeceb09b4a72ef.svg?vsn=d"); }
     .card.card-5s {
-      background-image: url("/images/small-deck/5s.svg"); }
+      background-image: url("/images/small-deck/5s-01be8dbbb46b36f871b3ae65a9e4cde2.svg?vsn=d"); }
     .card.card-6s {
-      background-image: url("/images/small-deck/6s.svg"); }
+      background-image: url("/images/small-deck/6s-137675eb1d418a6f7df7795fe36f2058.svg?vsn=d"); }
     .card.card-7s {
-      background-image: url("/images/small-deck/7s.svg"); }
+      background-image: url("/images/small-deck/7s-8b7f3f2250372c2b6ec686fdd4687998.svg?vsn=d"); }
     .card.card-8s {
-      background-image: url("/images/small-deck/8s.svg"); }
+      background-image: url("/images/small-deck/8s-f04972f4a4964e24366dd97e8fc0f73b.svg?vsn=d"); }
     .card.card-9s {
-      background-image: url("/images/small-deck/9s.svg"); }
+      background-image: url("/images/small-deck/9s-3aafd949aae5d90f9c14da2f34c74588.svg?vsn=d"); }
     .card.card-Ts {
-      background-image: url("/images/small-deck/Ts.svg"); }
+      background-image: url("/images/small-deck/Ts-7a832b9832682295a10cdc4e25b7edf5.svg?vsn=d"); }
     .card.card-Js {
-      background-image: url("/images/small-deck/Js.svg"); }
+      background-image: url("/images/small-deck/Js-d5507d32bc5d3040cc7b94b52177aa3e.svg?vsn=d"); }
     .card.card-Qs {
-      background-image: url("/images/small-deck/Qs.svg"); }
+      background-image: url("/images/small-deck/Qs-99974c08d756c965e8c179e952bc7906.svg?vsn=d"); }
     .card.card-Ks {
-      background-image: url("/images/small-deck/Ks.svg"); }
+      background-image: url("/images/small-deck/Ks-e3b3b6f1631a9ef5927f31d2a1dfe703.svg?vsn=d"); }
     .card.card-As {
-      background-image: url("/images/small-deck/As.svg"); }
+      background-image: url("/images/small-deck/As-7a6796b8de8643ba49ba7f60b527d583.svg?vsn=d"); }
   .player-card {
     width: 102px;
     height: 137px; }
@@ -735,7 +735,7 @@
 
 .player-card.discarded {
   transform: rotateX(360deg);
-  background-image: url("/images/deck/card-back.svg"); }
+  background-image: url("/images/deck/card-back-11160b785878509a8ba37793a5415cbd.svg?vsn=d"); }
 
 #player-card-1.new-card {
   transform: rotateX(0deg);
@@ -767,7 +767,7 @@
     left: 0px;
     width: 100%;
     height: 100px;
-    background-image: url("/images/chat-fader.svg");
+    background-image: url("/images/chat-fader-a17ead1069a77f4001bc8dc0cfd7c237.svg?vsn=d");
     background-repeat: repeat-x; }
   #chat-holder #chat-root #chats {
     position: relative;
@@ -816,7 +816,7 @@
             position: absolute;
             left: -6px;
             bottom: 0;
-            background-image: url("/images/chat/comment.svg");
+            background-image: url("/images/chat/comment-950ec843f66366212b1c85cb476aac07.svg?vsn=d");
             background-size: cover; }
           #chat-holder #chat-root #chats #comments-holder .chat-comment div.chat-text a.friend-request {
             cursor: pointer;
@@ -835,7 +835,7 @@
             #chat-holder #chat-root #chats #comments-holder .chat-comment.owner div.chat-text span.quote {
               right: -6px;
               left: auto;
-              background-image: url("/images/chat/owner-comment.svg"); }
+              background-image: url("/images/chat/owner-comment-b46473b6fc84957e85b55100900567e0.svg?vsn=d"); }
         #chat-holder #chat-root #chats #comments-holder .chat-comment.admin div.chat-text {
           background-color: #1c2956 !important;
           color: #a1750b;
@@ -863,7 +863,7 @@
     #chat-holder #chat-root #new-chat.logged-in {
       padding-left: 35px;
       font-size: 1.5em;
-      background-image: url("/images/input-background.png");
+      background-image: url("/images/input-background-300c7072efc0d43e7cd1add4bde9fd94.png?vsn=d");
       background-repeat: no-repeat;
       background-position: 10px 12px; }
 
@@ -977,87 +977,87 @@
     background-size: cover;
     opacity: 0.1; }
     #chips-holder #chips-root #player-chips.chips-1 {
-      background-image: url("/images/chips/chips-1.png");
+      background-image: url("/images/chips/chips-1-25cff5db8ce761a90918985b9b9cd0f6.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-2 {
-      background-image: url("/images/chips/chips-2.png");
+      background-image: url("/images/chips/chips-2-3163e2741dd30100a56e84cd66345e7d.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-4 {
-      background-image: url("/images/chips/chips-4.png");
+      background-image: url("/images/chips/chips-4-699ae4e81c4d726d3e5e13a913041607.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-8 {
-      background-image: url("/images/chips/chips-8.png");
+      background-image: url("/images/chips/chips-8-5f0b0256828b0168da460150bb726239.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-16 {
-      background-image: url("/images/chips/chips-16.png");
+      background-image: url("/images/chips/chips-16-87b043e9e92af664b10eadbd9c9a6058.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-32 {
-      background-image: url("/images/chips/chips-32.png");
+      background-image: url("/images/chips/chips-32-318fb39fc718dfc196f30e43012fd7d5.png?vsn=d");
       transition: opacity 1s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-64 {
-      background-image: url("/images/chips/chips-64.png");
+      background-image: url("/images/chips/chips-64-22793f49e87fa54ff03c04cb00b8f9f2.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-128 {
-      background-image: url("/images/chips/chips-128.png");
+      background-image: url("/images/chips/chips-128-6d36f856a304bcb18d0d09df1c80beb1.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-256 {
-      background-image: url("/images/chips/chips-256.png");
+      background-image: url("/images/chips/chips-256-24b29c80acb96262b4e65e54e9a9cb17.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-512 {
-      background-image: url("/images/chips/chips-512.png");
+      background-image: url("/images/chips/chips-512-5b9c64827718e8f9af003e6764630805.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-1024 {
-      background-image: url("/images/chips/chips-1024.png");
+      background-image: url("/images/chips/chips-1024-03877d8fdefe7c4db08f45b400ede9cf.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-2048 {
-      background-image: url("/images/chips/chips-2048.png");
+      background-image: url("/images/chips/chips-2048-c882706459499196f3797648e3b22d81.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-4096 {
-      background-image: url("/images/chips/chips-4096.png");
+      background-image: url("/images/chips/chips-4096-9b54df16527e8db88cc903a7ceed89c2.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-8192 {
-      background-image: url("/images/chips/chips-8192.png");
+      background-image: url("/images/chips/chips-8192-2abae1cda6f64eee24562188d741afcd.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-16384 {
-      background-image: url("/images/chips/chips-16384.png");
+      background-image: url("/images/chips/chips-16384-c1cb93f157ea3478e54a0a1f10b3b418.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-32768 {
-      background-image: url("/images/chips/chips-32768.png");
+      background-image: url("/images/chips/chips-32768-b3a7c8785d0de3d6b345b2406312b329.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-65536 {
-      background-image: url("/images/chips/chips-65536.png");
+      background-image: url("/images/chips/chips-65536-bc75844e0bbbe37e7b69a888a596b018.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-131072 {
-      background-image: url("/images/chips/chips-131072.png");
+      background-image: url("/images/chips/chips-131072-f97be28621633fb8c382f1c0f9cd068b.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-262144 {
-      background-image: url("/images/chips/chips-262144.png");
+      background-image: url("/images/chips/chips-262144-e2df38fc7c410ecd37ba114e10560ac5.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-524288 {
-      background-image: url("/images/chips/chips-524288.png");
+      background-image: url("/images/chips/chips-524288-99fa402ad042491bc0f5f2614cd8dcc5.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
     #chips-holder #chips-root #player-chips.chips-1048576 {
-      background-image: url("/images/chips/chips-1048576.png");
+      background-image: url("/images/chips/chips-1048576-27b5e49ae80063dde513855a68ffe923.png?vsn=d");
       transition: opacity .5s ease-in;
       opacity: 1; }
 
@@ -1137,7 +1137,7 @@
   background: linear-gradient(to bottom, #82e1ff 0%, #172a55 50%);
   border-radius: 10px; }
   #game-holder #game-root #game-inner {
-    background-image: url("/images/blue-back.png");
+    background-image: url("/images/blue-back-0652fa483d15510ba3fa07705de850ad.png?vsn=d");
     background-position: center;
     height: 615px;
     border-radius: 10px; }
@@ -1148,7 +1148,7 @@
         top: 0px;
         left: 0px;
         z-index: 5;
-        background-image: url("/images/shine.svg");
+        background-image: url("/images/shine-e39249fa97f8377c72013fcc408afc49.svg?vsn=d");
         background-repeat: no-repeat;
         border-radius: 10px 10px 0px 0px; }
       #game-holder #game-root #game-inner #game #opponent-image {
@@ -1205,7 +1205,7 @@
   position: absolute;
   display: inline-block;
   cursor: pointer;
-  background-image: url("/images/play-button.svg");
+  background-image: url("/images/play-button-58f3790f4f8d513d97815ddc83f02651.svg?vsn=d");
   text-align: center;
   color: #c3c3c3;
   transition: opacity .5s; }
@@ -1217,43 +1217,43 @@
   #game-holder #play-button:hover {
     text-decoration: none;
     color: #f3f3f3;
-    background-image: url("/images/play-button-hover.svg"); }
+    background-image: url("/images/play-button-hover-e0b52129fc40e8d6faddc45a2d608c3f.svg?vsn=d"); }
   #game-holder #play-button.waiting {
     cursor: auto;
     color: #f3f3f3;
-    background-image: url("/images/wait-button.svg"); }
+    background-image: url("/images/wait-button-2ba0af6aafc70d352ae542c37b98f67c.svg?vsn=d"); }
   #game-holder #play-button.waiting:hover {
     cursor: auto;
     color: #f3f3f3;
-    background-image: url("/images/wait-button.svg"); }
+    background-image: url("/images/wait-button-2ba0af6aafc70d352ae542c37b98f67c.svg?vsn=d"); }
   #game-holder #play-button.next-game {
     color: #efefef;
-    background-image: url("/images/bot-request-button.svg"); }
+    background-image: url("/images/bot-request-button-fd83088ca6a8035fca4ddcc37e3b8449.svg?vsn=d"); }
   #game-holder #play-button.next-game:hover {
     color: #efefef;
-    background-image: url("/images/bot-request-button-hover.svg"); }
+    background-image: url("/images/bot-request-button-hover-fcfba3beb565426b7402e5b2283e0bf3.svg?vsn=d"); }
   #game-holder #play-button.disabled, #game-holder #play-button.disabled:hover {
     color: #f3f3f3;
-    background-image: url("/images/wait-button.svg"); }
+    background-image: url("/images/wait-button-2ba0af6aafc70d352ae542c37b98f67c.svg?vsn=d"); }
   #game-holder #play-button.bot-request {
     color: #efefef;
-    background-image: url("/images/bot-request-button.svg"); }
+    background-image: url("/images/bot-request-button-fd83088ca6a8035fca4ddcc37e3b8449.svg?vsn=d"); }
   #game-holder #play-button.bot-request:hover {
     color: #ffffff;
-    background-image: url("/images/bot-request-button-hover.svg"); }
+    background-image: url("/images/bot-request-button-hover-fcfba3beb565426b7402e5b2283e0bf3.svg?vsn=d"); }
 
 #game-holder #fold-button, #game-holder #quit-button {
   position: absolute;
   z-index: 6;
   display: inline-block;
   cursor: pointer;
-  background-image: url("/images/fold-button.svg");
+  background-image: url("/images/fold-button-4a26dc643618f553cbe9e0e2052427b1.svg?vsn=d");
   text-align: center;
   color: #c3c3c3; }
   #game-holder #fold-button:hover, #game-holder #quit-button:hover {
     text-decoration: none;
     color: #f3f3f3;
-    background-image: url("/images/fold-button-hover.svg"); }
+    background-image: url("/images/fold-button-hover-edd7ad267de2b74a35acb1c692066ad9.svg?vsn=d"); }
   #game-holder #fold-button:disabled, #game-holder #fold-button[disabled=disabled], #game-holder #quit-button:disabled, #game-holder #quit-button[disabled=disabled] {
     opacity: 0.5; }
 
@@ -1263,7 +1263,7 @@
     #game-holder #game-root #game {
       width: 625px;
       height: 615px;
-      background-image: url("/images/play-area-large.svg");
+      background-image: url("/images/play-area-large-0a4ce75015ba6f68b56c229b92c5f3b1.svg?vsn=d");
       background-size: cover; }
       #game-holder #game-root #game #shine {
         width: 625px;
@@ -1345,7 +1345,7 @@
     #game-holder #game-root #game {
       width: 534px;
       height: 615px;
-      background-image: url("/images/play-area-medium.svg");
+      background-image: url("/images/play-area-medium-05e3df0545d705842e77a9c981b27c44.svg?vsn=d");
       background-size: cover; }
       #game-holder #game-root #game #shine {
         width: 534px;
@@ -1440,7 +1440,7 @@
     #game-holder #game-root #game-inner #game {
       width: 415px;
       height: 615px;
-      background-image: url("/images/play-area-small.svg");
+      background-image: url("/images/play-area-small-15f5517f2f97c7d2c345c66e425f2bdf.svg?vsn=d");
       background-size: cover; }
       #game-holder #game-root #game-inner #game .scoreboard {
         position: absolute;
@@ -1539,7 +1539,7 @@
       #game-holder #game-root #game-inner #game {
         width: 320px;
         height: 564px;
-        background-image: url("/images/play-area-phone.svg");
+        background-image: url("/images/play-area-phone-63f1ccb6cd5c6ab718e07335056ab304.svg?vsn=d");
         background-size: cover; }
         #game-holder #game-root #game-inner #game .scoreboard {
           position: absolute;
@@ -1631,7 +1631,7 @@
   overflow: hidden; }
   #ladder-holder #ladder-root #ladder-inner #score-ladder {
     z-index: 1;
-    background-image: url("/images/mountain.svg");
+    background-image: url("/images/mountain-6e1214030c86838dfec12046411edfe3.svg?vsn=d");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
@@ -1665,7 +1665,7 @@
           #ladder-holder #ladder-root #ladder-inner #score-ladder tr td div.player-score .tournament-chip {
             position: absolute;
             display: inline-block;
-            background-image: url("/images/tournament/player-chip.svg");
+            background-image: url("/images/tournament/player-chip-04590155dd10eb08cc790def3c63b612.svg?vsn=d");
             top: 0px;
             right: 0px;
             width: 30px;
@@ -1708,7 +1708,7 @@
             text-align: left; }
           #ladder-holder #ladder-root #ladder-inner #score-ladder tr td div.other-player-score .tournament-chip {
             position: absolute;
-            background-image: url("/images/tournament/chip-leader-chip.svg");
+            background-image: url("/images/tournament/chip-leader-chip-7de8d5f42e70defb46fc02a22a4c4bc1.svg?vsn=d");
             top: 0px;
             left: 0px;
             width: 30px;
@@ -2543,7 +2543,7 @@
     height: 100px;
     margin: 10px;
     margin-bottom: 10px;
-    background-image: url("/images/trophies/wooden-spoon.svg");
+    background-image: url("/images/trophies/wooden-spoon-de49c3a8ef8c440cdea5338f5e9a9dbf.svg?vsn=d");
     background-size: cover; }
   #tournament-loser .popup-modal-header {
     border-bottom: 1px solid #470a12 !important; }
@@ -2556,7 +2556,7 @@
   height: 120px;
   margin: 10px;
   margin-bottom: 10px;
-  background-image: url("/images/trophies/tournament-winner.svg");
+  background-image: url("/images/trophies/tournament-winner-69d12ddd6f6dbc67ea64133835d51b98.svg?vsn=d");
   background-size: cover; }
 
 #profile-holder #profile-root {
@@ -2778,7 +2778,7 @@
       width: 30px;
       height: 39px;
       font-size: 0;
-      background-image: url("/images/scoreboard.svg");
+      background-image: url("/images/scoreboard-3d359a79a1b9b09ddf940eaabc770cdb.svg?vsn=d");
       background-size: 300px 39px;
       float: left;
       margin-left: 1px; }
@@ -3145,7 +3145,7 @@ h1, h2 {
   z-index: 999; }
 
 .icon {
-  background-image: url("/images/icon-sprite.svg");
+  background-image: url("/images/icon-sprite-38fe645d3e9084e01f37aab1c2f4ac39.svg?vsn=d");
   display: inline-block;
   overflow: hidden; }
   .icon.icon-tiny {
@@ -3422,7 +3422,7 @@ body.page.index #main-content #homepage {
     z-index: 1;
     width: 100%;
     height: 630px;
-    background-image: url("/images/homepage/sky.svg");
+    background-image: url("/images/homepage/sky-073441ce8f081dbbf2eb4dcce1d25f22.svg?vsn=d");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
@@ -3433,7 +3433,7 @@ body.page.index #main-content #homepage {
     width: 100%;
     height: 630px;
     z-index: 2;
-    background-image: url("/images/homepage/mountain.svg");
+    background-image: url("/images/homepage/mountain-c63ce5a7f56751948cb8cf56522d483b.svg?vsn=d");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
@@ -3444,7 +3444,7 @@ body.page.index #main-content #homepage {
     width: 100%;
     height: 630px;
     z-index: 3;
-    background-image: url("/images/homepage/middle.svg");
+    background-image: url("/images/homepage/middle-df85d0f194809f19c77d7962343ba3d9.svg?vsn=d");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
@@ -3455,14 +3455,14 @@ body.page.index #main-content #homepage {
     width: 100%;
     height: 630px;
     z-index: 4;
-    background-image: url("/images/homepage/foreground.svg");
+    background-image: url("/images/homepage/foreground-ee55cc1c2240e32b7a59ba3cbd2a00d7.svg?vsn=d");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
   body.page.index #main-content #homepage #beta {
     width: 100px;
     height: 100px;
-    background-image: url("/images/homepage/beta.svg");
+    background-image: url("/images/homepage/beta-2f660b27f8004bd823d0cc884cf8ce08.svg?vsn=d");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -3848,7 +3848,7 @@ body.profile.edit #friends-list .k2-table {
       margin: 0px 10px; }
 
 body.profile.edit #friends-list input.search-users {
-  background-image: url("/images/icon-search.svg");
+  background-image: url("/images/icon-search-c54e77e398330513d958c799d7c3d409.svg?vsn=d");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: 7px 7px;
@@ -3907,7 +3907,7 @@ body.registration header #sign-up-link {
 
 body.registration main {
   height: 630px;
-  background-image: url("/images/pages/sign-up.png");
+  background-image: url("/images/pages/sign-up-d682dcc14101826dac94452eb947350c.png?vsn=d");
   background-position: 580px 100px;
   background-repeat: no-repeat;
   background-size: 400px 631px; }
@@ -3962,7 +3962,7 @@ body.session.new header #login-link {
 
 body.session.new main {
   height: 630px;
-  background-image: url("/images/pages/login.svg");
+  background-image: url("/images/pages/login-79fc98bd834c713bf43871f2b4cb253b.svg?vsn=d");
   background-position: 580px 160px;
   background-repeat: no-repeat; }
   body.session.new main section.session-container {

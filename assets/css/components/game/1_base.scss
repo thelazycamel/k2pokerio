@@ -114,6 +114,13 @@
     color: #c3c3c3;
     transition: opacity .5s;
 
+    .count-down {
+      position: absolute;
+      left: auto;
+      top: -3px;
+      right: -5px;
+    }
+
     &:hover {
       text-decoration: none;
       color: #f3f3f3;

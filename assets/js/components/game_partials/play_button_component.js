@@ -100,10 +100,23 @@ class PlayButtonComponent extends React.Component {
     }
   }
 
+  showTimer(){
+    const { player_status, other_player_status, countDown } = this.props.game;
+    return ((player_status == "new" || player_status == "discarded") && other_player_status == "ready") && countDown
+  }
+
+  timerIndicator(){
+    const { countDown } = this.props.game;
+    if(this.showTimer()){
+      return <span className="count-down unread-counter">{ countDown }</span>
+    }
+  }
+
   render() {
     return(
       <Provider store={this.props.store}>
         <a id="play-button" className={this.classNames()} onClick={this.playButtonClicked.bind(this)}>
+          {this.timerIndicator()}
           {this.playButtonText()}
         </a>
       </Provider>

@@ -10,12 +10,15 @@ const gameEventsMiddleware = store => next => action => {
       window.location = "/";
       break;
     case "GAME:PLAY":
+      App.page.stopCountDown();
       App.gameChannel.push("game:play");
       break;
     case "GAME:DISCARD":
+      App.page.stopCountDown();
       App.gameChannel.push("game:discard", {card_index: action.card_index});
       break;
     case "GAME:FOLD":
+      App.page.stopCountDown();
       App.gameChannel.push("game:fold");
       break;
     case "GAME:NEXT_GAME":
@@ -35,6 +38,25 @@ const gameEventsMiddleware = store => next => action => {
       switch(action.game.player_status){
         case "ready":
           App.store.dispatch({type: "PAGE:SET_WAITING_PING"});
+          break;
+        case "new":
+          if(action.game.other_player_status == "ready"){
+            App.page.startCountDown().then(countDown => {
+              App.store.dispatch({type: "GAME:COUNTDOWN", countDown: countDown});
+            }, (error) => {
+              console.log("countdown not needed");
+            });
+          }
+          App.store.dispatch({type: "PAGE:CLEAR_WAITING_PING"});
+          break;
+        case "discarded":
+          if(action.game.other_player_status == "ready"){
+            App.page.startCountDown().then(countDown => {
+              App.store.dispatch({type: "GAME:COUNTDOWN", countDown: countDown});
+            }, (error) => {
+              console.log("countdown not needed");
+            })
+          }
           break;
         default:
           App.store.dispatch({type: "PAGE:CLEAR_WAITING_PING"});

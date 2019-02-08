@@ -1,20 +1,20 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import tournamentChannel from "../../channels/tournament_channel"
-import chatChannel from "../../channels/chat_channel"
+import tournamentChannel from "js/channels/tournament_channel"
+import chatChannel from "js/channels/chat_channel"
 
-import LadderComponent from "../../components/pages/game/ladder_component"
-import ChipsComponent from "../../components/pages/game/chips_component"
-import ChatComponent from "../../components/chat_component"
-import GameComponent from "../../components/game_component"
-import ProfileComponent from "../../components/pages/game/profile_component"
-import RulesComponent from "../../components/pages/game/rules_component"
-import HeaderNavComponent from "../../components/header_nav_component"
-import SideNavComponent from "../../components/pages/game/side_nav_component"
-import PageComponentManager from "../../utils/page_component_manager"
-import TournamentWinnerPopup from "../../components/popups/tournament_winner_popup"
-import TournamentLoserPopup from "../../components/popups/tournament_loser_popup"
+import LadderComponent from "js/components/pages/game/ladder_component"
+import ChipsComponent from "js/components/pages/game/chips_component"
+import ChatComponent from "js/components/chat_component"
+import GameComponent from "js/components/game_component"
+import ProfileComponent from "js/components/pages/game/profile_component"
+import RulesComponent from "js/components/pages/game/rules_component"
+import HeaderNavComponent from "js/components/header_nav_component"
+import SideNavComponent from "js/components/pages/game/side_nav_component"
+import PageComponentManager from "js/utils/page_component_manager"
+import TournamentWinnerPopup from "js/components/popups/tournament_winner_popup"
+import TournamentLoserPopup from "js/components/popups/tournament_loser_popup"
 
 import page from "../page"
 
@@ -25,6 +25,8 @@ class GamePlayPage extends page {
   }
 
   setUpPage() {
+    this.countDown = 10;
+    this.countDownTimer = () => null;
     this.connectSocket();
     new tournamentChannel();
     new chatChannel();
@@ -45,6 +47,30 @@ class GamePlayPage extends page {
     this.initializeRulesComponent();
     this.initializeSideNavComponent();
   }
+
+  stopCountDown(){
+    App.store.dispatch({type: "GAME:COUNTDOWN", countDown: null});
+    this.countDown = 10;
+    clearInterval(this.countDownTimer);
+  }
+
+  dropOneSecond() {
+    this.countDown = (this.countDown <= 0) ? 0 : this.countDown -1;
+    App.store.dispatch({type: "GAME:COUNTDOWN", countDown: this.countDown});
+  }
+
+  startCountDown(){
+    if(this.countDown != 10) {
+      return new Promise((resolve, reject) => {
+        reject(false);
+      });
+    } else {
+      this.countDownTimer = setInterval(this.dropOneSecond.bind(this), 1000);
+      return new Promise((resolve, reject) => {
+        resolve(this.countDown);
+      });
+    }
+  };
 
   setWaitingPing() {
     this.waitingPing = setTimeout(function(){

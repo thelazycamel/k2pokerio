@@ -16,6 +16,9 @@ var gameReducer = function(state = {}, action) {
     case "GAME:FOLD":
        return state;
        break;
+    case "GAME:COUNTDOWN":
+       return Object.assign({}, state, {countDown: action.countDown});
+       break;
     case "GAME:ENABLE_PLAY_BUTTON":
       return Object.assign({}, state, {disable_button: false});
     case "GAME:DATA_RECEIVED":
