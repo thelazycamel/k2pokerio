@@ -43,9 +43,7 @@ const gameEventsMiddleware = store => next => action => {
           if(action.game.other_player_status == "ready"){
             App.page.startCountDown().then(countDown => {
               App.store.dispatch({type: "GAME:COUNTDOWN", countDown: countDown});
-            }, (error) => {
-              console.log("countdown not needed");
-            });
+            }, (error) => {null});
           }
           App.store.dispatch({type: "PAGE:CLEAR_WAITING_PING"});
           break;
@@ -53,9 +51,7 @@ const gameEventsMiddleware = store => next => action => {
           if(action.game.other_player_status == "ready"){
             App.page.startCountDown().then(countDown => {
               App.store.dispatch({type: "GAME:COUNTDOWN", countDown: countDown});
-            }, (error) => {
-              console.log("countdown not needed");
-            })
+            }, (error) => {null});
           }
           break;
         default:

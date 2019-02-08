@@ -40055,7 +40055,7 @@ var gameEventsMiddleware = function gameEventsMiddleware(store) {
                 App.page.startCountDown().then(function (countDown) {
                   App.store.dispatch({ type: "GAME:COUNTDOWN", countDown: countDown });
                 }, function (error) {
-                  console.log("countdown not needed");
+                  null;
                 });
               }
               App.store.dispatch({ type: "PAGE:CLEAR_WAITING_PING" });
@@ -40065,7 +40065,7 @@ var gameEventsMiddleware = function gameEventsMiddleware(store) {
                 App.page.startCountDown().then(function (countDown) {
                   App.store.dispatch({ type: "GAME:COUNTDOWN", countDown: countDown });
                 }, function (error) {
-                  console.log("countdown not needed");
+                  null;
                 });
               }
               break;
@@ -41056,6 +41056,7 @@ var gameReducer = function gameReducer() {
       break;
     case "GAME:ENABLE_PLAY_BUTTON":
       return Object.assign({}, state, { disable_button: false });
+      break;
     case "GAME:DATA_RECEIVED":
       var buttonState = state.disable_button ? "timeout" : false;
       return Object.assign({}, { disable_button: buttonState }, action.game);

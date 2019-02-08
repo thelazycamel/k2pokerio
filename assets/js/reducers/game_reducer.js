@@ -14,13 +14,14 @@ var gameReducer = function(state = {}, action) {
       return Object.assign({}, state, {cards: cards});
       break;
     case "GAME:FOLD":
-       return state;
-       break;
+      return state;
+      break;
     case "GAME:COUNTDOWN":
-       return Object.assign({}, state, {countDown: action.countDown});
-       break;
+      return Object.assign({}, state, {countDown: action.countDown});
+      break;
     case "GAME:ENABLE_PLAY_BUTTON":
       return Object.assign({}, state, {disable_button: false});
+      break;
     case "GAME:DATA_RECEIVED":
       let buttonState = state.disable_button ? "timeout" : false;
       return Object.assign({}, {disable_button: buttonState}, action.game);
