@@ -14,7 +14,7 @@
 
     <div class="form-group">
       <%= submit "Login", class: "btn btn-primary btn-md", id: "login-button" %>
-      <a href="#" class="btn btn-link form-link">Forgotten password?</a>
+      <%= link "Forgotten password?", to: password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
     </div>
   <% end %>
 </section>

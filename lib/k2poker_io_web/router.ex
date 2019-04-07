@@ -58,6 +58,11 @@ defmodule K2pokerIoWeb.Router do
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
 
+    get    "/password", PasswordController, :forgotten
+    post   "/password", PasswordController, :request
+    get    "/password/:token", PasswordController, :create_new
+    post   "/password/update", PasswordController, :update
+
     get "/rules", PageController, :rules
     get "/terms", PageController, :terms
     get "/about", PageController, :about

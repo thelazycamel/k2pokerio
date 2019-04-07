@@ -41,7 +41,7 @@ defmodule K2pokerIo.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :username, :password, :image])
+    |> cast(params, [:email, :username, :password, :image, :data])
     |> unique_constraint(:email, on: K2pokerIo.Repo)
     |> unique_constraint(:username, on: K2pokerIo.Repo)
     |> validate_format(:email, email_regexp())

@@ -1,0 +1,21 @@
+<section class="password-container">
+  <h2>Forgotten Password</h2>
+  <p>To reset your password
+     please supply your account email address below and
+     we will send you an email with a reset link,</p>
+
+  <%= form_for @conn, password_path(@conn, :request), [as: :user], fn f -> %>
+    <div class="form-group">
+      <label aria-hidden="true">Email</label>
+      <%= text_input f, :email, class: "form-control", placeholder: "Email" %>
+    </div>
+
+    <div class="form-group">
+      <%= raw Recaptcha.Template.display %>
+    </div>
+
+    <div class="form-group">
+      <%= submit "Submit", class: "btn btn-primary btn-md" %>
+    </div>
+  <% end %>
+</section>

@@ -35,3 +35,8 @@ import_config "#{Mix.env}.exs"
 #Kerosene (pagination)
 config :kerosene,
   mode: :simple
+
+#Configure Mailer
+config :k2poker_io, K2pokerIoWeb.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "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"

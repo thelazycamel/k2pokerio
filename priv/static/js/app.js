@@ -40355,6 +40355,7 @@ var GamePlayPage = function (_page) {
           reject(false);
         });
       } else {
+        clearInterval(this.countDownTimer);
         this.countDownTimer = setInterval(this.dropOneSecond.bind(this), 1000);
         return new Promise(function (resolve, reject) {
           resolve(_this3.countDown);

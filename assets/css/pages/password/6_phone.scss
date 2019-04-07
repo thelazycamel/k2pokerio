@@ -1,0 +1,15 @@
+@import "../../variables";
+
+@media (min-width: $media-phone-min) and (max-width: $media-phone-max) {
+
+  body.password {
+    main {
+      background-position: 80px 320px;
+      height: 580px;
+      section.password-container {
+        padding: 30px auto;
+        width: 100%;
+      }
+    }
+  }
+}

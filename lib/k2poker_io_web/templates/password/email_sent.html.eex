@@ -1,0 +1,10 @@
+<section class="password-container">
+  <h2>Forgotten Password Email Sent</h2>
+
+  <p>An email has been sent to the provided email address.</p>
+  <p>Please check your mail and follow the link to reset your password.</p>
+  <p>If you did not receive email, first check your junk mail,
+  <%= link "Try Again", to: password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
+     or send an email directly to <a href="mailto:support@k2poker.io">support@k2poker.io</a>
+  </p>
+</section>

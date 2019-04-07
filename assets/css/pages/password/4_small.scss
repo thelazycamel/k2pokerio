@@ -1,0 +1,17 @@
+@import "../../variables";
+
+@media (min-width: $media-small-min) and (max-width: $media-small-max) {
+
+  body.password {
+
+    main {
+      background-position: 160px 160px;
+      section.password-container {
+        width: 50%;
+      }
+    }
+
+  }
+
+
+}

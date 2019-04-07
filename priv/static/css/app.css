@@ -3583,6 +3583,48 @@ body.page main #page-inner {
     height: 400px;
     margin: 0px auto; } }
 
+body.password main {
+  height: 630px;
+  background-image: url("/images/pages/password.svg");
+  background-position: 580px 160px;
+  background-repeat: no-repeat; }
+  body.password main section.password-container {
+    padding: 30px;
+    width: 35%; }
+    body.password main section.password-container h2 {
+      padding-left: 0px;
+      padding-bottom: 20px; }
+    body.password main section.password-container form label {
+      display: none; }
+    body.password main section.password-container form .form-link {
+      float: right; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  body.password main {
+    background-position: 380px 160px; }
+    body.password main section.password-container {
+      width: 40%; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body.password main {
+    background-position: 160px 160px; }
+    body.password main section.password-container {
+      width: 50%; } }
+
+@media (min-width: 500px) and (max-width: 767px) {
+  body.password main {
+    background-position: 110px 270px; }
+    body.password main section.password-container {
+      width: 70%; } }
+
+@media (min-width: 300px) and (max-width: 499px) {
+  body.password main {
+    background-position: 80px 320px;
+    height: 580px; }
+    body.password main section.password-container {
+      padding: 30px auto;
+      width: 100%; } }
+
 body.profile.edit main {
   height: 619px; }
   body.profile.edit main #edit-profile {

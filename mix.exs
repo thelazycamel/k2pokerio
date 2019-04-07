@@ -35,7 +35,8 @@ defmodule K2pokerIo.Mixfile do
                     :comeonin,
                     :bcrypt_elixir,
                     :recaptcha,
-                    :edeliver
+                    :edeliver,
+                    :bamboo
                     ]
     ]
   end
@@ -69,7 +70,8 @@ defmodule K2pokerIo.Mixfile do
       {:timex, "~> 3.1"},
       {:edeliver, "~> 1.6.0"},
       {:distillery, "~> 2.0.10"},
-      {:recaptcha, "~> 2.3"}
+      {:recaptcha, "~> 2.3"},
+      {:bamboo, "1.0.0-rc.2"}
     ]
   end
 

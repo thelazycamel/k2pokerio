@@ -66,6 +66,7 @@ class GamePlayPage extends page {
         reject(false);
       });
     } else {
+      clearInterval(this.countDownTimer);
       this.countDownTimer = setInterval(this.dropOneSecond.bind(this), 1000);
       return new Promise((resolve, reject) => {
         resolve(this.countDown);
