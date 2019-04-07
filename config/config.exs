@@ -28,10 +28,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
-
 #Kerosene (pagination)
 config :kerosene,
   mode: :simple
@@ -40,3 +36,8 @@ config :kerosene,
 config :k2poker_io, K2pokerIoWeb.Mailer,
   adapter: Bamboo.SendGridAdapter,
   api_key: "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"
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
+
