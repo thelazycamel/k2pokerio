@@ -17,6 +17,7 @@ config :k2poker_io, K2pokerIoWeb.Endpoint,
   check_origin: ["https://www.k2poker.io", "https://k2poker.io"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
+  version: Application.spec(:k2_poker_io, :vsn),
   code_reloader: false
 
 # Do not print debug messages in production

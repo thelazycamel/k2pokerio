@@ -1,3 +1,5 @@
+0.7.11
+	Adding cowboy_plug to application deps
 0.7.10
 	Moving facebook config to server
 0.7.9
