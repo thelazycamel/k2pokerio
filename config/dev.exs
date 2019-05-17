@@ -46,3 +46,11 @@ config :k2poker_io, K2pokerIo.Repo,
   database: "k2poker_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :facebook,
+  app_id:  "345335705821290",
+  app_secret: "4de9e4d3e9bce6ca3efeeef7b43e21ea",
+  app_access_token: "345335705821290|OJ_1Q1LYNCCowwZmVcw4adiUI1w",
+  graph_url: "https://graph.facebook.com",
+  graph_video_url: "https://graph-video.facebook.com"
+

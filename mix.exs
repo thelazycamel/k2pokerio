@@ -3,8 +3,8 @@ defmodule K2pokerIo.Mixfile do
 
   def project do
     [app: :k2poker_io,
-     version: "0.7.8",
-     elixir: "~> 1.7",
+     version: "0.7.9",
+     elixir: "~> 1.8",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -54,11 +54,12 @@ defmodule K2pokerIo.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.3"},
       {:postgrex, ">= 0.0.0"},
-      {:poison, "~> 2.0"},
+      {:poison, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:kerosene, "~> 0.8.1"},
@@ -71,7 +72,8 @@ defmodule K2pokerIo.Mixfile do
       {:edeliver, "~> 1.6.0"},
       {:distillery, "~> 2.0.10"},
       {:recaptcha, "~> 2.3"},
-      {:bamboo, "1.0.0-rc.2"}
+      {:bamboo, "1.0.0-rc.2"},
+      {:facebook, "~> 0.20.0"}
     ]
   end
 
