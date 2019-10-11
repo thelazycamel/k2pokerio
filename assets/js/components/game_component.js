@@ -2,13 +2,13 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
-import Scoreboard from './shared_partials/scoreboard'
-import PlayerCardComponent from './game_partials/player_card_component'
-import CardComponent from './game_partials/card_component'
-import BestHandComponent from './game_partials/best_hand_component'
-import PlayButtonComponent from './game_partials/play_button_component'
-import GameStatusComponent from './game_partials/game_status_component'
-import OpponentProfileImageComponent from './game_partials/opponent_profile_image_component'
+import Scoreboard from 'components/shared_partials/scoreboard'
+import PlayerCardComponent from 'components/game_partials/player_card_component'
+import CardComponent from 'components/game_partials/card_component'
+import BestHandComponent from 'components/game_partials/best_hand_component'
+import PlayButtonComponent from 'components/game_partials/play_button_component'
+import GameStatusComponent from 'components/game_partials/game_status_component'
+import OpponentProfileImageComponent from 'components/game_partials/opponent_profile_image_component'
 
 class GameComponent extends React.Component {
 

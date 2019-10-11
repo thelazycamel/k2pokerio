@@ -32,6 +32,9 @@ config :logger, :console,
 config :kerosene,
   mode: :simple
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 #Configure Mailer
 config :k2poker_io, K2pokerIoWeb.Mailer,
   adapter: Bamboo.SendGridAdapter,

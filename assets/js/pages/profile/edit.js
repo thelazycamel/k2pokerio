@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import page from "../page"
-import ProfileEditComponent from "../../components/pages/profile/profile_edit_component"
-import BadgesComponent from "../../components/pages/profile/badges_component"
+import page from "pages/page"
+import ProfileEditComponent from "components/pages/profile/profile_edit_component"
+import BadgesComponent from "components/pages/profile/badges_component"
 
 class ProfileEditPage extends page {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store'
 import MockApp from '../support/mock_app';
-import ChatComponent from '../../js/components/chat_component';
+import ChatComponent from 'components/chat_component';
 
 const mockStore = configureStore();
 let store, chatComponent;

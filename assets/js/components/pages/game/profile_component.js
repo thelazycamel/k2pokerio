@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import { connect } from 'react-redux'
-import Badge from 'js/components/shared_partials/badge'
+import Badge from 'components/shared_partials/badge'
 
 class ProfileComponent extends React.Component {
 

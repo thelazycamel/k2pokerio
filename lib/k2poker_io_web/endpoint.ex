@@ -2,7 +2,9 @@ defmodule K2pokerIoWeb.Endpoint do
 
   use Phoenix.Endpoint, otp_app: :k2poker_io
 
-  socket "/socket", K2pokerIoWeb.UserSocket
+  socket "/socket", K2pokerIoWeb.UserSocket,
+    websocket: true,
+    longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #

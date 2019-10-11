@@ -10,10 +10,6 @@ defmodule K2pokerIoWeb.UserSocket do
   channel "game:*", K2pokerIoWeb.GameChannel
   channel "chat:*", K2pokerIoWeb.ChatChannel
 
-  ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
-  # transport :longpoll, Phoenix.Transports.LongPoll
-
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
   # verification, you can put default assigns into

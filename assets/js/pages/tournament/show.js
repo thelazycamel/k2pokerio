@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import chatChannel from "../../channels/chat_channel"
-import ChatComponent from "../../components/chat_component"
+import chatChannel from "channels/chat_channel"
+import ChatComponent from "components/chat_component"
 
 import page from "../page"
 

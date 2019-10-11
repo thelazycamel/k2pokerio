@@ -1,4 +1,4 @@
-import GameChannel from "../channels/game_channel"
+import GameChannel from "channels/game_channel"
 
 const gameEventsMiddleware = store => next => action => {
   switch(action.type) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Badge from 'js/components/shared_partials/badge';
+import Badge from 'components/shared_partials/badge';
 
 class BadgesComponent extends React.Component {
 

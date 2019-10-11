@@ -1,5 +1,5 @@
-import en from "../locales/en"
-import es from "../locales/es"
+import en from "locales/en"
+import es from "locales/es"
 
 const available_locales = {"en": en, "es": es}
 

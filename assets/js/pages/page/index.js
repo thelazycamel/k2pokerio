@@ -1,4 +1,4 @@
-import page from "../page"
+import page from "pages/page"
 
 class PageIndexPage extends page {
 

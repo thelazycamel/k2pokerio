@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import chatChannel from "../../channels/chat_channel"
-import ChatComponent from "../../components/chat_component"
-import TournamentIndexComponent from "../../components/pages/tournament/index"
+import chatChannel from "channels/chat_channel"
+import ChatComponent from "components/chat_component"
+import TournamentIndexComponent from "components/pages/tournament/index"
 
-import page from "../page"
+import page from "pages/page"
 
 class TournamentIndexPage extends page {
 

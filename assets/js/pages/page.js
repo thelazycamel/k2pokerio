@@ -1,7 +1,7 @@
 import React from "react"
 import socket from "../socket"
 import { renderToStaticMarkup } from 'react-dom/server'
-import BadgeAlertText from 'js/components/shared_partials/badge_alert_text';
+import BadgeAlertText from 'components/shared_partials/badge_alert_text';
 
 class Page {
 

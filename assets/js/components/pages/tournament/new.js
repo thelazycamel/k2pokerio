@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import TournamentCreatedPopup from "../../popups/tournament_created_popup"
+import TournamentCreatedPopup from "components/popups/tournament_created_popup"
 
 class TournamentNewComponent extends React.Component {
 

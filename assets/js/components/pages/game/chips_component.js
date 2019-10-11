@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
-import Scoreboard from './../../shared_partials/scoreboard'
+import Scoreboard from 'components/shared_partials/scoreboard'
 
 class ChipsComponent extends React.Component {
 

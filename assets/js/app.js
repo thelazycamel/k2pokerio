@@ -7,6 +7,8 @@
 // in vendor, which are never wrapped in imports and
 // therefore are always executed.
 
+import css from '../css/app.scss';
+
 // Import dependencies
 //
 // If you no longer want to use a dependency, remember
@@ -22,37 +24,37 @@ import "phoenix_html"
 
 /* local */
 import { createStore, applyMiddleware } from "redux";
-import mainStore from "./reducers/main_store";
+import mainStore from "reducers/main_store";
 
 /* Utils */
-import Translate from "./utils/translate";
-import Utils from "./utils/utils";
+import Translate from "utils/translate";
+import Utils from "utils/utils";
 
 /* API Services */
 
-import BadgeController from               "./services/badge_controller"
-import FriendsController from             "./services/friends_controller"
-import GamesController from               "./services/games_controller"
-import InvitationsController from         "./services/invitations_controller"
-import LogoutService from                 "./services/logout_service"
-import ProfileController from             "./services/profile_controller"
-import TournamentsController from         "./services/tournaments_controller"
+import BadgeController from               "services/badge_controller"
+import FriendsController from             "services/friends_controller"
+import GamesController from               "services/games_controller"
+import InvitationsController from         "services/invitations_controller"
+import LogoutService from                 "services/logout_service"
+import ProfileController from             "services/profile_controller"
+import TournamentsController from         "services/tournaments_controller"
 
 /* pages */
 
-import defaultPage from "./pages/default"
-import homePage from "./pages/page/index"
-import tournamentIndexPage from "./pages/tournament/index"
-import tournamentShowPage from "./pages/tournament/show"
-import tournamentNewPage from "./pages/tournament/new"
-import gamePlayPage from "./pages/game/play"
-import profileEditPage from "./pages/profile/edit"
+import defaultPage from "pages/default"
+import homePage from "pages/page/index"
+import tournamentIndexPage from "pages/tournament/index"
+import tournamentShowPage from "pages/tournament/show"
+import tournamentNewPage from "pages/tournament/new"
+import gamePlayPage from "pages/game/play"
+import profileEditPage from "pages/profile/edit"
 
 /* middleware */
-import gameEventsMiddleware from "./middleware/game_events_middleware"
-import pageEventsMiddleware from "./middleware/page_events_middleware"
-import chatEventsMiddleware from "./middleware/chat_events_middleware"
-import tournamentEventsMiddleware from "./middleware/tournament_events_middleware"
+import gameEventsMiddleware from "middleware/game_events_middleware"
+import pageEventsMiddleware from "middleware/page_events_middleware"
+import chatEventsMiddleware from "middleware/chat_events_middleware"
+import tournamentEventsMiddleware from "middleware/tournament_events_middleware"
 
 window.App = {
 
@@ -68,8 +70,8 @@ window.App = {
   setConfig: function() {
     this.settings = {};
     let configurations = document.getElementsByTagName("body")[0].dataset;
-    configurations["csrf_token"] = $("meta[name='csrf_token']").attr("content");
-    this.settings = Object.assign({}, configurations);
+    configurations["csrf_token"] = document.getElementsByName("csrf_token")[0].content;
+    this.settings = Object.assign({}, configurations)
   },
 
   setUpUtils(){

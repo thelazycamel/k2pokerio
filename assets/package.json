@@ -2,7 +2,7 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "deploy": "brunch build --production",
+    "deploy": "webpack --mode production",
     "watch": "node_modules/.bin/jest run test --watch",
     "test": "node_modules/.bin/jest",
     "test:watch": "node_modules/.bin/jest run test --watch"
@@ -10,42 +10,45 @@
   "jest": {
     "setupFiles": [
       "./test/support/setup.js"
-    ]
+    ],
+    "moduleDirectories": ["node_modules","js"],
+    "moduleFileExtensions": ["js", "jsx"]
   },
   "dependencies": {
-    "babel-preset-react": "^6.16.0",
-    "enzyme-adapter-react-16": "^1.7.1",
+    "@babel/preset-react": "^7.6.3",
+    "ajv": "^6.9.1",
+    "enzyme-adapter-react-16": "^1.15.1",
     "fsevents": "^1.2.4",
-    "jquery": "^3.3.1",
     "jsdom": "^11.12.0",
-    "node-sass": "^4.11.0",
-    "npm": "^6.5.0",
+    "node-sass": "^4.12.0",
+    "npm": "^6.12.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-redux": "^4.4.9",
-    "react-transition-group": "^2.5.2",
+    "postcss-loader": "^3.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^4.4.10",
+    "react-transition-group": "^2.9.0",
     "redux": "^3.6.0",
     "redux-mock-store": "^1.5.3",
-    "sass-brunch": "^2.10.7"
+    "sass": "^1.3.0",
+    "sass-loader": "^8.0.0"
   },
   "devDependencies": {
-    "babel-brunch": "^6.1.1",
-    "babel-register": "^6.26.0",
-    "brunch": "^2.10.17",
-    "clean-css-brunch": "~2.0.0",
-    "css-brunch": "~2.0.0",
-    "enzyme": "^3.8.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "javascript-brunch": "~2.0.0",
-    "jest": "21.3.0-beta.2",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "copy-webpack-plugin": "^4.5.0",
+    "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "fibers": "^3.1.0",
+    "jest": "^25.0.0",
+    "mini-css-extract-plugin": "^0.4.5",
     "mock-browser": "^0.92.14",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sinon": "^4.5.0",
-    "uglify-js-brunch": "~2.0.1"
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "4.36.0",
+    "webpack-cli": "^3.3.9"
   }
 }

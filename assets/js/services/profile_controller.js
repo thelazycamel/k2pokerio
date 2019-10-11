@@ -1,4 +1,4 @@
-import BaseController from './base_controller'
+import BaseController from 'services/base_controller'
 
 export default class ProfileController extends BaseController {
 
