@@ -2,7 +2,7 @@ class PageComponentManager {
 
   init() {
     this.screen_size = this.screenSwitcher();
-    this.screen_width = $(window).width();
+    this.screen_width = window.innerWidth;
     App.store.dispatch({type: "PAGE:RESIZE", page: {screen_size: this.screenSwitcher(), links: this.links(), tabs: this.tabs()}});
     this.setUpListeners();
   }
@@ -39,12 +39,12 @@ class PageComponentManager {
   setUpListeners() {
     let resizeEvent;
     let _this = this;
-    $(window).resize(function() {
+    window.onresize = function() {
       clearTimeout(_this.resizeEvent);
-      if(_this.screen_width != $(window).width()) {
+      if(_this.screen_width != window.innerWidth) {
         _this.resizeEvent = setTimeout(_this.resizing.bind(_this), 100);
       }
-    });
+    };
   }
 
   resizing() {
@@ -53,7 +53,7 @@ class PageComponentManager {
   }
 
   screenSwitcher() {
-    let width = $(window).width();
+    let width = window.innerWidth;
     return function() {
         if(width <= 500)                  { return "phone" }   else
         if(width > 500 && width < 768)    { return "plablet" } else

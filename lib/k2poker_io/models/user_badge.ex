@@ -11,8 +11,7 @@ defmodule K2pokerIo.UserBadge do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, [:user_id, :badge_id])
-    |> validate_required(:user_id)
-    |> validate_required(:badge_id)
+    |> validate_required([:user_id,:badge_id])
   end
 
 end
