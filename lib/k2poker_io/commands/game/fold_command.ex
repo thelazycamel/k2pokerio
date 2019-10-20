@@ -29,9 +29,9 @@ defmodule K2pokerIo.Commands.Game.FoldCommand do
 
   defp do_fold_action(game_id, player_id) do
     Multi.new()
-    |> Multi.run(:get_game, fn %{} -> get_game(game_id) end)
-    |> Multi.run(:game_data, fn %{get_game: get_game} -> fold(get_game, player_id) end)
-    |> Multi.run(:updated_game, fn %{get_game: get_game, game_data: game_data} ->
+    |> Multi.run(:get_game, fn _repo, %{} -> get_game(game_id) end)
+    |> Multi.run(:game_data, fn _repo, %{get_game: get_game} -> fold(get_game, player_id) end)
+    |> Multi.run(:updated_game, fn repo, %{get_game: get_game, game_data: game_data} ->
       Repo.update(update_game_changeset(get_game, game_data))
     end)
     |> Repo.transaction

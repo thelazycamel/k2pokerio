@@ -1,7 +1,6 @@
 defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand
   alias K2pokerIo.Commands.Chat.CreateCommentCommand
   alias K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand
   alias K2pokerIo.UserTournamentDetail
@@ -14,7 +13,7 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
 
   import Ecto.Query
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   import Plug.Test
 
   doctest K2pokerIo.Commands.Badges.UpdateMiscBadgesCommand
@@ -35,7 +34,7 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
       gold: false
     })
 
-    utd = Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 512}))
+    Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 512}))
 
     player1_id = User.player_id(context.player1)
     player2_id = User.player_id(context.player2)
@@ -80,7 +79,7 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
       gold: false
     })
 
-    utd = Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 16384}))
+    Repo.update!(UserTournamentDetail.changeset(context.p1_utd, %{current_score: 16384}))
 
     player1_id = User.player_id(context.player1)
     player2_id = User.player_id(context.player2)
@@ -127,7 +126,7 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
 
     conn = init_test_session(context.conn, player_id: context.p1_utd.player_id)
     response = conn
-      |> post(profile_path(conn, :update_blurb), %{"blurb" => "Hello, I am a teapot"})
+      |> post(Routes.profile_path(conn, :update_blurb), %{"blurb" => "Hello, I am a teapot"})
       |> json_response(200)
 
     user_id = context.player1.id
@@ -172,7 +171,7 @@ defmodule K2pokerIo.UpdateMiscBadgesCommandTest do
 
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(friend_path(conn, :create, %{"id" => player7.id}))
+      |> post(Routes.friend_path(conn, :create, %{"id" => player7.id}))
       |> json_response(200)
     %{"friend" => status, "badges" => badges} = response
 

@@ -29,15 +29,15 @@ defmodule K2pokerIo.Commands.Game.JoinGameCommand do
 
   defp find_or_create_game(utd) do
     Multi.new()
-    |> Multi.run(:find_game, fn %{} -> find_game_waiting(utd) end)
-    |> Multi.run(:game, fn %{find_game: find_game} ->
+    |> Multi.run(:find_game, fn _repo, %{} -> find_game_waiting(utd) end)
+    |> Multi.run(:game, fn _repo, %{find_game: find_game}  ->
       if find_game do
         Repo.update(join_game_changeset(utd, find_game))
       else
         Repo.insert(create_new_game_changeset(utd))
       end
     end)
-    |> Multi.run(:update_utd, fn %{game: game} -> Repo.update(update_utd_changeset(utd, game)) end)
+    |> Multi.run(:update_utd, fn _repo, %{game: game} -> Repo.update(update_utd_changeset(utd, game)) end)
     |> Repo.transaction
     |> case do
       {:ok, %{find_game: _, game: game, update_utd: _}} -> {:ok, game}

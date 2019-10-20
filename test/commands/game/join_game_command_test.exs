@@ -5,9 +5,7 @@ defmodule K2pokerIo.JoinGameCommandTest do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.JoinGameCommand
 
-  import Ecto.Query
-
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.JoinGameCommand
 

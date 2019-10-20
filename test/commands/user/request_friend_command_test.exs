@@ -1,6 +1,6 @@
 defmodule K2pokerIo.RequestFriendCommandTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Test.Helpers

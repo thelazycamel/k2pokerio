@@ -3,7 +3,7 @@ defmodule K2pokerIo.AnonUserProfileDecoratorTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Decorators.AnonUserProfileDecorator
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Decorators.AnonUserProfileDecorator
 

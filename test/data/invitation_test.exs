@@ -1,6 +1,6 @@
 defmodule K2pokerIo.InvitationTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Invitation
   alias K2pokerIo.Tournament

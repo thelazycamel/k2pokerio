@@ -5,7 +5,7 @@ defmodule K2pokerIo.DiscardCommandTest do
   alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Game.DiscardCommand
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Game.DiscardCommand
 

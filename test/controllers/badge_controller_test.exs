@@ -1,6 +1,6 @@
 defmodule K2pokerIo.BadgeControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   import Plug.Test
 
   alias K2pokerIo.Test.Helpers
@@ -41,7 +41,7 @@ defmodule K2pokerIo.BadgeControllerTest do
   test "#index - should return a JSON representation of users friends", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player))
     response = conn
-      |> get(badge_path(conn, :index))
+      |> get(Routes.badge_path(conn, :index))
       |> json_response(200)
     %{"badges" => badges} = response
     first_badge = List.first(badges)

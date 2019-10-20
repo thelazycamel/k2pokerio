@@ -7,7 +7,7 @@ defmodule K2pokerIo.UpdateTournament.UpdateDuelTest do
   alias K2pokerIo.Tournament
   alias K2pokerIo.UserTournamentDetail
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Tournament.UpdateTournamentWinnerCommand
 

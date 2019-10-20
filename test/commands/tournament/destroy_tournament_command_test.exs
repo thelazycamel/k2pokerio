@@ -9,7 +9,7 @@ defmodule K2pokerIo.DestroyTournamentCommandTest do
   alias K2pokerIo.Commands.Tournament.DestroyTournamentCommand
   alias K2pokerIo.Commands.Tournament.CreateTournamentCommand
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Tournament.DestroyTournamentCommand
 

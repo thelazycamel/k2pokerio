@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UserStats do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "user_stats" do
     belongs_to :user, K2pokerIo.User

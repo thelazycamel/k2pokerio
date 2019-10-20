@@ -1,6 +1,6 @@
 defmodule K2pokerIo.SessionTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   alias K2pokerIoWeb.Helpers.Session
   alias K2pokerIo.User

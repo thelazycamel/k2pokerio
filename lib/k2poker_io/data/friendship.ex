@@ -1,6 +1,6 @@
 defmodule K2pokerIo.Friendship do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "friendships" do
     field :status, :boolean

@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UpdateTopScoreTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
@@ -30,11 +30,11 @@ defmodule K2pokerIo.UpdateTopScoreTest do
   end
 
   @tag :skip
-  test "it should not update the score if its an anon user", context do
+  test "it should not update the score if its an anon user", _context do
   end
 
   @tag :skip
-  test "it should not update the score if its not the default tournament", context do
+  test "it should not update the score if its not the default tournament", _context do
   end
 
 end

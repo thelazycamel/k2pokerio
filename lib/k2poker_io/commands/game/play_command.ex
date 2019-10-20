@@ -7,9 +7,9 @@ defmodule K2pokerIo.Commands.Game.PlayCommand do
 
   def execute(game_id, player_id) do
     Multi.new()
-    |> Multi.run(:get_game, fn %{} -> get_game(game_id) end)
-    |> Multi.run(:game_data, fn %{get_game: get_game} -> play(get_game, player_id) end)
-    |> Multi.run(:updated_game, fn %{game_data: game_data, get_game: get_game} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)
+    |> Multi.run(:get_game, fn _repo, %{} -> get_game(game_id) end)
+    |> Multi.run(:game_data, fn _repo, %{get_game: get_game} -> play(get_game, player_id) end)
+    |> Multi.run(:updated_game, fn _repo, %{game_data: game_data, get_game: get_game} -> Repo.update(updated_changeset(game_data, get_game, player_id)) end)
     |> Repo.transaction
     |> case do
       {:ok, %{get_game: _, game_data: _, updated_game: updated_game}} -> {:ok, updated_game}

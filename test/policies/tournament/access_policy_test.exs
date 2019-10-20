@@ -7,7 +7,7 @@ defmodule K2pokerIo.TournamentAccessPolicyTest do
 
   import Ecto.Query
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Policies.Tournament.AccessPolicy
 

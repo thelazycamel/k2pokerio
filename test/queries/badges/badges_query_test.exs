@@ -6,7 +6,7 @@ defmodule K2pokerIo.BadgesQueryTest do
   alias K2pokerIo.UserBadge
   alias K2pokerIo.Queries.Badges.BadgesQuery
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Queries.Badges.BadgesQuery
 

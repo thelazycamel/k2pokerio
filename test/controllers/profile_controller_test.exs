@@ -1,8 +1,9 @@
 defmodule K2pokerIo.ProfileControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
+  alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Badges.AddUserBadgeCommand
   alias K2pokerIo.Badge
 
@@ -80,7 +81,7 @@ defmodule K2pokerIo.ProfileControllerTest do
 
     conn = init_test_session(context.conn, player_id: User.player_id(player))
     response = conn
-      |> post(profile_path(conn, :update_blurb, %{blurb: "updating my bio"}))
+      |> post(Routes.profile_path(conn, :update_blurb, %{blurb: "updating my bio"}))
       |> json_response(200)
     %{"badges" => badges, "blurb" => blurb} = response
     badge = List.last(badges)

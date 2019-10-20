@@ -1,6 +1,6 @@
 defmodule K2pokerIo.Chat do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   alias K2pokerIo.Repo
 
@@ -20,14 +20,15 @@ defmodule K2pokerIo.Chat do
     |> validate_required(:comment)
   end
 
-  #TODO move this to a query
+  #TODO move this to a query, and find out why its no longer
+  # ordering by chat inserted at
 
   def get_ten_json(tournament_id, player_id) do
     query = from c in K2pokerIo.Chat,
       where: c.tournament_id == ^tournament_id,
       join: u in assoc(c, :user),
-      limit: 10,
       order_by: [desc: c.inserted_at],
+      limit: 10,
       preload: :user
     comments = Repo.all query
     Enum.map(comments, fn (comment) -> K2pokerIo.Decorators.CommentDecorator.decorate(comment, player_id) end)

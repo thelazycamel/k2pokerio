@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UserTournamentDetailTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.User

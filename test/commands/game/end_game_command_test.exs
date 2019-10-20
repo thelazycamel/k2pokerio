@@ -8,7 +8,7 @@ defmodule K2pokerIo.EndGameCommandTest do
   alias K2pokerIo.Commands.Game.FoldCommand
   alias K2pokerIo.Commands.Game.EndGameCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.EndGameCommand
 

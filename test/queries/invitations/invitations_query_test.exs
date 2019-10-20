@@ -5,7 +5,7 @@ defmodule K2pokerIo.InvitationsQueryTest do
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Queries.Invitations.InvitationsQuery
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Queries.Invitations.InvitationsQuery
 

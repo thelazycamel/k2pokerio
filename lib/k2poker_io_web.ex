@@ -19,7 +19,7 @@ defmodule K2pokerIoWeb do
   below.
   """
 
-  def model do
+  def data do
     quote do
       use Ecto.Schema
 

@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UpdatePasswordCommandTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Commands.User.UpdatePasswordCommand
   alias K2pokerIo.Commands.User.RegisterCommand

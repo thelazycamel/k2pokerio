@@ -1,6 +1,6 @@
 defmodule K2pokerIo.RegistrationControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   alias K2pokerIo.User
   alias K2pokerIo.Repo
@@ -11,7 +11,7 @@ defmodule K2pokerIo.RegistrationControllerTest do
 
   test "#new should render a user form", %{conn: conn} do
     response = conn
-      |> get(registration_path(conn, :new))
+      |> get(Routes.registration_path(conn, :new))
       |> response(200)
     email_field = ~r/user_email/
     username_field = ~r/user_username/
@@ -29,7 +29,7 @@ defmodule K2pokerIo.RegistrationControllerTest do
        }
     }
     response = conn
-      |> post(registration_path(conn, :create, params))
+      |> post(Routes.registration_path(conn, :create, params))
       |> response(302)
     expected = ~r/href="\/tournaments"/
     user = Repo.one(from u in User, where: [email: "bob@test.com"])

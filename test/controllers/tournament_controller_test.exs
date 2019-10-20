@@ -1,6 +1,6 @@
 defmodule K2pokerIo.TournamentControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.User
@@ -21,7 +21,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#index should show tournament index page for logged in user", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(tournament_path(conn, :index))
+      |> get(Routes.tournament_path(conn, :index))
       |> response(200)
     expected = ~r/body\ class=.tournament\ index./
     assert(response =~ expected)
@@ -30,7 +30,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#index should redirect to root if not signed in", context do
     conn = context.conn
     response = conn
-      |> get(tournament_path(conn, :index))
+      |> get(Routes.tournament_path(conn, :index))
       |> response(302)
     expected = ~r/redirected/
     assert(response =~ expected)
@@ -40,7 +40,7 @@ defmodule K2pokerIo.TournamentControllerTest do
     anon_user = Helpers.create_user_tournament_detail("bob", context.tournament.id)
     conn = init_test_session(context.conn, player_id: anon_user.player_id)
     response = conn
-      |> get(tournament_path(conn, :index))
+      |> get(Routes.tournament_path(conn, :index))
       |> response(302)
     expected = ~r/redirected/
     assert(response =~ expected)
@@ -50,7 +50,7 @@ defmodule K2pokerIo.TournamentControllerTest do
     private_tournament = Helpers.create_private_tournament(context.player2, "Private Tourney")
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(tournament_path(conn, :show, private_tournament.id))
+      |> get(Routes.tournament_path(conn, :show, private_tournament.id))
       |> response(302)
     expected = ~r/redirected/
     assert(response =~ expected)
@@ -60,7 +60,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#show should redirect to root if not signed in", context do
     conn = context.conn
     response = conn
-      |> get(tournament_path(conn, :show, context.tournament.id))
+      |> get(Routes.tournament_path(conn, :show, context.tournament.id))
       |> response(302)
     expected = ~r/redirected/
     assert(response =~ expected)
@@ -69,7 +69,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#show should return 200 if signed in and tournament accessible", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> get(tournament_path(conn, :show, context.tournament.id))
+      |> get(Routes.tournament_path(conn, :show, context.tournament.id))
       |> response(200)
     expected = ~r/body\ class=.tournament\ show./
     assert(response =~ expected)
@@ -78,7 +78,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#join should join the tournament and redirect user to the game play", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(tournament_path(conn, :join, context.tournament.id))
+      |> get(Routes.tournament_path(conn, :join, context.tournament.id))
       |> response(302)
     expected = ~r/You\ are\ being\ \<a\ href=.\/games\/play/
     #TODO we should assert that the conn has put_session :utd_id
@@ -89,7 +89,7 @@ defmodule K2pokerIo.TournamentControllerTest do
     private_tournament = Helpers.create_private_tournament(context.player2, "Player 1 not invited")
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(tournament_path(conn, :join, private_tournament.id))
+      |> get(Routes.tournament_path(conn, :join, private_tournament.id))
       |> response(302)
     expected = ~r/You\ are\ being\ \<a\ href="\/"/
     assert(response =~ expected)
@@ -98,7 +98,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#new should render the new tournament page for a logged in user", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(tournament_path(conn, :new))
+      |> get(Routes.tournament_path(conn, :new))
       |> response(200)
     expected = ~r/\<body\ class="tournament new"/
     assert(response =~ expected)
@@ -107,7 +107,7 @@ defmodule K2pokerIo.TournamentControllerTest do
   test "#new should redirect if user is not logged in", context do
     conn = context.conn
     response = conn
-      |> get(tournament_path(conn, :new))
+      |> get(Routes.tournament_path(conn, :new))
       |> response(302)
     expected = ~r/You\ are\ being\ \<a\ href="\/"/
     assert(response =~ expected)
@@ -117,7 +117,7 @@ defmodule K2pokerIo.TournamentControllerTest do
     friend_ids = [context.player2.id]
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(tournament_path(conn, :create, %{"game_type" => "duel", "friend_ids" => friend_ids}))
+      |> post(Routes.tournament_path(conn, :create, %{"game_type" => "duel", "friend_ids" => friend_ids}))
       |> json_response(200)
       %{"status" => status, "id" => _} = response
     assert(status == "ok")
@@ -127,7 +127,7 @@ defmodule K2pokerIo.TournamentControllerTest do
     friend_ids = [context.player2.id]
     conn = context.conn
     response = conn
-      |> post(tournament_path(conn, :create, %{"tournament" => %{"game_type" => "duel", "friend_ids" => friend_ids}}))
+      |> post(Routes.tournament_path(conn, :create, %{"tournament" => %{"game_type" => "duel", "friend_ids" => friend_ids}}))
       |> response(401)
     %{"status" => status, "message" => _} = Poison.decode!(response)
     assert(status == "error")

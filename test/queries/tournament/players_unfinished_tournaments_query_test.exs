@@ -5,7 +5,7 @@ defmodule K2pokerIo.PlayersUnfinishedTournamentsQueryTest do
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Queries.Tournaments.PlayersUnfinishedTournamentsQuery
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Queries.Tournaments.PlayersUnfinishedTournamentsQuery
 

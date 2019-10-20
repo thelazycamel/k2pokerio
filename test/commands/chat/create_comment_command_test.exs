@@ -3,7 +3,7 @@ defmodule K2pokerIo.CreateCommentCommandTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.Commands.Chat.CreateCommentCommand
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Chat.CreateCommentCommand
 

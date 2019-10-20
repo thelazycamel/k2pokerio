@@ -5,7 +5,7 @@ defmodule K2pokerIo.UserProfileDecoratorTest do
   alias K2pokerIo.User
   alias K2pokerIo.Decorators.UserProfileDecorator
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Decorators.UserProfileDecorator
 

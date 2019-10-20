@@ -1,11 +1,12 @@
 defmodule K2pokerIo.FriendControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   import Plug.Test
 
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
+  alias K2pokerIo.Repo
   alias K2pokerIo.Friendship
 
   doctest K2pokerIoWeb.FriendController
@@ -22,7 +23,7 @@ defmodule K2pokerIo.FriendControllerTest do
     Repo.insert!(Friendship.changeset(%Friendship{}, %{user_id: context.player1.id, friend_id: context.player3.id, status: true}))
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> get(friend_path(conn, :index))
+      |> get(Routes.friend_path(conn, :index))
       |> json_response(200)
     %{"friends" => friends} = response
     first_friend = List.first(friends)
@@ -34,7 +35,7 @@ defmodule K2pokerIo.FriendControllerTest do
   test "#create - should create a friend request, pending them to confirm", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(friend_path(conn, :create, %{"id" => context.player2.id}))
+      |> post(Routes.friend_path(conn, :create, %{"id" => context.player2.id}))
       |> json_response(200)
     %{"friend" => status} = response
     assert(status == "pending_them")
@@ -44,7 +45,7 @@ defmodule K2pokerIo.FriendControllerTest do
     RequestFriendCommand.execute(context.player2.id, context.player1.id)
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(friend_path(conn, :create, %{"id" => context.player2.id}))
+      |> post(Routes.friend_path(conn, :create, %{"id" => context.player2.id}))
       |> json_response(200)
     %{"friend" => status} = response
     assert(status == "friend")
@@ -54,7 +55,7 @@ defmodule K2pokerIo.FriendControllerTest do
     RequestFriendCommand.execute(context.player2.id, context.player1.id)
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(friend_path(conn, :confirm, %{"id" => context.player2.id}))
+      |> post(Routes.friend_path(conn, :confirm, %{"id" => context.player2.id}))
       |> json_response(200)
     %{"friend" => status} = response
     assert(status == "friend")
@@ -63,7 +64,7 @@ defmodule K2pokerIo.FriendControllerTest do
   test "#confirm - should not confirm a friend request, if the other player hasnt requested one", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> post(friend_path(conn, :confirm, %{"id" => context.player2.id}))
+      |> post(Routes.friend_path(conn, :confirm, %{"id" => context.player2.id}))
       |> json_response(200)
     %{"friend" => status} = response
     assert(status == "pending_them")

@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UserTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.User
   alias K2pokerIo.Test.Helpers
@@ -65,8 +65,8 @@ defmodule K2pokerIo.UserTest do
       |> Repo.insert!
     changeset2 = User.changeset(%User{}, %{email: "TEST@test.com", password: "Abc123", username: "tester2"})
     {:error, user2} = Repo.insert changeset2
-    {text, []} = user2.errors[:email]
-    assert(text == "has already been taken")
+    {error, [constraint: :unique, constraint_name: "users_email_index"]} = user2.errors[:email]
+    assert(error == "has already been taken")
   end
 
   test "username is unique (case insensitive)" do
@@ -74,8 +74,8 @@ defmodule K2pokerIo.UserTest do
       |> Repo.insert!
     changeset2 = User.changeset(%User{}, %{email: "test2@test.com", password: "Abc123", username: "TESTER"})
     {:error, user2} = Repo.insert(changeset2)
-    {text, []} = user2.errors[:username]
-    assert(text == "has already been taken")
+    {error, [constraint: :unique, constraint_name: "users_username_index"]} = user2.errors[:username]
+    assert(error == "has already been taken")
   end
 
   test "email regexp with various email types should pass" do

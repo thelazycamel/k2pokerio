@@ -1,6 +1,6 @@
 defmodule K2pokerIo.PageControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Repo
   alias K2pokerIo.Test.Helpers
@@ -19,7 +19,7 @@ defmodule K2pokerIo.PageControllerTest do
 
   test "#anon_user_create should create an anonymous user (utd)", %{conn: conn} do
     response = conn
-      |> post(page_path(conn, :anon_user_create, %{"anon_user" => %{"username" => "bob"}}))
+      |> post(Routes.page_path(conn, :anon_user_create, %{"anon_user" => %{"username" => "bob"}}))
       |> response(302)
     utd = Repo.one(UserTournamentDetail)
     expected = ~r/href="\/games\/play"/

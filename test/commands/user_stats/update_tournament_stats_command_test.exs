@@ -1,12 +1,9 @@
 defmodule K2pokerIo.UpdateTournamentStatsTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User
-  alias K2pokerIo.UserStats
-  alias K2pokerIo.Repo
-  alias K2pokerIo.Commands.UserStats.UpdateTournamentStatsCommand
 
   doctest K2pokerIo.Commands.UserStats.UpdateTournamentStatsCommand
 
@@ -19,15 +16,15 @@ defmodule K2pokerIo.UpdateTournamentStatsTest do
   end
 
   @tag :skip
-  test "it should update the tournaments won", context do
+  test "it should update the tournaments won", _context do
   end
 
   @tag :skip
-  test "it should update the duels won", context do
+  test "it should update the duels won", _context do
   end
 
   @tag :skip
-  test "it should not update the score if its an anon user", context do
+  test "it should not update the score if its an anon user", _context do
   end
 
 end

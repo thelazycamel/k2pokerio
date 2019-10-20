@@ -5,7 +5,7 @@ defmodule K2pokerIo.GetWinnersQuery do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Queries.Tournaments.GetWinnersQuery
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Queries.Tournaments.GetWinnersQuery
 

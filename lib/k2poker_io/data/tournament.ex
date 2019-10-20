@@ -2,7 +2,7 @@ defmodule K2pokerIo.Tournament do
 
   alias K2pokerIo.Repo
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "tournaments" do
     field :name, :string

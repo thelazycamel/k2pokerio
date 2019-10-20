@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UserTournamentDetail do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   #TODO look at expiring these after 24 hours of no updates
   # or moving them into a (redis) session store to automatically expire

@@ -3,10 +3,11 @@ defmodule K2pokerIo.GameChannelTest do
   alias K2pokerIo.Test.Helpers
   alias K2pokerIoWeb.GameChannel
   alias K2pokerIo.Game
+  alias K2pokerIo.Repo
   alias K2pokerIo.User
   alias K2pokerIo.Badge
 
-  use K2pokerIoWeb.ChannelCase
+  use K2pokerIoWeb.ChannelCase, async: false
 
   doctest K2pokerIoWeb.GameChannel
 
@@ -16,8 +17,8 @@ defmodule K2pokerIo.GameChannelTest do
 
   test "game:game_play", context do
     player_id = K2pokerIo.User.player_id(context.player1)
-    {:ok, _, socket} = socket("", %{player_id: player_id})
-      |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id})
+       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
     assert push(socket, "game:play", %{})
     assert_broadcast "game:new_game_data", %{}
 
@@ -34,7 +35,7 @@ defmodule K2pokerIo.GameChannelTest do
     utd = Helpers.create_user_tournament_detail(player_id, player.username, tournament.id)
 
     {:ok, game} = Helpers.join_game(utd)
-    {:ok, _, socket} = socket("", %{player_id: player_id})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{game.id}")
 
     ref = push(socket, "game:bot_request", %{})
@@ -48,7 +49,7 @@ defmodule K2pokerIo.GameChannelTest do
 
   test "game:game_discard", context do
     player_id = K2pokerIo.User.player_id(context.player1)
-    {:ok, _, socket} = socket("", %{player_id: player_id})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
     ref = push(socket, "game:discard", %{"card_index" => "0"})
     assert_broadcast "game:new_game_data", %{}
@@ -62,7 +63,7 @@ defmodule K2pokerIo.GameChannelTest do
 
   test "game:fold", context do
     player_id = K2pokerIo.User.player_id(context.player1)
-    {:ok, _, socket} = socket("", %{player_id: player_id})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
     ref = push(socket, "game:fold", %{})
     assert_broadcast "game:new_game_data", %{}
@@ -97,7 +98,7 @@ defmodule K2pokerIo.GameChannelTest do
     })
     badges = [badge1,badge2]
     player_id = K2pokerIo.User.player_id(context.player1)
-    {:ok, _, socket} = socket("", %{player_id: player_id})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id})
       |> subscribe_and_join(GameChannel, "game:#{ context.game.id}")
     broadcast_from! socket, "game:badge_achieved", %{player_id: player_id, badges: badges}
     assert_push("game:badge_achieved", %{player_id: ^player_id, badges: badges})

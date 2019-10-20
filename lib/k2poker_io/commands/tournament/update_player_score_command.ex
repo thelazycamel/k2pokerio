@@ -48,15 +48,15 @@ defmodule K2pokerIo.Commands.Tournament.UpdatePlayerScoreCommand do
   #
   defp update_players_score(game, utd, score, status) do
     Multi.new()
-    |> Multi.run(:get_game, fn %{} ->
+    |> Multi.run(:get_game, fn _repo, %{} ->
       {:ok, Repo.one(from g in Game, where: g.id == ^game.id, lock: "FOR SHARE NOWAIT", preload: [:tournament]) }
      end)
-    |> Multi.run(:updateable, fn %{get_game: get_game} -> score_already_updated?(get_game, utd.player_id) end)
+    |> Multi.run(:updateable, fn _repo, %{get_game: get_game} -> score_already_updated?(get_game, utd.player_id) end)
     |> Multi.update(:utd, UserTournamentDetail.changeset(utd, utd_changeset(game, score, status)))
-    |> Multi.run(:game, fn %{get_game: get_game, utd: utd} -> Repo.update(game_update_changeset(get_game, utd.player_id)) end)
-    |> Multi.run(:user_stats, fn %{utd: utd} -> update_top_score(score, utd) end)
-    |> Multi.run(:badges, fn %{utd: utd} -> check_badges(score, utd) end)
-    |> Multi.run(:update_tournament_winner, fn %{utd: utd, game: game} -> check_tournament_winner(game, utd) end)
+    |> Multi.run(:game, fn _repo, %{get_game: get_game, utd: utd} -> Repo.update(game_update_changeset(get_game, utd.player_id)) end)
+    |> Multi.run(:user_stats, fn _repo, %{utd: utd} -> update_top_score(score, utd) end)
+    |> Multi.run(:badges, fn _repo, %{utd: utd} -> check_badges(score, utd) end)
+    |> Multi.run(:update_tournament_winner, fn _repo, %{utd: utd, game: game} -> check_tournament_winner(game, utd) end)
     |> Repo.transaction
     |> case do
       {:ok, %{get_game: get_game, updateable: _, utd: _, game: _, update_tournament_winner: _}} -> get_game

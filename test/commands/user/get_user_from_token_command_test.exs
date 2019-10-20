@@ -1,12 +1,11 @@
 defmodule K2pokerIo.GetUserFromTokenCommandTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Commands.User.GetUserFromTokenCommand
   alias K2pokerIo.Commands.User.RegisterCommand
   alias K2pokerIo.User
   alias K2pokerIo.Repo
-  import Ecto.Query
 
   setup do
     expiry_time = Timex.shift(Timex.now, hours: 2)
@@ -30,7 +29,7 @@ defmodule K2pokerIo.GetUserFromTokenCommandTest do
   test "it should return error if token has expired", context do
     expiry_time = Timex.shift(Timex.now, hours: -1)
     changeset = User.changeset(context.user, %{data: %{"token" => "expired123", "token_expiry_time" => expiry_time}})
-    user = Repo.update!(changeset)
+    Repo.update!(changeset)
 
     {response, message} = GetUserFromTokenCommand.execute("expired123")
     assert(response == :error)

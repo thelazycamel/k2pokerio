@@ -1,6 +1,6 @@
 defmodule K2pokerIo.User do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "users" do
     field :email, :string

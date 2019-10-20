@@ -1,6 +1,6 @@
 defmodule K2pokerIo.Invitation do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "invitations" do
     belongs_to :user, K2pokerIo.User

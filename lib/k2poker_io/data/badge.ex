@@ -1,6 +1,6 @@
 defmodule K2pokerIo.Badge do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "badges" do
     field :name, :string

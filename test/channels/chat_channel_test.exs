@@ -5,7 +5,7 @@ defmodule K2pokerIo.ChatChannelTest do
   alias K2pokerIo.User
   alias K2pokerIo.Repo
 
-  use K2pokerIoWeb.ChannelCase
+  use K2pokerIoWeb.ChannelCase, async: false
 
   doctest K2pokerIoWeb.ChatChannel
 
@@ -21,7 +21,7 @@ defmodule K2pokerIo.ChatChannelTest do
   test "chat:create_comment -> broadcasts the message (user has no profile image)", context do
     player_id = User.player_id(context.user)
     tournament_id = "#{context.tournament.id}"
-    {:ok, _, socket} = socket("", %{player_id: player_id, current_user: context.user})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id, current_user: context.user})
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     push(socket, "chat:create_comment", %{"comment" => "Hello World", "tournament_id" => tournament_id})
     assert_broadcast "chat:new_comment", %{}
@@ -34,7 +34,7 @@ defmodule K2pokerIo.ChatChannelTest do
     player_id = User.player_id(user)
     profile_image = user.image
     tournament_id = "#{context.tournament.id}"
-    {:ok, _, socket} = socket("", %{player_id: player_id, current_user: user})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id, current_user: user})
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     push(socket, "chat:create_comment", %{"comment" => "Hello World", "tournament_id" => tournament_id})
     assert_broadcast "chat:new_comment", %{}
@@ -45,7 +45,7 @@ defmodule K2pokerIo.ChatChannelTest do
   test "can send an admin broadcast from anywhere within the app", context do
     player_id = User.player_id(context.user)
     tournament_id = "#{context.tournament.id}"
-    {:ok, _, socket} = socket("", %{player_id: player_id, current_user: context.user})
+    {:ok, _, socket} = socket(K2pokerIoWeb.UserSocket, "", %{player_id: player_id, current_user: context.user})
       |> subscribe_and_join(ChatChannel, "chat:#{tournament_id}")
     payload = %{chat_id: "abc123", username: "thelazycamel", comment: "Has reached the K2 Summit", admin: true }
     K2pokerIoWeb.Endpoint.broadcast! "chat:#{tournament_id}", "chat:admin_message", payload

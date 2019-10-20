@@ -1,6 +1,6 @@
 defmodule K2pokerIo.Game do
 
-  use K2pokerIoWeb, :model
+  use K2pokerIoWeb, :data
 
   schema "games" do
     field :data, :binary

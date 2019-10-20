@@ -1,6 +1,6 @@
 defmodule K2pokerIo.GameControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   import Plug.Test
 
   alias K2pokerIo.Test.Helpers
@@ -23,7 +23,7 @@ defmodule K2pokerIo.GameControllerTest do
     utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player1_id, tournament_id: ^context.tournament.id])
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})
     response = conn
-      |> get(game_path(conn, :play))
+      |> get(Routes.game_path(conn, :play))
       |> response(200)
     expected = ~r/\<body\ class\=.game play/
     assert(response =~ expected)
@@ -32,7 +32,7 @@ defmodule K2pokerIo.GameControllerTest do
   test "#play should redirect to root unless player", context do
     conn = init_test_session(context.conn, %{})
     response = conn
-      |> get(game_path(conn, :play))
+      |> get(Routes.game_path(conn, :play))
       |> response(302)
     expected = ~r/href="\/">redirected/
     assert(response =~ expected)
@@ -42,7 +42,7 @@ defmodule K2pokerIo.GameControllerTest do
     player1_id = User.player_id(context.player1)
     conn = init_test_session(context.conn, %{player_id: player1_id})
     response = conn
-      |> get(game_path(conn, :play))
+      |> get(Routes.game_path(conn, :play))
       |> response(302)
     expected = ~r/href="\/tournaments"\>redirected/
     assert(response =~ expected)
@@ -54,7 +54,7 @@ defmodule K2pokerIo.GameControllerTest do
     utd = Helpers.create_user_tournament_detail(player1_id, "bob", tournament.id)
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})
     response = conn
-      |> post(game_path(conn, :join))
+      |> post(Routes.game_path(conn, :join))
       |> json_response(200)
     game = Repo.one(from g in Game, where: [player1_id: ^player1_id, tournament_id: ^tournament.id])
     expected = %{ "status" => "ok",
@@ -69,7 +69,7 @@ defmodule K2pokerIo.GameControllerTest do
     utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player1_id, tournament_id: ^context.tournament.id])
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})
     response = conn
-      |> post(game_path(conn, :join))
+      |> post(Routes.game_path(conn, :join))
       |> json_response(200)
     expected = %{ "status" => "ok",
                   "game_id" => utd.game_id,
@@ -82,7 +82,7 @@ defmodule K2pokerIo.GameControllerTest do
     player1_id = User.player_id(context.player1)
     conn = init_test_session(context.conn, player_id: player1_id)
     response = conn
-      |> post(game_path(conn, :join))
+      |> post(Routes.game_path(conn, :join))
       |> json_response(200)
     expected = %{ "status" => "error" }
     assert(response == expected)
@@ -93,7 +93,7 @@ defmodule K2pokerIo.GameControllerTest do
     utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player1_id, tournament_id: ^context.tournament.id])
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})
     response = conn
-      |> post(game_path(conn, :opponent_profile))
+      |> post(Routes.game_path(conn, :opponent_profile))
       |> json_response(200)
     expected = %{ "blurb" => nil,
                   "friend" => "not_friends",
@@ -119,7 +119,7 @@ defmodule K2pokerIo.GameControllerTest do
     utd = Repo.one(from utd in UserTournamentDetail, where: [player_id: ^player1_id, tournament_id: ^context.tournament.id])
     conn = init_test_session(context.conn, %{utd_id: utd.id, player_id: player1_id})
     response = conn
-      |> post(game_path(conn, :player_score))
+      |> post(Routes.game_path(conn, :player_score))
       |> json_response(200)
     expected = %{ "current_score" => utd.current_score,
                   "username" => context.player1.username }

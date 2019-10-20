@@ -1,6 +1,6 @@
 defmodule K2pokerIo.UpdateGameStatsTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Test.Helpers
   alias K2pokerIo.User

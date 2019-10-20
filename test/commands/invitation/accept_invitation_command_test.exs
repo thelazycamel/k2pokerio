@@ -4,7 +4,7 @@ defmodule K2pokerIo.AcceptInvitationCommandTest do
   alias K2pokerIo.Invitation
   alias K2pokerIo.Commands.Invitation.AcceptInvitationCommand
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Invitation.AcceptInvitationCommand
 

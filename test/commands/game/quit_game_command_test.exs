@@ -6,9 +6,7 @@ defmodule K2pokerIo.QuitGameCommandTest do
   alias K2pokerIo.Commands.Game.JoinGameCommand
   alias K2pokerIo.Commands.Game.QuitGameCommand
 
-  import Ecto.Query
-
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.QuitGameCommand
 

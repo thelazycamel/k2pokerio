@@ -5,7 +5,7 @@ defmodule K2pokerIoWeb.ConnCase do
 
   Such tests rely on `Phoenix.ConnTest` and also
   import other functionality to make it easier
-  to build and query models.
+  to build common data structures and query the data layer.
 
   Finally, if the test case interacts with the database,
   it cannot be async. For this reason, every test runs
@@ -19,13 +19,7 @@ defmodule K2pokerIoWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-
-      alias K2pokerIo.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-
-      import K2pokerIoWeb.Router.Helpers
+      alias K2pokerIoWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
       @endpoint K2pokerIoWeb.Endpoint

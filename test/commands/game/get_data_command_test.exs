@@ -1,11 +1,10 @@
 defmodule K2pokerIo.GetDataCommandTest do
 
   alias K2pokerIo.Test.Helpers
-  alias K2pokerIo.Repo
   alias K2pokerIo.User
   alias K2pokerIo.Commands.Game.GetDataCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.GetDataCommand
 

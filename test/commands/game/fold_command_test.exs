@@ -5,7 +5,7 @@ defmodule K2pokerIo.FoldCommandTest do
   alias K2pokerIo.UserTournamentDetail
   alias K2pokerIo.Commands.Game.FoldCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.FoldCommand
 

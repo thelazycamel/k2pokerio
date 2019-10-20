@@ -5,7 +5,7 @@ defmodule K2pokerIo.GetOpponentProfileCommandTest do
   alias K2pokerIo.User
   alias K2pokerIo.Commands.Game.GetOpponentProfileCommand
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
 
   doctest K2pokerIo.Commands.Game.GetOpponentProfileCommand
 

@@ -4,7 +4,7 @@ defmodule K2pokerIo.JoinChangesetTest do
   alias K2pokerIo.Game
   alias K2pokerIo.Repo
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Game
 

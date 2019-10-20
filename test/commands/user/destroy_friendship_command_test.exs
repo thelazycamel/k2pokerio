@@ -1,6 +1,6 @@
 defmodule K2pokerIo.DestroyFriendshipCommandTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Commands.User.DestroyFriendshipCommand
   alias K2pokerIo.Friendship

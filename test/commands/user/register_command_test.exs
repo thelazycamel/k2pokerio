@@ -1,6 +1,6 @@
 defmodule K2pokerIo.RegisterCommandTest do
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   alias K2pokerIo.Commands.User.RegisterCommand
   alias K2pokerIo.User

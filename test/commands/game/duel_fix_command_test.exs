@@ -6,7 +6,7 @@ defmodule K2pokerIo.DuelFixCommandTest do
   alias K2pokerIo.Repo
   alias K2pokerIo.Commands.Game.DuelFixCommand
 
-  use K2pokerIo.ModelCase
+  use K2pokerIo.DataCase, async: false
 
   doctest K2pokerIo.Commands.Game.DuelFixCommand
 

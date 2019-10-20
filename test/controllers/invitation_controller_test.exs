@@ -1,6 +1,6 @@
 defmodule K2pokerIo.InvitationControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   alias K2pokerIo.Commands.User.RequestFriendCommand
   alias K2pokerIo.Invitation
   alias K2pokerIo.User
@@ -24,7 +24,7 @@ defmodule K2pokerIo.InvitationControllerTest do
   test "#accept should accept the invite and redirect to the tournament", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> get(invitation_path(conn, :accept, context.invitation.id))
+      |> get(Routes.invitation_path(conn, :accept, context.invitation.id))
       |> response(302)
     expected = ~r/href.*\/tournaments\/join\//
     assert(response =~ expected)
@@ -33,7 +33,7 @@ defmodule K2pokerIo.InvitationControllerTest do
   test "#accept should redirect to tournament index if invalid invite", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player1))
     response = conn
-      |> get(invitation_path(conn, :accept, context.invitation.id))
+      |> get(Routes.invitation_path(conn, :accept, context.invitation.id))
       |> response(302)
     expected = ~r/href="\/tournaments"/
     assert(response =~ expected)
@@ -42,7 +42,7 @@ defmodule K2pokerIo.InvitationControllerTest do
   test "#destroy should destroy the invite and return the id", context do
     conn = init_test_session(context.conn, player_id: User.player_id(context.player2))
     response = conn
-      |> delete(invitation_path(conn, :delete, context.invitation.id))
+      |> delete(Routes.invitation_path(conn, :delete, context.invitation.id))
       |> json_response(200)
     expected = %{"invite_id" => context.invitation.id}
     assert(response == expected)

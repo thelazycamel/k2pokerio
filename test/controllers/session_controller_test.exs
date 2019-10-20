@@ -1,6 +1,6 @@
 defmodule K2pokerIo.SessionControllerTest do
 
-  use K2pokerIoWeb.ConnCase
+  use K2pokerIoWeb.ConnCase, async: false
   alias K2pokerIo.Commands.User.RegisterCommand
   alias K2pokerIo.User
   import Plug.Test
@@ -21,7 +21,7 @@ defmodule K2pokerIo.SessionControllerTest do
 
   test "#new session should render login page", %{conn: conn} do
     response = conn
-      |> get(session_path(conn, :new))
+      |> get(Routes.session_path(conn, :new))
       |> response(200)
     login = ~r/Login/
     email_field = ~r/session_email/
@@ -34,7 +34,7 @@ defmodule K2pokerIo.SessionControllerTest do
   test "#new session when logged in should redirect to tournament index", %{conn: conn, user: user} do
     conn = init_test_session(conn, player_id: User.player_id(user))
     response = conn
-      |> get(session_path(conn, :new))
+      |> get(Routes.session_path(conn, :new))
       |> response(302)
     expected = ~r/href="\/tournaments"/
     assert(response =~ expected)
@@ -43,7 +43,7 @@ defmodule K2pokerIo.SessionControllerTest do
   test "#create should create a new session", %{conn: conn, user: user} do
     session_params = %{"session" => %{"email" => user.email, "password" => user.password}}
     response = conn
-      |> post(session_path(conn, :create, session_params))
+      |> post(Routes.session_path(conn, :create, session_params))
       |> response(302)
     expected = ~r/href="\/tournaments"/
     #TODO would be good to check get_session(:player_id) here, investigate!
@@ -53,7 +53,7 @@ defmodule K2pokerIo.SessionControllerTest do
   test "#create should render error if incorrect params", %{conn: conn, user: user} do
     session_params = %{"session" => %{"email" => user.email, "password" => "hacker"}}
     response = conn
-      |> post(session_path(conn, :create, session_params))
+      |> post(Routes.session_path(conn, :create, session_params))
       |> response(200)
     expected = ~r/wrong\ email\/username\ or\ password/
     assert(response =~ expected)
