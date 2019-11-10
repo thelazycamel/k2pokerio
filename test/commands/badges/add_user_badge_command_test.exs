@@ -9,13 +9,11 @@ defmodule K2pokerIo.AddUserBadgeCommandTest do
 
   import Ecto.Query
 
-  use K2pokerIo.DataCase, async: false
+  use K2pokerIo.DataCase
 
   doctest K2pokerIo.Commands.Badges.AddUserBadgeCommand
 
   setup do
-
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(UserStoreEx.Repo)
 
     Repo.insert!(%Badge{
       name: "Four Jacks",
