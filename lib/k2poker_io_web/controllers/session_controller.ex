@@ -6,7 +6,7 @@ defmodule K2pokerIoWeb.SessionController do
 
   def new(conn, _params) do
     if logged_in?(conn) do
-      redirect conn, to: tournament_path(conn, :index)
+      redirect conn, to: Routes.tournament_path(conn, :index)
     else
       render conn, "new.html"
     end
@@ -18,7 +18,7 @@ defmodule K2pokerIoWeb.SessionController do
         conn
         |> put_session(:player_id, "user|#{user.id}")
         |> put_flash(:info, "Welcome back #{user.username}")
-        |> redirect(to: tournament_path(conn, :index))
+        |> redirect(to: Routes.tournament_path(conn, :index))
       :error ->
         conn
         |> put_flash(:error, "Oops, seems like a wrong email/username or password")

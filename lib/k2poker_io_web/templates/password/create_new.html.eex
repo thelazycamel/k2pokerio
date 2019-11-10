@@ -1,7 +1,7 @@
 <section class="password-container">
   <h2>Create a new Password</h2>
 
-  <%= form_for @conn, password_path(@conn, :update), fn f -> %>
+  <%= form_for @conn, Routes.password_path(@conn, :update), fn f -> %>
 
     <div class="form-group">
       <label>Password</label>
@@ -21,7 +21,7 @@
       <%= submit "Submit", class: "btn btn-primary btn-md" %>
     </div>
 
-    <%= link "Try Again?", to: password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
+    <%= link "Try Again?", to: Routes.password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
 
   <% end %>
 </section>

@@ -7,7 +7,7 @@
   <div id="middle"></div>
   <div id="foreground"></div>
 
-  <%= form_for @conn, page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
+  <%= form_for @conn, Routes.page_path(@conn, :anon_user_create), [as: :anon_user, class: "form-inline anon-player-form"], fn f -> %>
 
     <div class="input-group anon-nickname">
       <label for="username" class="sr-only">Username</label>
@@ -19,9 +19,9 @@
 
   <% end %>
 
-  <%= link "Sign Up", to: registration_path(@conn, :new), id: "sign-up-button", class: "btn btn-lg btn-k2poker" %>
+  <%= link "Sign Up", to: Routes.registration_path(@conn, :new), id: "sign-up-button", class: "btn btn-lg btn-k2poker" %>
 
-  <%= link "Log In", to: session_path(@conn, :new), id: "login-button", class: "btn btn-lg btn-k2poker" %>
+  <%= link "Log In", to: Routes.session_path(@conn, :new), id: "login-button", class: "btn btn-lg btn-k2poker" %>
 
 
 </div>

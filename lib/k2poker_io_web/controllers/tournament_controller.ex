@@ -19,7 +19,7 @@ defmodule K2pokerIoWeb.TournamentController do
   def index(conn, _) do
     if player_id = get_session(conn, :player_id) do
       if UserTournamentDetail.is_anon_user?(player_id) do
-        redirect conn, to: game_path(conn, :play)
+        redirect conn, to: Routes.game_path(conn, :play)
       else
         %{username: username, image: profile_image} = current_user(conn)
         render(conn, "index.html",
@@ -79,8 +79,8 @@ defmodule K2pokerIoWeb.TournamentController do
     case JoinTournamentCommand.execute(current_user(conn), id) do
       {:ok, utd_id: utd_id} ->
         conn = put_session(conn, :utd_id, utd_id)
-        redirect conn, to: game_path(conn, :play)
-      {:error, _} -> redirect conn, to: page_path(conn, :index)
+        redirect conn, to: Routes.game_path(conn, :play)
+      {:error, _} -> redirect conn, to: Routes.page_path(conn, :index)
     end
   end
 

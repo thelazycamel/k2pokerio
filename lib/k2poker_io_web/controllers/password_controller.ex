@@ -8,7 +8,7 @@ defmodule K2pokerIoWeb.PasswordController do
 
   def forgotten(conn, _params) do
     if logged_in?(conn) do
-      redirect conn, to: tournament_path(conn, :index)
+      redirect conn, to: Routes.tournament_path(conn, :index)
     else
       render conn, "forgotten.html"
     end
@@ -34,7 +34,7 @@ defmodule K2pokerIoWeb.PasswordController do
 
   def create_new(conn, %{"token" => token}) do
     if logged_in?(conn) do
-      redirect conn, to: tournament_path(conn, :index)
+      redirect conn, to: Routes.tournament_path(conn, :index)
     else
       case GetUserFromTokenCommand.execute(token) do
         {:ok, _ } ->

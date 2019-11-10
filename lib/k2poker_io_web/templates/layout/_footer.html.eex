@@ -1,19 +1,19 @@
 <footer>
   <div class="footer-reflection">
     <div class="container">
-      <img src="<%= static_path(@conn, "/images/footer-chips.png") %>" alt="Poker Chips" id="footer-chips">
+      <img src="<%= Routes.static_path(@conn, "/images/footer-chips.png") %>" alt="Poker Chips" id="footer-chips">
       <ul class="footer-nav">
         <li><a href="/tournaments">Home<span class="reflection">Home</span></a></li>
         <%= if logged_in?(@conn) do %>
           <li><a href="/profile">Profile<span class="reflection">Profile</span></a></li>
          <% else %>
           <li>
-            <%= link to: registration_path(@conn, :new) do %>
+            <%= link to: Routes.registration_path(@conn, :new) do %>
               Sign-up<span class='reflection'>Sign-up</span>
             <% end %>
           </li>
           <li>
-            <%= link to: session_path(@conn, :new) do %>
+            <%= link to: Routes.session_path(@conn, :new) do %>
               Login<span class='reflection'>Login</span>
             <% end %>
           </li>
@@ -23,7 +23,7 @@
         <li><a href="/about">About<span class="reflection">About</span></a></li>
       </ul>
 
-      <img src="<%= static_path(@conn, "/images/footer-logo.png") %>" alt="K2Poker.io" id="footer-logo">
+      <img src="<%= Routes.static_path(@conn, "/images/footer-logo.png") %>" alt="K2Poker.io" id="footer-logo">
     </div>
   </div>
 </footer>

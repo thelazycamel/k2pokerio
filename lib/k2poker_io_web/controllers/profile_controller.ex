@@ -53,11 +53,11 @@ defmodule K2pokerIoWeb.ProfileController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Profile Updated")
-        |> redirect(to: profile_path(conn, :edit))
+        |> redirect(to: Routes.profile_path(conn, :edit))
       {:error, _} ->
         conn
         |> put_flash(:info, "An error occurred, please try again")
-        |> redirect(to: profile_path(conn, :edit))
+        |> redirect(to: Routes.profile_path(conn, :edit))
     end
   end
 

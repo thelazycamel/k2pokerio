@@ -20,8 +20,8 @@
               </a>
            </li>
         <% else %>
-          <li id="sign-up-link"><%= link "Sign-up", to: registration_path(@conn, :new), class: "text-link" %></li>
-          <li id="login-link"><%= link "Login", to: session_path(@conn, :new), class: "text-link" %></li>
+          <li id="sign-up-link"><%= link "Sign-up", to: Routes.registration_path(@conn, :new), class: "text-link" %></li>
+          <li id="login-link"><%= link "Login", to: Routes.session_path(@conn, :new), class: "text-link" %></li>
         <% end %>
         </li>
       </ul>

@@ -1,7 +1,7 @@
 <section class="session-container">
   <h2>Login</h2>
 
-  <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+  <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
     <div class="form-group">
       <label aria-hidden="true">Email</label>
       <%= text_input f, :email, class: "form-control", placeholder: "Email" %>
@@ -14,7 +14,7 @@
 
     <div class="form-group">
       <%= submit "Login", class: "btn btn-primary btn-md", id: "login-button" %>
-      <%= link "Forgotten password?", to: password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
+      <%= link "Forgotten password?", to: Routes.password_path(@conn, :forgotten), class: "btn btn-link form-link" %>
     </div>
   <% end %>
 </section>

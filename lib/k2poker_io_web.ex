@@ -34,10 +34,11 @@ defmodule K2pokerIoWeb do
       use Phoenix.Controller, namespace: K2pokerIoWeb
 
       alias K2pokerIo.Repo
+      alias K2pokerIoWeb.Router.Helpers, as: Routes
+
       import Ecto
       import Ecto.Query
 
-      import K2pokerIoWeb.Router.Helpers
       import K2pokerIoWeb.Gettext
       import K2pokerIoWeb.Helpers.Session, only: [current_user: 1, logged_in?: 1]
     end
@@ -52,10 +53,11 @@ defmodule K2pokerIoWeb do
       import K2pokerIoWeb.Helpers.Session, only: [current_user: 1, logged_in?: 1]
       import K2pokerIoWeb.Helpers.FriendsHelper, only: [friend_requests: 1]
 
+      alias K2pokerIoWeb.Router.Helpers, as: Routes
+
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import K2pokerIoWeb.Router.Helpers
       import K2pokerIoWeb.ErrorHelpers
       import K2pokerIoWeb.Gettext
     end

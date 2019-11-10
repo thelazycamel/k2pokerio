@@ -27,9 +27,9 @@ defmodule K2pokerIoWeb.InvitationController do
   def accept(conn, %{"id" => invite_id}) do
     case AcceptInvitationCommand.execute(current_user(conn), invite_id) do
       {:ok, invite} ->
-        redirect conn, to: tournament_path(conn, :join, invite.tournament_id)
+        redirect conn, to: Routes.tournament_path(conn, :join, invite.tournament_id)
       _ ->
-        redirect conn, to: tournament_path(conn, :index)
+        redirect conn, to: Routes.tournament_path(conn, :index)
     end
   end
 

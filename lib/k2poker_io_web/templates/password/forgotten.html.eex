@@ -4,7 +4,7 @@
      please supply your account email address below and
      we will send you an email with a reset link,</p>
 
-  <%= form_for @conn, password_path(@conn, :request), [as: :user], fn f -> %>
+  <%= form_for @conn, Routes.password_path(@conn, :request), [as: :user], fn f -> %>
     <div class="form-group">
       <label aria-hidden="true">Email</label>
       <%= text_input f, :email, class: "form-control", placeholder: "Email" %>

@@ -6,7 +6,7 @@ defmodule K2pokerIoWeb.PageController do
 
   def index(conn, _params) do
     if logged_in?(conn) do
-      redirect conn, to: tournament_path(conn, :index)
+      redirect conn, to: Routes.tournament_path(conn, :index)
     else
       render conn, "index.html"
     end
@@ -33,9 +33,9 @@ defmodule K2pokerIoWeb.PageController do
       {:ok, utd} ->
         conn = put_session(conn, :player_id, utd.player_id)
         |> put_session(:utd_id, utd.id)
-        redirect conn, to: game_path(conn, :play)
+        redirect conn, to: Routes.game_path(conn, :play)
       {:error, _} ->
-        redirect conn, to: page_path(conn, :index)
+        redirect conn, to: Routes.page_path(conn, :index)
     end
   end
 
