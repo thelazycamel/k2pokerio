@@ -7,7 +7,7 @@ defmodule K2pokerIo.GameChannelTest do
   alias K2pokerIo.User
   alias K2pokerIo.Badge
 
-  use K2pokerIoWeb.ChannelCase, async: false
+  use K2pokerIoWeb.ChannelCase
 
   doctest K2pokerIoWeb.GameChannel
 
@@ -25,7 +25,7 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "ready")
-    close(socket)
+    leave socket
   end
 
   test "game:bot_request" do
@@ -44,7 +44,7 @@ defmodule K2pokerIo.GameChannelTest do
 
     game = Repo.get(Game, game.id)
     assert(game.player2_id == "BOT")
-    close(socket)
+    leave socket
   end
 
   test "game:game_discard", context do
@@ -58,7 +58,7 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "discarded")
-    close(socket)
+    leave socket
   end
 
   test "game:fold", context do
@@ -72,7 +72,7 @@ defmodule K2pokerIo.GameChannelTest do
     game = Repo.get(Game, context.game.id)
     player_data = Game.player_data(game, player_id)
     assert(player_data.player_status == "folded")
-    close(socket)
+    leave socket
   end
 
   test "game:badge_awarded sends message to user getting the badge", context do
