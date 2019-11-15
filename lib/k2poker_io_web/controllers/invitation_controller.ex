@@ -8,10 +8,10 @@ defmodule K2pokerIoWeb.InvitationController do
 
   def index(conn, params) do
     if current_user(conn) do
-      {invitations, pagination} = InvitationsQuery.all(current_user(conn).id, params)
-      json conn, %{invitations: invitations, pagination: pagination}
+      query = InvitationsQuery.all(current_user(conn).id, params)
+      json conn, query
     else
-      json conn, %{invitations: [], pagination: {}}
+      json conn, %{entries: []}
     end
   end
 

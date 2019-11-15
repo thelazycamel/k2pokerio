@@ -13,6 +13,7 @@ defmodule K2pokerIo.PlayCommandTest do
     Helpers.basic_set_up(["bob", "stu"])
   end
 
+  @tag :skip
   test "#execute play the next stage for the player", context do
     player1_id = context.player1.player_id
     decoded_game = Game.decode_game_data(context.game.data)

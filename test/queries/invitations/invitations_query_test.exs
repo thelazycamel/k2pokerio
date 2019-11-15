@@ -33,9 +33,9 @@ defmodule K2pokerIo.InvitationsQueryTest do
   end
 
   test "#all should return all the invitations for the user", context do
-    {invites, _} = InvitationsQuery.all(context.player1.id, %{page: 1, per_page: 7, max_pages: 100})
-    invite = List.first(invites)
-    assert(Enum.count(invites) == 1)
+    query = InvitationsQuery.all(context.player1.id, %{page_number: 1, page_size: 7})
+    invite = List.first(query.entries)
+    assert(Enum.count(query.entries) == 1)
     assert(invite.name == "Bobs tourney")
   end
 

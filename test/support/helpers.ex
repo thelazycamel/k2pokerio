@@ -152,7 +152,12 @@ defmodule K2pokerIo.Test.Helpers do
   end
 
   def create_chat(tournament_id, user_id, comment, admin) do
-    Repo.insert!(%Chat{tournament_id: tournament_id, user_id: user_id, comment: comment, admin: admin})
+    Repo.insert!(%Chat{
+      tournament_id: tournament_id,
+      user_id: user_id,
+      comment: comment,
+      admin: admin}
+    )
   end
 
   def join_game(user_tournament_detail) do

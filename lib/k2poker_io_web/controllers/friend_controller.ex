@@ -10,13 +10,13 @@ defmodule K2pokerIoWeb.FriendController do
 
   def index(conn, params) do
     if current_user(conn) do
-      {query, pagination} = case params["area"] do
+      query = case params["area"] do
         "pending_me" -> FriendsQuery.pending_me(current_user(conn).id, params)
         "pending_them" -> FriendsQuery.pending_them(current_user(conn).id, params)
         _ -> FriendsQuery.friends_only(current_user(conn).id, params)
       end
-      friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
-      json(conn, %{friends: friends, pagination: pagination})
+      friends = FriendsQuery.decorate_friendships(query.entries, current_user(conn).id)
+      json(conn, %{entries: friends, page_number: query.page_number, total_pages: query.total_pages })
     else
       json conn, %{status: 401}
     end
@@ -58,9 +58,9 @@ defmodule K2pokerIoWeb.FriendController do
   def search(conn, params) do
     %{"query" => query} = params
     if current_user(conn) do
-      {users, pagination} = FriendsQuery.search_users(current_user(conn).id, query, params)
-      friends = FriendsQuery.decorate_users(users, current_user(conn).id)
-      json conn, %{friends: friends, pagination: pagination}
+      query = FriendsQuery.search_users(current_user(conn).id, query, params)
+      friends = FriendsQuery.decorate_users(query.entries, current_user(conn).id)
+      json conn, %{entries: friends, page_number: query.page_number, total_pages: query.total_pages}
     else
       json conn, %{error: true, status: 401}
     end
@@ -68,10 +68,10 @@ defmodule K2pokerIoWeb.FriendController do
 
   def friends_only(conn, params) do
     if current_user(conn) do
-      {query, pagination} = FriendsQuery.friends_only(current_user(conn).id, params)
-      friends = FriendsQuery.decorate_friendships(query, current_user(conn).id)
+      query = FriendsQuery.friends_only(current_user(conn).id, params)
+      friends = FriendsQuery.decorate_friendships(query.entries, current_user(conn).id)
 
-      json conn, %{friends: friends, pagination: pagination}
+      json conn, %{entries: friends, page_number: query.page_number, total_pages: query.total_pages }
     else
       json conn, %{error: true, status: 401}
     end

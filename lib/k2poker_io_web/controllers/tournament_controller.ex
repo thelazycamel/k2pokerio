@@ -62,10 +62,10 @@ defmodule K2pokerIoWeb.TournamentController do
 
   def for_user(conn, params) do
     if logged_in?(conn) do
-      {tournaments, pagination} = UserTournamentsQuery.all(current_user(conn), params)
-      json conn, %{ tournaments: tournaments, pagination: pagination }
+      query = UserTournamentsQuery.all(current_user(conn), params)
+      json conn, query
     else
-      json conn, %{ tournaments: [] }
+      json conn, %{ entries: [] }
     end
   end
 

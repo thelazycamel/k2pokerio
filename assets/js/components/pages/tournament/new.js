@@ -8,7 +8,7 @@ class TournamentNewComponent extends React.Component {
     super(props);
     this.state = {
       friends: [],
-      pagination: {per_page: 0},
+      pagination: {page_size: 0},
       gameType: "tournament",
       tournamentName: this.props.username + "'s Tournament ",
       description: "",

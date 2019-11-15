@@ -115,8 +115,8 @@ class FriendsList extends React.Component {
       this.loadSearch(pageNo);
     } else {
       App.services.friends.index({page: pageNo, per_page: 7, area: area, max_page: 100}).then(response => {
-        let pending_me = area == "pending_me" ? response.friends.length : this.state.pending_me;
-        this.setState(...this.state, {friends: response.friends, pagination: response.pagination, pending_me: pending_me});
+        let pending_me = area == "pending_me" ? response.entries.length : this.state.pending_me;
+        this.setState(...this.state, {friends: response.entries, pagination: response.pagination, pending_me: pending_me});
       });
     }
   }
@@ -124,14 +124,14 @@ class FriendsList extends React.Component {
   renderPagination() {
     let { pagination } = this.state;
     let textArray = [];
-    if(pagination.page != 1 && pagination.total_pages > 1) {
-      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page -1, this.state.area) }>{ App.t("back") }</button>);
+    if(pagination.page_number != 1 && pagination.total_pages > 1) {
+      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_number -1, this.state.area) }>{ App.t("back") }</button>);
     } else {
       textArray.push(<div key="1" className="btn btn-sm btn-invisible">{ App.t("back") }</div>);
     }
-    textArray.push(<span key="2">Page {pagination.page} of {pagination.total_pages}</span>)
-    if(pagination.total_pages > 1 && pagination.page != pagination.total_pages) {
-      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page +1, this.state.area) }>{ App.t("next") }</button>);
+    textArray.push(<span key="2">Page {pagination.page_number} of {pagination.total_pages}</span>)
+    if(pagination.total_pages > 1 && pagination.page_number != pagination.total_pages) {
+      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_number +1, this.state.area) }>{ App.t("next") }</button>);
     } else {
       textArray.push(<div key="3" className="btn btn-sm btn-invisible">{ App.t("next") }</div>);
     }
@@ -199,7 +199,7 @@ class FriendsList extends React.Component {
 
   loadSearch(page) {
     App.services.friends.search({query: this.state.search, page: page, per_page: 7, max_page: 100}).then(response => {
-      this.setState(...this.state, {friends: response.friends, pagination: response.pagination, area: "search"});
+      this.setState(...this.state, {friends: response.entries, pagination: {total_pages: response.total_pages, page_number: response.page_number}, area: "search"});
     })
   }
 

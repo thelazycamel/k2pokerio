@@ -12,47 +12,57 @@ class TournamentIndexComponent extends React.Component {
       tournaments: [],
       invitations: [],
       invite_count: 0,
-      pagination: {page_no: 1, per_page: 8, max_page: 100}
+      pagination: {page_number: 1, page_size: 8}
     }
   }
 
   componentDidMount() {
     App.services.invitations.count().then(data => {
-      this.setState(...this.state, {invite_count: data.count})
+      this.setState(state => ({ ...state, invite_count: data.count }));
       this.loadPage(1, "tournaments");
     })
   }
 
-  loadPage(page, area){
-    let pagination = Object.assign(this.state.pagination, {page_no: page, page: page})
+  loadPage(page_number, area){
+    let pagination = Object.assign(this.state.pagination, {page_number: page_number});
     if(area == "tournaments"){
       App.services.tournaments.all(pagination).then(data => {
-        let pageNo = parseInt(data.pagination.params.page_no, 10);
-        pagination = Object.assign(data.pagination, {page_no: pageNo, page: pageNo});
-        this.setState(...this.state,
-          {tournaments: data.tournaments, area: "tournaments", pagination: pagination}
-        )
+        this.setState(state => (
+          { ...state,
+            tournaments: data.entries,
+            area: "tournaments",
+            pagination: {
+              page_size: data.page_size,
+              page_number: data.page_number
+            }
+          }
+        ));
       });
     } else {
       App.services.invitations.index(pagination).then(data => {
-        let pageNo = parseInt(data.pagination.params.page_no, 10);
-        pagination = Object.assign(data.pagination, {page_no: pageNo, page: pageNo});
-        this.setState(...this.state, {
-          invitations: data.invitations,
-          invite_count: data.invitations.length,
-          area: "invitations",
-          pagination: pagination
-        });
+        this.setState(state => (
+          { ...this.state,
+            invitations: data.entries,
+            invite_count: data.total_entries,
+            area: "invitations",
+            pagination: {
+              page_size: data.page_size,
+              page_number: data.page_number
+            }
+          }
+        ));
       });
     }
   }
 
   destroyInvite(invite_id) {
     App.services.invitations.destroy(invite_id).then(data => {
-      this.setState(...this.state, {
-        invitations: this.state.invitations.filter(el => { return el.id != invite_id }),
-        invite_count: this.state.invite_count -1
-      })
+      this.setState(state => (
+        { ...this.state,
+          invitations: this.state.invitations.filter(el => { return el.id != invite_id }),
+          invite_count: this.state.invite_count -1
+        }
+      ))
     });
   }
 
@@ -194,18 +204,17 @@ class TournamentIndexComponent extends React.Component {
     }
   }
 
-
   renderPagination() {
     let { pagination } = this.state;
     let textArray = [];
-    if(pagination.page_no != 1 && pagination.total_pages > 1) {
-      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_no -1, this.state.area) }>{ App.t("back") }</button>);
+    if(pagination.page_number != 1 && pagination.total_pages > 1) {
+      textArray.push(<button key="1" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_number -1, this.state.area) }>{ App.t("back") }</button>);
     } else {
       textArray.push(<div key="1" className="btn btn-sm btn-invisible">{ App.t("back") }</div>);
     }
-    textArray.push(<span key="2">Page {pagination.page} of {pagination.total_pages}</span>)
-    if(pagination.total_pages > 1 && pagination.page_no != pagination.total_pages) {
-      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_no +1, this.state.area) }>{ App.t("next") }</button>);
+    textArray.push(<span key="2">Page {pagination.page_number} of {pagination.total_pages}</span>)
+    if(pagination.total_pages > 1 && pagination.page_number != pagination.total_pages) {
+      textArray.push(<button key="3" className="btn btn-sm btn-pagination" onClick={this.loadPage.bind(this, pagination.page_number +1, this.state.area) }>{ App.t("next") }</button>);
     } else {
       textArray.push(<div key="3" className="btn btn-sm btn-invisible">{ App.t("next") }</div>);
     }

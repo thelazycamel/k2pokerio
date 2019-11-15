@@ -25,7 +25,7 @@ defmodule K2pokerIo.FriendControllerTest do
     response = conn
       |> get(Routes.friend_path(conn, :index))
       |> json_response(200)
-    %{"friends" => friends} = response
+    %{"entries" => friends} = response
     first_friend = List.first(friends)
     assert(Enum.count(friends) == 2)
     assert(first_friend["username"] == "bob")

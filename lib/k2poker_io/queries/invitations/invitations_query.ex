@@ -3,7 +3,6 @@ defmodule K2pokerIo.Queries.Invitations.InvitationsQuery do
   alias K2pokerIo.Repo
   alias K2pokerIo.Invitation
 
-  import K2pokerIo.Queries.Pagination
   import Ecto.Query
 
   def count(user_id) do
@@ -20,7 +19,7 @@ defmodule K2pokerIo.Queries.Invitations.InvitationsQuery do
       where: (i.user_id == ^current_user_id and i.accepted == false and t.finished == false),
       select: %{name: t.name, id: i.id, username: u.username, tournament_id: t.id, image: t.image},
       order_by: [desc: i.inserted_at]
-    paginate(query, params)
+    Repo.paginate(query, params)
   end
 
 end

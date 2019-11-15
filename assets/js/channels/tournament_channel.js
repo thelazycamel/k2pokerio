@@ -7,7 +7,7 @@ class TournamentChannel {
   joinTournamentChannel() {
     let tournamentId = App.settings.tournament_id;
     App.tournamentChannel = App.socket.channel("tournament:" + tournamentId);
-    App.tournamentChannel.join().receive("ok", function(resp){
+    App.tournamentChannel.join().receive("ok", function(){
     }).receive("error", reason =>
       console.log("join failed")
     )

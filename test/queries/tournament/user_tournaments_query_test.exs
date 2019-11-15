@@ -29,10 +29,10 @@ defmodule K2pokerIo.UserTournamentsTest do
   end
 
   test "it should all available tournaments", context do
-    {query, _} = UserTournamentsQuery.all(context.player1, %{page: 1, per_page: 7, max_pages: 100})
-    default_tourney = List.first(query)
-    accepted_tourney = List.last(query)
-    assert(Enum.count(query) == 2)
+    query = UserTournamentsQuery.all(context.player1, %{page_number: 1, page_size: 7})
+    default_tourney = List.first(query.entries)
+    accepted_tourney = List.last(query.entries)
+    assert(Enum.count(query.entries) == 2)
     assert(default_tourney.current_score == nil)
     assert(default_tourney.starting_chips == 1)
     assert(default_tourney.name == context.default_tournament.name)
