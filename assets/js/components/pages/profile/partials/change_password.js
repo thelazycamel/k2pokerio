@@ -14,7 +14,13 @@ class ChangePassword extends React.Component {
 
   setPasswordResponseError(message) {
     message = App.t(message)
-    this.setState(...this.state, {passwordError: true, passwordErrorMessage: message, passwordUpdated: false});
+    this.setState(state => (
+      { ...this.state,
+        passwordError: true,
+        passwordErrorMessage: message,
+        passwordUpdated: false
+      }
+    ));
   }
 
 
@@ -28,7 +34,12 @@ class ChangePassword extends React.Component {
       if(response.status == "error") {
         this.setPasswordResponseError(response.message);
       } else {
-        this.setState(...this.state, {passwordUpdated: true, passwordError: false});
+        this.setState(state => (
+          { ...this.state,
+            passwordUpdated: true,
+            passwordError: false
+          }
+        ));
       }
     });
   }

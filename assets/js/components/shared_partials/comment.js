@@ -27,10 +27,10 @@ class Comment extends React.Component {
     let { comment } = this.props;
     if(this.props.comment.show == "comment") {
       App.services.friends.status(this.props.comment.user_id).then(data => {
-        App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, data) })
+        App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: {...comment, data}} );
       });
     } else {
-      App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: "comment"} ) });
+      App.store.dispatch({ type: "CHAT:UPDATE_SHOW_STATUS", comment: {...comment, show: "comment"} });
     }
   }
 
@@ -53,7 +53,7 @@ class Comment extends React.Component {
       if(response.badges.length > 0) {
         App.page.showBadgeAlert(response.badges);
       }
-      App.store.dispatch({type: "CHAT:UPDATE_SHOW_STATUS", comment: Object.assign({}, comment, {show: show})});
+      App.store.dispatch({type: "CHAT:UPDATE_SHOW_STATUS", comment: {...comment, show: show} });
     })
   }
 

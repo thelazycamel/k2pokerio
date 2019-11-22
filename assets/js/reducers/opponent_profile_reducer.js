@@ -13,13 +13,13 @@ var opponentProfileReducer = function(state = {}, action) {
       return state;
       break;
     case "OPPONENT_PROFILE:REQUESTED":
-      return Object.assign({}, state, action.resp);
+      return {...state, ...action.resp};
       break;
     case "OPPONENT_PROFILE:CONFIRMED":
-      return Object.assign({}, state, action.resp);
+      return {...state, ...action.resp};
       break;
     case "OPPONENT_PROFILE:NEW":
-      return Object.assign({}, state, action.profile);
+      return {...state, ...action.profile};
       break;
     default:
       return state;

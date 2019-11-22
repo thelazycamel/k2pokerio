@@ -18,13 +18,17 @@ class TournamentIndexComponent extends React.Component {
 
   componentDidMount() {
     App.services.invitations.count().then(data => {
-      this.setState(state => ({ ...state, invite_count: data.count }));
+      this.setState(state => (
+        { ...state,
+          invite_count: data.count
+        }
+      ));
       this.loadPage(1, "tournaments");
     })
   }
 
   loadPage(page_number, area){
-    let pagination = Object.assign(this.state.pagination, {page_number: page_number});
+    let pagination = {...this.state.pagination, page_number: page_number};
     if(area == "tournaments"){
       App.services.tournaments.all(pagination).then(data => {
         this.setState(state => (
@@ -62,16 +66,18 @@ class TournamentIndexComponent extends React.Component {
           invitations: this.state.invitations.filter(el => { return el.id != invite_id }),
           invite_count: this.state.invite_count -1
         }
-      ))
+      ));
     });
   }
 
   destroyTournament(tournament_id) {
     App.services.tournaments.destroy(tournament_id).then(data => {
-      this.setState(...this.state,
-        { tournaments: this.state.tournaments.filter(el => { return el.id != tournament_id }) }
-      )
-    })
+      this.setState(state => (
+        { ...this.state,
+          tournaments: this.state.tournaments.filter(el => { return el.id != tournament_id })
+        }
+      ));
+    });
   }
 
   tournamentInfoInviteClicked() {

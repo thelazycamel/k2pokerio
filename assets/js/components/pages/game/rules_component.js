@@ -14,7 +14,11 @@ class RulesComponent extends React.Component {
   }
 
   changeTab(tab) {
-    this.setState({tab: tab});
+    this.setState(state => (
+      { ...this.state,
+        tab: tab
+      }
+    ));
   }
 
   renderBody() {

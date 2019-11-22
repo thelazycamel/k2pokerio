@@ -10,13 +10,13 @@ class FriendsList extends React.Component {
       friends: [],
       pending_me: this.props.pending_me,
       area: "",
-      pagination: {},
+      pagination: {page_number: 1, total_pages: 1},
       search: ""
     }
   }
 
   componentDidMount(){
-    this.setState(...this.state, {area: "friends"});
+    this.setState({area: "friends"});
     this.loadPage(1, "friends");
   }
 
@@ -30,7 +30,7 @@ class FriendsList extends React.Component {
         if(f.id == friend.id) {f.status = data.friend}
         return f;
       });
-      this.setState(...this.state, {friends: friends});
+      this.setState({friends: friends});
     })
   }
 
@@ -41,7 +41,7 @@ class FriendsList extends React.Component {
         return f
       });
       this.props.getPendingMe();
-      this.setState(...this.state, {friends: friends});
+      this.setState({friends: friends});
     })
   }
 
@@ -52,7 +52,7 @@ class FriendsList extends React.Component {
         return f
       });
       this.props.getPendingMe()
-      this.setState(...this.state, {friends: friends});
+      this.setState({friends: friends});
     });
   }
 
@@ -106,7 +106,7 @@ class FriendsList extends React.Component {
   }
 
   changeArea(area){
-    this.setState(...this.state, {area: area, search: ""});
+    this.setState({area: area, search: ""});
     this.loadPage(1, area);
   }
 
@@ -116,7 +116,16 @@ class FriendsList extends React.Component {
     } else {
       App.services.friends.index({page: pageNo, per_page: 7, area: area, max_page: 100}).then(response => {
         let pending_me = area == "pending_me" ? response.entries.length : this.state.pending_me;
-        this.setState(...this.state, {friends: response.entries, pagination: response.pagination, pending_me: pending_me});
+        this.setState(
+          {
+            friends: response.entries,
+            pagination: {
+              page_number: response.page_number,
+              total_pages: response.total_pages
+            },
+            pending_me: pending_me
+          }
+        );
       });
     }
   }
@@ -146,7 +155,7 @@ class FriendsList extends React.Component {
 
   renderPendingMeButton(){
     return (
-      <div className={`friends-tab pending-me-tab ${this.state.area == "pending_me" ? "active" : "link"}`} onClick={this.changeArea.bind(this, "pending_me")}>
+      <div className={`friends-tab pending-me-tab ${this.state.area === "pending_me" ? "active" : "link"}`} onClick={this.changeArea.bind(this, "pending_me")}>
         { App.t("pending_me") }
         { this.renderPendingMeCount() }
       </div>
@@ -154,7 +163,7 @@ class FriendsList extends React.Component {
   }
 
   renderFriendsButton(){
-    if(this.state.area == "friends") {
+    if(this.state.area === "friends") {
       return <div className="friends-tab all-friends-tab active">{App.t("friends")}</div>
     } else {
       return <div className="friends-tab all-friends-tab link" onClick={this.changeArea.bind(this, "friends")}>{App.t("friends")}</div>
@@ -163,7 +172,7 @@ class FriendsList extends React.Component {
 
   renderPendingThemButton() {
     // I have removed this as think it unnecessary to have 
-    if(this.state.area == "pending_them"){
+    if(this.state.area === "pending_them"){
       return <div className="friends-tab active">{App.t("pending_them")}</div>
     } else {
       return <div className="friends-tab link" onClick={this.changeArea.bind(this, "pending_them")}>{App.t("pending_them")}</div>
@@ -183,7 +192,7 @@ class FriendsList extends React.Component {
   }
 
   updateSearchValue(e){
-    this.setState(...this.state, {search: e.target.value})
+    this.setState({search: e.target.value});
     if(e.target.value.length >= 3) {
       this.loadSearch(1);
     }
@@ -199,8 +208,16 @@ class FriendsList extends React.Component {
 
   loadSearch(page) {
     App.services.friends.search({query: this.state.search, page: page, per_page: 7, max_page: 100}).then(response => {
-      this.setState(...this.state, {friends: response.entries, pagination: {total_pages: response.total_pages, page_number: response.page_number}, area: "search"});
-    })
+      this.setState({
+          friends: response.entries,
+          area: "search",
+          pagination: {
+            total_pages: response.total_pages,
+            page_number: response.page_number
+          }
+        }
+      );
+    });
   }
 
   render(){

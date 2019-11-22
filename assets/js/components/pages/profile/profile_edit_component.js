@@ -26,7 +26,11 @@ class ProfileEditComponent extends React.Component {
 
   getPendingMe(){
     App.services.friends.count("pending_me").then(data => {
-      this.setState(...this.state, {pending_me: data.pending_me});
+      this.setState(state => (
+        { ...this.state,
+          pending_me: data.pending_me
+        }
+      ));
       /*hack*/
       let headerEl = document.getElementById("profile-friend-requests")
       if(headerEl) {
@@ -41,7 +45,11 @@ class ProfileEditComponent extends React.Component {
 
   updateBlurb(event){
     App.services.profile.update_blurb(event.target.value).then(data => {
-      this.setState(...this.state, { blurb: data.blurb });
+      this.setState(state => (
+        { ...this.state,
+          blurb: data.blurb
+        }
+      ));
       if(data.badges.length > 0) {
         App.page.showBadgeAlert(data.badges);
         App.page.rebuildBadgesComponent();
@@ -54,12 +62,21 @@ class ProfileEditComponent extends React.Component {
   }
 
   editProfileImageClicked(){
-    this.setState(...this.state, {imageSelector: !this.state.imageSelector});
+    this.setState(state => (
+      { ...this.state,
+        imageSelector: !this.state.imageSelector
+     }
+    ));
   }
 
   selectImage(image){
     App.services.profile.update_image(image).then(data => {
-      this.setState(...this.state, { imageSelector: false, profileImage: image });
+      this.setState(state => (
+        { ...this.state,
+          imageSelector: false,
+          profileImage: image
+        }
+      ));
     });
   }
 
@@ -103,7 +120,11 @@ class ProfileEditComponent extends React.Component {
   }
 
   areaButtonClicked(buttonName){
-    this.setState(...this.state, { area: buttonName});
+    this.setState(state => (
+      { ...this.state,
+        area: buttonName
+      }
+    ));
   }
 
   renderArea() {

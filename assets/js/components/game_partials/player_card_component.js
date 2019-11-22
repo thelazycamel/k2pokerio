@@ -12,9 +12,17 @@ class PlayerCardComponent extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(this.props.card == "discarded"){
-      this.setState({new_card: true});
+      this.setState(state => (
+        { ...this.state,
+          new_card: true
+        }
+      ));
     } else {
-      this.setState({new_card: false});
+      this.setState(state => (
+        { ...this.state,
+          new_card: false
+        }
+      ));
     }
   }
 

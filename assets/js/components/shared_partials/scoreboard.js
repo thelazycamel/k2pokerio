@@ -10,9 +10,17 @@ class Scoreboard extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(this.props.current_score != nextProps.current_score){
-      this.setState({animate: "animate"});
+      this.setState(state => (
+        { ...this.state,
+          animate: "animate"
+        }
+      ));
     } else {
-      this.setState({animate: ""});
+      this.setState(state => (
+        { ...this.state,
+          animate: ""
+        }
+      ));
     }
   }
 

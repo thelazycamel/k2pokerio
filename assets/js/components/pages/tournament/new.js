@@ -23,7 +23,12 @@ class TournamentNewComponent extends React.Component {
         friend["selected"] = false;
         return friend;
       });
-      this.setState(...this.state, {friends: friends, pagination: data.pagination})
+      this.setState(state => (
+        { ...this.state,
+          friends: friends,
+          pagination: data.pagination
+        }
+      ));
     });
   }
 
@@ -36,7 +41,11 @@ class TournamentNewComponent extends React.Component {
       friend["selected"] = true;
       return friend;
     });
-    this.setState(Object.assign({}, this.state, {friends: friends}));
+    this.setState(state => (
+      { ...this.state,
+        friends: friends
+      }
+    ));
   }
 
   deSelectAll() {
@@ -44,33 +53,61 @@ class TournamentNewComponent extends React.Component {
       friend["selected"] = false;
       return friend;
     });
-    this.setState(Object.assign({}, this.state, {friends: friends}));
+    this.setState(state => (
+      { ...this.state,
+        friends: friends
+      }
+    ));
   }
 
   updateDuelName(friend, selected){
     if(this.state.gameType == "duel") {
       if(selected){
-        this.setState(...this.state, {duelName: this.props.username + " vs " + friend.username})
+        this.setState(state => (
+          { ...this.state, 
+            duelName: this.props.username + " vs " + friend.username
+          }
+        ));
       } else {
-        this.setState(...this.state, {duelName: this.props.username + " vs "})
+        this.setState(state => (
+          { ...this.state,
+            duelName: this.props.username + " vs "
+          }
+        ));
       }
     }
   }
 
   tournamentNameChanged(e) {
-    this.setState(...this.state, {tournamentName: e.currentTarget.value});
+    this.setState(state => (
+      { ...this.state,
+        tournamentName: e.currentTarget.value
+      }
+    ));
   }
 
   tournamentDescriptionChanged(e) {
-    this.setState(...this.state, {tournamentDescription: e.currentTarget.value});
+    this.setState(state => (
+      { ...this.state,
+        tournamentDescription: e.currentTarget.value
+      }
+    ));
   }
 
   maxScoreChanged(e) {
-    this.setState(...this.state, {maxScore: e.currentTarget.value});
+    this.setState(state => (
+      { ...this.state,
+        maxScore: e.currentTarget.value
+      }
+    ));
   }
 
   duelNameChanged(e) {
-    this.setState(...this.state, {duelName: e.currentTarget.value});
+    this.setState(state => (
+      { ...this.state,
+        duelName: e.currentTarget.value
+      }
+    ));
   }
 
   toggleSelectedFriend(user_id) {
@@ -86,7 +123,11 @@ class TournamentNewComponent extends React.Component {
         return friend;
       }
     });
-    this.setState(...this.state, {friends: friends});
+    this.setState(state => (
+      { ...this.state,
+        friends: friends
+      }
+    ));
   }
 
   renderFriend(friend) {
@@ -108,7 +149,12 @@ class TournamentNewComponent extends React.Component {
 
   tabClicked(tab) {
     this.deSelectAll();
-    this.setState(...this.state, {gameType: tab, duelName: this.props.username + " vs "});
+    this.setState(state => (
+      { ...this.state,
+        gameType: tab,
+        duelName: this.props.username + " vs "
+      }
+    ));
   }
 
   submitForm(e) {

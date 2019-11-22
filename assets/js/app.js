@@ -71,7 +71,7 @@ window.App = {
     this.settings = {};
     let configurations = document.getElementsByTagName("body")[0].dataset;
     configurations["csrf_token"] = document.getElementsByName("csrf_token")[0].content;
-    this.settings = Object.assign({}, configurations)
+    this.settings = Object.assign({}, configurations);
   },
 
   setUpUtils(){

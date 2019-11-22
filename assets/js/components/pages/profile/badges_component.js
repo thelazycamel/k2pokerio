@@ -17,7 +17,11 @@ class BadgesComponent extends React.Component {
 
   getBadges(){
     App.services.badges.index({}).then(data => {
-      this.setState(...this.state, {badges: data.badges});
+      this.setState(state => (
+        { ...this.state,
+          badges: data.badges
+        }
+      ));
     });
   }
 

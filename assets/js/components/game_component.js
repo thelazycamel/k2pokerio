@@ -23,9 +23,17 @@ class GameComponent extends React.Component {
 
   setOpponentDiscardedAnimation(nextProps){
     if(nextProps.game.other_player_status == "discarded" && this.props.game.other_player_status != "discarded"){
-      this.setState({opponent_discarded_animation: true});
+      this.setState(state => (
+        { ...this.state,
+          opponent_discarded_animation: true
+        }
+      ));
     } else {
-      this.setState({opponent_discarded_animation: false});
+      this.setState(state => (
+        { ...this.state,
+          opponent_discarded_animation: false
+        }
+      ));
     }
   }
 
